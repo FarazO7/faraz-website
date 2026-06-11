@@ -6,7 +6,7 @@ import { identity, navLinks } from "@/lib/content";
 import { withBasePath } from "@/lib/utils";
 
 const resumeButtonClass =
-  "inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/10 px-3.5 py-2 text-sm font-medium transition-colors hover:border-white/[0.18] hover:bg-white/15";
+  "items-center gap-2 rounded-xl border border-white/15 bg-white/10 px-3.5 py-2 text-sm font-medium transition-colors hover:border-white/[0.18] hover:bg-white/15";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -83,7 +83,7 @@ export default function Nav() {
                 href={withBasePath(identity.resumePath)}
                 download
                 onClick={() => setOpen(false)}
-                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-white/5"
               >
                 <Download className="size-4" aria-hidden />
                 Download Resume

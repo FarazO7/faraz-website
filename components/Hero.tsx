@@ -12,7 +12,7 @@ function Avatar() {
   const [failed, setFailed] = useState(false);
   return (
     <div
-      className="shrink-0 rounded-full border-2 border-white/[0.18] p-1"
+      className="w-fit shrink-0 rounded-full border-2 border-white/[0.18] p-1"
       style={{ boxShadow: "0 0 48px rgba(79, 124, 255, 0.28)" }}
     >
       {failed ? (
