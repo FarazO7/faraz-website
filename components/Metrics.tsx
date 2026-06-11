@@ -34,7 +34,7 @@ function MetricTile({
 
   return (
     <article
-      className="glass rise rounded-2xl p-5"
+      className="glass glass-nested rise rounded-2xl p-5"
       style={{ animationDelay: `${delayMs}ms` }}
     >
       <p className="font-mono text-3xl font-bold text-accent-c sm:text-4xl">

@@ -56,8 +56,8 @@ button:not(:disabled),
 --------------------------------------------------------------------------- */
 .glass {
   background: rgba(255, 255, 255, 0.07);
+  /* -webkit- prefix is generated at build time from the browserslist targets */
   backdrop-filter: blur(14px) saturate(160%);
-  -webkit-backdrop-filter: blur(14px) saturate(160%);
   border: 1px solid rgba(255, 255, 255, 0.14);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
@@ -70,6 +70,15 @@ button:not(:disabled),
   .glass {
     background: rgba(13, 18, 32, 0.92);
   }
+}
+
+/* For glass nested inside glass (metric tiles in the hero panel): the parent
+   already blurs the page background, so a second backdrop-filter is pure GPU
+   cost with no visual gain — and it's what pushes the per-viewport active-blur
+   budget past ~6. Same recipe, blur layer off, tint bumped to compensate. */
+.glass-nested {
+  backdrop-filter: none;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* Hovers animate transform/border/shadow only — never backdrop-filter (§3.3) */

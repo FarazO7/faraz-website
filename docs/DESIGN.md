@@ -34,6 +34,11 @@ to scan the impact numbers, open a case study, and make contact.
 - Glass budget: nav, hero panel, four metric tiles, case-study cards, contribution
   calendar container, repo cards. Everything else flat. Hovers animate
   transform/border/shadow only — never `backdrop-filter`.
+- Budget enforcement: the metric tiles sit inside the already-blurred hero panel,
+  so they use `.glass-nested` (full glass recipe, blur layer off) — a second
+  backdrop-filter there is GPU cost with no visual gain, and dropping it keeps
+  every viewport at ≤6 active backdrop-filters (measured: hero 4, work 6,
+  github 6 at 1440×900).
 
 ## Page architecture (top → bottom)
 
