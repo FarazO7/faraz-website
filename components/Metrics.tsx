@@ -42,7 +42,7 @@ function MetricTile({
         {value}
         {metric.suffix}
       </p>
-      <h3 className="mt-2 text-sm leading-snug font-medium">{metric.label}</h3>
+      <p className="mt-2 text-sm leading-snug font-medium">{metric.label}</p>
       <p className="mt-1.5 text-[13px] leading-relaxed text-muted">
         {metric.detail}
       </p>

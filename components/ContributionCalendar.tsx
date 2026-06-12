@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { ArrowUpRight } from "lucide-react";
 import {
@@ -133,7 +133,9 @@ function tipLabel(day: ContributionDay): string {
   return `${day.count} ${noun} on ${formatTooltipDate(day.date)}`;
 }
 
-function Grid({
+// Memoized so tooltip state changes in the parent don't re-render ~371 cells
+// on every mouseenter (days and the setState-backed onTip are stable).
+const Grid = memo(function Grid({
   days,
   total,
   onTip,
@@ -196,4 +198,4 @@ function Grid({
       </div>
     </div>
   );
-}
+});
