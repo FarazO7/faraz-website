@@ -25,7 +25,8 @@ function Avatar() {
         </div>
       ) : (
         <Image
-          src={identity.headshotPath}
+          // unoptimized images bypass the loader that would add basePath
+          src={withBasePath(identity.headshotPath)}
           alt={identity.headshotAlt}
           width={128}
           height={128}
@@ -42,7 +43,9 @@ export default function Hero() {
   return (
     <section id="top" className="px-4 pt-24 pb-4 sm:px-6 md:pt-32 md:pb-8">
       <div className="mx-auto max-w-6xl">
-        <div className="glass rise p-6 sm:p-10">
+        {/* No entrance animation here: the hero holds the LCP text, and
+            animating it from opacity 0 disqualifies it as an LCP candidate. */}
+        <div className="glass p-6 sm:p-10">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:gap-10">
             <Avatar />
             <div className="min-w-0">

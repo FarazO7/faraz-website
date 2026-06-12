@@ -71,6 +71,7 @@ export type Week = (ContributionDay | null)[];
 
 /** Chunk a year of days into Sunday-started columns of 7 for the 53×7 grid. */
 export function buildWeeks(days: ContributionDay[]): Week[] {
+  if (days.length === 0) return [];
   const weeks: Week[] = [];
   let week: Week = [];
   const firstDay = new Date(`${days[0].date}T00:00:00`).getDay();
@@ -120,7 +121,11 @@ function readCache(): CacheEntry | null {
     const raw = localStorage.getItem(CACHE_KEY);
     if (!raw) return null;
     const entry = JSON.parse(raw) as CacheEntry;
-    return Array.isArray(entry.repos) && entry.repos.length > 0 ? entry : null;
+    return typeof entry.savedAt === "number" &&
+      Array.isArray(entry.repos) &&
+      entry.repos.length > 0
+      ? entry
+      : null;
   } catch {
     return null;
   }
