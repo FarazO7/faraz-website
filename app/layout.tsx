@@ -4,11 +4,18 @@ import "./globals.css";
 import BackgroundFX from "@/components/BackgroundFX";
 import { identity } from "@/lib/content";
 
-const sora = Sora({ subsets: ["latin"], variable: "--font-sora" });
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+// display: swap → text paints immediately in the fallback and swaps when the
+// webfont arrives, so the hero copy (the LCP element) never blocks on fonts.
+const sora = Sora({ subsets: ["latin"], variable: "--font-sora", display: "swap" });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 const jetbrains = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
+  display: "swap",
 });
 
 const title = `${identity.name} — ${identity.title}`;

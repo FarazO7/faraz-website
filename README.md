@@ -80,15 +80,33 @@ Note: the snapshot mirrors the live API as captured on 2026-06-11. The
 `Product-Management` repo named in the original spec is no longer returned by
 the GitHub API, so the snapshot carries `job-apply-assistant-1` instead.
 
+## Case-study previews (Phase 5)
+
+[`scripts/generate-previews.mjs`](scripts/generate-previews.mjs) renders page 1 of
+each case-study PDF to an 800px `.webp` in `public/previews/` using `pdfjs-dist` +
+`@napi-rs/canvas`. It runs automatically as `prebuild` (so GitHub Actions
+regenerates them) and the webps are committed for offline dev. If a download or
+render fails for one card, it logs a warning and keeps the committed image —
+**it never breaks the build**. Run it on demand with `npm run previews`.
+
 ## Design system
 
 Locked tokens in [`app/globals.css`](app/globals.css): ink `#070B14`, text
-`#E8ECF5`, muted `#9AA4B8`, indigo/teal/amber accents, GitHub green scale. One
-glass primitive (`.glass`), reserved for nav, hero panel, metric tiles, case-study
-cards, calendar container, and repo cards — everything else is flat. Hovers animate
-transform/border/shadow only; orb drift, count-ups, and entrance reveals are all
-disabled under `prefers-reduced-motion`. Fonts (Sora / Inter / JetBrains Mono) are
-self-hosted via `next/font`. See [`docs/DESIGN.md`](docs/DESIGN.md).
+`#E8ECF5`, muted `#9AA4B8`, indigo/teal/amber accents, GitHub green scale, plus
+four V2 support tokens (`--space-deep`, `--nebula-orchid`, `--star-blue`,
+`--solar-gold`). One glass primitive (`.glass`) keeps live blur; it's budgeted to
+≤6 active `backdrop-filter` elements per viewport, so the ~30 skill-constellation
+nodes use the solid `.glass-solid` treatment and only the four hubs keep real blur.
+
+The background is a procedural deep-space environment: a fixed `<canvas>`
+([`StarField.tsx`](components/StarField.tsx)) paints three parallax star layers
+behind the nebula orbs, on one throttled rAF loop (DPR capped 1.5, paused on
+hidden tabs, deferred past LCP). Metric numerals use an amber→solar-gold gradient
+(AA-safe on glass). Hovers animate transform/border/shadow only; the star drift,
+orb drift, count-ups, scroll reveals, constellation float, and the Achievements
+pin are all disabled under `prefers-reduced-motion`. Fonts (Sora / Inter /
+JetBrains Mono) are self-hosted via `next/font`. See
+[`docs/DESIGN.md`](docs/DESIGN.md).
 
 ## Deployment
 
