@@ -102,13 +102,13 @@ export default function StarField() {
       const t = now / 1000;
       const scrollY = window.scrollY;
       for (const layer of layers) {
+        // Reduced motion: one truly static frame — no drift, no scroll parallax.
         const ox = reduced ? 0 : (t * layer.driftX) % w;
-        const oy = reduced
-          ? scrollY * layer.parallax
-          : ((t * layer.driftY) % h) + scrollY * layer.parallax;
+        const oy = reduced ? 0 : ((t * layer.driftY) % h) + scrollY * layer.parallax;
         for (const s of layer.stars) {
-          const x = (s.x + ox + w) % w;
-          const y = (s.y - oy + h * 4) % h;
+          // Positive modulo so wrapped coords never go negative at any offset.
+          const x = (((s.x + ox) % w) + w) % w;
+          const y = (((s.y - oy) % h) + h) % h;
           const alpha = reduced
             ? s.baseAlpha
             : Math.max(
