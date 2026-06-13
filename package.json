@@ -10,9 +10,11 @@
   ],
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/generate-previews.mjs",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "previews": "node scripts/generate-previews.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.17.0",
@@ -22,12 +24,14 @@
     "simple-icons": "^16.23.0"
   },
   "devDependencies": {
+    "@napi-rs/canvas": "^1.0.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "pdfjs-dist": "^6.0.227",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
