@@ -1,6 +1,6 @@
 import ContactLinks from "./ContactLinks";
 import { architectureMap, identity } from "@/lib/content";
-import { withBasePath } from "@/lib/utils";
+import { withBase } from "@/lib/utils";
 
 export default function Footer() {
   return (
@@ -19,7 +19,7 @@ export default function Footer() {
             © {new Date().getFullYear()} {identity.name}
           </p>
           <a
-            href={withBasePath(architectureMap.href)}
+            href={withBase(architectureMap.href)}
             className="transition-colors hover:text-foreground"
           >
             {architectureMap.label}
