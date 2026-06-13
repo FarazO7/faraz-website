@@ -12,6 +12,13 @@
   --gh-2: #006d32;
   --gh-3: #26a641;
   --gh-4: #39d353;
+
+  /* V2 extended palette (additive — V1 tokens above are untouched).
+     Constrained usage: deepens the theme, never competes with it. */
+  --space-deep: #03060d; /* radial vignette at viewport edges — the void */
+  --nebula-orchid: #b45ccf; /* third nebula wash — BACKGROUND ONLY, never type */
+  --star-blue: #9db8ff; /* star tints, subtle dividers, focus-glow alternate */
+  --solar-gold: #ffd68a; /* amber's lighter companion: numeral gradient top stop */
 }
 
 @theme inline {
@@ -21,6 +28,8 @@
   --color-accent-a: var(--accent-a);
   --color-accent-b: var(--accent-b);
   --color-accent-c: var(--accent-c);
+  --color-star-blue: var(--star-blue);
+  --color-solar-gold: var(--solar-gold);
   --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", monospace;
@@ -31,7 +40,16 @@ html {
 }
 
 body {
+  /* Radial vignette: ink at center fading to the deeper void at the edges.
+     The star canvas paints on top of this. */
   background-color: var(--ink);
+  background-image: radial-gradient(
+    ellipse at 50% 38%,
+    var(--ink) 0%,
+    var(--ink) 42%,
+    var(--space-deep) 100%
+  );
+  background-attachment: fixed;
   color: var(--text);
 }
 
@@ -150,6 +168,21 @@ button:not(:disabled),
   animation: drift-c 44s ease-in-out infinite alternate;
 }
 
+/* Orchid nebula wash — BACKGROUND ONLY, ≤16% opacity, never type (§1.5.1). */
+.orb-d {
+  width: max(46vw, 440px);
+  height: max(46vw, 440px);
+  top: 58%;
+  right: 8vw;
+  background: radial-gradient(
+    circle,
+    rgba(180, 92, 207, 0.13) 0%,
+    rgba(180, 92, 207, 0.05) 45%,
+    transparent 70%
+  );
+  animation: drift-d 56s ease-in-out infinite alternate;
+}
+
 @keyframes drift-a {
   to {
     transform: translate3d(9vw, 7vh, 0) scale(1.06);
@@ -166,6 +199,42 @@ button:not(:disabled),
   to {
     transform: translate3d(6vw, -6vh, 0) scale(1.08);
   }
+}
+
+@keyframes drift-d {
+  to {
+    transform: translate3d(-8vw, 5vh, 0) scale(1.05);
+  }
+}
+
+/* Void vignette behind the star canvas (paired with the body radial gradient). */
+.vignette {
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    transparent 45%,
+    rgba(3, 6, 13, 0.55) 100%
+  );
+}
+
+/* ---------------------------------------------------------------------------
+   Signature numeral gradient: vertical amber → solar-gold, clipped to text.
+   The lightest stop (solar-gold #FFD68A) still measures ≥ 4.5:1 on the glass
+   tile, so the metric numbers stay AA-legible (§1.5.1).
+--------------------------------------------------------------------------- */
+.numeral-gradient {
+  background-image: linear-gradient(
+    180deg,
+    var(--accent-c) 0%,
+    var(--solar-gold) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Tailwind v4 has no duration-600 by default; the star canvas fade uses it. */
+.duration-600 {
+  transition-duration: 600ms;
 }
 
 /* 2.5% noise grain over the orbs */
