@@ -2,6 +2,7 @@ import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import CaseStudies from "@/components/CaseStudies";
 import Experience from "@/components/Experience";
+import Achievements from "@/components/Achievements";
 import GitHubSection from "@/components/GitHubSection";
 import Skills from "@/components/Skills";
 import Footer from "@/components/Footer";
@@ -31,6 +32,7 @@ export default function Home() {
         <Hero />
         <CaseStudies />
         <Experience />
+        <Achievements />
         <GitHubSection />
         <Skills />
       </main>
