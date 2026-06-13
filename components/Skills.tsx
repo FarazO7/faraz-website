@@ -1,9 +1,8 @@
-import { Award, BadgeCheck, GraduationCap, type LucideIcon } from "lucide-react";
+import { Award, BadgeCheck, type LucideIcon } from "lucide-react";
 import Section from "./Section";
 import {
   achievements,
   certifications,
-  education,
   skills,
   type Credential,
 } from "@/lib/content";
@@ -30,17 +29,12 @@ export default function Skills() {
           </div>
         ))}
       </div>
-      <div className="mt-12 grid gap-8 border-t border-white/[0.07] pt-10 lg:grid-cols-3">
+      <div className="mt-12 grid gap-8 border-t border-white/[0.07] pt-10 md:grid-cols-2">
         <CredentialList icon={Award} title="Achievements" items={achievements} />
         <CredentialList
           icon={BadgeCheck}
           title="Certifications"
           items={certifications}
-        />
-        <CredentialList
-          icon={GraduationCap}
-          title="Education"
-          items={education}
         />
       </div>
     </Section>
