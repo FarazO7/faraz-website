@@ -1,34 +1,12 @@
 import { Award, BadgeCheck, type LucideIcon } from "lucide-react";
 import Section from "./Section";
-import {
-  achievements,
-  certifications,
-  skills,
-  type Credential,
-} from "@/lib/content";
+import SkillsConstellation from "./SkillsConstellation";
+import { achievements, certifications, type Credential } from "@/lib/content";
 
 export default function Skills() {
   return (
     <Section id="skills" kicker="Capabilities" title="Skills & Credentials">
-      <div className="grid gap-x-10 gap-y-8 md:grid-cols-2">
-        {skills.map((group) => (
-          <div key={group.name}>
-            <h3 className="font-mono text-xs font-medium tracking-[0.18em] uppercase text-muted">
-              {group.name}
-            </h3>
-            <ul className="mt-3 flex flex-wrap gap-2">
-              {group.items.map((skill) => (
-                <li
-                  key={skill}
-                  className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[13px] text-muted"
-                >
-                  {skill}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
+      <SkillsConstellation />
       <div className="mt-12 grid gap-8 border-t border-white/[0.07] pt-10 md:grid-cols-2">
         <CredentialList icon={Award} title="Achievements" items={achievements} />
         <CredentialList

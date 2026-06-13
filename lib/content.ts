@@ -172,60 +172,65 @@ export const caseStudies: CaseStudy[] = [
   },
 ];
 
-export type SkillGroup = { name: string; items: string[] };
+// `slug` maps to a verified simple-icons brand mark (see lib/skillIcons.ts).
+// Skills without a slug render as a JetBrains-Mono text node — no skill is
+// dropped for lacking a logo. `accent` colors each hub's connector junctions.
+export type SkillNode = { label: string; slug?: string };
+export type SkillHub = { name: string; accent: string; nodes: SkillNode[] };
 
-export const skills: SkillGroup[] = [
+export const skills: SkillHub[] = [
   {
     name: "Core PM",
-    items: [
-      "Product Strategy",
-      "Roadmapping",
-      "Discovery",
-      "PRDs & User Stories",
-      "GTM",
-      "Agile/Scrum",
-      "Release Management",
-      "UAT",
-      "Stakeholder Management",
-      "OKRs/KPIs",
+    accent: "#4F7CFF", // indigo
+    nodes: [
+      { label: "Product Strategy" },
+      { label: "Roadmapping" },
+      { label: "Discovery" },
+      { label: "PRDs & User Stories" },
+      { label: "GTM" },
+      { label: "Agile/Scrum" },
+      { label: "Release Management" },
+      { label: "UAT" },
+      { label: "Stakeholder Management" },
+      { label: "OKRs/KPIs" },
     ],
   },
   {
     name: "Data & Analytics",
-    items: [
-      "SQL",
-      "Python",
-      "Funnel & Cohort Analysis",
-      "A/B Testing",
-      "Mixpanel",
-      "Product Analytics",
-      "DAU/MAU",
-      "Dashboarding",
+    accent: "#18C6B4", // teal
+    nodes: [
+      { label: "SQL" },
+      { label: "Python", slug: "python" },
+      { label: "Funnel & Cohort Analysis" },
+      { label: "A/B Testing" },
+      { label: "Mixpanel", slug: "mixpanel" },
+      { label: "Product Analytics" },
+      { label: "DAU/MAU" },
+      { label: "Dashboarding" },
     ],
   },
   {
     name: "AI & Automation",
-    items: [
-      "AI-Powered Products",
-      "LLMs",
-      "Prompt Engineering",
-      "AI Agents",
-      "Workflow Automation",
+    accent: "#FFB454", // amber
+    nodes: [
+      { label: "AI-Powered Products" },
+      { label: "LLMs" },
+      { label: "Prompt Engineering" },
+      { label: "AI Agents" },
+      { label: "Workflow Automation" },
     ],
   },
   {
     name: "Tools",
-    items: [
-      "JIRA",
-      "Confluence",
-      "GA",
-      "Firebase",
-      "CleverTap",
-      "Tableau",
-      "Power BI",
-      "Metabase",
-      "SAP",
-      "Advanced Excel",
+    accent: "#8B5CF6", // violet
+    nodes: [
+      { label: "JIRA", slug: "jira" },
+      { label: "Confluence", slug: "confluence" },
+      { label: "GA", slug: "googleanalytics" },
+      { label: "Firebase", slug: "firebase" },
+      { label: "CleverTap" }, // no simple-icons mark → text node
+      { label: "Tableau" }, // removed from simple-icons → text node
+      { label: "Metabase", slug: "metabase" },
     ],
   },
 ];
