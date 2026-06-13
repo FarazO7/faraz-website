@@ -127,6 +127,8 @@ export type CaseStudy = {
   subtitle?: string;
   summary?: string;
   href?: string;
+  /** Preview image lives at public/previews/{slug}.webp (Phase 5 script). */
+  slug: string;
   docs?: { title: string; href: string }[];
 };
 
@@ -134,6 +136,7 @@ export const caseStudies: CaseStudy[] = [
   {
     title: "Bumble — “Date Vibe”",
     subtitle: "Growth strategy",
+    slug: "bumble",
     summary:
       "Simplified pre-date planning from user research; gamified solution projected ₹10 Cr annual revenue and +20% profile interactions.",
     href: "https://assets.nextleap.app/submissions/NLBumble-da078847-c1b6-4b73-b9c3-760f63b97b4c.pdf",
@@ -141,16 +144,28 @@ export const caseStudies: CaseStudy[] = [
   {
     title: "MakeMyTrip",
     subtitle: "Product teardown",
+    slug: "makemytrip",
+    // REVIEW(Faraz): summary written from the deck — adjust wording as you like.
+    summary:
+      "A Growth-team teardown answering MakeMyTrip's mandate to crack trip planning — an unsolved gap in travel — with a GenAI-powered planner. Works through the business model, competitor and actor mapping, and a structured problem breakdown.",
     href: "https://assets.nextleap.app/submissions/Makemytrip-9eb8bfaa-0280-463f-a9df-6ca31ed1887f.pdf",
   },
   {
     title: "Zepto",
     subtitle: "Product teardown",
+    slug: "zepto",
+    // REVIEW(Faraz): summary written from the deck — adjust wording as you like.
+    summary:
+      "A Growth teardown targeting Zepto's low average order value — the lever for quick-commerce unit economics. Maps the business outcome (profitability) to product outcomes (higher basket quantity and unit price), with problem validation and framing.",
     href: "https://assets.nextleap.app/submissions/Zepto-da51ae3f-a48d-40c6-9f3a-7615f18849e7.pdf",
   },
   {
     title: "Zomato — Increasing Reviews",
     subtitle: "Outcomes → insights → product note → PRD",
+    slug: "zomato",
+    // REVIEW(Faraz): one-line description of the four-document arc.
+    summary:
+      "A four-part arc on growing review volume on Zomato — from defining the product outcome, through user-insight discovery, to a product note and a full PRD.",
     docs: [
       {
         title: "Defining Product Outcomes",
