@@ -252,11 +252,28 @@ export const skills: SkillHub[] = [
 
 export type Credential = { text: string; href?: string };
 
-export const achievements: Credential[] = [
-  { text: "NextLeap Product Manager Top Fellow (2024)" },
-  { text: "Runner-Up, “Call for Article” — Analytics Club, IIM Rohtak (2023)" },
-  // Wire an href here if/when the PDF is supplied.
-  { text: "Founder’s Recommendation Letter" },
+// Promoted into its own dramatic scroll section (Phase 6). `icon` selects a
+// lucide mark; `href` (when supplied) turns the line into a link.
+export type Achievement = {
+  title: string;
+  year?: string;
+  icon: "trophy" | "award" | "fileBadge";
+  href?: string;
+};
+
+export const achievements: Achievement[] = [
+  {
+    title: "NextLeap Product Manager Top Fellow",
+    year: "2024",
+    icon: "trophy",
+  },
+  {
+    title: "Runner-Up, “Call for Article” — Analytics Club, IIM Rohtak",
+    year: "2023",
+    icon: "award",
+  },
+  // Wire an href here if/when the PDF is supplied; it becomes a link.
+  { title: "Founder’s Recommendation Letter", icon: "fileBadge" },
 ];
 
 export const certifications: Credential[] = [
