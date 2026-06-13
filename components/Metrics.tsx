@@ -37,7 +37,7 @@ function MetricTile({
       className="glass glass-nested rise rounded-2xl p-5"
       style={{ animationDelay: `${delayMs}ms` }}
     >
-      <p className="font-mono text-3xl font-bold text-accent-c sm:text-4xl">
+      <p className="numeral-gradient font-mono text-3xl font-bold sm:text-4xl">
         {metric.prefix}
         {value}
         {metric.suffix}
