@@ -4,30 +4,53 @@ Dark-glassmorphism personal portfolio for Faraz Ali, Associate Product Manager.
 Next.js (App Router) + TypeScript strict + Tailwind CSS v4, fully static
 (`output: 'export'`) — no server, no CMS, no database.
 
+## Sections
+
+- **Hero** — GitHub avatar, positioning line, four impact-metric tiles (count-up,
+  amber→gold gradient numerals). Each tile links to its own impact detail page.
+- **Selected Work** — four case-study cards, each topped with a rendered preview
+  of the PDF's first page.
+- **Experience + Education** — one shared vertical timeline component.
+- **Recognition** — a scroll-pinned Achievements section (framer-motion).
+- **GitHub** — live contribution calendar + repo cards.
+- **Skills** — a hub-and-spoke constellation with brand logos; Certifications.
+- **/impact/[slug]** — a detail page per metric (problem → approach → results).
+
 ## Setup
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
-npm run build    # static export to out/
+npm run dev        # http://localhost:3000
+npm run previews   # regenerate case-study preview images (also runs on build)
+npm run build      # static export to out/ (prebuild regenerates previews)
 ```
 
 ## Editing content
 
 **All copy and data lives in [`lib/content.ts`](lib/content.ts).** Components only
-render it — change text, metrics, case studies, skills, or links there without
-touching any component. The typed structure tells you exactly what each section
-expects.
+render it — change text, metrics, case studies, skills, achievements, education,
+or the impact-page narratives there without touching any component. The typed
+structure tells you exactly what each section expects. Lines marked
+`REVIEW(Faraz)` / `TODO(Faraz)` are awaiting your input (case-study summary
+wording, education years).
 
-Two files you supply (paths are wired and ready):
+One file you supply (the path is wired and ready):
 
 | File | Where to put it |
 | --- | --- |
 | Resume PDF | `public/resume/Faraz-Ali-Product-Manager.pdf` |
-| Headshot | `public/images/faraz-ali.jpg` (square crop works best) |
 
-Until the headshot exists, the hero renders an "FA" monogram in the same glass
-ring — nothing breaks. The Download Resume buttons link to the PDF path either way.
+The headshot is sourced live from GitHub, so there's nothing to upload for it.
+
+### Avatar source chain (Phase 2)
+
+The hero avatar walks a fallback chain on error:
+
+1. `https://github.com/FarazO7.png?size=400` — your current GitHub avatar
+2. local `public/images/faraz-ali.jpg` — used only if you add the file
+3. an "FA" monogram in the glass ring — if both images fail
+
+It loads eagerly (`fetchpriority="high"`) since it's the hero image.
 
 ## Live GitHub section — how the fallbacks behave
 
