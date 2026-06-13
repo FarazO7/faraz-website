@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Download, Menu, X } from "lucide-react";
 import { identity, navLinks } from "@/lib/content";
-import { withBasePath } from "@/lib/utils";
+import { withBase } from "@/lib/utils";
 
 const resumeButtonClass =
   "items-center gap-2 rounded-xl border border-white/15 bg-white/10 px-3.5 py-2 text-sm font-medium transition-colors hover:border-white/[0.18] hover:bg-white/15";
@@ -38,7 +38,7 @@ export default function Nav() {
         </ul>
         <div className="flex items-center gap-2">
           <a
-            href={withBasePath(identity.resumePath)}
+            href={withBase(identity.resumePath)}
             download
             className={`hidden sm:inline-flex ${resumeButtonClass}`}
           >
@@ -80,7 +80,7 @@ export default function Nav() {
             ))}
             <li className="mt-1 border-t border-white/10 pt-2">
               <a
-                href={withBasePath(identity.resumePath)}
+                href={withBase(identity.resumePath)}
                 download
                 onClick={() => setOpen(false)}
                 className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-white/5"

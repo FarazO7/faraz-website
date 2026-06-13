@@ -6,7 +6,7 @@ import { Download } from "lucide-react";
 import ContactLinks from "./ContactLinks";
 import Metrics from "./Metrics";
 import { identity } from "@/lib/content";
-import { withBasePath } from "@/lib/utils";
+import { withBase } from "@/lib/utils";
 
 function Avatar() {
   const [failed, setFailed] = useState(false);
@@ -26,7 +26,7 @@ function Avatar() {
       ) : (
         <Image
           // unoptimized images bypass the loader that would add basePath
-          src={withBasePath(identity.headshotPath)}
+          src={withBase(identity.headshotPath)}
           alt={identity.headshotAlt}
           width={128}
           height={128}
@@ -60,7 +60,7 @@ export default function Hero() {
               </p>
               <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
                 <a
-                  href={withBasePath(identity.resumePath)}
+                  href={withBase(identity.resumePath)}
                   download
                   className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-medium transition-colors hover:border-white/[0.18] hover:bg-white/15"
                 >
