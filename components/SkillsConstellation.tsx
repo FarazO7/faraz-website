@@ -21,6 +21,7 @@ function placeNodes(
   scale: number,
 ): Placed[] {
   const n = nodes.length;
+  if (n === 0) return [];
   const ring = (count: number, radius: number, offset: number) =>
     (i: number) => {
       const a = -Math.PI / 2 + offset + (i * 2 * Math.PI) / count;
@@ -111,8 +112,8 @@ export default function SkillsConstellation() {
               aria-hidden
             >
               {layout.layouts.flatMap(({ hub, cx, cy, placed }) =>
-                placed.map((p, i) => (
-                  <g key={`${hub.name}-line-${i}`}>
+                placed.map((p) => (
+                  <g key={`${hub.name}-${p.node.label}-line`}>
                     <line
                       x1={cx}
                       y1={cy}
