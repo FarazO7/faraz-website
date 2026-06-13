@@ -1,43 +1,9 @@
-"use client";
-
-import Image from "next/image";
-import { useState } from "react";
 import { Download } from "lucide-react";
+import Avatar from "./Avatar";
 import ContactLinks from "./ContactLinks";
 import Metrics from "./Metrics";
 import { identity } from "@/lib/content";
 import { withBase } from "@/lib/utils";
-
-function Avatar() {
-  const [failed, setFailed] = useState(false);
-  return (
-    <div
-      className="w-fit shrink-0 rounded-full border-2 border-white/[0.18] p-1"
-      style={{ boxShadow: "0 0 48px rgba(79, 124, 255, 0.28)" }}
-    >
-      {failed ? (
-        <div
-          role="img"
-          aria-label={identity.headshotAlt}
-          className="grid size-28 place-items-center rounded-full bg-white/[0.06] font-display text-3xl font-bold sm:size-32"
-        >
-          FA
-        </div>
-      ) : (
-        <Image
-          // unoptimized images bypass the loader that would add basePath
-          src={withBase(identity.headshotPath)}
-          alt={identity.headshotAlt}
-          width={128}
-          height={128}
-          priority
-          onError={() => setFailed(true)}
-          className="size-28 rounded-full object-cover sm:size-32"
-        />
-      )}
-    </div>
-  );
-}
 
 export default function Hero() {
   return (
