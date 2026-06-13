@@ -9,5 +9,7 @@ out/
 .venv/
 __pycache__/
 *.pyc
-graphify-out/
+# Ignore the root pipeline output, but keep the deployed architecture map
+# (public/graphify-out/graph.html) — the footer links it.
+/graphify-out/
 next-env.d.ts
