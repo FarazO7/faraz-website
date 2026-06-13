@@ -247,12 +247,22 @@ export const certifications: Credential[] = [
   { text: "Business Analysis & Process Management — Coursera" },
 ];
 
-export const education: Credential[] = [
+// Rendered with the same vertical timeline as Experience (Phase 3). Empty
+// `dates`/`bullets` render gracefully — no orphan separators.
+export const educationTimeline: Role[] = [
   {
-    text: "PGDM, Marketing & Operations — Management Development Institute (MDI), Murshidabad",
+    title: "PGDM, Marketing & Operations",
+    company: "Management Development Institute (MDI)",
+    location: "Murshidabad",
+    dates: "", // TODO(Faraz): add years, e.g. "2023 – 2025"
+    bullets: [],
   },
   {
-    text: "B.Tech, Electronics & Telecommunication Engineering — KIIT University",
+    title: "B.Tech, Electronics & Telecommunication Engineering",
+    company: "KIIT University",
+    location: "Bhubaneswar",
+    dates: "", // TODO(Faraz): add years
+    bullets: [],
   },
 ];
 
