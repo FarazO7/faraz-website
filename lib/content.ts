@@ -41,6 +41,8 @@ export type Metric = {
   suffix?: string;
   label: string;
   detail: string;
+  /** Links the tile to its detail page at /impact/{slug} (Phase 7). */
+  slug: string;
 };
 
 export const metrics: Metric[] = [
@@ -51,6 +53,7 @@ export const metrics: Metric[] = [
     label: "Referral conversion lift",
     detail:
       "Owned roadmap and lifecycle of the referral growth module; OKRs, cohort and funnel analysis, incentive experiments.",
+    slug: "referral-growth",
   },
   {
     value: 70,
@@ -59,6 +62,7 @@ export const metrics: Metric[] = [
     label: "Manual proctoring effort, across 15,000+ sessions",
     detail:
       "AI-powered exam monitoring: lightweight screenshot cadence, predefined malpractice flags, human-review pipeline.",
+    slug: "ai-proctoring",
   },
   {
     value: 99,
@@ -67,6 +71,7 @@ export const metrics: Metric[] = [
     label: "Payment reconciliation effort, with 100% real-time transaction accuracy",
     detail:
       "Razorpay Route API split payments between two accounts, webhook-driven failure handling.",
+    slug: "razorpay-route",
   },
   {
     value: 30,
@@ -74,6 +79,7 @@ export const metrics: Metric[] = [
     label: "Waitlist-to-seat conversion, zero vacant seats",
     detail:
       "Automated waitlisting workflows replacing a proposed CRM; cut turnaround ~90%.",
+    slug: "waitlist-automation",
   },
 ];
 
@@ -307,6 +313,147 @@ export const architectureMap = {
   label: "Built with Next.js — architecture map in the repo",
   href: "/graphify-out/graph.html",
 } as const;
+
+// ---------------------------------------------------------------------------
+// Impact detail pages (Phase 7). Each hero metric tile links to /impact/{slug}.
+// Narratives are the owner's, transcribed verbatim — no invented numbers.
+// ---------------------------------------------------------------------------
+
+export type ImpactMeta = { label: string; value: string };
+export type ImpactSection = { heading: string; body: string };
+export type ImpactDetail = {
+  slug: string;
+  metric: string;
+  outcome: string;
+  meta: ImpactMeta[];
+  sections: ImpactSection[];
+};
+
+export const impactDetails: ImpactDetail[] = [
+  {
+    slug: "referral-growth",
+    metric: "+32% Referral Conversion",
+    outcome: "Referrals became a core growth lever for the platform.",
+    meta: [
+      { label: "Project type", value: "Growth module, end-to-end ownership" },
+      { label: "Company", value: "Newton School (Incanus Technologies)" },
+      { label: "Industry", value: "Edtech" },
+      { label: "Role", value: "Associate Product Manager" },
+      { label: "Collaboration", value: "PM + engineering + program team" },
+      { label: "Timeline", value: "Mar 2025 – Present" },
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        body: "Referral signups were declining; analysis of user behavior showed monetary rewards alone weren't motivating students to share.",
+      },
+      {
+        heading: "Approach & key decisions",
+        body: "Proposed collaborative prep materials as an incentive and ran a three-arm A/B test — monetary vs prep-material vs combined. The tradeoff was explicit: removing money risked immediate referrals (the monetary-only cohort dropped ~10%), but the combined arm lifted overall referral signups 15% while holding acquisition cost within target — balancing short-term incentive seekers against long-term engagement.",
+      },
+      {
+        heading: "Iterations",
+        body: "Mixpanel funnel analysis exposed a drop-off at the copy-link step; highlighting the link and decluttering the dashboard lifted copy interactions 18% and referral conversions 10%. Survey feedback showed milestone gadgets felt irrelevant; pivoting the sixth-referral reward to a ChatGPT Plus voucher lifted power-user referrals 20%. CleverTap re-engagement journeys (WhatsApp, email, SMS) reactivated dormant users for +12% signups and ~5% referral-driven revenue lift that quarter.",
+      },
+      {
+        heading: "Learnings",
+        body: "Declined a post-exam prep-material proposal after quantifying that the referral pipeline's revenue impact was larger — protected the highest-impact initiative.",
+      },
+      {
+        heading: "Results",
+        body: "+32% referral conversion; referrals became a core growth lever.",
+      },
+    ],
+  },
+  {
+    slug: "ai-proctoring",
+    metric: "−70% Manual Proctoring Effort",
+    outcome: "AI monitoring scaled exam integrity across 15,000+ sessions.",
+    meta: [
+      { label: "Project type", value: "AI feature, discovery → release" },
+      { label: "Company", value: "Newton School" },
+      { label: "Industry", value: "Edtech" },
+      { label: "Role", value: "APM (PRD, edge cases, success metrics)" },
+      { label: "Collaboration", value: "PM + ML/engineering + ops reviewers" },
+      { label: "Scale", value: "15,000+ sessions" },
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        body: "Manual proctoring couldn't scale, and recording full sessions for thousands of simultaneous test-takers was infeasible on storage and memory.",
+      },
+      {
+        heading: "Approach & key decisions",
+        body: "Defined a lightweight monitoring design with engineering — screenshots every 10 seconds, flagged against predefined malpractice patterns (multiple faces, phones in frame), feeding a human-review pipeline. Led definition of edge cases and success metrics so AI accuracy and reviewer load stayed in balance; tight AI constraints plus human oversight was the deliberate architecture.",
+      },
+      {
+        heading: "Results",
+        body: "Manual effort down 70% across 15,000+ sessions, scaled with no memory overload.",
+      },
+    ],
+  },
+  {
+    slug: "razorpay-route",
+    metric: "−99% Reconciliation Effort",
+    outcome: "Split payments reconciled in real time, refund delays eliminated.",
+    meta: [
+      { label: "Project type", value: "Payments integration" },
+      { label: "Company", value: "Newton School + partner institute" },
+      { label: "Industry", value: "Edtech / Fintech" },
+      {
+        label: "Role",
+        value: "APM (scoping, API documentation, testing, automation)",
+      },
+      { label: "Integration", value: "Razorpay Route API" },
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        body: "Fees split across two accounts; wrong-account payments meant multi-day refunds, and reconciliation took 5 people two weeks per cycle.",
+      },
+      {
+        heading: "Approach & key decisions",
+        body: "Implemented Route's predefined split rules so one student payment auto-distributed across both accounts. Webhooks reported success/failure in real time for immediate action; user-ID, payment-ID, and account-ID were mapped in a database for full traceability. Edge cases designed in: partial payments trigger a webhook prompt to the student; network failures surface instantly instead of silently desyncing books.",
+      },
+      {
+        heading: "Results",
+        body: "−99% manual reconciliation effort, 100% real-time transaction accuracy, refund delays eliminated.",
+      },
+    ],
+  },
+  {
+    slug: "waitlist-automation",
+    metric: "30% Waitlist Conversion, Zero Vacant Seats",
+    outcome: "An automated waitlist filled seats directly — no CRM needed.",
+    meta: [
+      { label: "Project type", value: "Workflow automation" },
+      { label: "Company", value: "Newton School" },
+      { label: "Industry", value: "Edtech" },
+      {
+        label: "Role",
+        value: "APM (user stories, acceptance criteria, UAT, release coordination)",
+      },
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        body: "Refund-driven seat loss; operations proposed a full CRM to manage it.",
+      },
+      {
+        heading: "Approach & key decisions",
+        body: "Ran a cost-effort analysis showing a CRM added complexity while an automated waitlist could fulfill seats directly. Aligned stakeholders on the data — fewer manual calls, ~90% faster turnaround — then wrote the stories and acceptance criteria, facilitated UAT, and coordinated release.",
+      },
+      {
+        heading: "Results",
+        body: "30% of waitlisted users converted, zero vacant seats, CRM complexity avoided. Everyone aligned once the results landed.",
+      },
+    ],
+  },
+];
+
+export function getImpactDetail(slug: string): ImpactDetail | undefined {
+  return impactDetails.find((d) => d.slug === slug);
+}
 
 /**
  * Static snapshot served when the GitHub API and the localStorage cache are

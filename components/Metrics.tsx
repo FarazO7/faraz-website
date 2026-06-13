@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { metrics, type Metric } from "@/lib/content";
 import { useCountUp, useInView, usePrefersReducedMotion } from "@/lib/hooks";
 
@@ -33,10 +35,16 @@ function MetricTile({
   const value = useCountUp(metric.value, animate);
 
   return (
-    <article
-      className="glass glass-nested rise rounded-2xl p-5"
+    <Link
+      href={`/impact/${metric.slug}`}
+      aria-label={`${metric.prefix ?? ""}${metric.value}${metric.suffix ?? ""} — ${metric.label}. Read the full story.`}
+      className="glass glass-nested glass-hover rise group relative block rounded-2xl p-5"
       style={{ animationDelay: `${delayMs}ms` }}
     >
+      <ArrowUpRight
+        aria-hidden
+        className="absolute top-4 right-4 size-4 text-muted opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+      />
       <p className="numeral-gradient font-mono text-3xl font-bold sm:text-4xl">
         {metric.prefix}
         {value}
@@ -46,6 +54,6 @@ function MetricTile({
       <p className="mt-1.5 text-[13px] leading-relaxed text-muted">
         {metric.detail}
       </p>
-    </article>
+    </Link>
   );
 }
