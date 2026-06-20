@@ -385,3 +385,19 @@ button:not(:disabled),
     transform: translateZ(0);
   }
 }
+
+/* Slow orbital ring behind the hero portrait (paused under reduced motion). */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.orbit-spin {
+  transform-origin: center;
+  animation: spin-slow 48s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .orbit-spin {
+    animation: none;
+  }
+}
