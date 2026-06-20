@@ -10,7 +10,7 @@ export default function Metrics() {
   const reduced = usePrefersReducedMotion();
 
   return (
-    <div ref={ref} className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div ref={ref} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {metrics.map((metric, i) => (
         <MetricTile
           key={metric.label}
@@ -38,7 +38,7 @@ function MetricTile({
     <Link
       href={`/impact/${metric.slug}`}
       aria-label={`${metric.prefix ?? ""}${metric.value}${metric.suffix ?? ""} — ${metric.label}. Read the full story.`}
-      className="glass glass-nested glass-hover rise group relative block rounded-2xl p-5"
+      className="glass glass-hover rise group relative block rounded-2xl p-5"
       style={{ animationDelay: `${delayMs}ms` }}
     >
       <ArrowUpRight

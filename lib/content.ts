@@ -13,6 +13,10 @@ export const identity = {
   tenure: "Mar 2025 – Present",
   positioning:
     "Product manager with 2+ years across edtech, e-commerce, and D2C — shipping growth, AI, and payments features that move revenue, retention, and operational efficiency.",
+  companyShort: "Newton School",
+  greeting: "Hello there!",
+  bio:
+    "I'm a product manager focused on growth, AI, and payments — the work that moves revenue, retention, and operational efficiency. Two-plus years across edtech, e-commerce, and D2C, turning fuzzy problems into shipped features and measurable outcomes.",
   phone: "+91 79911 93433",
   phoneHref: "tel:+917991193433",
   email: "faraz139@gmail.com",
@@ -22,11 +26,36 @@ export const identity = {
   // Place the PDF at public/resume/Faraz-Ali-Product-Manager.pdf
   resumePath: "/resume/Faraz-Ali-Product-Manager.pdf",
   // Place the headshot at public/images/faraz-ali.jpg
-  headshotPath: "/images/faraz-ali.jpg",
+  headshotPath: "/images/faraz-ali.png",
   headshotAlt: "Faraz Ali — Associate Product Manager",
 } as const;
 
+// Experience & Education proof strip in the hero (monogram + name + descriptor).
+export type CredibilityOrg = {
+  name: string;
+  mark: string;
+  descriptor: string;
+  accent: string;
+  logo?: string; // optional path under /public, e.g. "/logos/newton-school.png"
+};
+
+export const credibility: {
+  experience: CredibilityOrg[];
+  education: CredibilityOrg[];
+} = {
+  experience: [
+    { name: "Newton School", mark: "NS", descriptor: "EdTech", accent: "#4F7CFF", logo: "/logos/newton-school.png" },
+    { name: "HealthKart", mark: "HK", descriptor: "E-commerce", accent: "#18C6B4", logo: "/logos/healthkart.png" },
+    { name: "Healthmug", mark: "hm", descriptor: "D2C", accent: "#9DB8FF", logo: "/logos/healthmug.png" },
+  ],
+  education: [
+    { name: "KIIT University", mark: "KIIT", descriptor: "B.Tech", accent: "#FFB454", logo: "/logos/kiit.png" },
+    { name: "MDI Murshidabad", mark: "MDI", descriptor: "PGDM", accent: "#C77BD8", logo: "/logos/mdi.png" },
+  ],
+};
+
 export const navLinks = [
+  { label: "Impact", href: "#impact" },
   { label: "Work", href: "#work" },
   { label: "Experience", href: "#experience" },
   { label: "GitHub", href: "#github" },
@@ -196,6 +225,21 @@ export const caseStudies: CaseStudy[] = [
 // `slug` maps to a verified simple-icons brand mark (see lib/skillIcons.ts).
 // Skills without a slug render as a JetBrains-Mono text node — no skill is
 // dropped for lacking a logo. `accent` colors each hub's connector junctions.
+// Static "how I work" strip under the hero (icons via lucide-react).
+export type Capability = {
+  label: string;
+  icon: "bulb" | "chart" | "users" | "bot" | "rocket";
+  accent: string;
+};
+
+export const capabilities: Capability[] = [
+  { label: "Product Thinking", icon: "bulb", accent: "#FFB454" },
+  { label: "Strategy & Roadmaps", icon: "chart", accent: "#9DB8FF" },
+  { label: "User Empathy", icon: "users", accent: "#18C6B4" },
+  { label: "AI & Automation", icon: "bot", accent: "#C77BD8" },
+  { label: "Execution & Impact", icon: "rocket", accent: "#FFB454" },
+];
+
 export type SkillNode = { label: string; slug?: string };
 export type SkillHub = { name: string; accent: string; nodes: SkillNode[] };
 

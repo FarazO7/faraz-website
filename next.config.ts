@@ -9,6 +9,9 @@ const nextConfig: NextConfig = {
   basePath,
   images: { unoptimized: true },
   trailingSlash: true,
+  // Pin the project root so Turbopack stops scanning the parent folder
+  // (silences the multiple-lockfiles warning and speeds up cold starts).
+  turbopack: { root: import.meta.dirname },
 };
 
 export default nextConfig;

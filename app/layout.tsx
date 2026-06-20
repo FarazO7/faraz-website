@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Sora } from "next/font/google";
 import "./globals.css";
 import BackgroundFX from "@/components/BackgroundFX";
+import SmoothScroll from "@/components/SmoothScroll";
 import { identity } from "@/lib/content";
 
 // display: swap → text paints immediately in the fallback and swaps when the
@@ -55,6 +56,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <BackgroundFX />
+        <SmoothScroll />
         {children}
       </body>
     </html>

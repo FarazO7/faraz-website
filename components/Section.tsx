@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import Reveal from "./Reveal";
 
 export default function Section({
   id,
@@ -20,16 +21,20 @@ export default function Section({
       className={cn("scroll-mt-24 px-4 py-14 sm:px-6 md:py-20", className)}
     >
       <div className="mx-auto max-w-6xl">
-        <p className="font-mono text-xs font-medium tracking-[0.2em] uppercase text-accent-b">
-          {kicker}
-        </p>
-        <h2
-          id={`${id}-title`}
-          className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl"
-        >
-          {title}
-        </h2>
-        <div className="mt-8">{children}</div>
+        <Reveal>
+          <p className="font-mono text-xs font-medium tracking-[0.2em] text-accent-b uppercase">
+            {kicker}
+          </p>
+          <h2
+            id={`${id}-title`}
+            className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl"
+          >
+            {title}
+          </h2>
+        </Reveal>
+        <Reveal delay={0.1} className="mt-8">
+          {children}
+        </Reveal>
       </div>
     </section>
   );
