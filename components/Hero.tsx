@@ -22,9 +22,9 @@ export default function Hero() {
             <h1 className="mt-3 font-display text-5xl font-bold leading-[0.95] tracking-tight text-white sm:text-6xl lg:text-7xl">
               I am {identity.name}.
             </h1>
-            <p className="mt-4 font-display text-xl font-medium text-muted sm:text-2xl">
+            <h2 className="mt-4 font-display text-xl font-medium text-muted sm:text-2xl">
               {identity.title}
-            </p>
+            </h2>
             <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted">
               {identity.bio}
             </p>
