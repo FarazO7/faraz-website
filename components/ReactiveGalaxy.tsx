@@ -10,7 +10,9 @@ import { useEffect, useRef } from "react";
 // hidden-tab pause, pointer tracking on `window` (the canvas is pointer-events:
 // none so it never blocks scroll/taps), a capped DPR, a dynamic client-only
 // import of ogl (code-split, never in the SSR/critical path), and a deferred
-// start so WebGL init never competes with the hero's LCP paint.
+// start so WebGL init never competes with the hero's LCP paint. WebGL is not
+// mounted at all under prefers-reduced-motion or on mobile viewports — the CSS
+// nebula orbs remain as a lightweight static backdrop in those cases.
 
 // --- Look knobs (edit these to retune the galaxy) --------------------------
 const STAR_SPEED = 0.12; // flow speed of the layers (low = calm)
@@ -184,7 +186,12 @@ export default function ReactiveGalaxy() {
     const ctn = ref.current;
     if (!ctn) return;
 
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Never spin up WebGL under reduced-motion or on mobile (perf + a11y).
+    const skip =
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      window.matchMedia("(max-width: 767px)").matches;
+    if (skip) return;
+
     let disposed = false;
     let teardown = () => {};
 
@@ -281,14 +288,9 @@ export default function ReactiveGalaxy() {
         }
       };
 
-      if (reduced) {
-        // One static frame; no loop, no pointer reactivity.
-        render(0);
-      } else {
-        window.addEventListener("pointermove", onMove, { passive: true });
-        document.addEventListener("visibilitychange", onVisibility);
-        raf = requestAnimationFrame(loop);
-      }
+      window.addEventListener("pointermove", onMove, { passive: true });
+      document.addEventListener("visibilitychange", onVisibility);
+      raf = requestAnimationFrame(loop);
 
       teardown = () => {
         cancelAnimationFrame(raf);

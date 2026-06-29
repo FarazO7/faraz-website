@@ -19,7 +19,7 @@ export default function Credibility() {
 function Cluster({ label, items }: { label: string; items: CredibilityOrg[] }) {
   return (
     <div className="lg:flex-1">
-      <p className="font-mono text-xs tracking-[0.2em] text-muted/70 uppercase">
+      <p className="font-mono text-xs tracking-[0.2em] text-muted uppercase">
         {label}
       </p>
       <span className="mt-2 block h-px w-8 bg-accent-a/60" aria-hidden />
