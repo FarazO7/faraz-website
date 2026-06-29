@@ -129,6 +129,7 @@ export const experience: Role[] = [
     dates: "Mar 2025 – Present",
     current: true,
     bullets: [
+      "Owned acquisition-funnel optimisation, raising sign-up conversion 10% → 19.1% (+91%)",
       "Referral growth module end-to-end: +32% conversion; A/B tested monetary vs prep-material vs combined incentives (+15% signups at target CAC); reward pivot to ChatGPT Plus voucher lifted power-user referrals +20%",
       "AI exam monitoring: PRD through release; −70% manual effort over 15K+ sessions",
       "Funnel instrumentation in Mixpanel: fixed copy-link drop-off (+18% interactions, +10% referral conversions); CleverTap re-engagement journeys (WhatsApp/email/SMS) re-activated dormant users (+12% signups)",
