@@ -1,6 +1,5 @@
 import ContactLinks from "./ContactLinks";
 import { architectureMap, identity } from "@/lib/content";
-import { withBase } from "@/lib/utils";
 import Reveal from "./Reveal";
 
 export default function Footer() {
@@ -21,10 +20,13 @@ export default function Footer() {
               © {new Date().getFullYear()} {identity.name}
             </p>
             <a
-              href={withBase(architectureMap.href)}
+              href={architectureMap.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="transition-colors hover:text-foreground"
             >
               {architectureMap.label}
+              <span className="sr-only"> (opens in a new tab)</span>
             </a>
           </div>
         </Reveal>
