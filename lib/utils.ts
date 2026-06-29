@@ -26,16 +26,3 @@ const TOOLTIP_DATE = new Intl.DateTimeFormat("en-US", {
 export function formatTooltipDate(isoDate: string): string {
   return TOOLTIP_DATE.format(new Date(`${isoDate}T00:00:00`));
 }
-
-/** GitHub-linguist colors for the languages that appear in the repo set. */
-const LANGUAGE_COLORS: Record<string, string> = {
-  JavaScript: "#f1e05a",
-  Python: "#3572A5",
-  HTML: "#e34c26",
-  CSS: "#563d7c",
-  TypeScript: "#3178c6",
-};
-
-export function languageColor(language: string): string {
-  return LANGUAGE_COLORS[language] ?? "#8b949e";
-}
