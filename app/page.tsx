@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Metrics from "@/components/Metrics";
 import Section from "@/components/Section";
 import CaseStudies from "@/components/CaseStudies";
+import BuiltProjects from "@/components/BuiltProjects";
 import Experience from "@/components/Experience";
 import Achievements from "@/components/Achievements";
 import GitHubSection from "@/components/GitHubSection";
@@ -36,6 +37,7 @@ export default function Home() {
           <Metrics />
         </Section>
         <CaseStudies />
+        <BuiltProjects />
         <Experience />
         <Achievements />
         <GitHubSection />

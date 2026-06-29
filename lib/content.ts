@@ -57,6 +57,7 @@ export const credibility: {
 export const navLinks = [
   { label: "Impact", href: "#impact" },
   { label: "Work", href: "#work" },
+  { label: "Built", href: "#built" },
   { label: "Experience", href: "#experience" },
   { label: "GitHub", href: "#github" },
   { label: "Skills", href: "#skills" },
@@ -220,6 +221,55 @@ export const caseStudies: CaseStudy[] = [
         href: "https://assets.nextleap.app/submissions/ZomatoPRD_2-d66f3915-fb5d-40fb-9308-8e6aeb753989.pdf",
       },
     ],
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Shipped products / build-in-public projects (the "Built" section). Signal is
+// the flagship; the rest are secondary cards. Descriptions are the owner's,
+// verbatim — no usage/adoption numbers (these are side projects).
+// ---------------------------------------------------------------------------
+export type Project = {
+  name: string;
+  /** Short mono kicker line above the name. */
+  tagline: string;
+  description: string;
+  repo: string;
+  /** Live demo, when one exists. */
+  demo?: string;
+  flagship?: boolean;
+};
+
+export const projects: Project[] = [
+  {
+    name: "Signal",
+    tagline: "Flagship · Agentic feedback-to-roadmap",
+    description:
+      "AI feedback-triage agent: clusters user feedback into themes, grounds every recommendation in real source quotes, routes low-confidence calls to a human, and evaluates its own output.",
+    repo: "https://github.com/FarazO7/Signal",
+    demo: "https://signal-theta-ten.vercel.app",
+    flagship: true,
+  },
+  {
+    name: "engagR",
+    tagline: "Growth CRM · D2C",
+    description:
+      "Event-driven growth CRM for D2C — captures user events, flags where people drop off, and auto-generates personalised re-engagement across email, WhatsApp, and SMS, with A/B testing built in.",
+    repo: "https://github.com/FarazO7/journey-mapper",
+  },
+  {
+    name: "Cairn",
+    tagline: "RAG · Life-coaching",
+    description:
+      "A retrieval-augmented life-coaching app — retrieves the most relevant material from a coaching knowledge base (OpenAI embeddings + cosine retrieval) to ground each reply, behind a glassmorphism UI.",
+    repo: "https://github.com/FarazO7/cairn",
+  },
+  {
+    name: "Application Desk",
+    tagline: "Agentic · Job search",
+    description:
+      "An agentic job-search assistant — finds relevant roles, drafts tailored applications, and schedules sends, on FastAPI, MongoDB, OpenAI, and Gmail.",
+    repo: "https://github.com/FarazO7/job-apply-assistant-1",
   },
 ];
 
