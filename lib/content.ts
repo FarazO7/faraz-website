@@ -338,7 +338,7 @@ export const certifications: Credential[] = [
 // `dates`/`bullets` render gracefully — no orphan separators.
 export const educationTimeline: Role[] = [
   {
-    title: "PGDM, Marketing & Operations",
+    title: "PGDM — Marketing & Supply Chain Management",
     company: "Management Development Institute (MDI)",
     location: "Murshidabad",
     dates: "", // TODO(Faraz): add years, e.g. "2023 – 2025"
