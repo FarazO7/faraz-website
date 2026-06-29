@@ -3,8 +3,6 @@
 // components only render what they're given.
 // ---------------------------------------------------------------------------
 
-import type { Repo } from "./github";
-
 export const identity = {
   name: "Faraz Ali",
   title: "Associate Product Manager",
@@ -552,44 +550,42 @@ export function getImpactDetail(slug: string): ImpactDetail | undefined {
   return impactDetails.find((d) => d.slug === slug);
 }
 
-/**
- * Static snapshot served when the GitHub API and the localStorage cache are
- * both unavailable. Mirrors the live API response captured on 2026-06-11.
- * (The spec's `Product-Management` repo is no longer returned by the API, so
- * the snapshot carries the four repos that actually exist.)
- */
-export const fallbackRepos: Repo[] = [
+// ---------------------------------------------------------------------------
+// Curated GitHub grid (the "Building in public" section). A hand-ordered list
+// with hand-written descriptions, so the flagships always show regardless of
+// API recency — no live "most-recent-N" fetch.
+// ---------------------------------------------------------------------------
+export type CuratedRepo = { name: string; description: string; url: string };
+
+export const curatedRepos: CuratedRepo[] = [
   {
-    name: "job-apply-assistant-1",
-    description: "Automates job search process",
-    language: "Python",
-    stars: 0,
-    url: "https://github.com/FarazO7/job-apply-assistant-1",
-    pushedAt: "2026-06-10T03:02:58Z",
+    name: "Signal",
+    description:
+      "AI feedback-triage agent: clusters user feedback into themes, grounds every recommendation in real source quotes, routes low-confidence calls to a human, and evaluates its own output.",
+    url: "https://github.com/FarazO7/Signal",
   },
   {
     name: "journey-mapper",
-    description: "AI-Powered Growth CRM",
-    language: "JavaScript",
-    stars: 0,
+    description:
+      "Event-driven growth CRM with drop-off detection and multi-channel re-engagement.",
     url: "https://github.com/FarazO7/journey-mapper",
-    pushedAt: "2026-06-09T02:20:46Z",
   },
   {
-    name: "everhope-website",
-    description: "Technical Product Manager assignment for Everhope Oncology",
-    language: "JavaScript",
-    stars: 0,
-    url: "https://github.com/FarazO7/everhope-website",
-    pushedAt: "2026-06-06T01:30:18Z",
+    name: "cairn",
+    description:
+      "RAG life-coaching chat app (OpenAI embeddings + cosine retrieval).",
+    url: "https://github.com/FarazO7/cairn",
+  },
+  {
+    name: "job-apply-assistant-1",
+    description:
+      "Agentic job-search assistant (FastAPI, MongoDB, OpenAI, Gmail).",
+    url: "https://github.com/FarazO7/job-apply-assistant-1",
   },
   {
     name: "lighthouse-qa-monitor",
     description:
-      "AI-powered QA monitoring agent for online marketplaces that proactively detects critical workflow failures, deduplicates recurring issues, translates technical errors into seller-friendly insights using LLMs, and delivers actionable Slack alerts before sellers encounter or report problems.",
-    language: "Python",
-    stars: 0,
+      "AI QA-monitoring agent for marketplaces: detects workflow failures, deduplicates issues, translates errors into seller-friendly insights.",
     url: "https://github.com/FarazO7/lighthouse-qa-monitor",
-    pushedAt: "2026-06-03T21:18:06Z",
   },
 ];
