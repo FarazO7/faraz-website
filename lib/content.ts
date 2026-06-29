@@ -23,8 +23,8 @@ export const identity = {
   githubUsername: "FarazO7",
   // Place the PDF at public/resume/Faraz-Ali-Product-Manager.pdf
   resumePath: "/resume/Faraz-Ali-Product-Manager.pdf",
-  // Place the headshot at public/images/faraz-ali.jpg
-  headshotPath: "/images/faraz-ali.png",
+  // Optimised WebP headshot (1024×1024). Source PNG kept in public/images/.
+  headshotPath: "/images/faraz-ali.webp",
   headshotAlt: "Faraz Ali — Associate Product Manager",
 } as const;
 

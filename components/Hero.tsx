@@ -96,8 +96,8 @@ export default function Hero() {
               <img
                 src={withBase(identity.headshotPath)}
                 alt={identity.headshotAlt}
-                width={480}
-                height={600}
+                width={1024}
+                height={1024}
                 fetchPriority="high"
                 decoding="async"
                 className="relative h-full w-full object-cover object-top"
