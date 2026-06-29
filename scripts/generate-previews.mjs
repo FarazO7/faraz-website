@@ -7,7 +7,7 @@
 // build.
 
 import { createCanvas, DOMMatrix, ImageData, Path2D } from "@napi-rs/canvas";
-import { mkdir, writeFile, access } from "node:fs/promises";
+import { mkdir, writeFile, access, readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -20,35 +20,23 @@ const { getDocument } = await import("pdfjs-dist/legacy/build/pdf.mjs");
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = join(__dirname, "..", "public", "previews");
+const PDF_DIR = join(__dirname, "..", "public", "case-studies");
 const WIDTH = 800;
 
-// Keep slugs/URLs in sync with caseStudies in lib/content.ts. Zomato uses its
-// first document's page 1.
+// Keep slugs/files in sync with caseStudies in lib/content.ts. Reads the
+// self-hosted PDFs in public/case-studies/ (no external dependency); Zomato
+// uses its first document's page 1.
 const TARGETS = [
-  {
-    slug: "bumble",
-    url: "https://assets.nextleap.app/submissions/NLBumble-da078847-c1b6-4b73-b9c3-760f63b97b4c.pdf",
-  },
-  {
-    slug: "makemytrip",
-    url: "https://assets.nextleap.app/submissions/Makemytrip-9eb8bfaa-0280-463f-a9df-6ca31ed1887f.pdf",
-  },
-  {
-    slug: "zepto",
-    url: "https://assets.nextleap.app/submissions/Zepto-da51ae3f-a48d-40c6-9f3a-7615f18849e7.pdf",
-  },
-  {
-    slug: "zomato",
-    url: "https://assets.nextleap.app/submissions/Zomato_milestone_1-649634e2-0d24-4ac4-8f94-c6501973d4da.pdf",
-  },
+  { slug: "bumble", file: "bumble.pdf" },
+  { slug: "makemytrip", file: "makemytrip.pdf" },
+  { slug: "zepto", file: "zepto.pdf" },
+  { slug: "zomato", file: "zomato-1-product-outcomes.pdf" },
 ];
 
-async function renderPreview({ slug, url }) {
+async function renderPreview({ slug, file }) {
   const out = join(OUT_DIR, `${slug}.webp`);
   try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = new Uint8Array(await res.arrayBuffer());
+    const data = new Uint8Array(await readFile(join(PDF_DIR, file)));
 
     const doc = await getDocument({
       data,
