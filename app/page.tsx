@@ -9,7 +9,14 @@ import Achievements from "@/components/Achievements";
 import GitHubSection from "@/components/GitHubSection";
 import Skills from "@/components/Skills";
 import Footer from "@/components/Footer";
+import type { Metadata } from "next";
 import { identity } from "@/lib/content";
+
+// Home-specific canonical + og:url (resolved against metadataBase in layout).
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: { url: "/" },
+};
 
 const personJsonLd = {
   "@context": "https://schema.org",

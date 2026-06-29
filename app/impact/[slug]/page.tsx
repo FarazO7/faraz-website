@@ -21,10 +21,17 @@ export async function generateMetadata({
   const detail = getImpactDetail(slug);
   if (!detail) return {};
   const title = `${detail.metric} — ${identity.name}`;
+  const url = `/impact/${slug}/`;
   return {
     title,
     description: detail.outcome,
-    openGraph: { title, description: detail.outcome },
+    alternates: { canonical: url },
+    openGraph: { title, description: detail.outcome, url, type: "article" },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: detail.outcome,
+    },
   };
 }
 
