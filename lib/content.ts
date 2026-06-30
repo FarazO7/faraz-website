@@ -174,7 +174,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "bumble",
     summary:
       "Simplified pre-date planning from user research; gamified solution projected ₹10 Cr annual revenue and +20% profile interactions.",
-    href: "/case-studies/bumble.pdf",
+    href: "https://assets.nextleap.app/submissions/NLBumble-da078847-c1b6-4b73-b9c3-760f63b97b4c.pdf",
   },
   {
     title: "MakeMyTrip",
@@ -183,7 +183,7 @@ export const caseStudies: CaseStudy[] = [
     // REVIEW(Faraz): summary written from the deck — adjust wording as you like.
     summary:
       "A Growth-team teardown answering MakeMyTrip's mandate to crack trip planning — an unsolved gap in travel — with a GenAI-powered planner. Works through the business model, competitor and actor mapping, and a structured problem breakdown.",
-    href: "/case-studies/makemytrip.pdf",
+    href: "https://assets.nextleap.app/submissions/Makemytrip-9eb8bfaa-0280-463f-a9df-6ca31ed1887f.pdf",
   },
   {
     title: "Zepto",
@@ -192,7 +192,7 @@ export const caseStudies: CaseStudy[] = [
     // REVIEW(Faraz): summary written from the deck — adjust wording as you like.
     summary:
       "A Growth teardown targeting Zepto's low average order value — the lever for quick-commerce unit economics. Maps the business outcome (profitability) to product outcomes (higher basket quantity and unit price), with problem validation and framing.",
-    href: "/case-studies/zepto.pdf",
+    href: "https://assets.nextleap.app/submissions/Zepto-da51ae3f-a48d-40c6-9f3a-7615f18849e7.pdf",
   },
   {
     title: "Zomato — Increasing Reviews",
@@ -204,19 +204,19 @@ export const caseStudies: CaseStudy[] = [
     docs: [
       {
         title: "Defining Product Outcomes",
-        href: "/case-studies/zomato-1-product-outcomes.pdf",
+        href: "https://assets.nextleap.app/submissions/Zomato_milestone_1-649634e2-0d24-4ac4-8f94-c6501973d4da.pdf",
       },
       {
         title: "Deriving Insights from Users",
-        href: "/case-studies/zomato-2-user-insights.pdf",
+        href: "https://assets.nextleap.app/submissions/Zomato_milestone_2-c5178530-7bea-4788-891f-3d1048b81820.pdf",
       },
       {
         title: "Product Note",
-        href: "/case-studies/zomato-3-product-note.pdf",
+        href: "https://assets.nextleap.app/submissions/PRD_1-38d725a5-c2e1-4d2a-8cd9-ff2e1bb0d11c.pdf",
       },
       {
         title: "PRD",
-        href: "/case-studies/zomato-4-prd.pdf",
+        href: "https://assets.nextleap.app/submissions/ZomatoPRD_2-d66f3915-fb5d-40fb-9308-8e6aeb753989.pdf",
       },
     ],
   },
