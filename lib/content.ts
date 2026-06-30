@@ -402,13 +402,6 @@ export const educationTimeline: Role[] = [
   },
 ];
 
-export const architectureMap = {
-  label: "Built with Next.js — architecture map in the repo",
-  // Deploy-independent GitHub-hosted path to the committed map file, so the
-  // link can't 404 against a stale export (unlike the old /graphify-out/ path).
-  href: "https://github.com/FarazO7/faraz-website/blob/main/public/graphify-out/graph.html",
-} as const;
-
 // ---------------------------------------------------------------------------
 // Impact detail pages (Phase 7). Each hero metric tile links to /impact/{slug}.
 // Narratives are the owner's, transcribed verbatim — no invented numbers.
