@@ -14,7 +14,7 @@ export const identity = {
   companyShort: "Newton School",
   greeting: "Hello there!",
   bio:
-    "I'm a product manager focused on growth, AI, and payments — the work that moves revenue, retention, and operational efficiency. Two-plus years across edtech, e-commerce, and D2C, turning fuzzy problems into shipped features and measurable outcomes.",
+    "I'm a product manager with 2+ years across edtech, e-commerce, and D2C — owning growth, AI, and payments work end-to-end, from referral funnels and Razorpay split-payments to AI exam-proctoring, turning fuzzy problems into measurable outcomes. Lately I build AI products myself: agentic systems with their own evaluation harnesses, explainable scoring, and human-in-the-loop review.",
   phone: "+91 79911 93433",
   phoneHref: "tel:+917991193433",
   email: "faraz139@gmail.com",
