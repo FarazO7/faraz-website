@@ -54,7 +54,7 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
         )}
         {study.href && (
           <a
-            href={withBase(study.href)}
+            href={study.href}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 inline-flex w-fit items-center gap-2 text-sm font-medium text-accent-a hover:underline"
@@ -90,7 +90,7 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
               {study.docs.map((doc) => (
                 <li key={doc.href}>
                   <a
-                    href={withBase(doc.href)}
+                    href={doc.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
