@@ -365,6 +365,67 @@ Serving `out/`: the preview tool was blocked in this session. After approval I w
 3. Optional: to make Node 22 your shell default, add `export PATH="/opt/homebrew/opt/node@22/bin:$PATH"` to `~/.zshrc`. I have not changed your shell configuration.
 4. Optional: delete the stale remote branch `portfolio-pm-polish`, and the `github-pages` environment after Phase 10.
 
+## 7. Execution record (Phase 12)
+
+### Commits (branch `resume-sync-2026-09`, not pushed)
+
+| Phase | Commit |
+|---|---|
+| 2 | `7c1ef8d` docs: add V3 resume-sync change-order plan |
+| 3 | `07e1e52` refactor(content): derive current role, org-linked impact pages, content guard |
+| 4 | `e57aa8c` feat(experience): add Zamplitude role, update Newton, education years, domains |
+| 5 | `2d6bef4` feat(identity): positioning, bio, credibility and metadata |
+| 6 | `a719297` feat(impact): role-segmented metrics and six impact pages |
+| 7 | `32788a5` feat(built): Signal subtitle, year and highlights |
+| 8 | `14c28dd` feat(skills): five hubs, intro line, full skills index; glass budget |
+| 9 | `f8aaf4c` chore: wire content guard into prebuild; update docs |
+| 10 | `438042d` ci: replace GitHub Pages deploy with verify workflow |
+| 11 | `e53832f` test: site verification, security upgrade, contrast and map |
+
+### Checks
+
+| Check | Result |
+|---|---|
+| Lint, `tsc --noEmit`, build (every phase from 3) | Pass |
+| `npm run check:content` (a to h), now in `prebuild` | Pass: 8 tiles, 10 impact pages |
+| Guard bites (11.1): risk-scoring tile set to 69 | Build failed with `[c] metricGroups[zamplitude].risk-scoring.value`; reverted, never committed |
+| Links (11.2) | 0 broken internal. 18 external "failures" are production URLs of the six new pages (canonical, og:url, OG images); they resolve once `main` deploys |
+| Screenshots (11.3) | `.review/screens/`: 4 widths × (hero, both tabs, Experience, Skills, 2 impact pages), plus reduced motion |
+| Glass budget (11.3) | Pass at every width: hero 1 to 2, Impact 6, GitHub 2, GitHub-to-Skills 1, Skills 1 (`main`: up to 10) |
+| axe (11.3) | 0 violations on `/`, `/impact/risk-scoring/`, `/impact/referral-growth/` (`main`: 1 serious, button contrast) |
+| Keyboard (11.3) | Pass: tablist arrows/Home/End with focus; Tab lands in the active panel; 10 "Read the case" links with unique names; `<details>` toggles with Enter |
+| Lighthouse (11.4, S13 gate) | Pass, see below |
+| `npm audit` (11.5) | 0 vulnerabilities (was 1 critical, 7 high). ECC plugin not installed, so no ECC scan |
+| Architecture map (11.6) | Regenerated (417 nodes, code-only, no LLM); served at `/graphify-out/graph.html`; no footer link (S12) |
+| Copy audit (11.7) | Only em dash on added `content.ts` lines is the allow-listed Newton footer (C6). No client identity in copy, slugs, filenames or commit messages |
+
+### Lighthouse
+
+Production baseline (live site, `adec0d9`): home mobile 81 / 96 / 100 / 100; home desktop 100 / 96 / 100 / 100; referral mobile 98 / 100 / 100 / 100; referral desktop 100s.
+
+Branch, local static server (single run): home mobile 79 / **100** / 100 / 100; home desktop 99 / **100** / 100 / 100; risk-scoring mobile 91 / 100 / 100 / 100; risk-scoring desktop 100s; referral mobile 97 / 100 / 100 / 100; referral desktop 100s.
+
+Like-for-like mobile Performance, three-run medians on the same machine: home **85 branch vs 85 `main`**; referral **97 vs 96**; risk-scoring **96** (the single 91 was a cold first run). No regression; Accessibility 96 → 100. Home mobile Performance remains the pre-existing gap: LCP is the bio text repainting when the webfont swaps in.
+
+### Decisions taken during execution
+
+- **S7:** zamplitude.com (a software firm serving the UAE, KSA and EMEA) publishes no logo asset: its header mark is a stock Lucide icon and it has no favicon. The strip shows the "Z" monogram. Nothing was downloaded.
+- **Glass budget (asked and approved):** case-study cards, repo cards and skills hubs use `.glass-nested`, which fixed the overruns already on the live site as well as the new hub.
+- **Tooling:** the preview pane could not start this repo's server, so `scripts/serve-out.mjs` serves `out/` for `npm run verify`. Playwright drives the installed Chrome; `npm ci` downloads no browsers.
+- **Spelling:** British spelling applied to the HealthKart bullet edited for S9 ("optimisation"). Untouched copy keeps its spelling (R4).
+
+### Open REVIEW(Faraz) items
+
+- `identity.bio` (S1).
+- Problem lines on the six new pages: `kyc-review-workflow`, `compliance-dashboard`, `risk-scoring`, `roles-permissions`, `aml-mock-service`, `signup-conversion`.
+- Pre-existing, untouched: the MakeMyTrip, Zepto and Zomato case-study summaries.
+
+### Notes for Faraz (not acted on)
+
+- Resume: Signal's "View on GitHub" links to your GitHub profile, not the Signal repo. The waitlist bullet spells "enrollment" (American); the site keeps it verbatim.
+- Confluence's dark navy mark is faint on the dark skill cards (pre-existing).
+- Home mobile Performance (about 81 to 85) needs a separate performance pass on the font-swap LCP.
+
 ## Appendix: content-guard checklist
 
 First `npm run check:content` run, end of Phase 3 (a, b, c, d, f, g pass; d already finds all four Newton phrases in the new PDF):
