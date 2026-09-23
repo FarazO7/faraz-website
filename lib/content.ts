@@ -103,7 +103,7 @@ export const experience: Role[] = [
     location: "Gurugram",
     dates: "Aug 2024 – Mar 2025",
     bullets: [
-      "ERP roadmap (SAP B1, Pharmacloud) unlocking a category worth 5% of total revenue; ERPNext migration requirements that unlocked SOC-2 compliance; PRDs, user stories, journey optimization",
+      "ERP roadmap (SAP B1, Pharmacloud) unlocking a category worth 5% of total revenue; ERPNext migration requirements that unlocked SOC-2 compliance; PRDs, user stories, journey optimisation",
     ],
   },
   {
