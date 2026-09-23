@@ -392,6 +392,11 @@ export type Project = {
   /** Live demo, when one exists. */
   demo?: string;
   flagship?: boolean;
+  /** Resume-style descriptor under the name (flagship card). */
+  subtitle?: string;
+  year?: string;
+  /** Resume bullets, rendered on the flagship card only. */
+  highlights?: string[];
 };
 
 export const projects: Project[] = [
@@ -403,6 +408,12 @@ export const projects: Project[] = [
     repo: "https://github.com/FarazO7/Signal",
     demo: "https://signal-theta-ten.vercel.app",
     flagship: true,
+    subtitle: "AI Product Feedback Intelligence Platform",
+    year: "2026",
+    highlights: [
+      "Built Signal to turn hundreds of scattered user-feedback items into a trustworthy roadmap: an AI platform that classifies, clusters, and scores feedback into prioritised, evidence-backed recommendations on what to build next.",
+      "Engineered for trust and adoption: explainable scoring, a human-in-the-loop review step, and an evaluation framework measuring theme recall, precision, and hallucination rate, so PMs can act on recommendations with confidence.",
+    ],
   },
   {
     name: "engagR",
