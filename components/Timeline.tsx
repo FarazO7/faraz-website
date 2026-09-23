@@ -1,4 +1,6 @@
-import { type Role } from "@/lib/content";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { bulletParts, getImpactDetail, type Bullet, type Role } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 // Shared vertical timeline used by Experience and Education. Renders gracefully
@@ -51,7 +53,7 @@ export default function Timeline({
             {role.bullets.length > 0 && (
               <ul className="mt-3 list-disc space-y-2 pl-4 text-sm leading-relaxed text-muted marker:text-white/30">
                 {role.bullets.map((bullet) => (
-                  <li key={bullet}>{bullet}</li>
+                  <BulletItem key={bulletParts(bullet).text} bullet={bullet} />
                 ))}
               </ul>
             )}
@@ -59,5 +61,31 @@ export default function Timeline({
         </li>
       ))}
     </ol>
+  );
+}
+
+// A bullet with an impact slug ends in a "Read the case" link; the aria-label
+// names the page's metric so every link has a unique accessible name.
+function BulletItem({ bullet }: { bullet: Bullet }) {
+  const { text, impact } = bulletParts(bullet);
+  const detail = impact ? getImpactDetail(impact) : undefined;
+
+  return (
+    <li>
+      {text}
+      {detail && (
+        <>
+          {" "}
+          <Link
+            href={`/impact/${detail.slug}`}
+            aria-label={`Read the case: ${detail.metric}`}
+            className="inline-flex items-center gap-0.5 whitespace-nowrap text-[13px] font-medium text-accent-a hover:underline"
+          >
+            Read the case
+            <ArrowUpRight className="size-3.5" aria-hidden />
+          </Link>
+        </>
+      )}
+    </li>
   );
 }

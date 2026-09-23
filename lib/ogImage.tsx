@@ -76,7 +76,7 @@ export function renderOgImage({
             color: "#5B6678",
           }}
         >
-          faraz-website.vercel.app
+          {new URL(identity.siteUrl).host}
         </div>
       </div>
     ),
