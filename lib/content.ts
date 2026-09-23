@@ -35,31 +35,57 @@ export type Role = {
 // JSON-LD derive from it (see `currentRole`), so a job change is one edit here.
 export const experience: Role[] = [
   {
-    id: "newton",
-    title: "Associate Product Manager",
-    company: "Incanus Technologies (Newton School)",
-    companyShort: "Newton School",
-    location: "Bengaluru",
-    dates: "Mar 2025 – Present",
+    id: "zamplitude",
+    title: "Product Manager",
+    company: "Zamplitude",
+    location: "Remote, Dubai",
+    dates: "Mar 2026 – Present",
     current: true,
     bullets: [
-      "Owned acquisition-funnel optimisation, raising sign-up conversion 10% → 19.1% (+91%)",
-      "Referral growth module end-to-end: +32% conversion; A/B tested monetary vs prep-material vs combined incentives (+15% signups at target CAC); reward pivot to ChatGPT Plus voucher lifted power-user referrals +20%",
-      "AI exam monitoring: PRD through release; −70% manual effort over 15K+ sessions",
+      "Ran discovery with four client-side compliance stakeholders across twelve requirement sessions to trace where KYC review stalled, defined the end-to-end review and approval workflow for a regulated GCC investment platform, and shipped it via PRDs, user stories, and UAT, lifting first-pass approval to 91%.",
+      "Designed and shipped a compliance dashboard with a two-level approval flow spanning KYC and EDD question creation, review, and sign-off, plus EDD assignment to flagged users with integrated notifications, replacing an email-based approval trail and cutting question change cycle time from 5 days to same-day.",
+      "Replaced manual case-by-case approval with automated risk scoring built on Nafath-verified identity attributes, defining scoring bands and auto-approval thresholds with the client Compliance Officer, auto-clearing 68% of applications and cutting review turnaround from 72 hours to under 8.",
+      "Audited 30+ compliance actions against regulatory obligations to expose shared-login risk, prioritised a Roles and Permissions module over competing scope, and shipped it with acceptance criteria and QA sign-off, eliminating shared-access accounts entirely and reducing audit-preparation effort 60%.",
+      "Parsed a full AML screening vendor specification programmatically to derive field mappings and status enumerations, flagged two vendor contradictions before build, and shipped a mock service specification with API contracts, unblocking frontend and QA three weeks ahead of vendor sandbox access and averting an estimated 120 hours of rework.",
+    ],
+  },
+  {
+    id: "newton",
+    title: "Associate Product Manager",
+    company: "Newton School",
+    location: "Bengaluru",
+    dates: "Mar 2025 – Mar 2026",
+    bullets: [
+      "Owned acquisition-funnel optimisation, prioritising landing-page experiments by impact/effort and shipping iterative variants backed by self-serve dashboards (DAU/MAU, activation), raising sign-up conversion 10% → 19.1% (+91%).",
+      {
+        text: "Referral growth module end-to-end: +32% conversion; A/B tested monetary vs prep-material vs combined incentives (+15% signups at target CAC); reward pivot to ChatGPT Plus voucher lifted power-user referrals +20%",
+        impact: "referral-growth",
+      },
+      {
+        text: "AI exam monitoring: PRD through release; −70% manual effort over 15K+ sessions",
+        impact: "ai-proctoring",
+      },
       "Funnel instrumentation in Mixpanel: fixed copy-link drop-off (+18% interactions, +10% referral conversions); CleverTap re-engagement journeys (WhatsApp/email/SMS) re-activated dormant users (+12% signups)",
-      "Razorpay Route integration: split-payment rules, webhook error handling, payment-ID mapping; −99% manual reconciliation",
+      {
+        text: "Razorpay Route integration: split-payment rules, webhook error handling, payment-ID mapping; −99% manual reconciliation",
+        impact: "razorpay-route",
+      },
+      {
+        text: "Identified enrollment bottlenecks behind stalled waitlists, designed an automated seat-allocation workflow, and shipped it via user stories, UAT, and release, converting 30% of waitlisted users with zero vacant seats.",
+        impact: "waitlist-automation",
+      },
       "RICE-prioritized self-serve interview rescheduling: +8% completion, +2% downstream admissions",
-      "Agile/Scrum in JIRA, Click-Up documentation, DAU/MAU growth dashboards",
+      "Agile/Scrum in JIRA, ClickUp documentation, DAU/MAU growth dashboards",
     ],
   },
   {
     id: "healthkart",
     title: "Product Management Trainee",
-    company: "Healthkart",
+    company: "HealthKart",
     location: "Gurugram",
     dates: "Aug 2024 – Mar 2025",
     bullets: [
-      "ERP roadmap (SAP B1, Pharmacloud) unlocking a category worth 5% of total revenue; ERPNext migration requirements toward SOC-2 compliance; PRDs, user stories, journey optimization",
+      "ERP roadmap (SAP B1, Pharmacloud) unlocking a category worth 5% of total revenue; ERPNext migration requirements that unlocked SOC-2 compliance; PRDs, user stories, journey optimization",
     ],
   },
   {
@@ -72,6 +98,20 @@ export const experience: Role[] = [
       "Purchase-data analytics: +25% repeat purchases; catalog expansion +18%, contributing to 35% MoM growth",
     ],
   },
+];
+
+/** Sectors worked in, shown as chips atop Experience and reused in the skills index. */
+export const domains = [
+  "Regulated Fintech",
+  "KYC/AML",
+  "Compliance Workflows",
+  "Roles & Permissions",
+  "Payments",
+  "Proptech",
+  "Edtech",
+  "E-commerce",
+  "D2C",
+  "B2B SaaS",
 ];
 
 /** The role marked `current: true` (scripts/check-content.ts asserts exactly one, listed first). */
@@ -439,7 +479,7 @@ export const educationTimeline: Role[] = [
     title: "PGDM — Marketing & Supply Chain Management",
     company: "Management Development Institute (MDI)",
     location: "Murshidabad",
-    dates: "", // TODO(Faraz): add years, e.g. "2023 – 2025"
+    dates: "2022 – 2024",
     bullets: [],
   },
   {
@@ -447,7 +487,7 @@ export const educationTimeline: Role[] = [
     title: "B.Tech, Electronics & Telecommunication Engineering",
     company: "KIIT University",
     location: "Bhubaneswar",
-    dates: "", // TODO(Faraz): add years
+    dates: "2014 – 2018",
     bullets: [],
   },
 ];
@@ -486,7 +526,7 @@ export const impactDetails: ImpactDetail[] = [
     outcome: "Referrals became a core growth lever for the platform.",
     meta: [
       { label: "Project type", value: "Growth module, end-to-end ownership" },
-      { label: "Company", value: "Newton School (Incanus Technologies)" },
+      { label: "Company", value: "Newton School" },
       { label: "Industry", value: "Edtech" },
       { label: "Role", value: "Associate Product Manager" },
       { label: "Collaboration", value: "PM + engineering + program team" },
