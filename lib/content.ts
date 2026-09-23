@@ -122,18 +122,23 @@ export function getRole(id: OrgId): Role | undefined {
   return experience.find((role) => role.id === id);
 }
 
+const NAME = "Faraz Ali";
+
 export const identity = {
-  name: "Faraz Ali",
+  name: NAME,
   title: currentRole.title,
   location: "Bengaluru, India",
   company: currentRole.company,
   tenure: currentRole.dates,
+  // Resume summary, sentence one.
   positioning:
-    "Product manager with 2+ years across edtech, e-commerce, and D2C — shipping growth, AI, and payments features that move revenue, retention, and operational efficiency.",
+    "Product Manager who builds AI, fintech, and growth products end-to-end, from discovery to launch, across regulated financial services, edtech, e-commerce, and direct-to-consumer platforms, driving conversion, compliance, and delivery predictability.",
   companyShort: currentRole.companyShort ?? currentRole.company,
   greeting: "Hello there!",
+  // REVIEW(Faraz): drafted for the September 2026 resume sync (sign-off S1).
   bio:
-    "I'm a product manager with 2+ years across edtech, e-commerce, and D2C — owning growth, AI, and payments work end-to-end, from referral funnels and Razorpay split-payments to AI exam-proctoring, turning fuzzy problems into measurable outcomes. Lately I build AI products myself: agentic systems with their own evaluation harnesses, explainable scoring, and human-in-the-loop review.",
+    "I'm a product manager who builds AI, fintech, and growth products end-to-end, from discovery to launch. At Zamplitude I design and ship KYC and compliance workflows for a regulated GCC investment platform; before that I owned growth, AI, and payments work at Newton School, from referral funnels and Razorpay split-payments to AI exam-proctoring, turning fuzzy problems into measurable outcomes. Lately I build AI products myself: agentic systems with their own evaluation harnesses, explainable scoring, and human-in-the-loop review.",
+  siteUrl: "https://faraz-website.vercel.app",
   phone: "+91 79911 93433",
   phoneHref: "tel:+917991193433",
   email: "faraz139@gmail.com",
@@ -144,7 +149,7 @@ export const identity = {
   resumePath: "/resume/Faraz-Ali-Product-Manager.pdf",
   // Optimised WebP headshot (1024×1024). Source PNG kept in public/images/.
   headshotPath: "/images/faraz-ali.webp",
-  headshotAlt: "Faraz Ali — Associate Product Manager",
+  headshotAlt: `${NAME}, ${currentRole.title}`,
 } as const;
 
 // Experience & Education proof strip in the hero (monogram + name + descriptor).
@@ -161,6 +166,7 @@ export const credibility: {
   education: CredibilityOrg[];
 } = {
   experience: [
+    { name: "Zamplitude", mark: "Z", descriptor: "Fintech", accent: "#FFD68A" },
     { name: "Newton School", mark: "NS", descriptor: "EdTech", accent: "#4F7CFF", logo: "/logos/newton-school.png" },
     { name: "HealthKart", mark: "HK", descriptor: "E-commerce", accent: "#18C6B4", logo: "/logos/healthkart.png" },
     { name: "Healthmug", mark: "hm", descriptor: "D2C", accent: "#9DB8FF", logo: "/logos/healthmug.png" },
