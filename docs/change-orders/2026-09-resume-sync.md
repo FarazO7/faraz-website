@@ -367,4 +367,11 @@ Serving `out/`: the preview tool was blocked in this session. After approval I w
 
 ## Appendix: content-guard checklist
 
-Filled in during Phase 3 from the first `npm run check:content` run.
+First `npm run check:content` run, end of Phase 3 (a, b, c, d, f, g pass; d already finds all four Newton phrases in the new PDF):
+
+| Check | Field | Fixed in |
+|---|---|---|
+| e | `educationTimeline[mdi].dates` empty | 4.4 |
+| e | `educationTimeline[kiit].dates` empty | 4.4 |
+| h | `lib/content.ts` "2+ years" in `identity.positioning` | 5.1 |
+| h | `lib/content.ts` "2+ years" in `identity.bio` | 5.1 |

@@ -2,6 +2,9 @@
   "name": "faraz-portfolio",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "22.x"
+  },
   "browserslist": [
     "chrome >= 111",
     "edge >= 111",
@@ -14,7 +17,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "previews": "node scripts/generate-previews.mjs"
+    "previews": "node scripts/generate-previews.mjs",
+    "check:content": "tsx scripts/check-content.ts"
   },
   "dependencies": {
     "framer-motion": "^12.40.0",
@@ -36,6 +40,7 @@
     "eslint-config-next": "16.2.9",
     "pdfjs-dist": "^6.0.227",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }

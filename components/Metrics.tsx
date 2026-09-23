@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { metrics, type Metric } from "@/lib/content";
+import { metricGroups, type Metric } from "@/lib/content";
 import { useCountUp, useInView, usePrefersReducedMotion } from "@/lib/hooks";
+
+const metrics = metricGroups.flatMap((group) => group.metrics);
 
 export default function Metrics() {
   const [ref, inView] = useInView<HTMLDivElement>();

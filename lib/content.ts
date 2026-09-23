@@ -3,15 +3,94 @@
 // components only render what they're given.
 // ---------------------------------------------------------------------------
 
+/** Stable ids for every organisation on the timeline (jobs and schools). */
+export type OrgId =
+  | "zamplitude"
+  | "newton"
+  | "healthkart"
+  | "healthmug"
+  | "mdi"
+  | "kiit";
+
+/** A bullet may link to its impact page at /impact/{impact}. */
+export type Bullet = string | { text: string; impact?: string };
+
+export function bulletParts(bullet: Bullet): { text: string; impact?: string } {
+  return typeof bullet === "string" ? { text: bullet } : bullet;
+}
+
+export type Role = {
+  id: OrgId;
+  title: string;
+  company: string;
+  /** Shorter company name where space is tight; defaults to `company`. */
+  companyShort?: string;
+  location: string;
+  dates: string;
+  current?: boolean;
+  bullets: Bullet[];
+};
+
+// The single `current: true` role comes first. The hero title, metadata and
+// JSON-LD derive from it (see `currentRole`), so a job change is one edit here.
+export const experience: Role[] = [
+  {
+    id: "newton",
+    title: "Associate Product Manager",
+    company: "Incanus Technologies (Newton School)",
+    companyShort: "Newton School",
+    location: "Bengaluru",
+    dates: "Mar 2025 – Present",
+    current: true,
+    bullets: [
+      "Owned acquisition-funnel optimisation, raising sign-up conversion 10% → 19.1% (+91%)",
+      "Referral growth module end-to-end: +32% conversion; A/B tested monetary vs prep-material vs combined incentives (+15% signups at target CAC); reward pivot to ChatGPT Plus voucher lifted power-user referrals +20%",
+      "AI exam monitoring: PRD through release; −70% manual effort over 15K+ sessions",
+      "Funnel instrumentation in Mixpanel: fixed copy-link drop-off (+18% interactions, +10% referral conversions); CleverTap re-engagement journeys (WhatsApp/email/SMS) re-activated dormant users (+12% signups)",
+      "Razorpay Route integration: split-payment rules, webhook error handling, payment-ID mapping; −99% manual reconciliation",
+      "RICE-prioritized self-serve interview rescheduling: +8% completion, +2% downstream admissions",
+      "Agile/Scrum in JIRA, Click-Up documentation, DAU/MAU growth dashboards",
+    ],
+  },
+  {
+    id: "healthkart",
+    title: "Product Management Trainee",
+    company: "Healthkart",
+    location: "Gurugram",
+    dates: "Aug 2024 – Mar 2025",
+    bullets: [
+      "ERP roadmap (SAP B1, Pharmacloud) unlocking a category worth 5% of total revenue; ERPNext migration requirements toward SOC-2 compliance; PRDs, user stories, journey optimization",
+    ],
+  },
+  {
+    id: "healthmug",
+    title: "Category Management Intern",
+    company: "Healthmug",
+    location: "New Delhi",
+    dates: "Apr 2023 – Jul 2023",
+    bullets: [
+      "Purchase-data analytics: +25% repeat purchases; catalog expansion +18%, contributing to 35% MoM growth",
+    ],
+  },
+];
+
+/** The role marked `current: true` (scripts/check-content.ts asserts exactly one, listed first). */
+export const currentRole: Role =
+  experience.find((role) => role.current) ?? experience[0];
+
+export function getRole(id: OrgId): Role | undefined {
+  return experience.find((role) => role.id === id);
+}
+
 export const identity = {
   name: "Faraz Ali",
-  title: "Associate Product Manager",
+  title: currentRole.title,
   location: "Bengaluru, India",
-  company: "Incanus Technologies (Newton School)",
-  tenure: "Mar 2025 – Present",
+  company: currentRole.company,
+  tenure: currentRole.dates,
   positioning:
     "Product manager with 2+ years across edtech, e-commerce, and D2C — shipping growth, AI, and payments features that move revenue, retention, and operational efficiency.",
-  companyShort: "Newton School",
+  companyShort: currentRole.companyShort ?? currentRole.company,
   greeting: "Hello there!",
   bio:
     "I'm a product manager with 2+ years across edtech, e-commerce, and D2C — owning growth, AI, and payments work end-to-end, from referral funnels and Razorpay split-payments to AI exam-proctoring, turning fuzzy problems into measurable outcomes. Lately I build AI products myself: agentic systems with their own evaluation harnesses, explainable scoring, and human-in-the-loop review.",
@@ -71,88 +150,57 @@ export type Metric = {
   detail: string;
   /** Links the tile to its detail page at /impact/{slug} (Phase 7). */
   slug: string;
+  /** The exact resume phrase that proves the headline figure; scripts/check-content.ts finds it in the PDF. */
+  resumeEvidence: string;
 };
 
-export const metrics: Metric[] = [
-  {
-    value: 32,
-    prefix: "+",
-    suffix: "%",
-    label: "Referral conversion lift",
-    detail:
-      "Owned roadmap and lifecycle of the referral growth module; OKRs, cohort and funnel analysis, incentive experiments.",
-    slug: "referral-growth",
-  },
-  {
-    value: 70,
-    prefix: "−",
-    suffix: "%",
-    label: "Manual proctoring effort, across 15,000+ sessions",
-    detail:
-      "AI-powered exam monitoring: lightweight screenshot cadence, predefined malpractice flags, human-review pipeline.",
-    slug: "ai-proctoring",
-  },
-  {
-    value: 99,
-    prefix: "−",
-    suffix: "%",
-    label: "Payment reconciliation effort, with 100% real-time transaction accuracy",
-    detail:
-      "Razorpay Route API split payments between two accounts, webhook-driven failure handling.",
-    slug: "razorpay-route",
-  },
-  {
-    value: 30,
-    suffix: "%",
-    label: "Waitlist-to-seat conversion, zero vacant seats",
-    detail:
-      "Automated waitlisting workflows replacing a proposed CRM; cut turnaround ~90%.",
-    slug: "waitlist-automation",
-  },
-];
+/** Hero metrics, one group per role; each group becomes a tab. */
+export type MetricGroup = { org: OrgId; label: string; metrics: Metric[] };
 
-export type Role = {
-  title: string;
-  company: string;
-  location: string;
-  dates: string;
-  current?: boolean;
-  bullets: string[];
-};
-
-export const experience: Role[] = [
+export const metricGroups: MetricGroup[] = [
   {
-    title: "Associate Product Manager",
-    company: "Incanus Technologies (Newton School)",
-    location: "Bengaluru",
-    dates: "Mar 2025 – Present",
-    current: true,
-    bullets: [
-      "Owned acquisition-funnel optimisation, raising sign-up conversion 10% → 19.1% (+91%)",
-      "Referral growth module end-to-end: +32% conversion; A/B tested monetary vs prep-material vs combined incentives (+15% signups at target CAC); reward pivot to ChatGPT Plus voucher lifted power-user referrals +20%",
-      "AI exam monitoring: PRD through release; −70% manual effort over 15K+ sessions",
-      "Funnel instrumentation in Mixpanel: fixed copy-link drop-off (+18% interactions, +10% referral conversions); CleverTap re-engagement journeys (WhatsApp/email/SMS) re-activated dormant users (+12% signups)",
-      "Razorpay Route integration: split-payment rules, webhook error handling, payment-ID mapping; −99% manual reconciliation",
-      "RICE-prioritized self-serve interview rescheduling: +8% completion, +2% downstream admissions",
-      "Agile/Scrum in JIRA, Click-Up documentation, DAU/MAU growth dashboards",
-    ],
-  },
-  {
-    title: "Product Management Trainee",
-    company: "Healthkart",
-    location: "Gurugram",
-    dates: "Aug 2024 – Mar 2025",
-    bullets: [
-      "ERP roadmap (SAP B1, Pharmacloud) unlocking a category worth 5% of total revenue; ERPNext migration requirements toward SOC-2 compliance; PRDs, user stories, journey optimization",
-    ],
-  },
-  {
-    title: "Category Management Intern",
-    company: "Healthmug",
-    location: "New Delhi",
-    dates: "Apr 2023 – Jul 2023",
-    bullets: [
-      "Purchase-data analytics: +25% repeat purchases; catalog expansion +18%, contributing to 35% MoM growth",
+    org: "newton",
+    label: "Newton School",
+    metrics: [
+      {
+        value: 32,
+        prefix: "+",
+        suffix: "%",
+        label: "Referral conversion lift",
+        detail:
+          "Owned roadmap and lifecycle of the referral growth module; OKRs, cohort and funnel analysis, incentive experiments.",
+        slug: "referral-growth",
+        resumeEvidence: "lifting conversion 32%",
+      },
+      {
+        value: 70,
+        prefix: "−",
+        suffix: "%",
+        label: "Manual proctoring effort, across 15,000+ sessions",
+        detail:
+          "AI-powered exam monitoring: lightweight screenshot cadence, predefined malpractice flags, human-review pipeline.",
+        slug: "ai-proctoring",
+        resumeEvidence: "cutting proctoring effort 70%",
+      },
+      {
+        value: 99,
+        prefix: "−",
+        suffix: "%",
+        label: "Payment reconciliation effort, with 100% real-time transaction accuracy",
+        detail:
+          "Razorpay Route API split payments between two accounts, webhook-driven failure handling.",
+        slug: "razorpay-route",
+        resumeEvidence: "cutting manual effort 99%",
+      },
+      {
+        value: 30,
+        suffix: "%",
+        label: "Waitlist-to-seat conversion, zero vacant seats",
+        detail:
+          "Automated waitlisting workflows replacing a proposed CRM; cut turnaround ~90%.",
+        slug: "waitlist-automation",
+        resumeEvidence: "converting 30% of waitlisted users",
+      },
     ],
   },
 ];
@@ -387,6 +435,7 @@ export const certifications: Credential[] = [
 // `dates`/`bullets` render gracefully — no orphan separators.
 export const educationTimeline: Role[] = [
   {
+    id: "mdi",
     title: "PGDM — Marketing & Supply Chain Management",
     company: "Management Development Institute (MDI)",
     location: "Murshidabad",
@@ -394,6 +443,7 @@ export const educationTimeline: Role[] = [
     bullets: [],
   },
   {
+    id: "kiit",
     title: "B.Tech, Electronics & Telecommunication Engineering",
     company: "KIIT University",
     location: "Bhubaneswar",
@@ -409,17 +459,29 @@ export const educationTimeline: Role[] = [
 
 export type ImpactMeta = { label: string; value: string };
 export type ImpactSection = { heading: string; body: string };
+/** Organisations with impact pages; each page's Tenure row comes from its role's dates. */
+export type ImpactOrg = Extract<OrgId, "zamplitude" | "newton">;
 export type ImpactDetail = {
   slug: string;
+  org: ImpactOrg;
   metric: string;
   outcome: string;
   meta: ImpactMeta[];
   sections: ImpactSection[];
 };
 
+/** Footer note on each impact page, by organisation. */
+export const confidentiality: Record<ImpactOrg, string> = {
+  zamplitude:
+    "Client work. Details are limited to what can be shared publicly, and the client is not named. Happy to walk through the approach in conversation.",
+  newton:
+    "Specific internal data is summarized at the level Newton School permits publicly — happy to discuss details in conversation.",
+};
+
 export const impactDetails: ImpactDetail[] = [
   {
     slug: "referral-growth",
+    org: "newton",
     metric: "+32% Referral Conversion",
     outcome: "Referrals became a core growth lever for the platform.",
     meta: [
@@ -428,7 +490,6 @@ export const impactDetails: ImpactDetail[] = [
       { label: "Industry", value: "Edtech" },
       { label: "Role", value: "Associate Product Manager" },
       { label: "Collaboration", value: "PM + engineering + program team" },
-      { label: "Timeline", value: "Mar 2025 – Present" },
     ],
     sections: [
       {
@@ -455,6 +516,7 @@ export const impactDetails: ImpactDetail[] = [
   },
   {
     slug: "ai-proctoring",
+    org: "newton",
     metric: "−70% Manual Proctoring Effort",
     outcome: "AI monitoring scaled exam integrity across 15,000+ sessions.",
     meta: [
@@ -482,6 +544,7 @@ export const impactDetails: ImpactDetail[] = [
   },
   {
     slug: "razorpay-route",
+    org: "newton",
     metric: "−99% Reconciliation Effort",
     outcome: "Split payments reconciled in real time, refund delays eliminated.",
     meta: [
@@ -511,6 +574,7 @@ export const impactDetails: ImpactDetail[] = [
   },
   {
     slug: "waitlist-automation",
+    org: "newton",
     metric: "30% Waitlist Conversion, Zero Vacant Seats",
     outcome: "An automated waitlist filled seats directly — no CRM needed.",
     meta: [
