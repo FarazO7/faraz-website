@@ -23,7 +23,7 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
   const docsId = useId();
 
   return (
-    <article className="glass glass-hover flex flex-col overflow-hidden">
+    <article className="glass glass-nested glass-hover flex flex-col overflow-hidden">
       {/* Preview: page 1 of the case-study PDF (generated into public/previews). */}
       <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-white/10 bg-white/[0.03]">
         {/* eslint-disable-next-line @next/next/no-img-element -- static export, basePath handled via withBase */}
