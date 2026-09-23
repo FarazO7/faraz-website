@@ -42,11 +42,26 @@ export const experience: Role[] = [
     dates: "Mar 2026 – Present",
     current: true,
     bullets: [
-      "Ran discovery with four client-side compliance stakeholders across twelve requirement sessions to trace where KYC review stalled, defined the end-to-end review and approval workflow for a regulated GCC investment platform, and shipped it via PRDs, user stories, and UAT, lifting first-pass approval to 91%.",
-      "Designed and shipped a compliance dashboard with a two-level approval flow spanning KYC and EDD question creation, review, and sign-off, plus EDD assignment to flagged users with integrated notifications, replacing an email-based approval trail and cutting question change cycle time from 5 days to same-day.",
-      "Replaced manual case-by-case approval with automated risk scoring built on Nafath-verified identity attributes, defining scoring bands and auto-approval thresholds with the client Compliance Officer, auto-clearing 68% of applications and cutting review turnaround from 72 hours to under 8.",
-      "Audited 30+ compliance actions against regulatory obligations to expose shared-login risk, prioritised a Roles and Permissions module over competing scope, and shipped it with acceptance criteria and QA sign-off, eliminating shared-access accounts entirely and reducing audit-preparation effort 60%.",
-      "Parsed a full AML screening vendor specification programmatically to derive field mappings and status enumerations, flagged two vendor contradictions before build, and shipped a mock service specification with API contracts, unblocking frontend and QA three weeks ahead of vendor sandbox access and averting an estimated 120 hours of rework.",
+      {
+        text: "Ran discovery with four client-side compliance stakeholders across twelve requirement sessions to trace where KYC review stalled, defined the end-to-end review and approval workflow for a regulated GCC investment platform, and shipped it via PRDs, user stories, and UAT, lifting first-pass approval to 91%.",
+        impact: "kyc-review-workflow",
+      },
+      {
+        text: "Designed and shipped a compliance dashboard with a two-level approval flow spanning KYC and EDD question creation, review, and sign-off, plus EDD assignment to flagged users with integrated notifications, replacing an email-based approval trail and cutting question change cycle time from 5 days to same-day.",
+        impact: "compliance-dashboard",
+      },
+      {
+        text: "Replaced manual case-by-case approval with automated risk scoring built on Nafath-verified identity attributes, defining scoring bands and auto-approval thresholds with the client Compliance Officer, auto-clearing 68% of applications and cutting review turnaround from 72 hours to under 8.",
+        impact: "risk-scoring",
+      },
+      {
+        text: "Audited 30+ compliance actions against regulatory obligations to expose shared-login risk, prioritised a Roles and Permissions module over competing scope, and shipped it with acceptance criteria and QA sign-off, eliminating shared-access accounts entirely and reducing audit-preparation effort 60%.",
+        impact: "roles-permissions",
+      },
+      {
+        text: "Parsed a full AML screening vendor specification programmatically to derive field mappings and status enumerations, flagged two vendor contradictions before build, and shipped a mock service specification with API contracts, unblocking frontend and QA three weeks ahead of vendor sandbox access and averting an estimated 120 hours of rework.",
+        impact: "aml-mock-service",
+      },
     ],
   },
   {
@@ -56,7 +71,10 @@ export const experience: Role[] = [
     location: "Bengaluru",
     dates: "Mar 2025 – Mar 2026",
     bullets: [
-      "Owned acquisition-funnel optimisation, prioritising landing-page experiments by impact/effort and shipping iterative variants backed by self-serve dashboards (DAU/MAU, activation), raising sign-up conversion 10% → 19.1% (+91%).",
+      {
+        text: "Owned acquisition-funnel optimisation, prioritising landing-page experiments by impact/effort and shipping iterative variants backed by self-serve dashboards (DAU/MAU, activation), raising sign-up conversion 10% → 19.1% (+91%).",
+        impact: "signup-conversion",
+      },
       {
         text: "Referral growth module end-to-end: +32% conversion; A/B tested monetary vs prep-material vs combined incentives (+15% signups at target CAC); reward pivot to ChatGPT Plus voucher lifted power-user referrals +20%",
         impact: "referral-growth",
@@ -204,6 +222,50 @@ export type Metric = {
 export type MetricGroup = { org: OrgId; label: string; metrics: Metric[] };
 
 export const metricGroups: MetricGroup[] = [
+  {
+    org: "zamplitude",
+    label: "Zamplitude",
+    metrics: [
+      {
+        // An absolute approval rate: never prefix it with "+".
+        value: 91,
+        suffix: "%",
+        label: "First-pass KYC approval rate",
+        detail:
+          "End-to-end review and approval workflow, defined across twelve requirement sessions with four compliance stakeholders.",
+        slug: "kyc-review-workflow",
+        resumeEvidence: "first-pass approval to 91%",
+      },
+      {
+        value: 68,
+        suffix: "%",
+        label: "Applications auto-cleared",
+        detail:
+          "Automated risk scoring on Nafath-verified identity attributes; review turnaround cut from 72 hours to under 8.",
+        slug: "risk-scoring",
+        resumeEvidence: "auto-clearing 68% of applications",
+      },
+      {
+        value: 60,
+        prefix: "−",
+        suffix: "%",
+        label: "Audit-preparation effort",
+        detail:
+          "Roles and Permissions module, prioritised from an audit of 30+ compliance actions; shared-access accounts eliminated.",
+        slug: "roles-permissions",
+        resumeEvidence: "audit-preparation effort 60%",
+      },
+      {
+        value: 120,
+        suffix: "h",
+        label: "Rework averted, estimated",
+        detail:
+          "Mock AML service with API contracts unblocked frontend and QA three weeks ahead of vendor sandbox access.",
+        slug: "aml-mock-service",
+        resumeEvidence: "estimated 120 hours of rework",
+      },
+    ],
+  },
   {
     org: "newton",
     label: "Newton School",
@@ -524,7 +586,175 @@ export const confidentiality: Record<ImpactOrg, string> = {
     "Specific internal data is summarized at the level Newton School permits publicly — happy to discuss details in conversation.",
 };
 
+// Shared by every Zamplitude page. The client stays anonymous everywhere.
+const ZAMPLITUDE_META: ImpactMeta[] = [
+  {
+    label: "Company",
+    value: "Zamplitude (client: regulated GCC investment platform)",
+  },
+  { label: "Industry", value: "Regulated Fintech (KYC/AML)" },
+  { label: "Role", value: "Product Manager" },
+];
+
 export const impactDetails: ImpactDetail[] = [
+  {
+    slug: "kyc-review-workflow",
+    org: "zamplitude",
+    metric: "91% First-Pass Approval",
+    outcome:
+      "KYC review moved from stalling to a defined end-to-end approval workflow.",
+    meta: [
+      { label: "Project type", value: "Compliance workflow, discovery to UAT" },
+      ...ZAMPLITUDE_META,
+      { label: "Collaboration", value: "Four client-side compliance stakeholders" },
+      { label: "Discovery", value: "Twelve requirement sessions" },
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        // REVIEW(Faraz): restructured from the resume bullet.
+        body: "KYC review was stalling on a regulated GCC investment platform.",
+      },
+      {
+        heading: "Approach & key decisions",
+        body: "Ran discovery with four client-side compliance stakeholders across twelve requirement sessions to trace where review stalled. Defined the end-to-end review and approval workflow, then shipped it via PRDs, user stories, and UAT.",
+      },
+      { heading: "Results", body: "First-pass approval lifted to 91%." },
+    ],
+  },
+  {
+    slug: "compliance-dashboard",
+    org: "zamplitude",
+    metric: "5 Days → Same-Day Question Changes",
+    outcome: "A two-level approval flow replaced an email-based approval trail.",
+    meta: [
+      { label: "Project type", value: "Compliance dashboard, design to launch" },
+      ...ZAMPLITUDE_META,
+      { label: "Scope", value: "KYC and EDD questions" },
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        // REVIEW(Faraz): restructured from the resume bullet.
+        body: "KYC and EDD question changes ran through an email-based approval trail, with a change cycle of 5 days.",
+      },
+      {
+        heading: "Approach & key decisions",
+        body: "Designed and shipped a compliance dashboard with a two-level approval flow spanning question creation, review, and sign-off for KYC and EDD, plus EDD assignment to flagged users with integrated notifications.",
+      },
+      {
+        heading: "Results",
+        body: "Question change cycle time cut from 5 days to same-day.",
+      },
+    ],
+  },
+  {
+    slug: "risk-scoring",
+    org: "zamplitude",
+    metric: "68% Auto-Cleared",
+    outcome: "Review turnaround cut from 72 hours to under 8.",
+    meta: [
+      { label: "Project type", value: "Risk-scoring automation" },
+      ...ZAMPLITUDE_META,
+      { label: "Collaboration", value: "Client Compliance Officer" },
+      { label: "Identity basis", value: "Nafath-verified attributes" },
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        // REVIEW(Faraz): restructured from the resume bullet.
+        body: "Applications were approved manually, case by case, and review turnaround stood at 72 hours.",
+      },
+      {
+        heading: "Approach & key decisions",
+        body: "Replaced manual approval with automated risk scoring built on Nafath-verified identity attributes, and defined the scoring bands and auto-approval thresholds with the client Compliance Officer.",
+      },
+      {
+        heading: "Results",
+        body: "68% of applications auto-cleared; review turnaround cut from 72 hours to under 8.",
+      },
+    ],
+  },
+  {
+    slug: "roles-permissions",
+    org: "zamplitude",
+    metric: "−60% Audit-Prep Effort",
+    outcome: "Shared-access accounts eliminated entirely.",
+    meta: [
+      { label: "Project type", value: "Access control, audit to QA sign-off" },
+      ...ZAMPLITUDE_META,
+      { label: "Audit scope", value: "30+ compliance actions" },
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        // REVIEW(Faraz): restructured from the resume bullet.
+        body: "Shared logins posed a risk against the platform's regulatory obligations.",
+      },
+      {
+        heading: "Approach & key decisions",
+        body: "Audited 30+ compliance actions against regulatory obligations to expose the shared-login risk, prioritised a Roles and Permissions module over competing scope, and shipped it with acceptance criteria and QA sign-off.",
+      },
+      {
+        heading: "Results",
+        body: "Shared-access accounts eliminated entirely; audit-preparation effort down 60%.",
+      },
+    ],
+  },
+  {
+    slug: "aml-mock-service",
+    org: "zamplitude",
+    metric: "120 Hours of Rework Averted (est.)",
+    outcome:
+      "Frontend and QA unblocked three weeks ahead of vendor sandbox access.",
+    meta: [
+      { label: "Project type", value: "Vendor integration, API contracts" },
+      ...ZAMPLITUDE_META,
+      { label: "Deliverable", value: "Mock service specification" },
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        // REVIEW(Faraz): restructured from the resume bullet.
+        body: "Frontend and QA were waiting on sandbox access from the AML screening vendor.",
+      },
+      {
+        heading: "Approach & key decisions",
+        body: "Parsed the full AML screening vendor specification programmatically to derive field mappings and status enumerations, flagged two vendor contradictions before build, and shipped a mock service specification with API contracts.",
+      },
+      {
+        heading: "Results",
+        body: "Frontend and QA unblocked three weeks ahead of vendor sandbox access; an estimated 120 hours of rework averted.",
+      },
+    ],
+  },
+  {
+    slug: "signup-conversion",
+    org: "newton",
+    metric: "+91% Sign-Up Conversion",
+    outcome: "Sign-up conversion raised from 10% to 19.1%.",
+    meta: [
+      { label: "Project type", value: "Acquisition-funnel optimisation" },
+      { label: "Company", value: "Newton School" },
+      { label: "Industry", value: "Edtech" },
+      { label: "Role", value: "Associate Product Manager" },
+    ],
+    sections: [
+      {
+        heading: "Problem",
+        // REVIEW(Faraz): restructured from the resume bullet.
+        body: "Acquisition-funnel sign-up conversion stood at 10%.",
+      },
+      {
+        heading: "Approach & key decisions",
+        body: "Owned acquisition-funnel optimisation: prioritised landing-page experiments by impact and effort, and shipped iterative variants backed by self-serve dashboards (DAU/MAU, activation).",
+      },
+      {
+        heading: "Results",
+        body: "Sign-up conversion raised from 10% to 19.1%, a 91% lift.",
+      },
+    ],
+  },
   {
     slug: "referral-growth",
     org: "newton",
