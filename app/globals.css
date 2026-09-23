@@ -69,8 +69,10 @@ button:not(:disabled),
 }
 
 /* ---------------------------------------------------------------------------
-   The single glass primitive (spec §3.2). Reserved for: nav, hero panel,
-   metric tiles, case-study cards, calendar container, repo cards.
+   The single glass primitive (spec §3.2). Live blur is reserved for: nav,
+   credibility strip, metric tiles, Built cards, calendar container, current
+   role, impact-page meta grid. Dense grids (case studies, repo cards, skills
+   hubs) add .glass-nested so no viewport exceeds ~6 live backdrop-filters.
 --------------------------------------------------------------------------- */
 .glass {
   background: rgba(255, 255, 255, 0.07);
@@ -90,10 +92,10 @@ button:not(:disabled),
   }
 }
 
-/* For glass nested inside glass (metric tiles in the hero panel): the parent
-   already blurs the page background, so a second backdrop-filter is pure GPU
-   cost with no visual gain — and it's what pushes the per-viewport active-blur
-   budget past ~6. Same recipe, blur layer off, tint bumped to compensate. */
+/* Glass without its own blur: for glass nested inside glass, and for dense
+   card grids (case studies, repo cards, skills hubs) whose extra blurs would
+   push a viewport past the ~6 live-blur budget. Over the dark star field the
+   blur is barely visible, so the look holds. Same recipe, blur layer off. */
 .glass-nested {
   backdrop-filter: none;
   background: rgba(255, 255, 255, 0.05);

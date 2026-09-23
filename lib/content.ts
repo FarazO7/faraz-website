@@ -459,6 +459,9 @@ export const capabilities: Capability[] = [
 export type SkillNode = { label: string; slug?: string };
 export type SkillHub = { name: string; accent: string; nodes: SkillNode[] };
 
+// Five hubs of skills with direct evidence on this site (resume summary,
+// Zamplitude and Newton bullets, Signal and Cairn). The full resume taxonomy
+// lives in `skillsIndex` below. The first hub renders full-width.
 export const skills: SkillHub[] = [
   {
     name: "Core PM",
@@ -471,9 +474,29 @@ export const skills: SkillHub[] = [
       { label: "GTM" },
       { label: "Agile/Scrum" },
       { label: "Release Management" },
-      { label: "UAT" },
       { label: "Stakeholder Management" },
       { label: "OKRs/KPIs" },
+      { label: "User Research" },
+      { label: "JTBD" },
+      { label: "Prioritisation (RICE/MoSCoW)" },
+      { label: "Requirements Engineering" },
+    ],
+  },
+  {
+    name: "Delivery & Programme",
+    accent: "#9DB8FF", // star blue
+    nodes: [
+      { label: "UAT" },
+      { label: "Delivery Management" },
+      { label: "Sprint Planning" },
+      { label: "Backlog Grooming" },
+      { label: "RAID Management" },
+      { label: "Risk Management" },
+      { label: "Change Control" },
+      { label: "Earned Value Management" },
+      { label: "Solution Blueprinting" },
+      { label: "Vendor Integration" },
+      { label: "Client Communication" },
     ],
   },
   {
@@ -488,6 +511,9 @@ export const skills: SkillHub[] = [
       { label: "Product Analytics" },
       { label: "DAU/MAU" },
       { label: "Dashboarding" },
+      { label: "Referral Growth" },
+      { label: "Activation" },
+      { label: "Retention" },
     ],
   },
   {
@@ -499,6 +525,9 @@ export const skills: SkillHub[] = [
       { label: "Prompt Engineering" },
       { label: "AI Agents" },
       { label: "Workflow Automation" },
+      { label: "RAG" },
+      { label: "LLM Evaluation" },
+      { label: "Human-in-the-Loop Design" },
     ],
   },
   {
@@ -507,12 +536,46 @@ export const skills: SkillHub[] = [
     nodes: [
       { label: "JIRA", slug: "jira" },
       { label: "Confluence", slug: "confluence" },
-      { label: "GA", slug: "googleanalytics" },
+      { label: "GA4", slug: "googleanalytics" },
       { label: "Firebase", slug: "firebase" },
       { label: "CleverTap" }, // no simple-icons mark → text node
       { label: "Tableau" }, // removed from simple-icons → text node
       { label: "Metabase", slug: "metabase" },
+      { label: "ClickUp", slug: "clickup" },
+      { label: "Notion", slug: "notion" },
+      { label: "REST APIs" },
     ],
+  },
+];
+
+// Resume summary, sentence two: the line under the Skills heading.
+export const skillsIntro =
+  "Fluent in product discovery, user research, JTBD, prioritisation, experimentation, A/B testing, requirements engineering, APIs, and SQL-driven decisions.";
+
+// The resume's six skill groups, verbatim, for the "All skills" index.
+export type SkillGroup = { name: string; items: string[] };
+
+export const skillsIndex: SkillGroup[] = [
+  {
+    name: "Product Management",
+    items: ["Product Strategy", "Product Vision", "Product-Market Fit", "Product Discovery", "JTBD", "User Research", "User Interviews", "Customer Segmentation", "Customer Insights", "Roadmapping", "Lifecycle Management", "0-to-1 Products", "Go-to-Market", "PRDs", "User Stories", "Acceptance Criteria", "Requirements Engineering", "Prioritisation (RICE/MoSCoW)", "North Star Metrics", "OKRs/KPIs", "Journey Mapping", "Competitive Analysis", "Stakeholder Management", "Agile/Scrum", "Release Management"],
+  },
+  {
+    name: "Delivery & Programme",
+    items: ["Delivery Management", "Sprint Planning", "Backlog Grooming", "Earned Value Management", "RAID Management", "Change Control", "Risk Management", "UAT", "Retrospectives", "Client Communication", "Solution Blueprinting", "Pre-Sales", "Vendor Evaluation", "Vendor Integration"],
+  },
+  {
+    name: "Growth & Analytics",
+    items: ["A/B Testing", "Experimentation", "Experiment Design", "Funnel & Cohort Analysis", "Activation", "Retention", "Feature Adoption", "Growth Loops", "Referral Growth", "SQL", "Product Analytics", "DAU/MAU", "Growth Metrics", "Dashboarding", "Data Visualisation"],
+  },
+  {
+    name: "AI & Automation",
+    items: ["AI Agents", "Agentic AI", "Generative AI", "LLMs", "RAG", "Prompt Engineering", "LLM Evaluation", "Human-in-the-Loop Design", "AI Product Development", "AI-Native Product Development", "Workflow Automation"],
+  },
+  { name: "Domains", items: domains },
+  {
+    name: "Technical & Tools",
+    items: ["Python", "REST APIs", "API Documentation", "Payment Gateway Integration", "JIRA", "Confluence", "ClickUp", "Notion", "Google Analytics (GA4)", "Mixpanel", "CleverTap", "Firebase", "Tableau", "Power BI", "Metabase", "Advanced Excel", "SAP"],
   },
 ];
 
