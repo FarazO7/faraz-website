@@ -33,7 +33,7 @@ export default function Hero() {
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <a
                 href={`mailto:${identity.email}`}
-                className="group inline-flex items-center gap-2 rounded-xl bg-accent-a px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#3d6af0]"
+                className="group inline-flex items-center gap-2 rounded-xl bg-[#3d6af0] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#2f5be0]"
               >
                 Get in touch
                 <ArrowRight

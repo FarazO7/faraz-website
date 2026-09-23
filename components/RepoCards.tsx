@@ -13,7 +13,7 @@ export default function RepoCards() {
           href={repo.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="glass glass-hover group flex flex-col p-5"
+          className="glass glass-nested glass-hover group flex flex-col p-5"
         >
           <div className="flex items-center justify-between gap-3">
             <h4 className="truncate font-mono text-sm font-medium">

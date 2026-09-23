@@ -3,7 +3,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Mail } from "lucide-react";
 import { LinkedInMark } from "@/components/icons";
-import { getImpactDetail, identity, impactDetails } from "@/lib/content";
+import {
+  confidentiality,
+  getImpactDetail,
+  getRole,
+  identity,
+  impactDetails,
+} from "@/lib/content";
 
 // Pre-render one page per metric for the static export; reject unknown slugs.
 export function generateStaticParams() {
@@ -44,6 +50,12 @@ export default async function ImpactPage({
   const detail = getImpactDetail(slug);
   if (!detail) notFound();
 
+  // Tenure comes from the organisation's timeline entry, never a hardcoded row.
+  const role = getRole(detail.org);
+  const meta = role
+    ? [...detail.meta, { label: "Tenure", value: role.dates }]
+    : detail.meta;
+
   return (
     <main id="main" className="mx-auto max-w-3xl px-4 py-16 sm:px-6 md:py-24">
       <Link
@@ -66,7 +78,7 @@ export default async function ImpactPage({
 
       {/* Metadata grid */}
       <dl className="glass mt-10 grid grid-cols-1 gap-x-8 gap-y-5 p-6 sm:grid-cols-2">
-        {detail.meta.map((m) => (
+        {meta.map((m) => (
           <div key={m.label}>
             <dt className="font-mono text-xs tracking-wider uppercase text-accent-b">
               {m.label}
@@ -91,8 +103,7 @@ export default async function ImpactPage({
       {/* Confidentiality-aware footer */}
       <footer className="mt-14 rounded-[20px] border border-white/[0.08] bg-white/[0.02] p-6">
         <p className="text-sm leading-relaxed text-muted">
-          Specific internal data is summarized at the level Newton School permits
-          publicly — happy to discuss details in conversation.
+          {confidentiality[detail.org]}
         </p>
         <div className="mt-4 flex flex-wrap gap-x-5 gap-y-3">
           <a

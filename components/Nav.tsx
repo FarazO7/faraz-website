@@ -19,7 +19,7 @@ export default function Nav() {
       >
         <a
           href="#top"
-          aria-label="Faraz Ali — back to top"
+          aria-label={`${identity.name}, back to top`}
           className="grid size-9 place-items-center rounded-xl border border-white/15 font-display text-sm font-bold tracking-wide"
         >
           FA

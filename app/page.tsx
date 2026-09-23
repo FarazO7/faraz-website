@@ -10,7 +10,7 @@ import GitHubSection from "@/components/GitHubSection";
 import Skills from "@/components/Skills";
 import Footer from "@/components/Footer";
 import type { Metadata } from "next";
-import { identity } from "@/lib/content";
+import { currentRole, identity } from "@/lib/content";
 
 // Home-specific canonical + og:url (resolved against metadataBase in layout).
 export const metadata: Metadata = {
@@ -22,7 +22,8 @@ const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: identity.name,
-  jobTitle: identity.title,
+  url: identity.siteUrl,
+  jobTitle: currentRole.title,
   email: `mailto:${identity.email}`,
   telephone: identity.phone,
   address: {
@@ -30,7 +31,7 @@ const personJsonLd = {
     addressLocality: "Bengaluru",
     addressCountry: "IN",
   },
-  worksFor: { "@type": "Organization", name: identity.company },
+  worksFor: { "@type": "Organization", name: currentRole.company },
   sameAs: [identity.linkedin, identity.github],
 };
 
@@ -53,7 +54,10 @@ export default function Home() {
       <Footer />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        dangerouslySetInnerHTML={{
+          // Escape "<" so no string can close the script tag (Next JSON-LD guide).
+          __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
+        }}
       />
     </>
   );

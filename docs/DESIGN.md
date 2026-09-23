@@ -6,7 +6,7 @@ decisions as implemented plus the implementation plan.
 
 ## Mission
 
-Single-page portfolio for an Associate Product Manager whose proof points are metrics.
+Single-page portfolio for a Product Manager whose proof points are metrics.
 Audience: recruiters and hiring managers at product companies. One job: get a visitor
 to scan the impact numbers, open a case study, and make contact.
 
@@ -39,6 +39,38 @@ to scan the impact numbers, open a case study, and make contact.
   backdrop-filter there is GPU cost with no visual gain, and dropping it keeps
   every viewport at ≤6 active backdrop-filters (measured: hero 4, work 6,
   github 6 at 1440×900).
+
+## V3 additions (September 2026 resume sync)
+
+- **Glass budget, restated.** Live blur is kept for the nav, credibility strip,
+  metric tiles, Built cards, calendar container, current-role card and the
+  impact-page meta grid. Dense grids (case-study cards, repo cards, skills
+  hubs) use `.glass-nested`: the same recipe with no blur of its own, barely
+  distinguishable over the star field. `npm run verify` counts painted,
+  in-viewport `backdrop-filter` elements at the hero, Impact, GitHub,
+  GitHub-to-Skills and Skills positions. Measured at 375, 768, 1024 and 1440 px:
+  at most 2, 6, 2, 1 and 1 (the live site had up to 10).
+- **Impact tablist.** WAI-ARIA tabs above the tiles, one per `metricGroups`
+  entry, current role first: roving tabindex, arrow keys, Home/End,
+  `aria-selected`. Tabs are flat bordered pills (no glass); each shows the
+  role's tenure in small mono. Both tab panels share one CSS grid cell, so the
+  section is as tall as the taller panel and switching causes no layout shift.
+  The inactive panel is `visibility: hidden` and `inert`: never painted (no
+  blur cost) and out of the accessibility tree. The count-up and rise-in
+  replay on switch; under reduced motion numbers are instant.
+- **Skills: five hubs.** Core PM, Delivery & Programme, Data & Analytics,
+  AI & Automation, Tools. A 2-column grid where the lead hub (Core PM, 13
+  nodes) spans both columns; it stacks to one column on mobile. Hub cards are
+  `.glass-nested` and chips stay flat, so the section adds no live blur.
+  Near-black brand marks (Notion) render in the text colour.
+- **Domains chips.** Flat chips (no glass) under a small mono "Domains" label
+  at the top of Experience, the same chip style as the skills nodes.
+- **Skills index.** A native `<details>` ("All skills", with a count) under
+  the hub cards: flat, no glass, the resume's six groups as a definition list.
+  Collapsed by default, but in the DOM for search engines and find-in-page.
+  The chevron rotation is disabled under reduced motion.
+- **"Read the case" links.** Experience bullets with an impact page end in a
+  small indigo link whose accessible name is "Read the case: {metric}".
 
 ## Page architecture (top → bottom)
 

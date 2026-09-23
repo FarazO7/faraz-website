@@ -22,7 +22,7 @@ const jetbrains = JetBrains_Mono({
 const title = `${identity.name} — ${identity.title}`;
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://faraz-website.vercel.app"),
+  metadataBase: new URL(identity.siteUrl),
   title,
   description: identity.positioning,
   openGraph: {

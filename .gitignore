@@ -13,3 +13,6 @@ __pycache__/
 # (public/graphify-out/graph.html) — the footer links it.
 /graphify-out/
 next-env.d.ts
+
+# Local review artefacts (screenshots, Lighthouse JSON); never committed.
+/.review/
