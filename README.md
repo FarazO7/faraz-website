@@ -139,6 +139,10 @@ https://faraz-website.vercel.app, and every pushed branch gets a preview URL.
 `NEXT_PUBLIC_BASE_PATH` and `withBase` remain for subpath hosting; leave the
 variable unset on Vercel.
 
+**CI:** [`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs lint,
+typecheck and build (content guard included) on every push to `main` and every
+pull request. The GitHub Pages workflow is retired.
+
 ## Architecture map
 
 An interactive map of this codebase, generated with graphify, is committed at
