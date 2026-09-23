@@ -31,9 +31,21 @@ function FeaturedCard({ project }: { project: Project }) {
       <h3 className="mt-2 font-display text-2xl font-bold tracking-tight sm:text-3xl">
         {project.name}
       </h3>
+      {(project.subtitle || project.year) && (
+        <p className="mt-1 text-sm font-medium text-foreground/85">
+          {[project.subtitle, project.year].filter(Boolean).join(" · ")}
+        </p>
+      )}
       <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-[15px]">
         {project.description}
       </p>
+      {project.highlights && project.highlights.length > 0 && (
+        <ul className="mt-4 max-w-3xl list-disc space-y-2 pl-4 text-sm leading-relaxed text-muted marker:text-white/30">
+          {project.highlights.map((highlight) => (
+            <li key={highlight}>{highlight}</li>
+          ))}
+        </ul>
+      )}
       <div className="mt-6 flex flex-wrap items-center gap-3">
         {project.demo && (
           <a
