@@ -189,7 +189,8 @@ function checkAssets() {
 
 // g. Components and routes never hardcode identity; h. retired claims stay retired.
 const IDENTITY_LITERALS = ["Faraz Ali", "Product Manager", "Zamplitude", "Newton School", "Incanus", "HealthKart", "Healthmug"];
-const RETIRED_CLAIMS = ["2+ years"];
+// Retired by the October 2026 resume; "2+ years" is back on the resume.
+const RETIRED_CLAIMS = ["Nafath", "GCC", "Pharmacloud", "Remote, Dubai", "audit-preparation"];
 
 function sourceFiles(dir: string): string[] {
   return readdirSync(join(ROOT, dir), { recursive: true, encoding: "utf8" })

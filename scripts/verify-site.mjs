@@ -8,7 +8,7 @@
 // 2. Glass budget: at most 6 painted, in-viewport backdrop-filter elements at
 //    the hero, Impact, GitHub, GitHub-to-Skills and Skills scroll positions.
 // 3. axe: zero serious or critical violations on / and two impact pages.
-// 4. Keyboard: metric tablist, "Read the case" links, skills <details>.
+// 4. Keyboard: metric tablist, "Read the case" links.
 //
 // Uses the installed Google Chrome when present, else Playwright's Chromium
 // (`npx playwright install chromium`). Exits 1 on any failure.
@@ -201,24 +201,11 @@ async function checkCaseLinks(page) {
   note(`keyboard: ${links.length} "Read the case" links, unique names`);
 }
 
-async function checkSkillsIndex(page) {
-  const summary = page.locator("#skills details > summary");
-  if ((await summary.count()) === 0) return fail("keyboard: skills index <details> not found");
-  const isOpen = () => summary.evaluate((el) => el.parentElement.open);
-  await summary.focus();
-  await page.keyboard.press("Enter");
-  const opened = await isOpen();
-  await page.keyboard.press("Enter");
-  if (!opened || (await isOpen())) fail("keyboard: skills <details> does not toggle with Enter");
-  else note("keyboard: skills index toggles with Enter");
-}
-
 async function checkKeyboard(browser) {
   const { context, page } = await openPage(browser);
   await page.goto(`${BASE}/`, { waitUntil: "load" });
   await checkTablist(page);
   await checkCaseLinks(page);
-  await checkSkillsIndex(page);
   await context.close();
 }
 

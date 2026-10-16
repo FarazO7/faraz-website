@@ -58,17 +58,14 @@ to scan the impact numbers, open a case study, and make contact.
   The inactive panel is `visibility: hidden` and `inert`: never painted (no
   blur cost) and out of the accessibility tree. The count-up and rise-in
   replay on switch; under reduced motion numbers are instant.
-- **Skills: five hubs.** Core PM, Delivery & Programme, Data & Analytics,
-  AI & Automation, Tools. A 2-column grid where the lead hub (Core PM, 13
-  nodes) spans both columns; it stacks to one column on mobile. Hub cards are
-  `.glass-nested` and chips stay flat, so the section adds no live blur.
-  Near-black brand marks (Notion) render in the text colour.
+- **Skills: four hubs.** The resume's groups: Product, Growth and data, AI,
+  Technical and domains. A 2 × 2 grid that stacks to one column on mobile.
+  Hub cards are `.glass-nested` and chips stay flat, so the section adds no
+  live blur. Near-black brand marks (Notion) render in the text colour.
 - **Domains chips.** Flat chips (no glass) under a small mono "Domains" label
   at the top of Experience, the same chip style as the skills nodes.
-- **Skills index.** A native `<details>` ("All skills", with a count) under
-  the hub cards: flat, no glass, the resume's six groups as a definition list.
-  Collapsed by default, but in the DOM for search engines and find-in-page.
-  The chevron rotation is disabled under reduced motion.
+- **Role summary.** Under each role's company line, the resume's one-line
+  summary in plain body text (no glass, no bullet).
 - **"Read the case" links.** Experience bullets with an impact page end in a
   small indigo link whose accessible name is "Read the case: {metric}".
 

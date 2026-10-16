@@ -3,15 +3,15 @@ import Section from "./Section";
 import { GitHubMark } from "./icons";
 import { projects, type Project } from "@/lib/content";
 
-// Shipped products. Signal is the flagship (full-width featured card with live
-// demo + repo); the rest are secondary cards. Reuses the existing glass card,
-// spacing scale, and button styles — no new visual language.
+// Prototypes and side projects. Signal is the flagship (full-width featured
+// card with live demo + repo); the rest are secondary cards. Reuses the
+// existing glass card, spacing scale, and button styles — no new visual language.
 export default function BuiltProjects() {
   const flagship = projects.find((p) => p.flagship);
   const rest = projects.filter((p) => !p.flagship);
 
   return (
-    <Section id="built" kicker="Built" title="Products I've shipped">
+    <Section id="built" kicker="Built" title="Prototypes I've built">
       {flagship && <FeaturedCard project={flagship} />}
       <div className="mt-5 grid gap-5 md:grid-cols-3">
         {rest.map((project) => (

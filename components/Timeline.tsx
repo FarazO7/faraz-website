@@ -48,8 +48,14 @@ export default function Timeline({
               )}
             </div>
             <p className="mt-1 text-sm font-medium text-foreground/90">
-              {role.company} · {role.location}
+              {role.company}
+              {role.descriptor && `, ${role.descriptor}`} · {role.location}
             </p>
+            {role.summary && (
+              <p className="mt-3 text-sm leading-relaxed text-foreground/85">
+                {role.summary}
+              </p>
+            )}
             {role.bullets.length > 0 && (
               <ul className="mt-3 list-disc space-y-2 pl-4 text-sm leading-relaxed text-muted marker:text-white/30">
                 {role.bullets.map((bullet) => (
