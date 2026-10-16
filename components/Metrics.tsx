@@ -1,163 +1,73 @@
-"use client";
-
-import { useId, useRef, useState, type KeyboardEvent } from "react";
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import {
-  currentRole,
-  getRole,
-  metricGroups,
-  type Metric,
-} from "@/lib/content";
-import { useCountUp, useInView, usePrefersReducedMotion } from "@/lib/hooks";
+import Numeral from "./Numeral";
+import { getRole, metricGroups, metricLabel, type Metric } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
-// Role-segmented impact metrics: a WAI-ARIA tablist (roving tabindex, arrow
-// keys, Home/End) over one four-tile grid per role, current role first. Both
-// panels share one grid cell, so the section is always as tall as the taller
-// panel and switching never shifts layout. The inactive panel is
-// visibility:hidden + inert: never painted (its glass costs no blur) and out
-// of the accessibility tree.
-const DEFAULT_TAB = Math.max(
-  0,
-  metricGroups.findIndex((group) => group.org === currentRole.id),
-);
+// The reference's "numbers" bento: one group per role (employer and dates as
+// the heading, current role first), four tiles each on a three-column grid.
+// Spans alternate 2+1 / 1+2 and mirror for the next group; surfaces cycle the
+// reference's pastels with one inverted ink tile. Every tile is one link to
+// its impact page, with the same accessible name as before.
+const SPANS = [
+  [2, 1, 1, 2],
+  [1, 2, 2, 1],
+];
+const TONES = [
+  ["bg-blue-50", "bg-ink text-white", "bg-pink-50", "bg-surface-3"],
+  ["bg-pink-50", "bg-surface-3", "bg-blue-50", "bg-ink text-white"],
+];
 
 export default function Metrics() {
-  const [ref, inView] = useInView<HTMLDivElement>();
-  const reduced = usePrefersReducedMotion();
-  const [active, setActive] = useState(DEFAULT_TAB);
-  // Bumped on every switch; it keys the active panel's tiles so the count-up
-  // (and the rise-in) replays for the newly selected role.
-  const [switches, setSwitches] = useState(0);
-  const tabs = useRef<(HTMLButtonElement | null)[]>([]);
-  const id = useId();
-
-  function select(index: number) {
-    if (index === active) return;
-    setActive(index);
-    setSwitches((n) => n + 1);
-  }
-
-  function onKeyDown(event: KeyboardEvent<HTMLButtonElement>) {
-    const last = metricGroups.length - 1;
-    const targets: Record<string, number> = {
-      ArrowRight: active === last ? 0 : active + 1,
-      ArrowLeft: active === 0 ? last : active - 1,
-      Home: 0,
-      End: last,
-    };
-    const next = targets[event.key];
-    if (next === undefined) return;
-    event.preventDefault();
-    select(next);
-    tabs.current[next]?.focus();
-  }
-
   return (
-    <div>
-      {metricGroups.length > 1 && (
-        <div
-          role="tablist"
-          aria-label="Impact by role"
-          className="mb-6 flex flex-wrap gap-2"
-        >
-          {metricGroups.map((group, i) => {
-            const selected = i === active;
-            return (
-              <button
-                key={group.org}
-                ref={(el) => {
-                  tabs.current[i] = el;
-                }}
-                type="button"
-                role="tab"
-                id={`${id}-tab-${i}`}
-                aria-selected={selected}
-                aria-controls={`${id}-panel-${i}`}
-                tabIndex={selected ? 0 : -1}
-                onClick={() => select(i)}
-                onKeyDown={onKeyDown}
-                className={cn(
-                  "flex flex-col items-start rounded-xl border px-4 py-2 text-left transition-colors",
-                  selected
-                    ? "border-white/25 bg-white/10 text-foreground"
-                    : "border-white/10 text-muted hover:border-white/20 hover:text-foreground",
-                )}
-              >
-                <span className="text-sm font-semibold">{group.label}</span>
-                <span className="font-mono text-[11px] text-muted">
-                  {getRole(group.org)?.dates}
-                </span>
-              </button>
-            );
-          })}
+    <div className="space-y-14 md:space-y-20">
+      {metricGroups.map((group, g) => (
+        <div key={group.org}>
+          <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-line pb-4" data-reveal="fade">
+            <h3 className="t-h3">{group.label}</h3>
+            <p className="t-label">{getRole(group.org)?.dates}</p>
+          </div>
+          <ul className="mt-5 grid gap-3 md:grid-cols-3 md:gap-4">
+            {group.metrics.map((metric, i) => (
+              <li key={metric.slug} className={SPANS[g % 2][i] === 2 ? "md:col-span-2" : undefined}>
+                <MetricTile metric={metric} tone={TONES[g % 2][i]} index={i} />
+              </li>
+            ))}
+          </ul>
         </div>
-      )}
-      <div ref={ref} className="grid">
-        {metricGroups.map((group, i) => {
-          const selected = i === active;
-          return (
-            <div
-              key={group.org}
-              role={metricGroups.length > 1 ? "tabpanel" : undefined}
-              id={`${id}-panel-${i}`}
-              aria-labelledby={
-                metricGroups.length > 1 ? `${id}-tab-${i}` : undefined
-              }
-              inert={!selected}
-              className={cn(
-                "col-start-1 row-start-1 grid gap-4 sm:grid-cols-2 lg:grid-cols-4",
-                !selected && "invisible",
-              )}
-            >
-              {group.metrics.map((metric, j) => (
-                <MetricTile
-                  key={selected ? `${metric.slug}-${switches}` : metric.slug}
-                  metric={metric}
-                  animate={selected && inView && !reduced}
-                  delayMs={150 + j * 120}
-                />
-              ))}
-            </div>
-          );
-        })}
-      </div>
+      ))}
     </div>
   );
 }
 
-function MetricTile({
-  metric,
-  animate,
-  delayMs,
-}: {
-  metric: Metric;
-  animate: boolean;
-  delayMs: number;
-}) {
-  const value = useCountUp(metric.value, animate);
-
+function MetricTile({ metric, tone, index }: { metric: Metric; tone: string; index: number }) {
+  const dark = tone.includes("bg-ink");
   return (
     <Link
       href={`/impact/${metric.slug}`}
-      aria-label={`${metric.prefix ?? ""}${metric.value}${metric.suffix ?? ""} — ${metric.label}. Read the full story.`}
-      className="glass glass-hover rise group relative block rounded-2xl p-5"
-      style={{ animationDelay: `${delayMs}ms` }}
+      aria-label={metricLabel(metric)}
+      data-reveal="up"
+      style={{ "--i": index, "--num-color": dark ? "#fff" : "var(--ink)" } as CSSProperties}
+      className={cn(
+        "group lift flex h-full min-h-[15rem] flex-col justify-between gap-8 rounded-[var(--radius)] p-6 md:min-h-[17.5rem] md:p-8",
+        tone,
+      )}
     >
-      <ArrowUpRight
-        aria-hidden
-        className="absolute top-4 right-4 size-4 text-muted opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
-      />
-      <p className="numeral-gradient font-mono text-3xl font-bold sm:text-4xl">
-        {metric.prefix}
-        {value}
-        {metric.suffix}
-      </p>
-      <p className="mt-2 text-sm leading-snug font-medium">{metric.label}</p>
-      <p className="mt-1.5 text-[13px] leading-relaxed text-muted">
-        {metric.detail}
-      </p>
+      <div className="flex items-start justify-between gap-4">
+        <p className="t-numeral">
+          <Numeral metric={metric} />
+        </p>
+        <span aria-hidden className={cn("round", dark ? "bg-white/15" : "bg-white/80")}>
+          <ArrowUpRight className="size-4" />
+        </span>
+      </div>
+      <div>
+        <p className="t-lead">{metric.label}</p>
+        <p className={cn("mt-2 max-w-[52ch] text-base leading-relaxed", dark ? "text-[var(--on-dark-muted)]" : "text-muted")}>
+          {metric.detail}
+        </p>
+      </div>
     </Link>
   );
 }

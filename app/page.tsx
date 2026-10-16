@@ -41,7 +41,7 @@ export default function Home() {
       <Nav />
       <main id="main">
         <Hero />
-        <Section id="impact" kicker="Impact" title="Proof in the numbers">
+        <Section id="impact" kicker="Impact" title="Proof in the numbers" accent="numbers">
           <Metrics />
         </Section>
         <CaseStudies />

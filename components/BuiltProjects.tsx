@@ -1,107 +1,133 @@
-import { ArrowUpRight, ExternalLink } from "lucide-react";
+import type { CSSProperties } from "react";
+import { ArrowUpRight } from "lucide-react";
 import Section from "./Section";
 import { GitHubMark } from "./icons";
 import { projects, type Project } from "@/lib/content";
+import { withBase } from "@/lib/utils";
 
-// Prototypes and side projects. Signal is the flagship (full-width featured
-// card with live demo + repo); the rest are secondary cards. Reuses the
-// existing glass card, spacing scale, and button styles — no new visual language.
+// The reference's numbered capability panels, one per project, Signal first.
+// Hover or focus (or simply a touch screen) brings up the panel's pastel wash,
+// lifts its spheres and colours its numeral; nothing ever collapses, so every
+// description stays readable. The numeral is a CSS counter, not DOM text.
+const TONES = ["blue", "teal", "lilac", "sand"] as const;
+
 export default function BuiltProjects() {
   const flagship = projects.find((p) => p.flagship);
   const rest = projects.filter((p) => !p.flagship);
 
   return (
-    <Section id="built" kicker="Built" title="Prototypes I've built">
-      {flagship && <FeaturedCard project={flagship} />}
-      <div className="mt-5 grid gap-5 md:grid-cols-3">
-        {rest.map((project) => (
-          <ProjectCard key={project.name} project={project} />
+    <Section id="built" kicker="Built" title="Prototypes I've built" accent="built">
+      <ol className="products space-y-3 md:space-y-4">
+        {flagship && (
+          <li data-reveal="up">
+            <FeaturedPanel project={flagship} />
+          </li>
+        )}
+        {rest.map((project, i) => (
+          <li key={project.name} data-reveal="up" style={{ "--i": i + 1 } as CSSProperties}>
+            <ProjectPanel project={project} tone={TONES[(i + 1) % TONES.length]} />
+          </li>
         ))}
-      </div>
+      </ol>
     </Section>
   );
 }
 
-function FeaturedCard({ project }: { project: Project }) {
+function Backdrop({ tone }: { tone: (typeof TONES)[number] }) {
   return (
-    <article className="glass glass-hover p-6 sm:p-8">
-      <p className="font-mono text-xs tracking-wider uppercase text-accent-b">
-        {project.tagline}
-      </p>
-      <h3 className="mt-2 font-display text-2xl font-bold tracking-tight sm:text-3xl">
-        {project.name}
-      </h3>
-      {(project.subtitle || project.year) && (
-        <p className="mt-1 text-sm font-medium text-foreground/85">
-          {[project.subtitle, project.year].filter(Boolean).join(" · ")}
-        </p>
-      )}
-      <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-[15px]">
-        {project.description}
-      </p>
-      {project.highlights && project.highlights.length > 0 && (
-        <ul className="mt-4 max-w-3xl list-disc space-y-2 pl-4 text-sm leading-relaxed text-muted marker:text-white/30">
-          {project.highlights.map((highlight) => (
-            <li key={highlight}>{highlight}</li>
-          ))}
-        </ul>
-      )}
-      <div className="mt-6 flex flex-wrap items-center gap-3">
-        {project.demo && (
-          <a
-            href={project.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 rounded-xl bg-[#3d6af0] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#2f5be0]"
-          >
-            Live demo
-            <ExternalLink
-              className="size-4 transition-transform group-hover:translate-x-0.5"
-              aria-hidden
+    <div aria-hidden className={`product-wash product-wash-${tone}`}>
+      <span className="product-sphere product-sphere-a sphere sphere-blue" />
+      <span className="product-sphere product-sphere-b sphere sphere-sand" />
+      <span className="product-sphere product-sphere-c sphere sphere-pink" />
+    </div>
+  );
+}
+
+function FeaturedPanel({ project }: { project: Project }) {
+  return (
+    <article className="product g-border" data-tone="blue">
+      <Backdrop tone="blue" />
+      <span aria-hidden className="product-num" />
+      <div className="relative grid gap-10 lg:grid-cols-[1.05fr_1fr] lg:items-center">
+        <div>
+          <p className="kicker">{project.tagline}</p>
+          <h3 className="t-h2 mt-4 font-serif italic">{project.name}</h3>
+          {(project.subtitle || project.year) && (
+            <p className="mt-3 font-medium">{[project.subtitle, project.year].filter(Boolean).join(" · ")}</p>
+          )}
+          <p className="prose-measure mt-4 leading-relaxed text-muted">{project.description}</p>
+          {project.highlights && project.highlights.length > 0 && (
+            <ul className="prose-measure mt-5 space-y-3">
+              {project.highlights.map((highlight) => (
+                <li key={highlight} className="flex gap-3 leading-relaxed">
+                  <span aria-hidden className="sparkle mt-1.5" />
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+          <div className="mt-8 flex flex-wrap items-center gap-3">
+            {project.demo && (
+              <a href={project.demo} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                Live demo
+                <ArrowUpRight className="size-4" aria-hidden />
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
+            )}
+            <a href={project.repo} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
+              <GitHubMark className="size-4" />
+              View repo
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+          </div>
+        </div>
+        {project.screenshot && (
+          <figure data-reveal="image" className="g-border overflow-hidden rounded-[var(--radius)] bg-white">
+            {/* eslint-disable-next-line @next/next/no-img-element -- static export */}
+            <img
+              src={withBase(project.screenshot.src)}
+              alt={project.screenshot.alt}
+              width={1040}
+              height={670}
+              loading="lazy"
+              decoding="async"
+              className="h-auto w-full"
             />
-            <span className="sr-only">(opens in a new tab)</span>
-          </a>
+          </figure>
         )}
-        <a
-          href={project.repo}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-medium text-foreground transition-colors hover:border-white/25 hover:bg-white/[0.08]"
-        >
-          <GitHubMark className="size-4" />
-          View repo
-          <span className="sr-only">(opens in a new tab)</span>
-        </a>
       </div>
     </article>
   );
 }
 
-function ProjectCard({ project }: { project: Project }) {
+// The whole panel is one link to the repo; its text order (tagline, name,
+// description, "View repo") is unchanged, so its accessible name is too.
+function ProjectPanel({ project, tone }: { project: Project; tone: (typeof TONES)[number] }) {
   return (
     <a
       href={project.repo}
       target="_blank"
       rel="noopener noreferrer"
-      className="glass glass-hover group flex flex-col p-6"
+      className="product g-border group block"
+      data-tone={tone}
     >
-      <p className="font-mono text-xs tracking-wider uppercase text-accent-b">
-        {project.tagline}
-      </p>
-      <div className="mt-2 flex items-center justify-between gap-3">
-        <h3 className="font-display text-lg font-semibold tracking-tight">
-          {project.name}
-        </h3>
-        <GitHubMark className="size-4 shrink-0 text-muted transition-colors group-hover:text-foreground" />
+      <Backdrop tone={tone} />
+      <span aria-hidden className="product-num" />
+      <div className="relative">
+        <p className="kicker">{project.tagline}</p>
+        <div className="mt-3 flex items-center gap-3 pr-16">
+          <h3 className="t-h2 font-serif italic">{project.name}</h3>
+          <GitHubMark className="size-5 shrink-0 text-muted" />
+        </div>
+        <p className="prose-measure mt-3 leading-relaxed text-muted">{project.description}</p>
+        <span className="mt-6 inline-flex items-center gap-3 font-medium">
+          View repo
+          <span aria-hidden className="round">
+            <ArrowUpRight className="size-4" />
+          </span>
+        </span>
+        <span className="sr-only"> (opens in a new tab)</span>
       </div>
-      <p className="mt-2 text-[13px] leading-relaxed text-muted">
-        {project.description}
-      </p>
-      <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-accent-a">
-        View repo
-        <ArrowUpRight className="size-4" aria-hidden />
-      </span>
-      <span className="sr-only"> (opens in a new tab)</span>
     </a>
   );
 }

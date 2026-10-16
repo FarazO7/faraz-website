@@ -328,6 +328,22 @@ export const metricGroups: MetricGroup[] = [
   },
 ];
 
+// Three tiles repeated in the hero's stat orbit, values and labels unchanged,
+// one per lever (compliance automation, growth, payments). Each links to the
+// same impact page as its tile.
+const HERO_STAT_SLUGS = ["risk-scoring", "signup-conversion", "razorpay-route"];
+
+export const heroStats: Metric[] = HERO_STAT_SLUGS.map((slug) => {
+  const metric = metricGroups.flatMap((group) => group.metrics).find((m) => m.slug === slug);
+  if (!metric) throw new Error(`heroStats: no metric tile for "${slug}"`);
+  return metric;
+});
+
+/** The tile's full accessible name, shared by the tile and its hero copy. */
+export function metricLabel(metric: Metric): string {
+  return `${metric.prefix ?? ""}${metric.value}${metric.suffix ?? ""} — ${metric.label}. Read the full story.`;
+}
+
 export type CaseStudy = {
   title: string;
   subtitle?: string;
@@ -413,6 +429,8 @@ export type Project = {
   year?: string;
   /** Resume bullets, rendered on the flagship card only. */
   highlights?: string[];
+  /** A real screenshot of the live demo, under /public. */
+  screenshot?: { src: string; alt: string };
 };
 
 export const projects: Project[] = [
@@ -424,6 +442,11 @@ export const projects: Project[] = [
     repo: "https://github.com/FarazO7/Signal",
     demo: "https://signal-theta-ten.vercel.app",
     flagship: true,
+    // REVIEW(Faraz): alt text for the live-demo screenshot (captured October 2026).
+    screenshot: {
+      src: "/previews/signal.webp",
+      alt: "The Signal live demo: a sample-data run and a CSV upload for turning feedback into a prioritised roadmap brief",
+    },
     subtitle: "Agentic LLM feedback-triage prototype",
     year: "2026",
     highlights: [
