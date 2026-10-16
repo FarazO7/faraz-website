@@ -1,29 +1,32 @@
 # Faraz Ali: Portfolio
 
-Dark-glassmorphism portfolio for Faraz Ali, Product Manager.
+Light, editorial portfolio for Faraz Ali, Product Manager, with its visual
+language taken from capslock.global (see `docs/DESIGN.md` and
+`docs/redesign/SPEC.md`).
 Next.js (App Router) + TypeScript strict + Tailwind CSS v4, fully static
 (`output: 'export'`): no server, no CMS, no database. Hosted on Vercel at
 https://faraz-website.vercel.app.
 
 ## Sections
 
-- **Hero**: local headshot, name, current title, bio, resume download,
-  contact row, and the Experience & Education credibility strip.
-- **Impact**: role-segmented metric tiles. A tab per role (current role
-  first; arrow keys, Home and End), four count-up tiles per tab, each linking
-  to its impact page.
-- **Selected Work**: four case-study cards, each topped with a rendered
-  preview of the PDF's first page.
-- **Built**: "Prototypes I've built", with Signal as the flagship (subtitle,
-  year, resume highlights, live demo) plus three project cards.
-- **Experience + Education**: a Domains strip, then one shared vertical
-  timeline. Each role shows the resume's company descriptor and, where the
+- **Hero**: local headshot, name, current title and both actions; with
+  motion, a scroll stage carries the portrait into a ring of three stat
+  cards. Then the bio, contact row and the Experience & Education pills.
+- **Impact**: one bento group per role (current role first, with dates),
+  four tiles each with odometer numerals, every tile linking to its impact
+  page.
+- **Selected Work**: four case studies in an asymmetric grid, each topped
+  with a rendered preview of the PDF's first page.
+- **Built**: "Prototypes I've built" as four numbered panels, Signal first
+  (subtitle, year, resume highlights, live demo, screenshot).
+- **Experience + Education**: a sticky heading and Domains strip beside one
+  shared numbered timeline. Each role shows the resume's company descriptor and, where the
   resume has one, its one-line summary. Bullets with an impact page end in a
   "Read the case" link.
-- **Recognition**: a scroll-pinned Achievements section (framer-motion).
-- **GitHub**: live contribution calendar and a curated repo grid.
-- **Skills**: an intro line, the resume's four skill groups as hub cards with
-  brand logos (2×2), and Certifications.
+- **Recognition**: one centred statement per achievement.
+- **GitHub**: live contribution calendar and curated repo rows.
+- **Skills**: an intro line, the resume's four skill groups as pastel cards
+  with brand logos (2×2), and Certifications.
 - **/impact/[slug]**: ten detail pages, five for Zamplitude and five for
   Newton School (problem, approach, results). The Tenure row derives from the
   timeline; the confidentiality note is per organisation.
@@ -117,21 +120,21 @@ unless you mean to update them. Run it on demand with `npm run previews`.
 
 ## Design system
 
-Locked tokens in [`app/globals.css`](app/globals.css): ink `#070B14`, text
-`#E8ECF5`, muted `#9AA4B8`, indigo/teal/amber accents, GitHub green scale, plus
-four V2 support tokens (`--space-deep`, `--nebula-orchid`, `--star-blue`,
-`--solar-gold`). One glass primitive (`.glass`). At most 6 elements with live
-`backdrop-filter` per viewport: dense grids (case studies, repo cards, skills
-hubs) add `.glass-nested`, the same recipe without its own blur.
+Tokens in [`app/globals.css`](app/globals.css), taken from the reference:
+white page, ink `#111212`, AA muted `#5B6066`, pastel surfaces, and blue/pink
+accents that stay decorative. One glass primitive (`.glass`), at most 6 live
+`backdrop-filter` elements per viewport (measured at most 4). Fonts are Geist
+and Instrument Serif Italic, self-hosted via `next/font`.
 
-The background is a WebGL star field
-([`ReactiveGalaxy.tsx`](components/ReactiveGalaxy.tsx), `ogl`) behind drifting
-nebula orbs, skipped under reduced motion and on mobile. Metric numerals use
-an amber→solar-gold gradient (AA-safe on glass). Hovers animate
-transform/border/shadow only; count-ups, scroll reveals, smooth scrolling, the
-orbital ring and the Achievements pin are all disabled under
-`prefers-reduced-motion`. Fonts (Sora / Inter / JetBrains Mono) are self-hosted
-via `next/font`. See [`docs/DESIGN.md`](docs/DESIGN.md).
+Motion is CSS driven by one IntersectionObserver
+([`RevealController.tsx`](components/RevealController.tsx)): masked word
+reveals, odometer numerals, image scale-ins, drawn dividers and the hero scroll
+stage ([`HeroStage.tsx`](components/HeroStage.tsx)). Nothing is hidden
+without JavaScript or under `prefers-reduced-motion`; smooth scrolling (Lenis)
+is off on touch and under reduced motion. See [`docs/DESIGN.md`](docs/DESIGN.md).
+
+`node scripts/content-check.mjs compare` checks every route's text, links,
+images and metadata against `docs/redesign/baseline/` (run after a build).
 
 ## Hosting
 
