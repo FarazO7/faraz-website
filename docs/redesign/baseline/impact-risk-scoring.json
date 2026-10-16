@@ -1,0 +1,266 @@
+{
+  "route": "/impact/risk-scoring/",
+  "text": [
+    {
+      "t": "Skip to content",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Back to portfolio",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "68% Auto-Cleared",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Turnaround fell from 72 hours to under 8.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Project type",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Risk-scoring automation",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Company",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Zamplitude (client: regulated investment firm)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Industry",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Regulated Fintech (KYC/AML)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Role",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Product Manager, first PM hire",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Collaboration",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Client Compliance Officer",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Identity basis",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Verified digital-ID data",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Tenure",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Mar 2026 – Present",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Problem",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Applications were approved manually, case by case, and review turnaround stood at 72 hours.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Approach & key decisions",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Partnered with the client's Compliance Officer on risk-scoring bands and auto-approval thresholds over verified digital-ID data, replacing case-by-case review.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Results",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "68% of applications auto-cleared; turnaround fell from 72 hours to under 8.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Client work. Details are limited to what can be shared publicly, and the client is not named. Happy to walk through the approach in conversation.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "faraz139@gmail.com",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "LinkedIn",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    }
+  ],
+  "links": [
+    {
+      "href": "#main",
+      "name": "Skip to content",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#work",
+      "name": "Back to portfolio",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "mailto:faraz139@gmail.com",
+      "name": "faraz139@gmail.com",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "https://linkedin.com/in/-faraz",
+      "name": "LinkedIn (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    }
+  ],
+  "images": [],
+  "meta": [
+    [
+      "title",
+      "68% Auto-Cleared — Faraz Ali"
+    ],
+    [
+      "theme-color",
+      "#070B14"
+    ],
+    [
+      "description",
+      "Turnaround fell from 72 hours to under 8."
+    ],
+    [
+      "og:title",
+      "68% Auto-Cleared — Faraz Ali"
+    ],
+    [
+      "og:description",
+      "Turnaround fell from 72 hours to under 8."
+    ],
+    [
+      "og:url",
+      "https://faraz-website.vercel.app/impact/risk-scoring/"
+    ],
+    [
+      "og:image",
+      "https://faraz-website.vercel.app/impact/risk-scoring/opengraph-image"
+    ],
+    [
+      "og:image:type",
+      "image/png"
+    ],
+    [
+      "og:image:width",
+      "1200"
+    ],
+    [
+      "og:image:height",
+      "630"
+    ],
+    [
+      "og:image:alt",
+      "Impact case study — Faraz Ali"
+    ],
+    [
+      "og:type",
+      "article"
+    ],
+    [
+      "twitter:card",
+      "summary_large_image"
+    ],
+    [
+      "twitter:title",
+      "68% Auto-Cleared — Faraz Ali"
+    ],
+    [
+      "twitter:description",
+      "Turnaround fell from 72 hours to under 8."
+    ],
+    [
+      "twitter:image",
+      "https://faraz-website.vercel.app/impact/risk-scoring/twitter-image"
+    ],
+    [
+      "twitter:image:alt",
+      "Impact case study — Faraz Ali"
+    ],
+    [
+      "twitter:image:type",
+      "image/png"
+    ],
+    [
+      "twitter:image:width",
+      "1200"
+    ],
+    [
+      "twitter:image:height",
+      "630"
+    ],
+    [
+      "link canonical",
+      "https://faraz-website.vercel.app/impact/risk-scoring/"
+    ],
+    [
+      "link icon",
+      "/favicon.ico"
+    ],
+    [
+      "link icon",
+      "/icon.svg"
+    ]
+  ]
+}
