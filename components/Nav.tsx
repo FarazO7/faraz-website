@@ -1,97 +1,143 @@
 "use client";
 
-import { useState } from "react";
-import { Download, Menu, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { identity, navLinks } from "@/lib/content";
-import { withBase } from "@/lib/utils";
+import { cn, withBase } from "@/lib/utils";
 
-const resumeButtonClass =
-  "items-center gap-2 rounded-xl border border-white/15 bg-white/10 px-3.5 py-2 text-sm font-medium transition-colors hover:border-white/[0.18] hover:bg-white/15";
-
-export default function Nav() {
+// The reference's floating navbar strip: a centred glass pill that drops in on
+// load, hides while scrolling down past the first viewport and returns on the
+// way up. Below lg it is a full-width pill whose menu opens in place (clip-path
+// reveal). Menu links stay in the DOM when closed (inert), so they remain in
+// the HTML for crawlers and no-JS visitors. `base` prefixes the section
+// anchors on pages other than home ("/" → "/#impact").
+export default function Nav({ base = "" }: { base?: string }) {
   const [open, setOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    let last = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setHidden(y > window.innerHeight && y > last);
+      last = y;
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("no-scroll", open);
+    if (!open) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setOpen(false);
+      toggleRef.current?.focus();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  const href = (anchor: string) => `${base}${anchor}`;
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6">
-      <nav
-        aria-label="Primary"
-        className="glass mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-5"
-      >
-        <a
-          href="#top"
-          aria-label={`${identity.name}, back to top`}
-          className="grid size-9 place-items-center rounded-xl border border-white/15 font-display text-sm font-bold tracking-wide"
+    <header
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 px-3 pt-3 transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] focus-within:translate-y-0 lg:pt-6",
+        hidden && !open && "-translate-y-[150%]",
+      )}
+    >
+      <div className="nav-drop mx-auto w-full lg:w-fit">
+        <nav
+          aria-label="Primary"
+          className="glass relative mx-auto flex h-14 items-center justify-between rounded-[1.75rem] pr-2 pl-3 lg:h-[3.25rem] lg:gap-10 lg:pr-1.5 lg:pl-2"
         >
-          FA
-        </a>
-        <ul className="hidden items-center gap-6 md:flex">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                className="text-sm text-muted transition-colors hover:text-foreground"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-        <div className="flex items-center gap-2">
           <a
-            href={withBase(identity.resumePath)}
-            download
-            className={`hidden sm:inline-flex ${resumeButtonClass}`}
+            href={href("#top")}
+            aria-label={`${identity.name}, back to top`}
+            className="grid size-10 place-items-center rounded-full bg-ink text-sm font-medium tracking-wide text-white"
           >
-            <Download className="size-4" aria-hidden />
-            Download Resume
+            FA
           </a>
-          <button
-            type="button"
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
-            onClick={() => setOpen(!open)}
-            className="grid size-9 place-items-center rounded-xl border border-white/15 md:hidden"
-          >
-            {open ? (
-              <X className="size-5" aria-hidden />
-            ) : (
-              <Menu className="size-5" aria-hidden />
-            )}
-          </button>
-        </div>
-      </nav>
-      {open && (
-        <div
-          id="mobile-menu"
-          className="mx-auto mt-2 max-w-6xl rounded-2xl border border-white/10 bg-[#0d1220]/95 p-3 md:hidden"
-        >
-          <ul className="flex flex-col gap-1">
+          <ul className="hidden items-center gap-7 lg:flex">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-lg px-3 py-2 text-sm text-muted transition-colors hover:bg-white/5 hover:text-foreground"
-                >
-                  {link.label}
+                <a href={href(link.href)} className="text-[0.9375rem] font-medium">
+                  <span className="roll">
+                    <span data-text={link.label}>{link.label}</span>
+                  </span>
                 </a>
               </li>
             ))}
-            <li className="mt-1 border-t border-white/10 pt-2">
-              <a
-                href={withBase(identity.resumePath)}
-                download
-                onClick={() => setOpen(false)}
-                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-white/5"
-              >
-                <Download className="size-4" aria-hidden />
-                Download Resume
-              </a>
-            </li>
           </ul>
+          <div className="flex items-center gap-2">
+            <a
+              href={withBase(identity.resumePath)}
+              download
+              className="btn btn-primary hidden h-10 min-w-0 px-5 text-sm sm:inline-flex"
+            >
+              Download Resume
+            </a>
+            <button
+              ref={toggleRef}
+              type="button"
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              aria-label={open ? "Close menu" : "Open menu"}
+              onClick={() => setOpen(!open)}
+              className="relative grid size-10 place-items-center lg:hidden"
+            >
+              <span
+                aria-hidden
+                className={cn(
+                  "absolute h-0.5 w-6 rounded-full bg-ink transition-transform duration-300",
+                  open ? "rotate-45" : "-translate-y-1",
+                )}
+              />
+              <span
+                aria-hidden
+                className={cn(
+                  "absolute h-0.5 w-6 rounded-full bg-ink transition-transform duration-300",
+                  open ? "-rotate-45" : "translate-y-1",
+                )}
+              />
+            </button>
+          </div>
+        </nav>
+        <div
+          id="mobile-menu"
+          inert={!open}
+          className={cn(
+            "glass mx-auto mt-2 rounded-[1.5rem] px-6 pt-4 pb-6 transition-[clip-path,opacity,visibility] duration-500 ease-[cubic-bezier(.2,0,0,1)] lg:hidden",
+            open
+              ? "visible opacity-100 [clip-path:inset(0_0_0_0_round_1.5rem)]"
+              : "invisible opacity-0 [clip-path:inset(0_0_100%_0_round_1.5rem)]",
+          )}
+        >
+          <ul className="flex flex-col">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={href(link.href)}
+                  onClick={() => setOpen(false)}
+                  className="dot-link block py-1.5 text-[2rem] leading-tight tracking-[-0.02em]"
+                >
+                  <span>{link.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a
+            href={withBase(identity.resumePath)}
+            download
+            onClick={() => setOpen(false)}
+            className="btn btn-primary mt-6 w-full"
+          >
+            Download Resume
+          </a>
         </div>
-      )}
+      </div>
     </header>
   );
 }

@@ -1,66 +1,63 @@
 "use client";
 
-import { useId, useState } from "react";
-import { ChevronDown, ExternalLink, FileText } from "lucide-react";
+import { useId, useState, type CSSProperties } from "react";
+import { ArrowUpRight, ChevronDown, FileText } from "lucide-react";
 import Section from "./Section";
 import { caseStudies, type CaseStudy } from "@/lib/content";
 import { cn, withBase } from "@/lib/utils";
 
+// Editorial grid after the reference's image tiles: two columns, the second
+// set lower, previews revealed with the reference's scale-in. Each preview is
+// page 1 of the case-study PDF (public/previews).
 export default function CaseStudies() {
   return (
-    <Section id="work" kicker="Case Studies" title="Selected Work">
-      <div className="grid gap-5 md:grid-cols-2">
-        {caseStudies.map((study) => (
-          <CaseStudyCard key={study.title} study={study} />
+    <Section id="work" kicker="Case Studies" title="Selected Work" accent="Work">
+      <div className="grid gap-x-8 gap-y-14 md:grid-cols-2 md:gap-y-20">
+        {caseStudies.map((study, i) => (
+          <CaseStudyCard key={study.title} study={study} offset={i % 2 === 1} />
         ))}
       </div>
     </Section>
   );
 }
 
-function CaseStudyCard({ study }: { study: CaseStudy }) {
+function CaseStudyCard({ study, offset }: { study: CaseStudy; offset: boolean }) {
   const [open, setOpen] = useState(false);
   const docsId = useId();
 
   return (
-    <article className="glass glass-nested glass-hover flex flex-col overflow-hidden">
-      {/* Preview: page 1 of the case-study PDF (generated into public/previews). */}
-      <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-white/10 bg-white/[0.03]">
-        {/* eslint-disable-next-line @next/next/no-img-element -- static export, basePath handled via withBase */}
-        <img
-          src={withBase(`/previews/${study.slug}.webp`)}
-          alt={`First page of ${study.title} case study`}
-          loading="lazy"
-          decoding="async"
-          className="size-full object-cover object-top"
-        />
-        <div
-          aria-hidden
-          className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-transparent to-[#0b0f1a]"
-        />
+    <article className={cn("flex flex-col", offset && "md:mt-24")}>
+      <div
+        data-reveal="image"
+        className="g-border overflow-hidden rounded-[var(--radius)] bg-surface-3"
+      >
+        <div className="aspect-[4/3] overflow-hidden rounded-[var(--radius)]">
+          {/* eslint-disable-next-line @next/next/no-img-element -- static export, basePath handled via withBase */}
+          <img
+            src={withBase(`/previews/${study.slug}.webp`)}
+            alt={`First page of ${study.title} case study`}
+            loading="lazy"
+            decoding="async"
+            className="size-full object-cover object-top transition-transform duration-[1.2s] ease-[cubic-bezier(.16,1,.3,1)] hover:scale-[1.04] motion-reduce:transition-none"
+          />
+        </div>
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="font-display text-xl font-semibold">{study.title}</h3>
-        {study.subtitle && (
-          <p className="mt-1.5 font-mono text-xs tracking-wider uppercase text-accent-b">
-            {study.subtitle}
-          </p>
-        )}
+      <div className="mt-6" data-reveal="up">
+        {study.subtitle && <p className="kicker">{study.subtitle}</p>}
+        <h3 className="t-h3 mt-3">{study.title}</h3>
         {study.summary && (
-          <p className="mt-3 text-sm leading-relaxed text-muted">
-            {study.summary}
-          </p>
+          <p className="prose-measure mt-3 leading-relaxed text-muted">{study.summary}</p>
         )}
         {study.href && (
           <a
             href={study.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-4 inline-flex w-fit items-center gap-2 text-sm font-medium text-accent-a hover:underline"
+            className="btn btn-ghost mt-6"
           >
             Open case study
-            <ExternalLink className="size-4" aria-hidden />
+            <ArrowUpRight className="size-4" aria-hidden />
             <span className="sr-only">(PDF, opens in a new tab)</span>
           </a>
         )}
@@ -71,33 +68,28 @@ function CaseStudyCard({ study }: { study: CaseStudy }) {
               onClick={() => setOpen(!open)}
               aria-expanded={open}
               aria-controls={docsId}
-              className="mt-4 inline-flex w-fit items-center gap-2 text-sm font-medium text-accent-a"
+              className="btn btn-ghost mt-6"
             >
               {open ? "Hide" : "View"} {study.docs.length} documents
               <ChevronDown
-                className={cn(
-                  "size-4 transition-transform",
-                  open && "rotate-180",
-                )}
+                className={cn("size-4 transition-transform duration-500", open && "rotate-180")}
                 aria-hidden
               />
             </button>
-            <ul
-              id={docsId}
-              hidden={!open}
-              className="mt-3 space-y-2 border-t border-white/10 pt-3"
-            >
-              {study.docs.map((doc) => (
+            <ul id={docsId} hidden={!open} className="mt-4 divide-y divide-line border-y border-line">
+              {study.docs.map((doc, i) => (
                 <li key={doc.href}>
                   <a
                     href={doc.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
+                    className="group flex items-center gap-3 py-3"
+                    style={{ "--i": i } as CSSProperties}
                   >
-                    <FileText className="size-4 text-accent-a" aria-hidden />
-                    {doc.title}
+                    <FileText className="size-4 text-primary" aria-hidden />
+                    <span className="flex-1">{doc.title}</span>
                     <span className="sr-only"> (PDF, opens in a new tab)</span>
+                    <ArrowUpRight aria-hidden className="size-4 transition-transform duration-500 group-hover:translate-x-0.5" />
                   </a>
                 </li>
               ))}

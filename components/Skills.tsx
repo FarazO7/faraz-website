@@ -1,4 +1,4 @@
-import { BadgeCheck } from "lucide-react";
+import type { CSSProperties } from "react";
 import Section from "./Section";
 import {
   skills,
@@ -9,56 +9,47 @@ import {
 } from "@/lib/content";
 import { getBrandIcon, markFill } from "@/lib/skillIcons";
 
-// Static, scannable replacement for the animated constellation: each hub is a
-// glass card with its tools as chips (brand mark when one exists, else text),
-// one card per resume skill group in a 2×2 grid. Hub cards use the no-blur
-// glass variant so the section, and the GitHub boundary above it, stay within
-// the ~6 live-blur budget.
+// Reading-first: the intro line, one pastel card per resume skill group (the
+// reference's benefit cards) with each skill as a white pill and a brand mark
+// where one exists, then Certifications as a plain list.
+const TONES = ["bg-blue-50", "bg-pink-50", "bg-surface-3", "bg-surface-2"];
+
 export default function Skills() {
   return (
-    <Section id="skills" kicker="Toolkit" title="Skills & Credentials">
-      <p className="mb-8 max-w-3xl text-[15px] leading-relaxed text-muted">
+    <Section id="skills" kicker="Toolkit" title="Skills & Credentials" accent="&">
+      <p className="t-lead prose-measure" data-reveal="up">
         {skillsIntro}
       </p>
-      <div className="grid gap-4 sm:grid-cols-2">
-        {skills.map((hub) => (
-          <HubCard key={hub.name} hub={hub} />
+      <div className="mt-10 grid gap-3 md:grid-cols-2 md:gap-4">
+        {skills.map((hub, i) => (
+          <HubCard key={hub.name} hub={hub} tone={TONES[i % TONES.length]} index={i} />
         ))}
       </div>
-      <div className="mt-12 border-t border-white/[0.07] pt-10">
+      <div className="mt-14 border-t border-line pt-10" data-reveal="up">
         <CredentialList title="Certifications" items={certifications} />
       </div>
     </Section>
   );
 }
 
-function HubCard({ hub }: { hub: SkillHub }) {
+function HubCard({ hub, tone, index }: { hub: SkillHub; tone: string; index: number }) {
   return (
-    <div className="glass glass-nested p-6">
-      <h3 className="flex items-center gap-2 text-sm font-semibold">
-        <span
-          className="size-2 rounded-full"
-          style={{ backgroundColor: hub.accent }}
-          aria-hidden
-        />
-        {hub.name}
+    <div
+      className={`rounded-[var(--radius)] p-6 md:p-8 ${tone}`}
+      data-reveal="up"
+      style={{ "--i": index } as CSSProperties}
+    >
+      <h3 className="flex items-center gap-3 text-[1.75rem] leading-tight">
+        <span aria-hidden className="sparkle size-4" style={{ "--sparkle": hub.accent } as CSSProperties} />
+        <span className="font-serif italic">{hub.name}</span>
       </h3>
-      <ul className="mt-4 flex flex-wrap gap-2">
+      <ul className="mt-5 flex flex-wrap gap-2">
         {hub.nodes.map((node) => {
           const icon = getBrandIcon(node.slug);
           return (
-            <li
-              key={node.label}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.04] px-2.5 py-1.5 text-[13px] text-foreground/85"
-            >
+            <li key={node.label} className="pill">
               {icon && (
-                <svg
-                  viewBox="0 0 24 24"
-                  width="13"
-                  height="13"
-                  fill={markFill(icon.hex)}
-                  aria-hidden
-                >
+                <svg viewBox="0 0 24 24" width="14" height="14" fill={markFill(icon.hex)} aria-hidden>
                   <path d={icon.path} />
                 </svg>
               )}
@@ -71,34 +62,21 @@ function HubCard({ hub }: { hub: SkillHub }) {
   );
 }
 
-function CredentialList({
-  title,
-  items,
-}: {
-  title: string;
-  items: Credential[];
-}) {
+function CredentialList({ title, items }: { title: string; items: Credential[] }) {
   return (
-    <div>
-      <h3 className="flex items-center gap-2 text-sm font-semibold">
-        <BadgeCheck className="size-4 text-accent-b" aria-hidden />
-        {title}
-      </h3>
-      <ul className="mt-3 grid gap-x-10 gap-y-2 text-sm leading-relaxed text-muted sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-4 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.5fr)] md:gap-16">
+      <h3 className="kicker">{title}</h3>
+      <ul className="grid gap-x-10 gap-y-3 sm:grid-cols-2">
         {items.map((item) => (
-          <li key={item.text}>
+          <li key={item.text} className="flex items-center gap-3 text-[1.0625rem]">
+            <span aria-hidden className="sparkle" />
             {item.href ? (
-              <a
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent-a hover:underline"
-              >
+              <a href={item.href} target="_blank" rel="noopener noreferrer" className="link">
                 {item.text}
                 <span className="sr-only"> (opens in a new tab)</span>
               </a>
             ) : (
-              item.text
+              <span>{item.text}</span>
             )}
           </li>
         ))}

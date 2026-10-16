@@ -1,40 +1,56 @@
 import { cn } from "@/lib/utils";
-import Reveal from "./Reveal";
+import Words from "./Words";
+
+// Kicker (sparkle label) + h2 whose words rise out of masks on first view.
+export function SectionHead({
+  id,
+  kicker,
+  title,
+  accent,
+  center = false,
+  className,
+}: {
+  id: string;
+  kicker: string;
+  title: string;
+  accent?: string;
+  center?: boolean;
+  className?: string;
+}) {
+  return (
+    <div className={cn(center && "text-center", className)}>
+      <p className="kicker" data-reveal="fade">
+        {kicker}
+      </p>
+      <h2 id={`${id}-title`} className="t-h2 mt-4" data-reveal="words">
+        <Words text={title} accent={accent} />
+      </h2>
+    </div>
+  );
+}
 
 export default function Section({
   id,
   kicker,
   title,
+  accent,
+  center = false,
   children,
   className,
 }: {
   id: string;
   kicker: string;
   title: string;
+  accent?: string;
+  center?: boolean;
   children: React.ReactNode;
   className?: string;
 }) {
   return (
-    <section
-      id={id}
-      aria-labelledby={`${id}-title`}
-      className={cn("scroll-mt-24 px-4 py-14 sm:px-6 md:py-20", className)}
-    >
-      <div className="mx-auto max-w-6xl">
-        <Reveal>
-          <p className="font-mono text-xs font-medium tracking-[0.2em] text-accent-b uppercase">
-            {kicker}
-          </p>
-          <h2
-            id={`${id}-title`}
-            className="mt-2 font-display text-3xl font-bold tracking-tight sm:text-4xl"
-          >
-            {title}
-          </h2>
-        </Reveal>
-        <Reveal delay={0.1} className="mt-8">
-          {children}
-        </Reveal>
+    <section id={id} aria-labelledby={`${id}-title`} tabIndex={-1} className={cn("section", className)}>
+      <div className="wrap">
+        <SectionHead id={id} kicker={kicker} title={title} accent={accent} center={center} />
+        <div className="mt-10 md:mt-14">{children}</div>
       </div>
     </section>
   );

@@ -43,11 +43,11 @@ export default function ContributionCalendar() {
   }, []);
 
   return (
-    <div className="glass p-5 sm:p-6">
-      <h3 className="text-sm font-medium">
+    <div className="panel g-border p-6 md:p-8">
+      <h3 className="text-[1.0625rem]">
         {mode === "grid" && data ? (
           <>
-            <span className="font-mono text-2xl font-bold text-accent-c">
+            <span className="t-numeral mr-1 text-[2.5rem] text-ink">
               {data.total.toLocaleString("en-US")}
             </span>{" "}
             <span className="text-muted">contributions in the last year</span>
@@ -56,7 +56,7 @@ export default function ContributionCalendar() {
           <span className="text-muted">Contributions in the last year</span>
         )}
       </h3>
-      <div className="mt-4">
+      <div className="mt-5">
         {mode === "loading" && (
           <div className="skeleton h-[140px] w-full" aria-hidden />
         )}
@@ -65,7 +65,7 @@ export default function ContributionCalendar() {
             <Grid days={data.days} total={data.total} onTip={setTip} />
             <div
               aria-hidden
-              className="mt-3 flex items-center justify-end gap-1.5 font-mono text-[10px] text-muted"
+              className="mt-3 flex items-center justify-end gap-1.5 text-xs text-muted"
             >
               Less
               {[0, 1, 2, 3, 4].map((level) => (
@@ -98,20 +98,20 @@ export default function ContributionCalendar() {
             href={identity.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm text-accent-a hover:underline"
+            className="link inline-flex items-center gap-1.5 text-sm"
           >
             View contribution activity on GitHub
             <ArrowUpRight className="size-4" aria-hidden />
           </a>
         )}
       </div>
-      {/* .glass is transformed, which would re-root position:fixed — portal the
-          tooltip to <body> so viewport coordinates stay correct. */}
+      {/* Portalled to <body> so a transformed ancestor (scroll reveals) can't
+          re-root position:fixed; viewport coordinates stay correct. */}
       {tip &&
         typeof document !== "undefined" &&
         createPortal(
           <div
-            className="pointer-events-none fixed z-[60] -translate-x-1/2 -translate-y-full rounded-md border border-white/10 bg-[#0d1220] px-2 py-1 font-mono text-[11px] whitespace-nowrap"
+            className="pointer-events-none fixed z-[60] -translate-x-1/2 -translate-y-full rounded-full bg-ink px-3 py-1 text-xs whitespace-nowrap text-white"
             style={{ left: tip.x, top: tip.y }}
             role="tooltip"
           >
@@ -124,8 +124,7 @@ export default function ContributionCalendar() {
 }
 
 function cellColor(level: number): string {
-  // Empty days: darkest step at reduced opacity so cells still read on glass.
-  return level === 0 ? "rgba(22, 27, 34, 0.55)" : `var(--gh-${level})`;
+  return `var(--gh-${level})`;
 }
 
 function tipLabel(day: ContributionDay): string {
@@ -158,7 +157,7 @@ const Grid = memo(function Grid({
           {labels.map((l) => (
             <span
               key={`${l.label}-${l.week}`}
-              className="absolute font-mono text-[10px] text-muted"
+              className="absolute text-[11px] text-muted"
               style={{ left: l.week * STEP }}
             >
               {l.label}

@@ -1,7 +1,12 @@
+import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Mail } from "lucide-react";
+import Divider from "@/components/Divider";
+import Footer from "@/components/Footer";
+import Nav from "@/components/Nav";
+import Words from "@/components/Words";
 import { LinkedInMark } from "@/components/icons";
 import {
   confidentiality,
@@ -41,6 +46,9 @@ export async function generateMetadata({
   };
 }
 
+// Meta tiles cycle the reference's bento surfaces.
+const TONES = ["bg-blue-50", "bg-pink-50", "bg-surface-3", "bg-surface-2"];
+
 export default async function ImpactPage({
   params,
 }: {
@@ -55,76 +63,81 @@ export default async function ImpactPage({
   const meta = role
     ? [...detail.meta, { label: "Tenure", value: role.dates }]
     : detail.meta;
+  // A heading that opens with a figure ("61%", "~120", "100 → 30") sets that
+  // figure in the serif italic, like the reference's stat numerals.
+  const lead = detail.metric.split(" ")[0];
+  const accent = /^[~−+\-\d]/.test(lead) ? lead : undefined;
 
   return (
-    <main id="main" className="mx-auto max-w-3xl px-4 py-16 sm:px-6 md:py-24">
-      <Link
-        href="/#work"
-        className="inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
-      >
-        <ArrowLeft className="size-4" aria-hidden />
-        Back to portfolio
-      </Link>
+    <>
+      <Nav base="/" />
+      <main id="main" className="wrap pt-28 pb-20 md:pt-40 md:pb-28">
+        <Link href="/#work" className="dot-link text-[0.9375rem]">
+          <span className="inline-flex items-center gap-2">
+            <ArrowLeft className="size-4" aria-hidden />
+            Back to portfolio
+          </span>
+        </Link>
 
-      {/* Hero: the metric + one-line outcome */}
-      <header className="mt-10">
-        <h1 className="numeral-gradient font-display text-4xl font-bold tracking-tight sm:text-5xl">
-          {detail.metric}
-        </h1>
-        <p className="mt-4 text-lg leading-relaxed text-foreground/90">
-          {detail.outcome}
-        </p>
-      </header>
+        <header className="mt-10 md:mt-14">
+          <h1 className="t-h1 enter-words max-w-[22ch]">
+            <Words text={detail.metric} accent={accent} />
+          </h1>
+          <p className="t-lead prose-measure enter-fade mt-6 text-muted" style={{ "--d": "0.35s" } as CSSProperties}>
+            {detail.outcome}
+          </p>
+        </header>
 
-      {/* Metadata grid */}
-      <dl className="glass mt-10 grid grid-cols-1 gap-x-8 gap-y-5 p-6 sm:grid-cols-2">
-        {meta.map((m) => (
-          <div key={m.label}>
-            <dt className="font-mono text-xs tracking-wider uppercase text-accent-b">
-              {m.label}
-            </dt>
-            <dd className="mt-1 text-sm text-foreground/90">{m.value}</dd>
-          </div>
-        ))}
-      </dl>
+        <dl className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 md:mt-16">
+          {meta.map((m, i) => (
+            <div
+              key={m.label}
+              className={`rounded-[var(--radius)] p-6 ${TONES[i % TONES.length]}`}
+              data-reveal="up"
+              style={{ "--i": i } as CSSProperties}
+            >
+              <dt className="t-label">{m.label}</dt>
+              <dd className="mt-2 text-[1.0625rem] leading-snug">{m.value}</dd>
+            </div>
+          ))}
+        </dl>
 
-      {/* Narrative sections */}
-      <div className="mt-12 space-y-10">
-        {detail.sections.map((section) => (
-          <section key={section.heading}>
-            <h2 className="font-display text-xl font-semibold tracking-tight">
-              {section.heading}
-            </h2>
-            <p className="mt-3 leading-relaxed text-muted">{section.body}</p>
-          </section>
-        ))}
-      </div>
-
-      {/* Confidentiality-aware footer */}
-      <footer className="mt-14 rounded-[20px] border border-white/[0.08] bg-white/[0.02] p-6">
-        <p className="text-sm leading-relaxed text-muted">
-          {confidentiality[detail.org]}
-        </p>
-        <div className="mt-4 flex flex-wrap gap-x-5 gap-y-3">
-          <a
-            href={`mailto:${identity.email}`}
-            className="inline-flex items-center gap-2 text-sm text-accent-a hover:underline"
-          >
-            <Mail className="size-4" aria-hidden />
-            {identity.email}
-          </a>
-          <a
-            href={identity.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm text-accent-a hover:underline"
-          >
-            <LinkedInMark className="size-4" />
-            LinkedIn
-            <span className="sr-only">(opens in a new tab)</span>
-          </a>
+        <div className="mt-16 md:mt-24">
+          {detail.sections.map((section) => (
+            <section key={section.heading}>
+              <Divider />
+              <div className="grid gap-4 py-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-12 md:py-14" data-reveal="up">
+                <h2 className="t-h3">{section.heading}</h2>
+                <p className="prose-measure leading-relaxed text-muted">{section.body}</p>
+              </div>
+            </section>
+          ))}
         </div>
-      </footer>
-    </main>
+
+        {/* Confidentiality-aware close */}
+        <footer className="mt-6 rounded-[var(--radius)] bg-ink p-7 text-white md:p-12" data-reveal="up">
+          <p className="prose-measure leading-relaxed text-[var(--on-dark-muted)]">
+            {confidentiality[detail.org]}
+          </p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a href={`mailto:${identity.email}`} className="btn btn-primary">
+              <Mail className="size-4" aria-hidden />
+              {identity.email}
+            </a>
+            <a
+              href={identity.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-on-dark"
+            >
+              <LinkedInMark className="size-4" />
+              LinkedIn
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+          </div>
+        </footer>
+      </main>
+      <Footer base="/" />
+    </>
   );
 }

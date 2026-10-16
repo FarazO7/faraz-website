@@ -3,61 +3,43 @@ import { ArrowUpRight } from "lucide-react";
 import { bulletParts, getImpactDetail, type Bullet, type Role } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
-// Shared vertical timeline used by Experience and Education. Renders gracefully
-// when `dates` or `bullets` are empty — no orphan separators or blank rows.
+// Numbered timeline shared by Experience and Education: outlined circles with
+// italic numerals (a CSS counter, not DOM text) joined by a thin blue line,
+// after the reference's step list. Renders gracefully when `dates` or
+// `bullets` are empty: no orphan separators or blank rows.
 export default function Timeline({
   roles,
   compact = false,
+  className,
 }: {
   roles: Role[];
   compact?: boolean;
+  className?: string;
 }) {
   return (
-    <ol className="relative ml-1.5 space-y-8 border-l border-white/10">
+    <ol className={cn("timeline", className)}>
       {roles.map((role) => (
         <li
           key={`${role.company}-${role.title}`}
-          className="relative pl-6 sm:pl-8"
+          className="timeline-item"
+          data-current={role.current ? "" : undefined}
+          data-reveal="up"
         >
-          <span
-            aria-hidden
-            className={cn(
-              "absolute top-3 -left-[5.5px] size-2.5 rounded-full",
-              role.current
-                ? "bg-accent-a shadow-[0_0_12px_rgba(79,124,255,0.6)]"
-                : "bg-white/25",
-            )}
-          />
-          <div
-            className={cn(
-              compact ? "p-4 sm:p-5" : "p-5 sm:p-6",
-              role.current ? "glass" : "rounded-[20px] border border-white/[0.07]",
-            )}
-          >
-            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-              <h3
-                className={cn(
-                  "font-display font-semibold",
-                  compact ? "text-base" : "text-lg",
-                )}
-              >
+          <span aria-hidden className="timeline-num" />
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+              <h3 className={compact ? "text-[1.375rem] leading-snug tracking-[-0.02em]" : "t-h3"}>
                 {role.title}
               </h3>
-              {role.dates && (
-                <p className="font-mono text-xs text-muted">{role.dates}</p>
-              )}
+              {role.dates && <p className="t-label">{role.dates}</p>}
             </div>
-            <p className="mt-1 text-sm font-medium text-foreground/90">
+            <p className="mt-2 font-medium">
               {role.company}
               {role.descriptor && `, ${role.descriptor}`} · {role.location}
             </p>
-            {role.summary && (
-              <p className="mt-3 text-sm leading-relaxed text-foreground/85">
-                {role.summary}
-              </p>
-            )}
+            {role.summary && <p className="t-lead prose-measure mt-4">{role.summary}</p>}
             {role.bullets.length > 0 && (
-              <ul className="mt-3 list-disc space-y-2 pl-4 text-sm leading-relaxed text-muted marker:text-white/30">
+              <ul className="prose-measure mt-5 space-y-3 leading-relaxed text-muted">
                 {role.bullets.map((bullet) => (
                   <BulletItem key={bulletParts(bullet).text} bullet={bullet} />
                 ))}
@@ -77,21 +59,24 @@ function BulletItem({ bullet }: { bullet: Bullet }) {
   const detail = impact ? getImpactDetail(impact) : undefined;
 
   return (
-    <li>
-      {text}
-      {detail && (
-        <>
-          {" "}
-          <Link
-            href={`/impact/${detail.slug}`}
-            aria-label={`Read the case: ${detail.metric}`}
-            className="inline-flex items-center gap-0.5 whitespace-nowrap text-[13px] font-medium text-accent-a hover:underline"
-          >
-            Read the case
-            <ArrowUpRight className="size-3.5" aria-hidden />
-          </Link>
-        </>
-      )}
+    <li className="flex gap-3">
+      <span aria-hidden className="sparkle mt-[0.45em] [--sparkle:var(--primary)]" />
+      <span>
+        {text}
+        {detail && (
+          <>
+            {" "}
+            <Link
+              href={`/impact/${detail.slug}`}
+              aria-label={`Read the case: ${detail.metric}`}
+              className="link inline-flex items-center gap-0.5 font-medium whitespace-nowrap text-ink"
+            >
+              Read the case
+              <ArrowUpRight className="size-3.5" aria-hidden />
+            </Link>
+          </>
+        )}
+      </span>
     </li>
   );
 }

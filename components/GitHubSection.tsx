@@ -6,16 +6,16 @@ import { identity } from "@/lib/content";
 
 export default function GitHubSection() {
   return (
-    <Section id="github" kicker="GitHub" title="Building in public">
+    <Section id="github" kicker="GitHub" title="Building in public" accent="in public">
       <ContributionCalendar />
-      <div className="mt-6">
+      <div className="mt-4">
         <RepoCards />
       </div>
       <a
         href={identity.github}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-6 inline-flex items-center gap-1.5 text-sm text-accent-a hover:underline"
+        className="link mt-8 inline-flex items-center gap-1.5 font-medium"
       >
         All repositories on GitHub
         <ArrowUpRight className="size-4" aria-hidden />

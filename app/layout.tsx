@@ -1,21 +1,20 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono, Sora } from "next/font/google";
+import { Geist, Instrument_Serif } from "next/font/google";
 import "./globals.css";
-import BackgroundFX from "@/components/BackgroundFX";
+import RevealController from "@/components/RevealController";
 import SmoothScroll from "@/components/SmoothScroll";
 import { identity } from "@/lib/content";
 
 // display: swap → text paints immediately in the fallback and swaps when the
 // webfont arrives, so the hero copy (the LCP element) never blocks on fonts.
-const sora = Sora({ subsets: ["latin"], variable: "--font-sora", display: "swap" });
-const inter = Inter({
+// Geist and Instrument Serif stand in for the reference's commercial Suisse
+// Intl and PP Eiko Italic (docs/redesign/SPEC.md §3.1).
+const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap" });
+const instrument = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
+  weight: "400",
+  style: "italic",
+  variable: "--font-instrument",
   display: "swap",
 });
 
@@ -39,7 +38,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#070B14",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
@@ -50,14 +49,24 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sora.variable} ${inter.variable} ${jetbrains.variable}`}
+      className={`${geist.variable} ${instrument.variable}`}
+      suppressHydrationWarning
     >
-      <body className="bg-ink font-sans text-foreground antialiased">
+      <head>
+        {/* Before first paint: marks JS as available so load animations can
+            start from their hidden frame. Without JS nothing is ever hidden. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js')",
+          }}
+        />
+      </head>
+      <body className="bg-bg font-sans text-ink antialiased">
         <a href="#main" className="skip-link">
           Skip to content
         </a>
-        <BackgroundFX />
         <SmoothScroll />
+        <RevealController />
         {children}
       </body>
     </html>

@@ -4,8 +4,8 @@ import { useState } from "react";
 import { withBase } from "@/lib/utils";
 
 // Shows an organization's logo when its file exists in /public, and falls back
-// to the monogram tile if the file is missing or fails to load — so the strip
-// never shows a broken image while real logos are still being collected.
+// to the monogram (ink on a tint of the org's accent) if the file is missing
+// or fails to load, so the strip never shows a broken image.
 export default function LogoTile({
   logo,
   mark,
@@ -27,16 +27,17 @@ export default function LogoTile({
         alt={`${name} logo`}
         width={40}
         height={40}
+        loading="lazy"
         onError={() => setFailed(true)}
-        className="size-10 shrink-0 rounded-xl bg-white/[0.06] object-contain p-1.5 ring-1 ring-white/10"
+        className="size-10 shrink-0 rounded-full bg-white object-contain p-1.5 ring-1 ring-line"
       />
     );
   }
 
   return (
     <span
-      className="grid size-10 shrink-0 place-items-center rounded-xl text-xs font-semibold"
-      style={{ backgroundColor: `${accent}1F`, color: accent }}
+      className="grid size-10 shrink-0 place-items-center rounded-full text-xs font-semibold text-ink"
+      style={{ backgroundColor: `${accent}66` }}
     >
       {mark}
     </span>
