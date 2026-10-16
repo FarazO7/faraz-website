@@ -6,9 +6,11 @@ import { ArrowUpRight, Download } from "lucide-react";
 import Numeral from "./Numeral";
 import Words from "./Words";
 import { heroStats, identity, metricLabel } from "@/lib/content";
+import { heroFits } from "@/lib/heroFit";
 import { withBase } from "@/lib/utils";
 
 const clamp01 = (n: number) => Math.min(1, Math.max(0, n));
+
 const easeOut = (t: number) => 1 - (1 - t) * (1 - t); // power1.out, as measured
 
 // The reference's hero: a headline with a small sphere above it; scrolling
@@ -20,17 +22,15 @@ const easeOut = (t: number) => 1 - (1 - t) * (1 - t); // power1.out, as measured
 export default function HeroStage() {
   const stageRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
-  const topRef = useRef<HTMLDivElement>(null);
   const portraitRef = useRef<HTMLDivElement>(null);
   const boxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const stage = stageRef.current;
     const sticky = stickyRef.current;
-    const top = topRef.current;
     const portrait = portraitRef.current;
     const box = boxRef.current;
-    if (!stage || !sticky || !top || !portrait || !box) return;
+    if (!stage || !sticky || !portrait || !box) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const offsetIn = (el: HTMLElement) => {
@@ -51,38 +51,57 @@ export default function HeroStage() {
       heroStats.forEach((_, i) => set(`--k${i}`, clamp01((p - 0.38 - i * 0.06) / 0.2)));
       stage.dataset.copy = p < 0.12 ? "on" : "off";
       stage.dataset.cards = p > 0.7 ? "on" : "off";
+      if (p > 0.38) stage.dataset.roll = ""; // stat odometers roll as the cards arrive
     };
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(update);
     };
 
-    const layout = () => {
-      stage.removeAttribute("data-live");
-      if (window.innerHeight < 560 || top.scrollHeight > window.innerHeight) return;
-      stage.setAttribute("data-live", "");
+    const measure = () => {
       const dy = offsetIn(box) + box.offsetHeight / 2 - (offsetIn(portrait) + portrait.offsetHeight / 2);
       stage.style.setProperty("--dy", `${dy}px`);
       stage.style.setProperty("--sc", ((box.offsetWidth * 0.62) / portrait.offsetWidth).toFixed(3));
       update();
     };
+    // Live or static is decided from the width-dependent content height and
+    // re-decided only when the width changes, so mobile toolbars collapsing
+    // (a height-only resize) can never flip the layout mid-scroll.
+    let width = window.innerWidth;
+    const decide = () => {
+      if (heroFits(stage)) stage.setAttribute("data-live", "");
+      else stage.removeAttribute("data-live");
+      if (stage.hasAttribute("data-live")) measure();
+    };
+    const onResize = () => {
+      if (window.innerWidth !== width) {
+        width = window.innerWidth;
+        decide();
+      } else if (stage.hasAttribute("data-live")) measure();
+    };
 
-    layout();
+    const wasLive = stage.hasAttribute("data-live");
+    if (wasLive) measure();
+    else decide();
+    // After a client-side navigation to "/#section" the page scrolled before
+    // the stage grew; land on the target again.
+    if (!wasLive && stage.hasAttribute("data-live") && location.hash) {
+      document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView({ behavior: "instant" });
+    }
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", layout);
+    window.addEventListener("resize", onResize);
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", layout);
-      stage.removeAttribute("data-live");
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
   return (
-    <div ref={stageRef} className="hero-stage">
+    <div ref={stageRef} id="hero-stage" className="hero-stage" suppressHydrationWarning>
       <div ref={stickyRef} className="hero-sticky">
         <div aria-hidden className="hero-arc hero-arc-top" />
         <div aria-hidden className="hero-arc hero-arc-bottom" />
-        <div ref={topRef} className="hero-top wrap">
+        <div className="hero-top wrap">
           <div ref={portraitRef} className="hero-portrait enter-fade" style={{ "--d": "0s" } as CSSProperties}>
             {/* eslint-disable-next-line @next/next/no-img-element -- static export, basePath via withBase */}
             <img
@@ -129,7 +148,9 @@ export default function HeroStage() {
                 href={`/impact/${metric.slug}`}
                 aria-label={metricLabel(metric)}
                 className={`orbit-card orbit-card-${i} group`}
-                style={{ "--k": `var(--k${i}, 1)` } as CSSProperties}
+                // Hidden until the stage measures (live mode only); the same
+                // figures are always visible in the Impact section.
+                style={{ "--k": `var(--k${i}, 0)` } as CSSProperties}
               >
                 <span className="t-numeral block text-[clamp(2.25rem,3.6vw,3.75rem)]">
                   <Numeral metric={metric} />

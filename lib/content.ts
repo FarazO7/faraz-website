@@ -208,6 +208,9 @@ export const credibility: {
   ],
 };
 
+// REVIEW(Faraz): label over the footer's copy of the section links (redesign).
+export const footerMenuLabel = "Menu";
+
 export const navLinks = [
   { label: "Impact", href: "#impact" },
   { label: "Work", href: "#work" },

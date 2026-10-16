@@ -6,6 +6,7 @@ import { ArrowLeft, Mail } from "lucide-react";
 import Divider from "@/components/Divider";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
+import PageTransition from "@/components/PageTransition";
 import Words from "@/components/Words";
 import { LinkedInMark } from "@/components/icons";
 import {
@@ -71,71 +72,86 @@ export default async function ImpactPage({
   return (
     <>
       <Nav base="/" />
-      <main id="main" className="wrap pt-28 pb-20 md:pt-40 md:pb-28">
-        <Link href="/#work" className="dot-link text-[0.9375rem]">
-          <span className="inline-flex items-center gap-2">
-            <ArrowLeft className="size-4" aria-hidden />
-            Back to portfolio
-          </span>
-        </Link>
+      <main id="main" tabIndex={-1} className="wrap pt-28 pb-20 md:pt-40 md:pb-28">
+        <PageTransition>
+          <Link href="/#work" className="dot-link text-[0.9375rem]">
+            <span className="inline-flex items-center gap-2">
+              <ArrowLeft className="size-4" aria-hidden />
+              Back to portfolio
+            </span>
+          </Link>
 
-        <header className="mt-10 md:mt-14">
-          <h1 className="t-h1 enter-words max-w-[22ch]">
-            <Words text={detail.metric} accent={accent} />
-          </h1>
-          <p className="t-lead prose-measure enter-fade mt-6 text-muted" style={{ "--d": "0.35s" } as CSSProperties}>
-            {detail.outcome}
-          </p>
-        </header>
-
-        <dl className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 md:mt-16">
-          {meta.map((m, i) => (
-            <div
-              key={m.label}
-              className={`rounded-[var(--radius)] p-6 ${TONES[i % TONES.length]}`}
-              data-reveal="up"
-              style={{ "--i": i } as CSSProperties}
+          <header className="mt-10 md:mt-14">
+            <h1 className="t-h1 enter-words max-w-[22ch]">
+              <Words text={detail.metric} accent={accent} />
+            </h1>
+            <p
+              className="t-lead prose-measure enter-fade mt-6 text-muted"
+              style={{ "--d": "0.35s" } as CSSProperties}
             >
-              <dt className="t-label">{m.label}</dt>
-              <dd className="mt-2 text-[1.0625rem] leading-snug">{m.value}</dd>
-            </div>
-          ))}
-        </dl>
+              {detail.outcome}
+            </p>
+          </header>
 
-        <div className="mt-16 md:mt-24">
-          {detail.sections.map((section) => (
-            <section key={section.heading}>
-              <Divider />
-              <div className="grid gap-4 py-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-12 md:py-14" data-reveal="up">
-                <h2 className="t-h3">{section.heading}</h2>
-                <p className="prose-measure leading-relaxed text-muted">{section.body}</p>
+          <dl className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 md:mt-16">
+            {meta.map((m, i) => (
+              <div
+                key={m.label}
+                className={`rounded-[var(--radius)] p-6 ${TONES[i % TONES.length]}`}
+                data-reveal="up"
+                style={{ "--i": i } as CSSProperties}
+              >
+                <dt className="t-label">{m.label}</dt>
+                <dd className="mt-2 text-[1.0625rem] leading-snug">
+                  {m.value}
+                </dd>
               </div>
-            </section>
-          ))}
-        </div>
+            ))}
+          </dl>
 
-        {/* Confidentiality-aware close */}
-        <footer className="mt-6 rounded-[var(--radius)] bg-ink p-7 text-white md:p-12" data-reveal="up">
-          <p className="prose-measure leading-relaxed text-[var(--on-dark-muted)]">
-            {confidentiality[detail.org]}
-          </p>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a href={`mailto:${identity.email}`} className="btn btn-primary">
-              <Mail className="size-4" aria-hidden />
-              {identity.email}
-            </a>
-            <a
-              href={identity.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-on-dark"
-            >
-              <LinkedInMark className="size-4" />
-              LinkedIn
-              <span className="sr-only">(opens in a new tab)</span>
-            </a>
+          <div className="mt-16 md:mt-24">
+            {detail.sections.map((section) => (
+              <section key={section.heading}>
+                <Divider />
+                <div
+                  className="grid gap-4 py-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-12 md:py-14"
+                  data-reveal="up"
+                >
+                  <h2 className="t-h3">{section.heading}</h2>
+                  <p className="prose-measure leading-relaxed text-muted">
+                    {section.body}
+                  </p>
+                </div>
+              </section>
+            ))}
           </div>
-        </footer>
+
+          {/* Confidentiality-aware close */}
+          <footer
+            className="mt-6 rounded-[var(--radius)] bg-ink p-7 text-white md:p-12"
+            data-reveal="up"
+          >
+            <p className="prose-measure leading-relaxed text-[var(--on-dark-muted)]">
+              {confidentiality[detail.org]}
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href={`mailto:${identity.email}`} className="btn btn-primary">
+                <Mail className="size-4" aria-hidden />
+                {identity.email}
+              </a>
+              <a
+                href={identity.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-on-dark"
+              >
+                <LinkedInMark className="size-4" />
+                LinkedIn
+                <span className="sr-only">(opens in a new tab)</span>
+              </a>
+            </div>
+          </footer>
+        </PageTransition>
       </main>
       <Footer base="/" />
     </>

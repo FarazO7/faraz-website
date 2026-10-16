@@ -44,14 +44,17 @@ export default function Nav({ base = "" }: { base?: string }) {
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 px-3 pt-3 transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] focus-within:translate-y-0 lg:pt-6",
+        // The header box is wider and taller than the pill (and holds the
+        // hidden menu), so it passes clicks through; only the pill and the open
+        // menu take them.
+        "pointer-events-none fixed inset-x-0 top-0 z-50 px-3 pt-3 transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] focus-within:translate-y-0 motion-reduce:transition-none lg:pt-6",
         hidden && !open && "-translate-y-[150%]",
       )}
     >
       <div className="nav-drop mx-auto w-full lg:w-fit">
         <nav
           aria-label="Primary"
-          className="glass relative mx-auto flex h-14 items-center justify-between rounded-[1.75rem] pr-2 pl-3 lg:h-[3.25rem] lg:gap-10 lg:pr-1.5 lg:pl-2"
+          className="glass pointer-events-auto relative mx-auto flex h-14 items-center justify-between rounded-[1.75rem] pr-2 pl-3 lg:h-[3.25rem] lg:gap-10 lg:pr-1.5 lg:pl-2"
         >
           <a
             href={href("#top")}
@@ -111,7 +114,7 @@ export default function Nav({ base = "" }: { base?: string }) {
           className={cn(
             "glass mx-auto mt-2 rounded-[1.5rem] px-6 pt-4 pb-6 transition-[clip-path,opacity,visibility] duration-500 ease-[cubic-bezier(.2,0,0,1)] lg:hidden",
             open
-              ? "visible opacity-100 [clip-path:inset(0_0_0_0_round_1.5rem)]"
+              ? "pointer-events-auto visible opacity-100 [clip-path:inset(0_0_0_0_round_1.5rem)]"
               : "invisible opacity-0 [clip-path:inset(0_0_100%_0_round_1.5rem)]",
           )}
         >
