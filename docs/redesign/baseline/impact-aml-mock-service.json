@@ -1,0 +1,256 @@
+{
+  "route": "/impact/aml-mock-service/",
+  "text": [
+    {
+      "t": "Skip to content",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Back to portfolio",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "~120 Hours of Rework Saved",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Frontend and QA unblocked 3 weeks before sandbox access.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Project type",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Vendor integration, API contracts",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Company",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Zamplitude (client: regulated investment firm)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Industry",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Regulated Fintech (KYC/AML)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Role",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Product Manager, first PM hire",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Deliverable",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Mock service with API contracts",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Tenure",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Mar 2026 – Present",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Problem",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Frontend and QA were waiting on sandbox access from the AML screening vendor.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Approach & key decisions",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Parsed the AML vendor's specification programmatically, flagged 2 contradictions before build and published a mock service with API contracts.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Results",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Frontend and QA unblocked 3 weeks before sandbox access; ~120 hours of rework saved.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Client work. Details are limited to what can be shared publicly, and the client is not named. Happy to walk through the approach in conversation.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "faraz139@gmail.com",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "LinkedIn",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    }
+  ],
+  "links": [
+    {
+      "href": "#main",
+      "name": "Skip to content",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#work",
+      "name": "Back to portfolio",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "mailto:faraz139@gmail.com",
+      "name": "faraz139@gmail.com",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "https://linkedin.com/in/-faraz",
+      "name": "LinkedIn (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    }
+  ],
+  "images": [],
+  "meta": [
+    [
+      "title",
+      "~120 Hours of Rework Saved — Faraz Ali"
+    ],
+    [
+      "theme-color",
+      "#070B14"
+    ],
+    [
+      "description",
+      "Frontend and QA unblocked 3 weeks before sandbox access."
+    ],
+    [
+      "og:title",
+      "~120 Hours of Rework Saved — Faraz Ali"
+    ],
+    [
+      "og:description",
+      "Frontend and QA unblocked 3 weeks before sandbox access."
+    ],
+    [
+      "og:url",
+      "https://faraz-website.vercel.app/impact/aml-mock-service/"
+    ],
+    [
+      "og:image",
+      "https://faraz-website.vercel.app/impact/aml-mock-service/opengraph-image"
+    ],
+    [
+      "og:image:type",
+      "image/png"
+    ],
+    [
+      "og:image:width",
+      "1200"
+    ],
+    [
+      "og:image:height",
+      "630"
+    ],
+    [
+      "og:image:alt",
+      "Impact case study — Faraz Ali"
+    ],
+    [
+      "og:type",
+      "article"
+    ],
+    [
+      "twitter:card",
+      "summary_large_image"
+    ],
+    [
+      "twitter:title",
+      "~120 Hours of Rework Saved — Faraz Ali"
+    ],
+    [
+      "twitter:description",
+      "Frontend and QA unblocked 3 weeks before sandbox access."
+    ],
+    [
+      "twitter:image",
+      "https://faraz-website.vercel.app/impact/aml-mock-service/twitter-image"
+    ],
+    [
+      "twitter:image:alt",
+      "Impact case study — Faraz Ali"
+    ],
+    [
+      "twitter:image:type",
+      "image/png"
+    ],
+    [
+      "twitter:image:width",
+      "1200"
+    ],
+    [
+      "twitter:image:height",
+      "630"
+    ],
+    [
+      "link canonical",
+      "https://faraz-website.vercel.app/impact/aml-mock-service/"
+    ],
+    [
+      "link icon",
+      "/favicon.ico"
+    ],
+    [
+      "link icon",
+      "/icon.svg"
+    ]
+  ]
+}

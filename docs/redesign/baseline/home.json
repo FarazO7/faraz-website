@@ -1,0 +1,1842 @@
+{
+  "route": "/",
+  "text": [
+    {
+      "t": "Skip to content",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "FA",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Impact",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Work",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Built",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Experience",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "GitHub",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Skills",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Contact",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Download Resume",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Hello there!",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "I am Faraz Ali.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Product Manager",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "I'm a product manager with 2+ years across regulated fintech (KYC/AML), edtech growth and e-commerce operations (WMS, OMS). As the first PM hire at Zamplitude, I own a regulated investment firm's KYC/AML platform; at Newton School, I launched AI exam monitoring and nearly doubled sign-up conversion. I'm focused on B2B fintech platforms and applied AI, and I build AI prototypes myself, with evaluation harnesses and human-in-the-loop review.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Get in touch",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Download Resume",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "+91 79911 93433",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "faraz139@gmail.com",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "LinkedIn",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "GitHub",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Experience",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Z",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Zamplitude",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "SaaS",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Newton School",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "EdTech",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "HealthKart",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "E-commerce",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Healthmug",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "E-commerce",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Education",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "KIIT University",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "B.Tech",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "MDI Murshidabad",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "PGDM",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Impact",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Proof in the numbers",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Zamplitude",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Mar 2026 – Present",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Newton School",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Mar 2025 – Mar 2026",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "68%",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Applications auto-cleared",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Risk-scoring bands and auto-approval thresholds over verified digital-ID data; turnaround fell from 72 hours to under 8.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "61%",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "First-pass compliance clearance",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Up from 23%, after redesigning the KYC review and approval workflow across 12 requirement sessions.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "30+",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Compliance actions audited",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Exposed shared-login risk; a Roles and Permissions module replaced every shared login with individual, role-based access.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "~120h",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Rework saved",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Mock AML service with API contracts unblocked frontend and QA 3 weeks before sandbox access.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "30h",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Manual proctoring per exam batch",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Down from 100 hours across 15,000+ exam sessions, with an AI exam-monitoring system taken from 0 to 1.",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "12%",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Referral-to-signup conversion",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Up from 7%. Drop-off pinpointed through funnel and cohort analysis; incentive redesign validated in A/B tests.",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "19.1%",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Sign-up conversion",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Nearly doubled, up from 10%, through landing-page A/B tests prioritised by impact and effort.",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "−99%",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Manual reconciliation effort, with no payment mismatches",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Razorpay Route API split payments between two accounts, webhook-driven failure handling.",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Case Studies",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Selected Work",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Bumble — “Date Vibe”",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Growth strategy",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Simplified pre-date planning from user research; gamified solution projected ₹10 Cr annual revenue and +20% profile interactions.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Open case study",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "MakeMyTrip",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Product teardown",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "A Growth-team teardown answering MakeMyTrip's mandate to crack trip planning — an unsolved gap in travel — with a GenAI-powered planner. Works through the business model, competitor and actor mapping, and a structured problem breakdown.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Open case study",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Zepto",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Product teardown",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "A Growth teardown targeting Zepto's low average order value — the lever for quick-commerce unit economics. Maps the business outcome (profitability) to product outcomes (higher basket quantity and unit price), with problem validation and framing.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Open case study",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Zomato — Increasing Reviews",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Outcomes → insights → product note → PRD",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "A four-part arc on growing review volume on Zomato — from defining the product outcome, through user-insight discovery, to a product note and a full PRD.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "View 4 documents",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Defining Product Outcomes",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Deriving Insights from Users",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Product Note",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "PRD",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Built",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Prototypes I've built",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Flagship · Agentic feedback-to-roadmap",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Signal",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Agentic LLM feedback-triage prototype · 2026",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "AI feedback-triage agent: clusters user feedback into themes, grounds every recommendation in real source quotes, routes low-confidence calls to a human, and evaluates its own output.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Built an agentic LLM pipeline that classifies, clusters and scores scattered user feedback into ranked, evidence-linked recommendations on what to build next.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Added explainable scoring, a human-in-the-loop review step and an evaluation harness that measures theme recall, precision and hallucination rate against a labelled set.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Live demo",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "View repo",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Growth CRM · D2C",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "engagR",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Event-driven growth CRM for D2C — captures user events, flags where people drop off, and auto-generates personalised re-engagement across email, WhatsApp, and SMS, with A/B testing built in.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "View repo",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "RAG · Coaching assistant",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Cairn",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "A RAG coaching assistant prototype that grounds its answers in a custom corpus using cosine-similarity embedding search.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "View repo",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Agentic · Job search",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Application Desk",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "An agentic job-search assistant — finds relevant roles, drafts tailored applications, and schedules sends, on FastAPI, MongoDB, OpenAI, and Gmail.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "View repo",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Track Record",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Experience",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Domains",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Regulated Fintech",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "KYC/AML",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Payments",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Edtech",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "E-commerce",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "WMS",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "OMS",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Product Manager",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Mar 2026 – Present",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Zamplitude, Dubai-based SaaS firm · Remote, India",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "First PM hire. Own discovery and Agile delivery of a KYC/AML compliance platform (risk scoring, compliance review, AML screening) for a regulated investment firm; the first module shipped on schedule.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Partnered with the client's Compliance Officer on risk-scoring bands and auto-approval thresholds over verified digital-ID data, replacing case-by-case review: 68% of applications auto-cleared and turnaround fell from 72 hours to under 8. Read the case",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Traced where KYC reviews stalled through 12 requirement sessions with 4 client compliance stakeholders, then redesigned the review and approval workflow, lifting first-pass compliance clearance from 23% to 61%. Read the case",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Cut question-change turnaround from 5 days to same day by replacing an email approval trail with a compliance dashboard: two-level sign-off for KYC and Enhanced Due Diligence (EDD) questions, plus EDD assignment to flagged users. Read the case",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Audited 30+ compliance actions against regulatory obligations, exposing shared-login risk, and prioritised a Roles and Permissions module over competing scope, replacing every shared login with individual, role-based access. Read the case",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Parsed the AML vendor's specification programmatically, flagged 2 contradictions before build and published a mock service with API contracts, unblocking frontend and QA 3 weeks before sandbox access (~120 hours of rework saved). Read the case",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Associate Product Manager",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Mar 2025 – Mar 2026",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Newton School, edtech · Bengaluru",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Acquisition, enrolment, payments and exam-operations products for an online tech-education platform.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Found manual proctoring could not scale across 15,000+ exam sessions; took an AI exam-monitoring system from 0 to 1 through discovery, PRDs and a cross-functional launch, cutting manual proctoring from 100 to 30 hours per exam batch. Read the case",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Lifted referral-to-signup conversion from 7% to 12% by pinpointing drop-off through funnel and cohort analysis, prioritising an incentive redesign over competing bets and validating it in A/B tests. Read the case",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Owned acquisition-funnel experimentation: landing-page A/B tests prioritised by impact and effort and tracked on self-serve dashboards (DAU/MAU, activation); sign-up conversion nearly doubled, from 10% to 19.1%. Read the case",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Diagnosed bottlenecks in manual payment reconciliation and replaced it with a Razorpay API integration (API specs, QA): payments reconciled in real time with no mismatches, reducing manual reconciliation effort by 99%. Read the case",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Identified enrolment bottlenecks behind stalled waitlists and shipped an automated seat-allocation workflow: 60 of 200 waitlisted learners (30%) converted to enrolments and no seats went unfilled. Read the case",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Product Management Trainee",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Aug 2024 – Mar 2025",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "HealthKart, health and nutrition e-commerce · Gurugram",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Product trainee on the warehouse, inventory and order management systems (WMS, OMS) that run HealthKart's fulfilment.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "With warehouse ops and engineering, cut picking errors by 10% by introducing scan-based WMS validation and FEFO (first-expiry, first-out) checks, backed by SOPs and staff training.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "With the OMS engineering team, cut stock-out cancellations from 8% to 6% and order-to-dispatch time from 10 to 8 hours by syncing inventory across sales channels and routing orders to the nearest in-stock warehouse.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Ran user research with internal ops users to map journeys and surface workflow gaps; prioritised a platform migration and wrote its PRDs and user stories, removing a blocker to SOC-2 compliance.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Category Management Intern (PGDM internship)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Apr 2023 – Jul 2023",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Healthmug, health e-commerce · New Delhi",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "With the category team, lifted the repeat-purchase rate from 20% to 25% by analysing purchase behaviour for repeat drivers and changing merchandising and retention tactics to match.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Spotted demand gaps in category data and expanded the assortment from 1,230 to 1,820 SKUs (+48%), driving 35% month-on-month category growth.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Education",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Where the foundation was laid.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "PGDM — Marketing & Supply Chain Management",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "2022 – 2024",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Management Development Institute (MDI) · Murshidabad",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "B.Tech, Electronics & Telecommunication Engineering",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "2014 – 2018",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "KIIT University · Bhubaneswar",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Achievements",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Recognition",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "NextLeap Product Manager Top Fellow",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "2024",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Runner-Up, “Call for Article” — Analytics Club, IIM Rohtak",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "2023",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "GitHub",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Building in public",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "740 contributions in the last year",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Oct",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Nov",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Dec",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Jan",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Feb",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Mar",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Apr",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "May",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Jun",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Jul",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Aug",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Sep",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "LessMore",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Signal",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Agentic LLM feedback-triage prototype: classifies, clusters and scores user feedback into ranked, evidence-linked recommendations, with an evaluation harness.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "View repo",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens GitHub in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "journey-mapper",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Event-driven growth CRM with drop-off detection and multi-channel re-engagement.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "View repo",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens GitHub in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "cairn",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "RAG coaching assistant prototype (cosine-similarity embedding search).",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "View repo",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens GitHub in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "job-apply-assistant-1",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Agentic job-search assistant (FastAPI, MongoDB, OpenAI, Gmail).",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "View repo",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens GitHub in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "lighthouse-qa-monitor",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "AI QA-monitoring agent for marketplaces: detects workflow failures, deduplicates issues, translates errors into seller-friendly insights.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "View repo",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens GitHub in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "All repositories on GitHub",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Toolkit",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Skills & Credentials",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Fluent in product discovery, user research, JTBD, prioritisation, experimentation, A/B testing, APIs, and SQL-driven decisions.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Product",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Discovery",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "User research and interviews",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "JTBD",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "PRDs and user stories",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Acceptance criteria",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "UAT",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Roadmapping",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Prioritisation (RICE, MoSCoW)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "OKRs",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Go-to-market",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Agile/Scrum",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Stakeholder management",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Growth and data",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "A/B tests",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Experimentation",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Funnel/cohort analysis",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "SQL",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Mixpanel",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "GA4",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "CleverTap",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Metabase",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Excel",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "AI",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "GenAI and LLM applications",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Agentic workflows",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "RAG",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Evals",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Human-in-the-loop design",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Prompt engineering",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Technical and domains",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "REST APIs",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "API specs",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Python",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Jira",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Confluence",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Notion",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "KYC/AML",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Payments",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "WMS",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "OMS",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Certifications",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Lean Six Sigma (KPMG)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Google Analytics 4 (Google)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Get in touch",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Product Manager · Bengaluru, India",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "+91 79911 93433",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "faraz139@gmail.com",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "LinkedIn",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "GitHub",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "© 2026 Faraz Ali",
+      "hidden": false,
+      "visible": true
+    }
+  ],
+  "links": [
+    {
+      "href": "#main",
+      "name": "Skip to content",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "#top",
+      "name": "Faraz Ali, back to top",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "#impact",
+      "name": "Impact",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "#work",
+      "name": "Work",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "#built",
+      "name": "Built",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "#experience",
+      "name": "Experience",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "#github",
+      "name": "GitHub",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "#skills",
+      "name": "Skills",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "#contact",
+      "name": "Contact",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/resume/Faraz-Ali-Product-Manager.pdf",
+      "name": "Download Resume",
+      "target": "",
+      "download": true
+    },
+    {
+      "href": "mailto:faraz139@gmail.com",
+      "name": "Get in touch",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/resume/Faraz-Ali-Product-Manager.pdf",
+      "name": "Download Resume",
+      "target": "",
+      "download": true
+    },
+    {
+      "href": "tel:+917991193433",
+      "name": "+91 79911 93433",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "mailto:faraz139@gmail.com",
+      "name": "faraz139@gmail.com",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "https://linkedin.com/in/-faraz",
+      "name": "LinkedIn (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://github.com/FarazO7",
+      "name": "GitHub (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "/impact/risk-scoring/",
+      "name": "68% — Applications auto-cleared. Read the full story.",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/impact/kyc-review-workflow/",
+      "name": "61% — First-pass compliance clearance. Read the full story.",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/impact/roles-permissions/",
+      "name": "30+ — Compliance actions audited. Read the full story.",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/impact/aml-mock-service/",
+      "name": "~120h — Rework saved. Read the full story.",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/impact/ai-proctoring/",
+      "name": "30h — Manual proctoring per exam batch. Read the full story.",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/impact/referral-growth/",
+      "name": "12% — Referral-to-signup conversion. Read the full story.",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/impact/signup-conversion/",
+      "name": "19.1% — Sign-up conversion. Read the full story.",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/impact/razorpay-route/",
+      "name": "−99% — Manual reconciliation effort, with no payment mismatches. Read the full story.",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/NLBumble-da078847-c1b6-4b73-b9c3-760f63b97b4c.pdf",
+      "name": "Open case study (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/Makemytrip-9eb8bfaa-0280-463f-a9df-6ca31ed1887f.pdf",
+      "name": "Open case study (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/Zepto-da51ae3f-a48d-40c6-9f3a-7615f18849e7.pdf",
+      "name": "Open case study (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/Zomato_milestone_1-649634e2-0d24-4ac4-8f94-c6501973d4da.pdf",
+      "name": "Defining Product Outcomes (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/Zomato_milestone_2-c5178530-7bea-4788-891f-3d1048b81820.pdf",
+      "name": "Deriving Insights from Users (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/PRD_1-38d725a5-c2e1-4d2a-8cd9-ff2e1bb0d11c.pdf",
+      "name": "Product Note (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/ZomatoPRD_2-d66f3915-fb5d-40fb-9308-8e6aeb753989.pdf",
+      "name": "PRD (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://signal-theta-ten.vercel.app",
+      "name": "Live demo (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://github.com/FarazO7/Signal",
+      "name": "View repo (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://github.com/FarazO7/journey-mapper",
+      "name": "Growth CRM · D2C engagR Event-driven growth CRM for D2C — captures user events, flags where people drop off, and auto-generates personalised re-engagement across email, WhatsApp, and SMS, with A/B testing built in. View repo (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://github.com/FarazO7/cairn",
+      "name": "RAG · Coaching assistant Cairn A RAG coaching assistant prototype that grounds its answers in a custom corpus using cosine-similarity embedding search. View repo (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://github.com/FarazO7/job-apply-assistant-1",
+      "name": "Agentic · Job search Application Desk An agentic job-search assistant — finds relevant roles, drafts tailored applications, and schedules sends, on FastAPI, MongoDB, OpenAI, and Gmail. View repo (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "/impact/risk-scoring/",
+      "name": "Read the case: 68% Auto-Cleared",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/impact/kyc-review-workflow/",
+      "name": "Read the case: 61% First-Pass Compliance Clearance",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/impact/compliance-dashboard/",
+      "name": "Read the case: 5 Days → Same-Day Question Changes",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/impact/roles-permissions/",
+      "name": "Read the case: Every Shared Login Replaced",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/impact/aml-mock-service/",
+      "name": "Read the case: ~120 Hours of Rework Saved",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/impact/ai-proctoring/",
+      "name": "Read the case: 100 → 30 Proctoring Hours per Exam Batch",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/impact/referral-growth/",
+      "name": "Read the case: 12% Referral-to-Signup Conversion",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/impact/signup-conversion/",
+      "name": "Read the case: 19.1% Sign-Up Conversion",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/impact/razorpay-route/",
+      "name": "Read the case: −99% Reconciliation Effort",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/impact/waitlist-automation/",
+      "name": "Read the case: 30% Waitlist Conversion, Zero Vacant Seats",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "https://github.com/FarazO7/Signal",
+      "name": "Signal Agentic LLM feedback-triage prototype: classifies, clusters and scores user feedback into ranked, evidence-linked recommendations, with an evaluation harness. View repo (opens GitHub in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://github.com/FarazO7/journey-mapper",
+      "name": "journey-mapper Event-driven growth CRM with drop-off detection and multi-channel re-engagement. View repo (opens GitHub in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://github.com/FarazO7/cairn",
+      "name": "cairn RAG coaching assistant prototype (cosine-similarity embedding search). View repo (opens GitHub in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://github.com/FarazO7/job-apply-assistant-1",
+      "name": "job-apply-assistant-1 Agentic job-search assistant (FastAPI, MongoDB, OpenAI, Gmail). View repo (opens GitHub in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://github.com/FarazO7/lighthouse-qa-monitor",
+      "name": "lighthouse-qa-monitor AI QA-monitoring agent for marketplaces: detects workflow failures, deduplicates issues, translates errors into seller-friendly insights. View repo (opens GitHub in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://github.com/FarazO7",
+      "name": "All repositories on GitHub (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "tel:+917991193433",
+      "name": "+91 79911 93433",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "mailto:faraz139@gmail.com",
+      "name": "faraz139@gmail.com",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "https://linkedin.com/in/-faraz",
+      "name": "LinkedIn (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://github.com/FarazO7",
+      "name": "GitHub (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    }
+  ],
+  "images": [
+    {
+      "src": "/images/faraz-ali.webp",
+      "alt": "Faraz Ali, Product Manager"
+    },
+    {
+      "src": "/logos/newton-school.png",
+      "alt": "Newton School logo"
+    },
+    {
+      "src": "/logos/healthkart.png",
+      "alt": "HealthKart logo"
+    },
+    {
+      "src": "/logos/healthmug.png",
+      "alt": "Healthmug logo"
+    },
+    {
+      "src": "/logos/kiit.png",
+      "alt": "KIIT University logo"
+    },
+    {
+      "src": "/logos/mdi.png",
+      "alt": "MDI Murshidabad logo"
+    },
+    {
+      "src": "/previews/bumble.webp",
+      "alt": "First page of Bumble — “Date Vibe” case study"
+    },
+    {
+      "src": "/previews/makemytrip.webp",
+      "alt": "First page of MakeMyTrip case study"
+    },
+    {
+      "src": "/previews/zepto.webp",
+      "alt": "First page of Zepto case study"
+    },
+    {
+      "src": "/previews/zomato.webp",
+      "alt": "First page of Zomato — Increasing Reviews case study"
+    },
+    {
+      "src": "[role=img]",
+      "alt": "Contribution calendar: 740 contributions in the last year"
+    }
+  ],
+  "meta": [
+    [
+      "title",
+      "Faraz Ali — Product Manager"
+    ],
+    [
+      "theme-color",
+      "#070B14"
+    ],
+    [
+      "description",
+      "Product Manager with 2+ years across regulated fintech (KYC/AML), edtech growth and e-commerce operations (WMS, OMS). Focused on B2B fintech platforms and applied AI."
+    ],
+    [
+      "og:title",
+      "Faraz Ali — Product Manager"
+    ],
+    [
+      "og:description",
+      "Product Manager with 2+ years across regulated fintech (KYC/AML), edtech growth and e-commerce operations (WMS, OMS). Focused on B2B fintech platforms and applied AI."
+    ],
+    [
+      "og:url",
+      "https://faraz-website.vercel.app/"
+    ],
+    [
+      "og:image",
+      "https://faraz-website.vercel.app/opengraph-image"
+    ],
+    [
+      "og:image:type",
+      "image/png"
+    ],
+    [
+      "og:image:width",
+      "1200"
+    ],
+    [
+      "og:image:height",
+      "630"
+    ],
+    [
+      "og:image:alt",
+      "Faraz Ali — Product Manager"
+    ],
+    [
+      "twitter:card",
+      "summary_large_image"
+    ],
+    [
+      "twitter:title",
+      "Faraz Ali — Product Manager"
+    ],
+    [
+      "twitter:description",
+      "Product Manager with 2+ years across regulated fintech (KYC/AML), edtech growth and e-commerce operations (WMS, OMS). Focused on B2B fintech platforms and applied AI."
+    ],
+    [
+      "twitter:image",
+      "https://faraz-website.vercel.app/twitter-image"
+    ],
+    [
+      "twitter:image:alt",
+      "Faraz Ali — Product Manager"
+    ],
+    [
+      "twitter:image:type",
+      "image/png"
+    ],
+    [
+      "twitter:image:width",
+      "1200"
+    ],
+    [
+      "twitter:image:height",
+      "630"
+    ],
+    [
+      "link canonical",
+      "https://faraz-website.vercel.app/"
+    ],
+    [
+      "link icon",
+      "/favicon.ico"
+    ],
+    [
+      "link icon",
+      "/icon.svg"
+    ],
+    [
+      "json-ld",
+      "{\"@context\":\"https://schema.org\",\"@type\":\"Person\",\"name\":\"Faraz Ali\",\"url\":\"https://faraz-website.vercel.app\",\"jobTitle\":\"Product Manager\",\"email\":\"mailto:faraz139@gmail.com\",\"telephone\":\"+91 79911 93433\",\"address\":{\"@type\":\"PostalAddress\",\"addressLocality\":\"Bengaluru\",\"addressCountry\":\"IN\"},\"worksFor\":{\"@type\":\"Organization\",\"name\":\"Zamplitude\"},\"sameAs\":[\"https://linkedin.com/in/-faraz\",\"https://github.com/FarazO7\"]}"
+    ],
+    [
+      "json-ld",
+      "{\"@context\":\"https://schema.org\",\"@type\":\"Person\",\"name\":\"Faraz Ali\",\"url\":\"https://faraz-website.vercel.app\",\"jobTitle\":\"Product Manager\",\"email\":\"mailto:faraz139@gmail.com\",\"telephone\":\"+91 79911 93433\",\"address\":{\"@type\":\"PostalAddress\",\"addressLocality\":\"Bengaluru\",\"addressCountry\":\"IN\"},\"worksFor\":{\"@type\":\"Organization\",\"name\":\"Zamplitude\"},\"sameAs\":[\"https://linkedin.com/in/-faraz\",\"https://github.com/FarazO7\"]}"
+    ]
+  ]
+}

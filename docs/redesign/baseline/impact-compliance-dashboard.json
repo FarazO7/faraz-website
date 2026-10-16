@@ -1,0 +1,256 @@
+{
+  "route": "/impact/compliance-dashboard/",
+  "text": [
+    {
+      "t": "Skip to content",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Back to portfolio",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "5 Days → Same-Day Question Changes",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "A compliance dashboard replaced an email approval trail.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Project type",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Compliance dashboard",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Company",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Zamplitude (client: regulated investment firm)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Industry",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Regulated Fintech (KYC/AML)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Role",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Product Manager, first PM hire",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Scope",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "KYC and Enhanced Due Diligence (EDD) questions",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Tenure",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Mar 2026 – Present",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Problem",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "KYC and EDD question changes ran through an email approval trail, with a turnaround of 5 days.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Approach & key decisions",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Replaced the email approval trail with a compliance dashboard: two-level sign-off for KYC and Enhanced Due Diligence (EDD) questions, plus EDD assignment to flagged users.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Results",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Question-change turnaround cut from 5 days to same day.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Client work. Details are limited to what can be shared publicly, and the client is not named. Happy to walk through the approach in conversation.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "faraz139@gmail.com",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "LinkedIn",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    }
+  ],
+  "links": [
+    {
+      "href": "#main",
+      "name": "Skip to content",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#work",
+      "name": "Back to portfolio",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "mailto:faraz139@gmail.com",
+      "name": "faraz139@gmail.com",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "https://linkedin.com/in/-faraz",
+      "name": "LinkedIn (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    }
+  ],
+  "images": [],
+  "meta": [
+    [
+      "title",
+      "5 Days → Same-Day Question Changes — Faraz Ali"
+    ],
+    [
+      "theme-color",
+      "#070B14"
+    ],
+    [
+      "description",
+      "A compliance dashboard replaced an email approval trail."
+    ],
+    [
+      "og:title",
+      "5 Days → Same-Day Question Changes — Faraz Ali"
+    ],
+    [
+      "og:description",
+      "A compliance dashboard replaced an email approval trail."
+    ],
+    [
+      "og:url",
+      "https://faraz-website.vercel.app/impact/compliance-dashboard/"
+    ],
+    [
+      "og:image",
+      "https://faraz-website.vercel.app/impact/compliance-dashboard/opengraph-image"
+    ],
+    [
+      "og:image:type",
+      "image/png"
+    ],
+    [
+      "og:image:width",
+      "1200"
+    ],
+    [
+      "og:image:height",
+      "630"
+    ],
+    [
+      "og:image:alt",
+      "Impact case study — Faraz Ali"
+    ],
+    [
+      "og:type",
+      "article"
+    ],
+    [
+      "twitter:card",
+      "summary_large_image"
+    ],
+    [
+      "twitter:title",
+      "5 Days → Same-Day Question Changes — Faraz Ali"
+    ],
+    [
+      "twitter:description",
+      "A compliance dashboard replaced an email approval trail."
+    ],
+    [
+      "twitter:image",
+      "https://faraz-website.vercel.app/impact/compliance-dashboard/twitter-image"
+    ],
+    [
+      "twitter:image:alt",
+      "Impact case study — Faraz Ali"
+    ],
+    [
+      "twitter:image:type",
+      "image/png"
+    ],
+    [
+      "twitter:image:width",
+      "1200"
+    ],
+    [
+      "twitter:image:height",
+      "630"
+    ],
+    [
+      "link canonical",
+      "https://faraz-website.vercel.app/impact/compliance-dashboard/"
+    ],
+    [
+      "link icon",
+      "/favicon.ico"
+    ],
+    [
+      "link icon",
+      "/icon.svg"
+    ]
+  ]
+}

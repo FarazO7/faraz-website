@@ -1,0 +1,276 @@
+{
+  "route": "/impact/referral-growth/",
+  "text": [
+    {
+      "t": "Skip to content",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Back to portfolio",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "12% Referral-to-Signup Conversion",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Up from 7%; referrals became a core growth lever for the platform.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Project type",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Growth module, end-to-end ownership",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Company",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Newton School",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Industry",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Edtech",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Role",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Associate Product Manager",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Collaboration",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "PM + engineering + programme team",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Tenure",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Mar 2025 – Mar 2026",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Problem",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Referral signups were declining; analysis of user behaviour showed monetary rewards alone weren't motivating students to share.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Approach & key decisions",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Proposed collaborative prep materials as an incentive and ran a three-arm A/B test: monetary vs prep-material vs combined. The trade-off was explicit: removing money risked immediate referrals (the monetary-only cohort dropped ~10%), but the combined arm lifted overall referral signups 15% while holding acquisition cost within target, balancing short-term incentive seekers against long-term engagement.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Iterations",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Mixpanel funnel analysis exposed a drop-off at the copy-link step; highlighting the link and decluttering the dashboard lifted copy interactions 18% and referral conversions 10%. Survey feedback showed milestone gadgets felt irrelevant; pivoting the sixth-referral reward to a ChatGPT Plus voucher lifted power-user referrals 20%. CleverTap re-engagement journeys (WhatsApp, email, SMS) reactivated dormant users for +12% signups and ~5% referral-driven revenue lift that quarter.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Learnings",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Declined a post-exam prep-material proposal after quantifying that the referral pipeline's revenue impact was larger — protected the highest-impact initiative.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Results",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Referral-to-signup conversion rose from 7% to 12%; referrals became a core growth lever.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Specific internal data is summarised at the level Newton School permits publicly; happy to discuss details in conversation.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "faraz139@gmail.com",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "LinkedIn",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    }
+  ],
+  "links": [
+    {
+      "href": "#main",
+      "name": "Skip to content",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#work",
+      "name": "Back to portfolio",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "mailto:faraz139@gmail.com",
+      "name": "faraz139@gmail.com",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "https://linkedin.com/in/-faraz",
+      "name": "LinkedIn (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    }
+  ],
+  "images": [],
+  "meta": [
+    [
+      "title",
+      "12% Referral-to-Signup Conversion — Faraz Ali"
+    ],
+    [
+      "theme-color",
+      "#070B14"
+    ],
+    [
+      "description",
+      "Up from 7%; referrals became a core growth lever for the platform."
+    ],
+    [
+      "og:title",
+      "12% Referral-to-Signup Conversion — Faraz Ali"
+    ],
+    [
+      "og:description",
+      "Up from 7%; referrals became a core growth lever for the platform."
+    ],
+    [
+      "og:url",
+      "https://faraz-website.vercel.app/impact/referral-growth/"
+    ],
+    [
+      "og:image",
+      "https://faraz-website.vercel.app/impact/referral-growth/opengraph-image"
+    ],
+    [
+      "og:image:type",
+      "image/png"
+    ],
+    [
+      "og:image:width",
+      "1200"
+    ],
+    [
+      "og:image:height",
+      "630"
+    ],
+    [
+      "og:image:alt",
+      "Impact case study — Faraz Ali"
+    ],
+    [
+      "og:type",
+      "article"
+    ],
+    [
+      "twitter:card",
+      "summary_large_image"
+    ],
+    [
+      "twitter:title",
+      "12% Referral-to-Signup Conversion — Faraz Ali"
+    ],
+    [
+      "twitter:description",
+      "Up from 7%; referrals became a core growth lever for the platform."
+    ],
+    [
+      "twitter:image",
+      "https://faraz-website.vercel.app/impact/referral-growth/twitter-image"
+    ],
+    [
+      "twitter:image:alt",
+      "Impact case study — Faraz Ali"
+    ],
+    [
+      "twitter:image:type",
+      "image/png"
+    ],
+    [
+      "twitter:image:width",
+      "1200"
+    ],
+    [
+      "twitter:image:height",
+      "630"
+    ],
+    [
+      "link canonical",
+      "https://faraz-website.vercel.app/impact/referral-growth/"
+    ],
+    [
+      "link icon",
+      "/favicon.ico"
+    ],
+    [
+      "link icon",
+      "/icon.svg"
+    ]
+  ]
+}
