@@ -1,4 +1,5 @@
 import Nav from "@/components/Nav";
+import PageTransition from "@/components/PageTransition";
 import Hero from "@/components/Hero";
 import Metrics from "@/components/Metrics";
 import Section from "@/components/Section";
@@ -39,17 +40,24 @@ export default function Home() {
   return (
     <>
       <Nav />
-      <main id="main">
-        <Hero />
-        <Section id="impact" kicker="Impact" title="Proof in the numbers" accent="numbers">
-          <Metrics />
-        </Section>
-        <CaseStudies />
-        <BuiltProjects />
-        <Experience />
-        <Achievements />
-        <GitHubSection />
-        <Skills />
+      <main id="main" tabIndex={-1}>
+        <PageTransition>
+          <Hero />
+          <Section
+            id="impact"
+            kicker="Impact"
+            title="Proof in the numbers"
+            accent="numbers"
+          >
+            <Metrics />
+          </Section>
+          <CaseStudies />
+          <BuiltProjects />
+          <Experience />
+          <Achievements />
+          <GitHubSection />
+          <Skills />
+        </PageTransition>
       </main>
       <Footer />
       <script

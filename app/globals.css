@@ -86,8 +86,10 @@
   /* ---------------------------------------------------------------------------
      Base
   --------------------------------------------------------------------------- */
-  html {
-    scroll-behavior: smooth;
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   body {
@@ -104,9 +106,14 @@
     cursor: pointer;
   }
 
+  /* Ink ring on light surfaces, white ring inside ink blocks. */
   :focus-visible {
-    outline: 2px solid currentColor;
+    outline: 2px solid var(--ink);
     outline-offset: 3px;
+  }
+
+  .bg-ink :focus-visible {
+    outline-color: #fff;
   }
 
   /* Sections take focus after an in-page jump; no ring for that. */
@@ -208,6 +215,17 @@
 
   .link:hover {
     text-decoration: none;
+  }
+
+  /* Word masks are inline-blocks, which don't inherit a link's underline. */
+  .link .w {
+    text-decoration: inherit;
+    text-decoration-line: underline;
+    text-underline-offset: 0.25em;
+  }
+
+  .link:hover .w {
+    text-decoration-line: none;
   }
 
   /* Section kicker: small label behind a pink sparkle. */
@@ -391,9 +409,11 @@
       background-color 0.4s;
   }
 
-  .group:hover .round,
-  .group:focus-visible .round {
-    transform: translateX(0.25rem);
+  @media (prefers-reduced-motion: no-preference) {
+    .group:hover .round,
+    .group:focus-visible .round {
+      transform: translateX(0.25rem);
+    }
   }
 
   /* Lift for whole-card links (transform only). */
@@ -440,7 +460,9 @@
       opacity: 1;
       transform: scale(1);
     }
+  }
 
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
     .dot-link:hover > span {
       transform: translateX(1rem);
     }
@@ -619,11 +641,13 @@
   }
 
   /* Odometer: digits roll 0 → value (2s quint-out, staggered). */
-  .reveal-ready [data-reveal] .odo {
+  .reveal-ready [data-reveal] .odo,
+  .hero-stage[data-live] .odo {
     color: transparent;
   }
 
-  .reveal-ready [data-reveal] .odo::before {
+  .reveal-ready [data-reveal] .odo::before,
+  .hero-stage[data-live] .odo::before {
     content: "0\A 1\A 2\A 3\A 4\A 5\A 6\A 7\A 8\A 9";
     white-space: pre;
     position: absolute;
@@ -633,7 +657,8 @@
     transform: translateY(0);
   }
 
-  .reveal-ready [data-reveal].is-in .odo::before {
+  .reveal-ready [data-reveal].is-in .odo::before,
+  .hero-stage[data-live][data-roll] .odo::before {
     transform: translateY(calc(var(--d) * -10%));
     transition: transform 2s var(--ease-quint) calc(var(--di, 0) * 0.05s);
   }
@@ -644,6 +669,15 @@
   [data-reveal] * {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
+  }
+
+  .odo {
+    color: inherit !important;
+  }
+
+  .odo::before {
+    content: none !important;
   }
 }
 
@@ -815,8 +849,8 @@ html.no-scroll {
   width: var(--card-w);
   padding: 1.25rem 1.5rem 1.4rem;
   border-radius: var(--radius);
+  /* Tint over the .glass primitive (the reference's stat cards). */
   background: linear-gradient(232.63deg, rgba(207, 228, 255, 0.55) 14.38%, rgba(240, 240, 245, 0.75) 71.65%);
-  backdrop-filter: blur(16px);
   text-align: left;
 }
 
@@ -876,11 +910,11 @@ html.no-scroll {
 
 .hero-stage[data-live] .hero-top {
   height: 100svh;
-  pointer-events: none;
 }
 
-.hero-stage[data-live][data-copy="on"] .hero-copy {
-  pointer-events: auto;
+/* Once the copy has faded, its invisible buttons stop taking clicks. */
+.hero-stage[data-live][data-copy="off"] .hero-copy {
+  pointer-events: none;
 }
 
 .hero-stage[data-live] .hero-copy {
@@ -1055,6 +1089,13 @@ html.no-scroll {
     color: var(--tone);
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .product-sphere {
+      transform: none;
+      transition: none;
+    }
+  }
+
   @media (hover: none) {
     .product .product-wash {
       opacity: 1;
@@ -1168,5 +1209,15 @@ html.no-scroll {
     stroke: currentColor;
     stroke-width: 1;
     vector-effect: non-scaling-stroke;
+  }
+}
+
+/* Page crossfade (React ViewTransition): off under reduced motion, as on the
+   reference. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }

@@ -38,7 +38,7 @@ function CaseStudyCard({ study, offset }: { study: CaseStudy; offset: boolean })
             alt={`First page of ${study.title} case study`}
             loading="lazy"
             decoding="async"
-            className="size-full object-cover object-top transition-transform duration-[1.2s] ease-[cubic-bezier(.16,1,.3,1)] hover:scale-[1.04] motion-reduce:transition-none"
+            className="size-full object-cover object-top"
           />
         </div>
       </div>

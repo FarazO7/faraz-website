@@ -40,9 +40,17 @@ export default function SmoothScroll() {
       };
       document.addEventListener("click", onClick);
 
+      // The open mobile menu locks scrolling with html.no-scroll; pause too.
+      const lock = new MutationObserver(() => {
+        if (document.documentElement.classList.contains("no-scroll")) lenis.stop();
+        else lenis.start();
+      });
+      lock.observe(document.documentElement, { attributeFilter: ["class"] });
+
       destroy = () => {
         cancelAnimationFrame(raf);
         document.removeEventListener("click", onClick);
+        lock.disconnect();
         lenis.destroy();
       };
     });

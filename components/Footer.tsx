@@ -3,7 +3,7 @@ import { Download } from "lucide-react";
 import ContactLinks from "./ContactLinks";
 import Divider from "./Divider";
 import Words from "./Words";
-import { identity, navLinks } from "@/lib/content";
+import { footerMenuLabel, identity, navLinks } from "@/lib/content";
 import { withBase } from "@/lib/utils";
 
 // The reference's closing block: ink background, the closing headline with
@@ -51,7 +51,7 @@ export default function Footer({ base = "" }: { base?: string }) {
         </p>
 
         <div className="mt-14 md:mt-20">
-          <p className="text-sm text-[var(--on-dark-muted)]">Menu</p>
+          <p className="text-sm text-[var(--on-dark-muted)]">{footerMenuLabel}</p>
           <Divider className="mt-4 text-white/15" />
           <ul className="mt-5 flex flex-wrap gap-x-8 gap-y-2">
             {navLinks.map((link) => (

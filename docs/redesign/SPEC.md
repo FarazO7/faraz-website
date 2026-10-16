@@ -1,7 +1,8 @@
 # Redesign specification: CapsLock-referenced portfolio
 
-Status: **draft for approval** (BRIEF.md §18, step 5). Nothing under `app/`,
-`components/` or `lib/` has been edited yet.
+Status: **approved 2026-10-16 and implemented** on `redesign/capslock`
+(content base: the October resume sync, committed as 31c86cd). Results and
+the final report are in `docs/redesign/REPORT.md`.
 
 Evidence key: **[M]** measured from the reference's compiled CSS/JS or
 rendered pages; **[O]** observed in the browser (screenshots in
@@ -370,6 +371,9 @@ names render in the serif italic. Section kickers become sparkle labels.
 | Impact as one grid of six | two employer groups of four | BRIEF §8C keeps grouping by employer |
 | Pinned / scrubbed sections other than the hero | none | native scroll, recruiter skim speed |
 | theme-color `#000` | `#ffffff` | matches the first viewport |
+| Navbar compacts after 10px (animates left/right) | no compaction; drop-in and hide/show kept | the compaction animates layout (DESIGN.md: transform, opacity, clip-path only) |
+| Image zoom on hover | none on case-study previews | they are not links (BRIEF §11D) |
+| Stat cards blur 16px | the single `.glass` primitive (8px) with the cards' tint | one glass primitive (CLAUDE.md) |
 
 ---
 
