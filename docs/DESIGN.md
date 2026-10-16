@@ -46,8 +46,9 @@ stands between them and the content.
 
 - **One glass primitive.** `.glass` (white 70%, 1px hairline, blur 8px) is
   used by the nav, its mobile menu and the three hero stat cards. At most 6
-  live `backdrop-filter` elements per viewport; measured at most 4 (hero) at
-  375/768/1024/1440. `npm run verify` enforces it.
+  live `backdrop-filter` elements per viewport: the nav alone at the top of
+  the page, 4 while the hero's stat cards are on screen. `npm run verify`
+  enforces it.
 - **Motion via transform, opacity and clip-path.** One exception: the
   achievement statements blur in word by word (filter, once).
 - **Nothing hidden without JavaScript.** Load animations run only under
