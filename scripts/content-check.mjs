@@ -27,9 +27,12 @@ const MODES = [
   { name: "reduced motion, 390", width: 390, reducedMotion: "reduce", js: true, settle: 800 },
   { name: "no JavaScript, 1440", width: 1440, reducedMotion: "no-preference", js: false, settle: 0 },
 ];
+// Changes approved in docs/redesign/SPEC.md: the theme colour follows the new
+// palette (BRIEF §4.7). Reported, but not counted as missing.
+const APPROVED = [/^meta: theme-color: /];
 // The contribution calendar (count, month labels, legend) renders client-side
 // only, so no-JS runs skip it.
-const CLIENT_ONLY = /contribution|^Less ?More$|^((Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) ?)+$/i;
+const CLIENT_ONLY = /contribution|^(Less|More|Less ?More)$|^((Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) ?)+$/i;
 
 const args = process.argv.slice(2);
 const command = args[0];
@@ -46,9 +49,10 @@ function contributionsFixture() {
 }
 const FIXTURE = JSON.stringify(contributionsFixture());
 
-// Runs in the page. Text nodes are grouped by their nearest ancestor that is
-// not rendered inline, so inline wrappers (split-letter spans, links) don't
-// fragment it; aria-hidden text forms its own chunks.
+// Runs in the page. Text is cut into runs the way innerText would lay it out:
+// a run breaks at every element not rendered inline, so inline wrappers
+// (split-letter spans, links) don't fragment it, while separate blocks never
+// merge. Runs also break where aria-hidden starts or ends.
 function extract() {
   const norm = (s) => (s ?? "").replace(/[\u200b-\u200d\ufeff]/g, "").replace(/\s+/g, " ").trim();
   const isInline = (el) => {
@@ -58,26 +62,30 @@ function extract() {
   };
   const visible = (el) => el.checkVisibility({ opacityProperty: true, visibilityProperty: true });
 
-  const groups = new Map();
-  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-  for (let node = walker.nextNode(); node; node = walker.nextNode()) {
-    const parent = node.parentElement;
-    if (!parent || parent.closest("script, style, noscript, template")) continue;
-    let block = parent;
-    while (isInline(block) && block.parentElement) block = block.parentElement;
-    const hidden = !!parent.closest('[aria-hidden="true"]');
-    if (!groups.has(block)) groups.set(block, [{ parts: [], visible: false }, { parts: [], visible: false }]);
-    const group = groups.get(block)[hidden ? 1 : 0];
-    group.parts.push(node.textContent);
-    group.visible ||= visible(parent);
-  }
   const text = [];
-  for (const [shown, hidden] of groups.values()) {
-    for (const [group, isHidden] of [[shown, false], [hidden, true]]) {
-      const t = norm(group.parts.join(""));
-      if (t) text.push({ t, hidden: isHidden, visible: group.visible });
+  let run = { parts: [], hidden: false, visible: false };
+  const flush = () => {
+    const t = norm(run.parts.join(""));
+    if (t) text.push({ t, hidden: run.hidden, visible: run.visible });
+    run = { parts: [], hidden: false, visible: false };
+  };
+  const walk = (node, hidden) => {
+    for (const child of node.childNodes) {
+      if (child.nodeType === Node.TEXT_NODE) {
+        if (run.parts.length && run.hidden !== hidden) flush();
+        run.hidden = hidden;
+        run.parts.push(child.textContent);
+        run.visible ||= visible(node);
+      } else if (child.nodeType === Node.ELEMENT_NODE && !child.matches("script, style, noscript, template")) {
+        const block = !isInline(child);
+        if (block) flush();
+        walk(child, hidden || child.getAttribute("aria-hidden") === "true");
+        if (block) flush();
+      }
     }
-  }
+  };
+  walk(document.body, false);
+  flush();
 
   const nameOf = (el) => {
     const label = el.getAttribute("aria-label");
@@ -277,9 +285,12 @@ async function compare() {
         lines.push(`  ${route}: MISSING ROUTE (did not load)`);
         continue;
       }
-      const { missing, added } = diffPage(baseline[route], pages[route], mode);
+      const diff = diffPage(baseline[route], pages[route], mode);
+      const approved = diff.missing.filter((m) => APPROVED.some((re) => re.test(m)));
+      const missing = diff.missing.filter((m) => !approved.includes(m));
+      const added = diff.added.filter((a) => !APPROVED.some((re) => re.test(a)));
       missingTotal += missing.length;
-      lines.push(`  ${route}: ${missing.length} missing or changed, ${added.length} new`);
+      lines.push(`  ${route}: ${missing.length} missing or changed, ${added.length} new${approved.length ? `, ${approved.length} approved change` : ""}`);
       for (const m of missing) lines.push(`    - ${m}`);
       for (const a of added) lines.push(`    + ${a}`);
     }

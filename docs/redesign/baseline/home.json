@@ -962,7 +962,12 @@
       "visible": true
     },
     {
-      "t": "LessMore",
+      "t": "Less",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "More",
       "hidden": true,
       "visible": true
     },
