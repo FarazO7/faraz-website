@@ -3,12 +3,13 @@
 //   npm run verify -- --links           also crawl every link (linkinator)
 //   npm run verify -- --lighthouse=dir  also run Lighthouse into .review/dir/
 //
-// 1. Screenshots at 375/768/1024/1440 (hero, both metric tabs, Experience,
-//    Skills, two impact pages) plus a reduced-motion set, in .review/screens/.
+// 1. Screenshots at 375/768/1024/1440 (hero, Impact, Experience, Skills, two
+//    impact pages) plus a reduced-motion set, in .review/screens/.
 // 2. Glass budget: at most 6 painted, in-viewport backdrop-filter elements at
 //    the hero, Impact, GitHub, GitHub-to-Skills and Skills scroll positions.
 // 3. axe: zero serious or critical violations on / and two impact pages.
-// 4. Keyboard: metric tablist, "Read the case" links.
+// 4. Keyboard: Impact tiles, "Read the case" links, the Zomato documents
+//    toggle and the mobile menu (Escape closes it and returns focus).
 //
 // Uses the installed Google Chrome when present, else Playwright's Chromium
 // (`npx playwright install chromium`). Exits 1 on any failure.
@@ -28,7 +29,7 @@ const WIDTHS = [375, 768, 1024, 1440];
 const HEIGHT = 900;
 const GLASS_BUDGET = 6;
 const IMPACT_PAGES = ["/impact/risk-scoring/", "/impact/referral-growth/"];
-const COUNT_UP_MS = 1800; // count-up (1.4 s) plus tile stagger
+const COUNT_UP_MS = 2400; // odometer roll (2 s) plus digit stagger
 const SETTLE_MS = 900; // reveal transition (0.7 s) plus margin
 
 const args = process.argv.slice(2);
@@ -78,15 +79,9 @@ async function captureScreens(browser, width, reduced) {
   await page.waitForTimeout(SETTLE_MS);
   await page.screenshot({ path: shot("hero") });
 
-  const tabs = page.getByRole("tab");
-  const tabCount = await tabs.count();
-  for (let i = 0; i < tabCount; i++) {
-    await tabs.nth(i).click();
-    await page.waitForTimeout(COUNT_UP_MS);
-    await page.locator("#impact").screenshot({ path: shot(`impact-tab${i + 1}`) });
-  }
-  for (const id of ["experience", "skills"]) {
+  for (const id of ["impact", "experience", "skills"]) {
     await scrollToY(page, (await sectionY(page, id)) ?? 0);
+    await page.waitForTimeout(id === "impact" ? COUNT_UP_MS : 0);
     await page.locator(`#${id}`).screenshot({ path: shot(id) });
   }
   for (const path of IMPACT_PAGES) {
@@ -151,37 +146,45 @@ async function checkAxe(browser) {
 }
 
 // ---------------------------------------------------------------- keyboard
-const tabState = () =>
-  [...document.querySelectorAll('[role="tab"]')].map((tab) => ({
-    selected: tab.getAttribute("aria-selected") === "true",
-    focused: tab === document.activeElement,
-    panelVisible: getComputedStyle(document.getElementById(tab.getAttribute("aria-controls"))).visibility === "visible",
-  }));
-
-async function expectTab(page, index, key) {
-  const state = await page.evaluate(tabState);
-  const ok = state.every((t, i) => t.selected === (i === index) && t.panelVisible === (i === index)) && state[index].focused;
-  if (!ok) fail(`keyboard: after ${key}, tab ${index + 1} should be selected, focused and showing its panel`);
+async function checkImpactTiles(page) {
+  const tiles = await page.evaluate(() =>
+    [...document.querySelectorAll('#impact a[href^="/impact/"]')].map((a) => ({
+      name: a.getAttribute("aria-label") ?? "",
+      tabIndex: a.tabIndex,
+    })),
+  );
+  if (tiles.length < 8) return fail(`keyboard: expected 8 Impact tiles, found ${tiles.length}`);
+  const names = tiles.map((t) => t.name);
+  if (new Set(names).size !== names.length) fail("keyboard: Impact tiles share accessible names");
+  if (tiles.some((t) => t.tabIndex < 0 || !t.name.endsWith("Read the full story."))) fail("keyboard: an Impact tile is unfocusable or unlabelled");
+  note(`keyboard: ${tiles.length} Impact tiles, unique names`);
 }
 
-async function checkTablist(page) {
-  const tabs = page.getByRole("tab");
-  const count = await tabs.count();
-  if (count < 2) return fail("keyboard: metric tablist with two or more tabs not found");
-  await tabs.first().focus();
-  await expectTab(page, 0, "load (current role is the default)");
-  for (const [key, index] of [["ArrowRight", 1 % count], ["End", count - 1], ["Home", 0], ["ArrowLeft", count - 1], ["Home", 0]]) {
-    await page.keyboard.press(key);
-    await expectTab(page, index, key);
-  }
-  await page.keyboard.press("Tab");
-  const landed = await page.evaluate(() => {
-    const panel = document.activeElement?.closest('[role="tabpanel"]');
-    const selected = document.querySelector('[role="tab"][aria-selected="true"]');
-    return Boolean(panel && selected && panel.id === selected.getAttribute("aria-controls"));
-  });
-  if (!landed) fail("keyboard: Tab from the tablist does not land in the active panel");
-  note(`keyboard: tablist ${count} tabs, arrows/Home/End ok`);
+async function checkDocsToggle(page) {
+  const toggle = page.getByRole("button", { name: /documents$/ });
+  if ((await toggle.count()) !== 1) return fail('keyboard: "View 4 documents" toggle not found');
+  const listHidden = () => toggle.evaluate((el) => document.getElementById(el.getAttribute("aria-controls")).hidden);
+  await toggle.focus();
+  await page.keyboard.press("Enter");
+  const opened = !(await listHidden()) && (await toggle.getAttribute("aria-expanded")) === "true";
+  await page.keyboard.press("Enter");
+  if (!opened || !(await listHidden())) fail("keyboard: documents toggle does not open and close with Enter");
+  else note("keyboard: documents toggle opens and closes");
+}
+
+async function checkMenu(browser) {
+  const { context, page } = await openPage(browser, { width: 375 });
+  await page.goto(`${BASE}/`, { waitUntil: "load" });
+  const toggle = page.locator('button[aria-controls="mobile-menu"]');
+  const menuInert = () => page.locator("#mobile-menu").evaluate((el) => el.inert);
+  const startsClosed = (await menuInert()) && (await toggle.getAttribute("aria-expanded")) === "false";
+  await toggle.click();
+  const opens = !(await menuInert()) && (await toggle.getAttribute("aria-expanded")) === "true";
+  await page.keyboard.press("Escape");
+  const closes = (await menuInert()) && (await toggle.evaluate((el) => el === document.activeElement));
+  if (!startsClosed || !opens || !closes) fail("keyboard: mobile menu toggle, Escape or focus return failed");
+  else note("keyboard: mobile menu opens, Escape closes it and returns focus");
+  await context.close();
 }
 
 async function checkCaseLinks(page) {
@@ -204,8 +207,9 @@ async function checkCaseLinks(page) {
 async function checkKeyboard(browser) {
   const { context, page } = await openPage(browser);
   await page.goto(`${BASE}/`, { waitUntil: "load" });
-  await checkTablist(page);
+  await checkImpactTiles(page);
   await checkCaseLinks(page);
+  await checkDocsToggle(page);
   await context.close();
 }
 
@@ -262,6 +266,7 @@ async function main() {
     }
     await checkAxe(browser);
     await checkKeyboard(browser);
+    await checkMenu(browser);
     if (crawlLinks) await crawlAllLinks();
     if (lighthouseDir) await runLighthouse(lighthouseDir);
   } finally {
