@@ -14,14 +14,16 @@ https://faraz-website.vercel.app.
   to its impact page.
 - **Selected Work**: four case-study cards, each topped with a rendered
   preview of the PDF's first page.
-- **Built**: Signal as the flagship (subtitle, year, resume highlights, live
-  demo) plus three project cards.
+- **Built**: "Prototypes I've built", with Signal as the flagship (subtitle,
+  year, resume highlights, live demo) plus three project cards.
 - **Experience + Education**: a Domains strip, then one shared vertical
-  timeline. Bullets with an impact page end in a "Read the case" link.
+  timeline. Each role shows the resume's company descriptor and, where the
+  resume has one, its one-line summary. Bullets with an impact page end in a
+  "Read the case" link.
 - **Recognition**: a scroll-pinned Achievements section (framer-motion).
 - **GitHub**: live contribution calendar and a curated repo grid.
-- **Skills**: an intro line, five hub cards with brand logos, an "All skills"
-  index holding the resume's full taxonomy, and Certifications.
+- **Skills**: an intro line, the resume's four skill groups as hub cards with
+  brand logos (2×2), and Certifications.
 - **/impact/[slug]**: ten detail pages, five for Zamplitude and five for
   Newton School (problem, approach, results). The Tenure row derives from the
   timeline; the confidentiality note is per organisation.
@@ -58,8 +60,8 @@ only render it. Lines marked `REVIEW(Faraz)` are drafted copy awaiting review.
 - **Impact pages:** `impactDetails`. Each page names its organisation (`org`)
   for the Tenure row and confidentiality note. A bullet links to a page with
   `{ text, impact: "slug" }`.
-- **Skills:** `skills` (the five hubs) and `skillsIndex` (the resume's six
-  groups verbatim). `domains` feeds both the Experience strip and the index.
+- **Skills:** `skills`, the resume's four groups verbatim. `domains` feeds the
+  Experience strip.
 
 The resume PDF lives at `public/resume/Faraz-Ali-Product-Manager.pdf`.
 

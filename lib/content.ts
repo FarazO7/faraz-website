@@ -25,41 +25,49 @@ export type Role = {
   company: string;
   /** Shorter company name where space is tight; defaults to `company`. */
   companyShort?: string;
+  /** The resume's company descriptor, shown after the name on the timeline. */
+  descriptor?: string;
   location: string;
   dates: string;
   current?: boolean;
+  /** The resume's one-line role summary, shown above the bullets. */
+  summary?: string;
   bullets: Bullet[];
 };
 
 // The single `current: true` role comes first. The hero title, metadata and
 // JSON-LD derive from it (see `currentRole`), so a job change is one edit here.
+// Bullets follow the resume, verbatim and in resume order.
 export const experience: Role[] = [
   {
     id: "zamplitude",
     title: "Product Manager",
     company: "Zamplitude",
-    location: "Remote, Dubai",
+    descriptor: "Dubai-based SaaS firm",
+    location: "Remote, India",
     dates: "Mar 2026 – Present",
     current: true,
+    summary:
+      "First PM hire. Own discovery and Agile delivery of a KYC/AML compliance platform (risk scoring, compliance review, AML screening) for a regulated investment firm; the first module shipped on schedule.",
     bullets: [
       {
-        text: "Ran discovery with four client-side compliance stakeholders across twelve requirement sessions to trace where KYC review stalled, defined the end-to-end review and approval workflow for a regulated GCC investment platform, and shipped it via PRDs, user stories, and UAT, lifting first-pass approval to 91%.",
-        impact: "kyc-review-workflow",
-      },
-      {
-        text: "Designed and shipped a compliance dashboard with a two-level approval flow spanning KYC and EDD question creation, review, and sign-off, plus EDD assignment to flagged users with integrated notifications, replacing an email-based approval trail and cutting question change cycle time from 5 days to same-day.",
-        impact: "compliance-dashboard",
-      },
-      {
-        text: "Replaced manual case-by-case approval with automated risk scoring built on Nafath-verified identity attributes, defining scoring bands and auto-approval thresholds with the client Compliance Officer, auto-clearing 68% of applications and cutting review turnaround from 72 hours to under 8.",
+        text: "Partnered with the client's Compliance Officer on risk-scoring bands and auto-approval thresholds over verified digital-ID data, replacing case-by-case review: 68% of applications auto-cleared and turnaround fell from 72 hours to under 8.",
         impact: "risk-scoring",
       },
       {
-        text: "Audited 30+ compliance actions against regulatory obligations to expose shared-login risk, prioritised a Roles and Permissions module over competing scope, and shipped it with acceptance criteria and QA sign-off, eliminating shared-access accounts entirely and reducing audit-preparation effort 60%.",
+        text: "Traced where KYC reviews stalled through 12 requirement sessions with 4 client compliance stakeholders, then redesigned the review and approval workflow, lifting first-pass compliance clearance from 23% to 61%.",
+        impact: "kyc-review-workflow",
+      },
+      {
+        text: "Cut question-change turnaround from 5 days to same day by replacing an email approval trail with a compliance dashboard: two-level sign-off for KYC and Enhanced Due Diligence (EDD) questions, plus EDD assignment to flagged users.",
+        impact: "compliance-dashboard",
+      },
+      {
+        text: "Audited 30+ compliance actions against regulatory obligations, exposing shared-login risk, and prioritised a Roles and Permissions module over competing scope, replacing every shared login with individual, role-based access.",
         impact: "roles-permissions",
       },
       {
-        text: "Parsed a full AML screening vendor specification programmatically to derive field mappings and status enumerations, flagged two vendor contradictions before build, and shipped a mock service specification with API contracts, unblocking frontend and QA three weeks ahead of vendor sandbox access and averting an estimated 120 hours of rework.",
+        text: "Parsed the AML vendor's specification programmatically, flagged 2 contradictions before build and published a mock service with API contracts, unblocking frontend and QA 3 weeks before sandbox access (~120 hours of rework saved).",
         impact: "aml-mock-service",
       },
     ],
@@ -68,68 +76,72 @@ export const experience: Role[] = [
     id: "newton",
     title: "Associate Product Manager",
     company: "Newton School",
+    descriptor: "edtech",
     location: "Bengaluru",
     dates: "Mar 2025 – Mar 2026",
+    summary:
+      "Acquisition, enrolment, payments and exam-operations products for an online tech-education platform.",
     bullets: [
       {
-        text: "Owned acquisition-funnel optimisation, prioritising landing-page experiments by impact/effort and shipping iterative variants backed by self-serve dashboards (DAU/MAU, activation), raising sign-up conversion 10% → 19.1% (+91%).",
-        impact: "signup-conversion",
+        text: "Found manual proctoring could not scale across 15,000+ exam sessions; took an AI exam-monitoring system from 0 to 1 through discovery, PRDs and a cross-functional launch, cutting manual proctoring from 100 to 30 hours per exam batch.",
+        impact: "ai-proctoring",
       },
       {
-        text: "Referral growth module end-to-end: +32% conversion; A/B tested monetary vs prep-material vs combined incentives (+15% signups at target CAC); reward pivot to ChatGPT Plus voucher lifted power-user referrals +20%",
+        text: "Lifted referral-to-signup conversion from 7% to 12% by pinpointing drop-off through funnel and cohort analysis, prioritising an incentive redesign over competing bets and validating it in A/B tests.",
         impact: "referral-growth",
       },
       {
-        text: "AI exam monitoring: PRD through release; −70% manual effort over 15K+ sessions",
-        impact: "ai-proctoring",
+        text: "Owned acquisition-funnel experimentation: landing-page A/B tests prioritised by impact and effort and tracked on self-serve dashboards (DAU/MAU, activation); sign-up conversion nearly doubled, from 10% to 19.1%.",
+        impact: "signup-conversion",
       },
-      "Funnel instrumentation in Mixpanel: fixed copy-link drop-off (+18% interactions, +10% referral conversions); CleverTap re-engagement journeys (WhatsApp/email/SMS) re-activated dormant users (+12% signups)",
       {
-        text: "Razorpay Route integration: split-payment rules, webhook error handling, payment-ID mapping; −99% manual reconciliation",
+        text: "Diagnosed bottlenecks in manual payment reconciliation and replaced it with a Razorpay API integration (API specs, QA): payments reconciled in real time with no mismatches, reducing manual reconciliation effort by 99%.",
         impact: "razorpay-route",
       },
       {
-        text: "Identified enrollment bottlenecks behind stalled waitlists, designed an automated seat-allocation workflow, and shipped it via user stories, UAT, and release, converting 30% of waitlisted users with zero vacant seats.",
+        text: "Identified enrolment bottlenecks behind stalled waitlists and shipped an automated seat-allocation workflow: 60 of 200 waitlisted learners (30%) converted to enrolments and no seats went unfilled.",
         impact: "waitlist-automation",
       },
-      "RICE-prioritized self-serve interview rescheduling: +8% completion, +2% downstream admissions",
-      "Agile/Scrum in JIRA, ClickUp documentation, DAU/MAU growth dashboards",
     ],
   },
   {
     id: "healthkart",
     title: "Product Management Trainee",
     company: "HealthKart",
+    descriptor: "health and nutrition e-commerce",
     location: "Gurugram",
     dates: "Aug 2024 – Mar 2025",
+    summary:
+      "Product trainee on the warehouse, inventory and order management systems (WMS, OMS) that run HealthKart's fulfilment.",
     bullets: [
-      "ERP roadmap (SAP B1, Pharmacloud) unlocking a category worth 5% of total revenue; ERPNext migration requirements that unlocked SOC-2 compliance; PRDs, user stories, journey optimisation",
+      "With warehouse ops and engineering, cut picking errors by 10% by introducing scan-based WMS validation and FEFO (first-expiry, first-out) checks, backed by SOPs and staff training.",
+      "With the OMS engineering team, cut stock-out cancellations from 8% to 6% and order-to-dispatch time from 10 to 8 hours by syncing inventory across sales channels and routing orders to the nearest in-stock warehouse.",
+      "Ran user research with internal ops users to map journeys and surface workflow gaps; prioritised a platform migration and wrote its PRDs and user stories, removing a blocker to SOC-2 compliance.",
     ],
   },
   {
     id: "healthmug",
-    title: "Category Management Intern",
+    title: "Category Management Intern (PGDM internship)",
     company: "Healthmug",
+    descriptor: "health e-commerce",
     location: "New Delhi",
     dates: "Apr 2023 – Jul 2023",
     bullets: [
-      "Purchase-data analytics: +25% repeat purchases; catalog expansion +18%, contributing to 35% MoM growth",
+      "With the category team, lifted the repeat-purchase rate from 20% to 25% by analysing purchase behaviour for repeat drivers and changing merchandising and retention tactics to match.",
+      "Spotted demand gaps in category data and expanded the assortment from 1,230 to 1,820 SKUs (+48%), driving 35% month-on-month category growth.",
     ],
   },
 ];
 
-/** Sectors worked in, shown as chips atop Experience and reused in the skills index. */
+/** Sectors worked in, shown as chips atop Experience. */
 export const domains = [
   "Regulated Fintech",
   "KYC/AML",
-  "Compliance Workflows",
-  "Roles & Permissions",
   "Payments",
-  "Proptech",
   "Edtech",
   "E-commerce",
-  "D2C",
-  "B2B SaaS",
+  "WMS",
+  "OMS",
 ];
 
 /** The role marked `current: true` (scripts/check-content.ts asserts exactly one, listed first). */
@@ -148,14 +160,15 @@ export const identity = {
   location: "Bengaluru, India",
   company: currentRole.company,
   tenure: currentRole.dates,
-  // Resume summary, sentence one.
+  // Resume summary, sentences one and three (meta description, OG and Twitter text).
   positioning:
-    "Product Manager who builds AI, fintech, and growth products end-to-end, from discovery to launch, across regulated financial services, edtech, e-commerce, and direct-to-consumer platforms, driving conversion, compliance, and delivery predictability.",
+    "Product Manager with 2+ years across regulated fintech (KYC/AML), edtech growth and e-commerce operations (WMS, OMS). Focused on B2B fintech platforms and applied AI.",
   companyShort: currentRole.companyShort ?? currentRole.company,
   greeting: "Hello there!",
-  // REVIEW(Faraz): drafted for the September 2026 resume sync (sign-off S1).
+  // REVIEW(Faraz): resume summary in the first person (October 2026 resume
+  // sync), plus the AI-builder line drawn from the Signal project.
   bio:
-    "I'm a product manager who builds AI, fintech, and growth products end-to-end, from discovery to launch. At Zamplitude I design and ship KYC and compliance workflows for a regulated GCC investment platform; before that I owned growth, AI, and payments work at Newton School, from referral funnels and Razorpay split-payments to AI exam-proctoring, turning fuzzy problems into measurable outcomes. Lately I build AI products myself: agentic systems with their own evaluation harnesses, explainable scoring, and human-in-the-loop review.",
+    "I'm a product manager with 2+ years across regulated fintech (KYC/AML), edtech growth and e-commerce operations (WMS, OMS). As the first PM hire at Zamplitude, I own a regulated investment firm's KYC/AML platform; at Newton School, I launched AI exam monitoring and nearly doubled sign-up conversion. I'm focused on B2B fintech platforms and applied AI, and I build AI prototypes myself, with evaluation harnesses and human-in-the-loop review.",
   siteUrl: "https://faraz-website.vercel.app",
   phone: "+91 79911 93433",
   phoneHref: "tel:+917991193433",
@@ -184,10 +197,10 @@ export const credibility: {
   education: CredibilityOrg[];
 } = {
   experience: [
-    { name: "Zamplitude", mark: "Z", descriptor: "Fintech", accent: "#FFD68A" },
+    { name: "Zamplitude", mark: "Z", descriptor: "SaaS", accent: "#FFD68A" },
     { name: "Newton School", mark: "NS", descriptor: "EdTech", accent: "#4F7CFF", logo: "/logos/newton-school.png" },
     { name: "HealthKart", mark: "HK", descriptor: "E-commerce", accent: "#18C6B4", logo: "/logos/healthkart.png" },
-    { name: "Healthmug", mark: "hm", descriptor: "D2C", accent: "#9DB8FF", logo: "/logos/healthmug.png" },
+    { name: "Healthmug", mark: "hm", descriptor: "E-commerce", accent: "#9DB8FF", logo: "/logos/healthmug.png" },
   ],
   education: [
     { name: "KIIT University", mark: "KIIT", descriptor: "B.Tech", accent: "#FFB454", logo: "/logos/kiit.png" },
@@ -221,48 +234,52 @@ export type Metric = {
 /** Hero metrics, one group per role; each group becomes a tab. */
 export type MetricGroup = { org: OrgId; label: string; metrics: Metric[] };
 
+// Tiles follow resume bullet order. Before-and-after figures lead with the
+// "after" value and put the "before" in the detail line.
 export const metricGroups: MetricGroup[] = [
   {
     org: "zamplitude",
     label: "Zamplitude",
     metrics: [
       {
-        // An absolute approval rate: never prefix it with "+".
-        value: 91,
-        suffix: "%",
-        label: "First-pass KYC approval rate",
-        detail:
-          "End-to-end review and approval workflow, defined across twelve requirement sessions with four compliance stakeholders.",
-        slug: "kyc-review-workflow",
-        resumeEvidence: "first-pass approval to 91%",
-      },
-      {
         value: 68,
         suffix: "%",
         label: "Applications auto-cleared",
         detail:
-          "Automated risk scoring on Nafath-verified identity attributes; review turnaround cut from 72 hours to under 8.",
+          "Risk-scoring bands and auto-approval thresholds over verified digital-ID data; turnaround fell from 72 hours to under 8.",
         slug: "risk-scoring",
-        resumeEvidence: "auto-clearing 68% of applications",
+        resumeEvidence: "68% of applications auto-cleared",
       },
       {
-        value: 60,
-        prefix: "−",
+        // An absolute clearance rate: never prefix it with "+".
+        value: 61,
         suffix: "%",
-        label: "Audit-preparation effort",
+        label: "First-pass compliance clearance",
         detail:
-          "Roles and Permissions module, prioritised from an audit of 30+ compliance actions; shared-access accounts eliminated.",
+          "Up from 23%, after redesigning the KYC review and approval workflow across 12 requirement sessions.",
+        slug: "kyc-review-workflow",
+        resumeEvidence: "first-pass compliance clearance from 23% to 61%",
+      },
+      {
+        // REVIEW(Faraz): the resume's only figure for this work is the audit
+        // size, so the outcome sits in the detail line.
+        value: 30,
+        suffix: "+",
+        label: "Compliance actions audited",
+        detail:
+          "Exposed shared-login risk; a Roles and Permissions module replaced every shared login with individual, role-based access.",
         slug: "roles-permissions",
-        resumeEvidence: "audit-preparation effort 60%",
+        resumeEvidence: "Audited 30+ compliance actions",
       },
       {
         value: 120,
+        prefix: "~",
         suffix: "h",
-        label: "Rework averted, estimated",
+        label: "Rework saved",
         detail:
-          "Mock AML service with API contracts unblocked frontend and QA three weeks ahead of vendor sandbox access.",
+          "Mock AML service with API contracts unblocked frontend and QA 3 weeks before sandbox access.",
         slug: "aml-mock-service",
-        resumeEvidence: "estimated 120 hours of rework",
+        resumeEvidence: "~120 hours of rework saved",
       },
     ],
   },
@@ -271,43 +288,41 @@ export const metricGroups: MetricGroup[] = [
     label: "Newton School",
     metrics: [
       {
-        value: 32,
-        prefix: "+",
-        suffix: "%",
-        label: "Referral conversion lift",
+        value: 30,
+        suffix: "h",
+        label: "Manual proctoring per exam batch",
         detail:
-          "Owned roadmap and lifecycle of the referral growth module; OKRs, cohort and funnel analysis, incentive experiments.",
-        slug: "referral-growth",
-        resumeEvidence: "lifting conversion 32%",
+          "Down from 100 hours across 15,000+ exam sessions, with an AI exam-monitoring system taken from 0 to 1.",
+        slug: "ai-proctoring",
+        resumeEvidence: "from 100 to 30 hours per exam batch",
       },
       {
-        value: 70,
-        prefix: "−",
+        value: 12,
         suffix: "%",
-        label: "Manual proctoring effort, across 15,000+ sessions",
+        label: "Referral-to-signup conversion",
         detail:
-          "AI-powered exam monitoring: lightweight screenshot cadence, predefined malpractice flags, human-review pipeline.",
-        slug: "ai-proctoring",
-        resumeEvidence: "cutting proctoring effort 70%",
+          "Up from 7%. Drop-off pinpointed through funnel and cohort analysis; incentive redesign validated in A/B tests.",
+        slug: "referral-growth",
+        resumeEvidence: "referral-to-signup conversion from 7% to 12%",
+      },
+      {
+        value: 19.1,
+        suffix: "%",
+        label: "Sign-up conversion",
+        detail:
+          "Nearly doubled, up from 10%, through landing-page A/B tests prioritised by impact and effort.",
+        slug: "signup-conversion",
+        resumeEvidence: "sign-up conversion nearly doubled, from 10% to 19.1%",
       },
       {
         value: 99,
         prefix: "−",
         suffix: "%",
-        label: "Payment reconciliation effort, with 100% real-time transaction accuracy",
+        label: "Manual reconciliation effort, with no payment mismatches",
         detail:
           "Razorpay Route API split payments between two accounts, webhook-driven failure handling.",
         slug: "razorpay-route",
-        resumeEvidence: "cutting manual effort 99%",
-      },
-      {
-        value: 30,
-        suffix: "%",
-        label: "Waitlist-to-seat conversion, zero vacant seats",
-        detail:
-          "Automated waitlisting workflows replacing a proposed CRM; cut turnaround ~90%.",
-        slug: "waitlist-automation",
-        resumeEvidence: "converting 30% of waitlisted users",
+        resumeEvidence: "reducing manual reconciliation effort by 99%",
       },
     ],
   },
@@ -379,8 +394,9 @@ export const caseStudies: CaseStudy[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// Shipped products / build-in-public projects (the "Built" section). Signal is
-// the flagship; the rest are secondary cards. Descriptions are the owner's,
+// Prototypes and side projects (the "Built" section). Signal is the flagship;
+// the rest are secondary cards. Signal's subtitle and highlights and Cairn's
+// description follow the resume; the other descriptions are the owner's,
 // verbatim — no usage/adoption numbers (these are side projects).
 // ---------------------------------------------------------------------------
 export type Project = {
@@ -408,11 +424,11 @@ export const projects: Project[] = [
     repo: "https://github.com/FarazO7/Signal",
     demo: "https://signal-theta-ten.vercel.app",
     flagship: true,
-    subtitle: "AI Product Feedback Intelligence Platform",
+    subtitle: "Agentic LLM feedback-triage prototype",
     year: "2026",
     highlights: [
-      "Built Signal to turn hundreds of scattered user-feedback items into a trustworthy roadmap: an AI platform that classifies, clusters, and scores feedback into prioritised, evidence-backed recommendations on what to build next.",
-      "Engineered for trust and adoption: explainable scoring, a human-in-the-loop review step, and an evaluation framework measuring theme recall, precision, and hallucination rate, so PMs can act on recommendations with confidence.",
+      "Built an agentic LLM pipeline that classifies, clusters and scores scattered user feedback into ranked, evidence-linked recommendations on what to build next.",
+      "Added explainable scoring, a human-in-the-loop review step and an evaluation harness that measures theme recall, precision and hallucination rate against a labelled set.",
     ],
   },
   {
@@ -424,9 +440,9 @@ export const projects: Project[] = [
   },
   {
     name: "Cairn",
-    tagline: "RAG · Life-coaching",
+    tagline: "RAG · Coaching assistant",
     description:
-      "A retrieval-augmented life-coaching app — retrieves the most relevant material from a coaching knowledge base (OpenAI embeddings + cosine retrieval) to ground each reply, behind a glassmorphism UI.",
+      "A RAG coaching assistant prototype that grounds its answers in a custom corpus using cosine-similarity embedding search.",
     repo: "https://github.com/FarazO7/cairn",
   },
   {
@@ -459,125 +475,75 @@ export const capabilities: Capability[] = [
 export type SkillNode = { label: string; slug?: string };
 export type SkillHub = { name: string; accent: string; nodes: SkillNode[] };
 
-// Five hubs of skills with direct evidence on this site (resume summary,
-// Zamplitude and Newton bullets, Signal and Cairn). The full resume taxonomy
-// lives in `skillsIndex` below. The first hub renders full-width.
+// The resume's four skill groups, items verbatim and in resume order, as a
+// 2×2 grid of hub cards.
 export const skills: SkillHub[] = [
   {
-    name: "Core PM",
+    name: "Product",
     accent: "#4F7CFF", // indigo
     nodes: [
-      { label: "Product Strategy" },
-      { label: "Roadmapping" },
       { label: "Discovery" },
-      { label: "PRDs & User Stories" },
-      { label: "GTM" },
-      { label: "Agile/Scrum" },
-      { label: "Release Management" },
-      { label: "Stakeholder Management" },
-      { label: "OKRs/KPIs" },
-      { label: "User Research" },
+      { label: "User research and interviews" },
       { label: "JTBD" },
-      { label: "Prioritisation (RICE/MoSCoW)" },
-      { label: "Requirements Engineering" },
-    ],
-  },
-  {
-    name: "Delivery & Programme",
-    accent: "#9DB8FF", // star blue
-    nodes: [
+      { label: "PRDs and user stories" },
+      { label: "Acceptance criteria" },
       { label: "UAT" },
-      { label: "Delivery Management" },
-      { label: "Sprint Planning" },
-      { label: "Backlog Grooming" },
-      { label: "RAID Management" },
-      { label: "Risk Management" },
-      { label: "Change Control" },
-      { label: "Earned Value Management" },
-      { label: "Solution Blueprinting" },
-      { label: "Vendor Integration" },
-      { label: "Client Communication" },
+      { label: "Roadmapping" },
+      { label: "Prioritisation (RICE, MoSCoW)" },
+      { label: "OKRs" },
+      { label: "Go-to-market" },
+      { label: "Agile/Scrum" },
+      { label: "Stakeholder management" },
     ],
   },
   {
-    name: "Data & Analytics",
+    name: "Growth and data",
     accent: "#18C6B4", // teal
     nodes: [
+      { label: "A/B tests" },
+      { label: "Experimentation" },
+      { label: "Funnel/cohort analysis" },
       { label: "SQL" },
-      { label: "Python", slug: "python" },
-      { label: "Funnel & Cohort Analysis" },
-      { label: "A/B Testing" },
       { label: "Mixpanel", slug: "mixpanel" },
-      { label: "Product Analytics" },
-      { label: "DAU/MAU" },
-      { label: "Dashboarding" },
-      { label: "Referral Growth" },
-      { label: "Activation" },
-      { label: "Retention" },
+      { label: "GA4", slug: "googleanalytics" },
+      { label: "CleverTap" }, // no simple-icons mark → text node
+      { label: "Metabase", slug: "metabase" },
+      { label: "Excel" }, // no simple-icons mark → text node
     ],
   },
   {
-    name: "AI & Automation",
+    name: "AI",
     accent: "#FFB454", // amber
     nodes: [
-      { label: "AI-Powered Products" },
-      { label: "LLMs" },
-      { label: "Prompt Engineering" },
-      { label: "AI Agents" },
-      { label: "Workflow Automation" },
+      { label: "GenAI and LLM applications" },
+      { label: "Agentic workflows" },
       { label: "RAG" },
-      { label: "LLM Evaluation" },
-      { label: "Human-in-the-Loop Design" },
+      { label: "Evals" },
+      { label: "Human-in-the-loop design" },
+      { label: "Prompt engineering" },
     ],
   },
   {
-    name: "Tools",
+    name: "Technical and domains",
     accent: "#8B5CF6", // violet
     nodes: [
-      { label: "JIRA", slug: "jira" },
-      { label: "Confluence", slug: "confluence" },
-      { label: "GA4", slug: "googleanalytics" },
-      { label: "Firebase", slug: "firebase" },
-      { label: "CleverTap" }, // no simple-icons mark → text node
-      { label: "Tableau" }, // removed from simple-icons → text node
-      { label: "Metabase", slug: "metabase" },
-      { label: "ClickUp", slug: "clickup" },
-      { label: "Notion", slug: "notion" },
       { label: "REST APIs" },
+      { label: "API specs" },
+      { label: "Python", slug: "python" },
+      { label: "Jira", slug: "jira" },
+      { label: "Confluence", slug: "confluence" },
+      { label: "Notion", slug: "notion" },
+      { label: "KYC/AML" },
+      { label: "Payments" },
+      { label: "WMS" },
+      { label: "OMS" },
     ],
   },
 ];
 
-// Resume summary, sentence two: the line under the Skills heading.
+// The line under the Skills heading, limited to skills the resume lists.
 export const skillsIntro =
-  "Fluent in product discovery, user research, JTBD, prioritisation, experimentation, A/B testing, requirements engineering, APIs, and SQL-driven decisions.";
-
-// The resume's six skill groups, verbatim, for the "All skills" index.
-export type SkillGroup = { name: string; items: string[] };
-
-export const skillsIndex: SkillGroup[] = [
-  {
-    name: "Product Management",
-    items: ["Product Strategy", "Product Vision", "Product-Market Fit", "Product Discovery", "JTBD", "User Research", "User Interviews", "Customer Segmentation", "Customer Insights", "Roadmapping", "Lifecycle Management", "0-to-1 Products", "Go-to-Market", "PRDs", "User Stories", "Acceptance Criteria", "Requirements Engineering", "Prioritisation (RICE/MoSCoW)", "North Star Metrics", "OKRs/KPIs", "Journey Mapping", "Competitive Analysis", "Stakeholder Management", "Agile/Scrum", "Release Management"],
-  },
-  {
-    name: "Delivery & Programme",
-    items: ["Delivery Management", "Sprint Planning", "Backlog Grooming", "Earned Value Management", "RAID Management", "Change Control", "Risk Management", "UAT", "Retrospectives", "Client Communication", "Solution Blueprinting", "Pre-Sales", "Vendor Evaluation", "Vendor Integration"],
-  },
-  {
-    name: "Growth & Analytics",
-    items: ["A/B Testing", "Experimentation", "Experiment Design", "Funnel & Cohort Analysis", "Activation", "Retention", "Feature Adoption", "Growth Loops", "Referral Growth", "SQL", "Product Analytics", "DAU/MAU", "Growth Metrics", "Dashboarding", "Data Visualisation"],
-  },
-  {
-    name: "AI & Automation",
-    items: ["AI Agents", "Agentic AI", "Generative AI", "LLMs", "RAG", "Prompt Engineering", "LLM Evaluation", "Human-in-the-Loop Design", "AI Product Development", "AI-Native Product Development", "Workflow Automation"],
-  },
-  { name: "Domains", items: domains },
-  {
-    name: "Technical & Tools",
-    items: ["Python", "REST APIs", "API Documentation", "Payment Gateway Integration", "JIRA", "Confluence", "ClickUp", "Notion", "Google Analytics (GA4)", "Mixpanel", "CleverTap", "Firebase", "Tableau", "Power BI", "Metabase", "Advanced Excel", "SAP"],
-  },
-];
+  "Fluent in product discovery, user research, JTBD, prioritisation, experimentation, A/B testing, APIs, and SQL-driven decisions.";
 
 export type Credential = { text: string; href?: string };
 
@@ -601,16 +567,12 @@ export const achievements: Achievement[] = [
     year: "2023",
     icon: "award",
   },
-  // Wire an href here if/when the PDF is supplied; it becomes a link.
-  { title: "Founder’s Recommendation Letter", icon: "fileBadge" },
 ];
 
+// The resume's certifications; NextLeap Top Fellow sits in `achievements`.
 export const certifications: Credential[] = [
-  { text: "Lean Six Sigma — KPMG" },
-  { text: "Business Analytics with Excel — Coursera" },
-  { text: "Google Analytics Certification" },
-  { text: "SQL for Data Science — Coursera" },
-  { text: "Business Analysis & Process Management — Coursera" },
+  { text: "Lean Six Sigma (KPMG)" },
+  { text: "Google Analytics 4 (Google)" },
 ];
 
 // Rendered with the same vertical timeline as Experience (Phase 3). Empty
@@ -636,7 +598,8 @@ export const educationTimeline: Role[] = [
 
 // ---------------------------------------------------------------------------
 // Impact detail pages (Phase 7). Each hero metric tile links to /impact/{slug}.
-// Narratives are the owner's, transcribed verbatim — no invented numbers.
+// The Zamplitude and sign-up pages are restructured from the resume; the other
+// Newton narratives are the owner's, transcribed verbatim — no invented numbers.
 // ---------------------------------------------------------------------------
 
 export type ImpactMeta = { label: string; value: string };
@@ -657,68 +620,71 @@ export const confidentiality: Record<ImpactOrg, string> = {
   zamplitude:
     "Client work. Details are limited to what can be shared publicly, and the client is not named. Happy to walk through the approach in conversation.",
   newton:
-    "Specific internal data is summarized at the level Newton School permits publicly — happy to discuss details in conversation.",
+    "Specific internal data is summarised at the level Newton School permits publicly; happy to discuss details in conversation.",
 };
 
 // Shared by every Zamplitude page. The client stays anonymous everywhere.
 const ZAMPLITUDE_META: ImpactMeta[] = [
   {
     label: "Company",
-    value: "Zamplitude (client: regulated GCC investment platform)",
+    value: "Zamplitude (client: regulated investment firm)",
   },
   { label: "Industry", value: "Regulated Fintech (KYC/AML)" },
-  { label: "Role", value: "Product Manager" },
+  { label: "Role", value: "Product Manager, first PM hire" },
 ];
 
 export const impactDetails: ImpactDetail[] = [
   {
     slug: "kyc-review-workflow",
     org: "zamplitude",
-    metric: "91% First-Pass Approval",
+    metric: "61% First-Pass Compliance Clearance",
     outcome:
-      "KYC review moved from stalling to a defined end-to-end approval workflow.",
+      "Up from 23%, after the KYC review and approval workflow was redesigned.",
     meta: [
-      { label: "Project type", value: "Compliance workflow, discovery to UAT" },
+      { label: "Project type", value: "Compliance workflow redesign" },
       ...ZAMPLITUDE_META,
-      { label: "Collaboration", value: "Four client-side compliance stakeholders" },
-      { label: "Discovery", value: "Twelve requirement sessions" },
+      { label: "Collaboration", value: "4 client compliance stakeholders" },
+      { label: "Discovery", value: "12 requirement sessions" },
     ],
     sections: [
       {
         heading: "Problem",
         // REVIEW(Faraz): restructured from the resume bullet.
-        body: "KYC review was stalling on a regulated GCC investment platform.",
+        body: "KYC reviews were stalling, and first-pass compliance clearance stood at 23%.",
       },
       {
         heading: "Approach & key decisions",
-        body: "Ran discovery with four client-side compliance stakeholders across twelve requirement sessions to trace where review stalled. Defined the end-to-end review and approval workflow, then shipped it via PRDs, user stories, and UAT.",
+        body: "Traced where KYC reviews stalled through 12 requirement sessions with 4 client compliance stakeholders, then redesigned the review and approval workflow.",
       },
-      { heading: "Results", body: "First-pass approval lifted to 91%." },
+      {
+        heading: "Results",
+        body: "First-pass compliance clearance rose from 23% to 61%.",
+      },
     ],
   },
   {
     slug: "compliance-dashboard",
     org: "zamplitude",
     metric: "5 Days → Same-Day Question Changes",
-    outcome: "A two-level approval flow replaced an email-based approval trail.",
+    outcome: "A compliance dashboard replaced an email approval trail.",
     meta: [
-      { label: "Project type", value: "Compliance dashboard, design to launch" },
+      { label: "Project type", value: "Compliance dashboard" },
       ...ZAMPLITUDE_META,
-      { label: "Scope", value: "KYC and EDD questions" },
+      { label: "Scope", value: "KYC and Enhanced Due Diligence (EDD) questions" },
     ],
     sections: [
       {
         heading: "Problem",
         // REVIEW(Faraz): restructured from the resume bullet.
-        body: "KYC and EDD question changes ran through an email-based approval trail, with a change cycle of 5 days.",
+        body: "KYC and EDD question changes ran through an email approval trail, with a turnaround of 5 days.",
       },
       {
         heading: "Approach & key decisions",
-        body: "Designed and shipped a compliance dashboard with a two-level approval flow spanning question creation, review, and sign-off for KYC and EDD, plus EDD assignment to flagged users with integrated notifications.",
+        body: "Replaced the email approval trail with a compliance dashboard: two-level sign-off for KYC and Enhanced Due Diligence (EDD) questions, plus EDD assignment to flagged users.",
       },
       {
         heading: "Results",
-        body: "Question change cycle time cut from 5 days to same-day.",
+        body: "Question-change turnaround cut from 5 days to same day.",
       },
     ],
   },
@@ -726,12 +692,12 @@ export const impactDetails: ImpactDetail[] = [
     slug: "risk-scoring",
     org: "zamplitude",
     metric: "68% Auto-Cleared",
-    outcome: "Review turnaround cut from 72 hours to under 8.",
+    outcome: "Turnaround fell from 72 hours to under 8.",
     meta: [
       { label: "Project type", value: "Risk-scoring automation" },
       ...ZAMPLITUDE_META,
       { label: "Collaboration", value: "Client Compliance Officer" },
-      { label: "Identity basis", value: "Nafath-verified attributes" },
+      { label: "Identity basis", value: "Verified digital-ID data" },
     ],
     sections: [
       {
@@ -741,21 +707,22 @@ export const impactDetails: ImpactDetail[] = [
       },
       {
         heading: "Approach & key decisions",
-        body: "Replaced manual approval with automated risk scoring built on Nafath-verified identity attributes, and defined the scoring bands and auto-approval thresholds with the client Compliance Officer.",
+        body: "Partnered with the client's Compliance Officer on risk-scoring bands and auto-approval thresholds over verified digital-ID data, replacing case-by-case review.",
       },
       {
         heading: "Results",
-        body: "68% of applications auto-cleared; review turnaround cut from 72 hours to under 8.",
+        body: "68% of applications auto-cleared; turnaround fell from 72 hours to under 8.",
       },
     ],
   },
   {
     slug: "roles-permissions",
     org: "zamplitude",
-    metric: "−60% Audit-Prep Effort",
-    outcome: "Shared-access accounts eliminated entirely.",
+    metric: "Every Shared Login Replaced",
+    outcome:
+      "Individual, role-based access, prioritised from an audit of 30+ compliance actions.",
     meta: [
-      { label: "Project type", value: "Access control, audit to QA sign-off" },
+      { label: "Project type", value: "Access control" },
       ...ZAMPLITUDE_META,
       { label: "Audit scope", value: "30+ compliance actions" },
     ],
@@ -767,24 +734,23 @@ export const impactDetails: ImpactDetail[] = [
       },
       {
         heading: "Approach & key decisions",
-        body: "Audited 30+ compliance actions against regulatory obligations to expose the shared-login risk, prioritised a Roles and Permissions module over competing scope, and shipped it with acceptance criteria and QA sign-off.",
+        body: "Audited 30+ compliance actions against regulatory obligations, exposing shared-login risk, and prioritised a Roles and Permissions module over competing scope.",
       },
       {
         heading: "Results",
-        body: "Shared-access accounts eliminated entirely; audit-preparation effort down 60%.",
+        body: "Every shared login replaced with individual, role-based access, following an audit of 30+ compliance actions.",
       },
     ],
   },
   {
     slug: "aml-mock-service",
     org: "zamplitude",
-    metric: "120 Hours of Rework Averted (est.)",
-    outcome:
-      "Frontend and QA unblocked three weeks ahead of vendor sandbox access.",
+    metric: "~120 Hours of Rework Saved",
+    outcome: "Frontend and QA unblocked 3 weeks before sandbox access.",
     meta: [
       { label: "Project type", value: "Vendor integration, API contracts" },
       ...ZAMPLITUDE_META,
-      { label: "Deliverable", value: "Mock service specification" },
+      { label: "Deliverable", value: "Mock service with API contracts" },
     ],
     sections: [
       {
@@ -794,21 +760,21 @@ export const impactDetails: ImpactDetail[] = [
       },
       {
         heading: "Approach & key decisions",
-        body: "Parsed the full AML screening vendor specification programmatically to derive field mappings and status enumerations, flagged two vendor contradictions before build, and shipped a mock service specification with API contracts.",
+        body: "Parsed the AML vendor's specification programmatically, flagged 2 contradictions before build and published a mock service with API contracts.",
       },
       {
         heading: "Results",
-        body: "Frontend and QA unblocked three weeks ahead of vendor sandbox access; an estimated 120 hours of rework averted.",
+        body: "Frontend and QA unblocked 3 weeks before sandbox access; ~120 hours of rework saved.",
       },
     ],
   },
   {
     slug: "signup-conversion",
     org: "newton",
-    metric: "+91% Sign-Up Conversion",
-    outcome: "Sign-up conversion raised from 10% to 19.1%.",
+    metric: "19.1% Sign-Up Conversion",
+    outcome: "Nearly doubled, from 10%.",
     meta: [
-      { label: "Project type", value: "Acquisition-funnel optimisation" },
+      { label: "Project type", value: "Acquisition-funnel experimentation" },
       { label: "Company", value: "Newton School" },
       { label: "Industry", value: "Edtech" },
       { label: "Role", value: "Associate Product Manager" },
@@ -821,34 +787,35 @@ export const impactDetails: ImpactDetail[] = [
       },
       {
         heading: "Approach & key decisions",
-        body: "Owned acquisition-funnel optimisation: prioritised landing-page experiments by impact and effort, and shipped iterative variants backed by self-serve dashboards (DAU/MAU, activation).",
+        body: "Owned acquisition-funnel experimentation: landing-page A/B tests prioritised by impact and effort and tracked on self-serve dashboards (DAU/MAU, activation).",
       },
       {
         heading: "Results",
-        body: "Sign-up conversion raised from 10% to 19.1%, a 91% lift.",
+        body: "Sign-up conversion nearly doubled, from 10% to 19.1%.",
       },
     ],
   },
   {
     slug: "referral-growth",
     org: "newton",
-    metric: "+32% Referral Conversion",
-    outcome: "Referrals became a core growth lever for the platform.",
+    metric: "12% Referral-to-Signup Conversion",
+    outcome:
+      "Up from 7%; referrals became a core growth lever for the platform.",
     meta: [
       { label: "Project type", value: "Growth module, end-to-end ownership" },
       { label: "Company", value: "Newton School" },
       { label: "Industry", value: "Edtech" },
       { label: "Role", value: "Associate Product Manager" },
-      { label: "Collaboration", value: "PM + engineering + program team" },
+      { label: "Collaboration", value: "PM + engineering + programme team" },
     ],
     sections: [
       {
         heading: "Problem",
-        body: "Referral signups were declining; analysis of user behavior showed monetary rewards alone weren't motivating students to share.",
+        body: "Referral signups were declining; analysis of user behaviour showed monetary rewards alone weren't motivating students to share.",
       },
       {
         heading: "Approach & key decisions",
-        body: "Proposed collaborative prep materials as an incentive and ran a three-arm A/B test — monetary vs prep-material vs combined. The tradeoff was explicit: removing money risked immediate referrals (the monetary-only cohort dropped ~10%), but the combined arm lifted overall referral signups 15% while holding acquisition cost within target — balancing short-term incentive seekers against long-term engagement.",
+        body: "Proposed collaborative prep materials as an incentive and ran a three-arm A/B test: monetary vs prep-material vs combined. The trade-off was explicit: removing money risked immediate referrals (the monetary-only cohort dropped ~10%), but the combined arm lifted overall referral signups 15% while holding acquisition cost within target, balancing short-term incentive seekers against long-term engagement.",
       },
       {
         heading: "Iterations",
@@ -860,14 +827,14 @@ export const impactDetails: ImpactDetail[] = [
       },
       {
         heading: "Results",
-        body: "+32% referral conversion; referrals became a core growth lever.",
+        body: "Referral-to-signup conversion rose from 7% to 12%; referrals became a core growth lever.",
       },
     ],
   },
   {
     slug: "ai-proctoring",
     org: "newton",
-    metric: "−70% Manual Proctoring Effort",
+    metric: "100 → 30 Proctoring Hours per Exam Batch",
     outcome: "AI monitoring scaled exam integrity across 15,000+ sessions.",
     meta: [
       { label: "Project type", value: "AI feature, discovery → release" },
@@ -888,7 +855,7 @@ export const impactDetails: ImpactDetail[] = [
       },
       {
         heading: "Results",
-        body: "Manual effort down 70% across 15,000+ sessions, scaled with no memory overload.",
+        body: "Manual proctoring cut from 100 to 30 hours per exam batch across 15,000+ exam sessions, scaled with no memory overload.",
       },
     ],
   },
@@ -918,7 +885,7 @@ export const impactDetails: ImpactDetail[] = [
       },
       {
         heading: "Results",
-        body: "−99% manual reconciliation effort, 100% real-time transaction accuracy, refund delays eliminated.",
+        body: "−99% manual reconciliation effort, payments reconciled in real time with no mismatches, refund delays eliminated.",
       },
     ],
   },
@@ -943,11 +910,11 @@ export const impactDetails: ImpactDetail[] = [
       },
       {
         heading: "Approach & key decisions",
-        body: "Ran a cost-effort analysis showing a CRM added complexity while an automated waitlist could fulfill seats directly. Aligned stakeholders on the data — fewer manual calls, ~90% faster turnaround — then wrote the stories and acceptance criteria, facilitated UAT, and coordinated release.",
+        body: "Ran a cost-effort analysis showing a CRM added complexity while an automated waitlist could fulfil seats directly. Aligned stakeholders on the data (fewer manual calls, ~90% faster turnaround), then wrote the stories and acceptance criteria, facilitated UAT, and coordinated release.",
       },
       {
         heading: "Results",
-        body: "30% of waitlisted users converted, zero vacant seats, CRM complexity avoided. Everyone aligned once the results landed.",
+        body: "60 of 200 waitlisted learners (30%) converted to enrolments and no seats went unfilled; CRM complexity avoided. Everyone aligned once the results landed.",
       },
     ],
   },
@@ -968,7 +935,7 @@ export const curatedRepos: CuratedRepo[] = [
   {
     name: "Signal",
     description:
-      "AI feedback-triage agent: clusters user feedback into themes, grounds every recommendation in real source quotes, routes low-confidence calls to a human, and evaluates its own output.",
+      "Agentic LLM feedback-triage prototype: classifies, clusters and scores user feedback into ranked, evidence-linked recommendations, with an evaluation harness.",
     url: "https://github.com/FarazO7/Signal",
   },
   {
@@ -980,7 +947,7 @@ export const curatedRepos: CuratedRepo[] = [
   {
     name: "cairn",
     description:
-      "RAG life-coaching chat app (OpenAI embeddings + cosine retrieval).",
+      "RAG coaching assistant prototype (cosine-similarity embedding search).",
     url: "https://github.com/FarazO7/cairn",
   },
   {

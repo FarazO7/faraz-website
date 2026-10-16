@@ -16,10 +16,10 @@ const ICONS = { trophy: Trophy, award: Award, fileBadge: FileBadge } as const;
 
 // Each achievement reveals across its own window of the section's scroll
 // progress, leaving a lead-in and lead-out so the first/last don't clip.
+// Tuned for two achievements, spread across the pinned scroll.
 const WINDOWS: [number, number][] = [
-  [0.08, 0.3],
-  [0.34, 0.56],
-  [0.6, 0.82],
+  [0.1, 0.42],
+  [0.48, 0.8],
 ];
 
 export default function Achievements() {

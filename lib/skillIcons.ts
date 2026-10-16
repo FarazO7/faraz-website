@@ -1,10 +1,8 @@
 // Brand marks for skill nodes, imported from simple-icons at build time — no
 // runtime CDN, the export stays fully static. Only the icons actually used are
-// imported, so the bundle carries nine SVG paths, not the whole set.
+// imported, so the bundle carries seven SVG paths, not the whole set.
 import {
-  siClickup,
   siConfluence,
-  siFirebase,
   siGoogleanalytics,
   siJira,
   siMetabase,
@@ -20,11 +18,9 @@ const ICONS: Record<string, SimpleIcon> = {
   jira: siJira,
   confluence: siConfluence,
   googleanalytics: siGoogleanalytics,
-  firebase: siFirebase,
   metabase: siMetabase,
   python: siPython,
   mixpanel: siMixpanel,
-  clickup: siClickup,
   notion: siNotion,
 };
 

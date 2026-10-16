@@ -9,9 +9,9 @@
   at the top of `experience`; the title, company, tenure, metadata and JSON-LD
   derive from it. Never hardcode identity in `app/` or `components/`.
 - **Single source.** All copy lives in `lib/content.ts`; components only render it.
-- **Client anonymity.** Zamplitude's client is "a regulated GCC investment
-  platform". Never name or infer it in copy, alt text, metadata, slugs,
-  filenames or commit messages.
+- **Client anonymity.** Zamplitude's client is "a regulated investment firm",
+  as on the resume. Never name, locate or infer it (no region or national-ID
+  scheme) in copy, alt text, metadata, slugs, filenames or commit messages.
 - **Copy style.** New or edited copy is British English with no em dashes (use
   a comma or colon). No site-wide punctuation or spelling pass on untouched copy.
 - **Drafted copy.** Anything beyond verbatim resume text or existing content
