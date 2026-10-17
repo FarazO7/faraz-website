@@ -9,6 +9,7 @@ import Nav from "@/components/Nav";
 import PageTransition from "@/components/PageTransition";
 import Words from "@/components/Words";
 import { LinkedInMark } from "@/components/icons";
+import { linkProps } from "@/lib/links";
 import {
   confidentiality,
   getImpactDetail,
@@ -135,14 +136,12 @@ export default async function ImpactPage({
               {confidentiality[detail.org]}
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <a href={`mailto:${identity.email}`} className="btn btn-primary">
+              <a {...linkProps(identity.emailHref)} className="btn btn-primary">
                 <Mail className="size-4" aria-hidden />
                 {identity.email}
               </a>
               <a
-                href={identity.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
+                {...linkProps(identity.linkedin)}
                 className="btn btn-on-dark"
               >
                 <LinkedInMark className="size-4" />
@@ -153,7 +152,7 @@ export default async function ImpactPage({
           </footer>
         </PageTransition>
       </main>
-      <Footer base="/" />
+      <Footer />
     </>
   );
 }

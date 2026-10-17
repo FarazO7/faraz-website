@@ -11,16 +11,28 @@ import { usePathname } from "next/navigation";
 // motion the class is never added and the page stays static. Re-runs on
 // client navigation (home ↔ impact pages).
 const REVEAL_MS = 3000;
+
+function reveal(el: Element) {
+  el.classList.add("is-in");
+  window.setTimeout(() => el.removeAttribute("data-reveal"), REVEAL_MS);
+}
+
+/**
+ * Plays the reveal of elements mounted after the scan (e.g. the Impact tiles
+ * remounted by a tab switch). Two frames let their hidden state paint first.
+ */
+export function revealNow(root: ParentNode) {
+  if (!document.documentElement.classList.contains("reveal-ready")) return;
+  requestAnimationFrame(() =>
+    requestAnimationFrame(() => root.querySelectorAll("[data-reveal]:not(.is-in)").forEach(reveal)),
+  );
+}
+
 export default function RevealController() {
   const pathname = usePathname();
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const timers: number[] = [];
-    const reveal = (el: Element) => {
-      el.classList.add("is-in");
-      timers.push(window.setTimeout(() => el.removeAttribute("data-reveal"), REVEAL_MS));
-    };
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -37,10 +49,7 @@ export default function RevealController() {
       else observer.observe(el);
     }
     document.documentElement.classList.add("reveal-ready");
-    return () => {
-      observer.disconnect();
-      timers.forEach(clearTimeout);
-    };
+    return () => observer.disconnect();
   }, [pathname]);
 
   return null;

@@ -26,11 +26,6 @@
   --gradient-secondary: linear-gradient(270deg, #ffa3b8 0%, #fadee5 100%);
   --gradient-border: linear-gradient(90deg, #77a9f3, #e2edff);
   --gradient-ring: linear-gradient(264.59deg, #ffa3b8 -15%, #72a6f3 109.07%);
-  --gh-0: #edeff2;
-  --gh-1: #dfe9fa;
-  --gh-2: #b0ccfc;
-  --gh-3: #76a8f3;
-  --gh-4: #3d6fd1;
 
   --fs-display: clamp(2.75rem, 6.46vw, 7.75rem);
   --fs-h1: clamp(2.25rem, 3.65vw, 4.375rem);
@@ -253,12 +248,13 @@
   /* ---------------------------------------------------------------------------
      Surfaces
   --------------------------------------------------------------------------- */
-  /* The single glass primitive: the reference's navbar strip. Budget: nav plus
-     the three hero stat cards, so at most four live blurs per viewport. */
+  /* The single glass primitive: the reference's navbar strip. Budget: at most
+     six live blurs per viewport (docs/DESIGN.md). */
   .glass {
-    background: rgba(255, 255, 255, 0.7);
+    /* Solid enough to stay clean white over the ink footer. */
+    background: rgba(255, 255, 255, 0.88);
     border: 1px solid rgba(17, 18, 18, 0.06);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(16px) saturate(140%);
   }
 
   @supports not (backdrop-filter: blur(1px)) {
@@ -518,12 +514,16 @@
   }
 
   /* Odometer digit: the real digit stays in the DOM; a pseudo-element reel
-     rolls over it once revealed. */
+     rolls over it once revealed. Italic serif digits lean past their advance
+     width, so the box gets 0.15em of room on the right (cancelled by the
+     negative margin, so spacing is unchanged) and only clips while rolling.
+     Without the room the 8 in 68% and the 0s in 30+ lose their right edge. */
   .odo {
     position: relative;
     display: inline-block;
-    overflow: hidden;
     vertical-align: top;
+    padding-inline-end: 0.15em;
+    margin-inline-end: -0.15em;
   }
 }
 
@@ -641,13 +641,12 @@
   }
 
   /* Odometer: digits roll 0 → value (2s quint-out, staggered). */
-  .reveal-ready [data-reveal] .odo,
-  .hero-stage[data-live] .odo {
+  .reveal-ready [data-reveal] .odo {
+    overflow: hidden;
     color: transparent;
   }
 
-  .reveal-ready [data-reveal] .odo::before,
-  .hero-stage[data-live] .odo::before {
+  .reveal-ready [data-reveal] .odo::before {
     content: "0\A 1\A 2\A 3\A 4\A 5\A 6\A 7\A 8\A 9";
     white-space: pre;
     position: absolute;
@@ -657,8 +656,7 @@
     transform: translateY(0);
   }
 
-  .reveal-ready [data-reveal].is-in .odo::before,
-  .hero-stage[data-live][data-roll] .odo::before {
+  .reveal-ready [data-reveal].is-in .odo::before {
     transform: translateY(calc(var(--d) * -10%));
     transition: transform 2s var(--ease-quint) calc(var(--di, 0) * 0.05s);
   }
@@ -727,9 +725,12 @@ html.no-scroll {
 }
 
 /* ---------------------------------------------------------------------------
-   Hero stage. Static stack by default (reduced motion, no JS, short screens);
-   HeroStage adds [data-live] and drives --pc (copy), --pm (portrait move),
-   --pr (ring) and --k0..2 (cards), all 0 → 1, from scroll position.
+   Hero stage. Static stack by default (reduced motion, no JS, short screens).
+   The live scroll stage is chosen in CSS alone, before first paint: the .js
+   class plus the media query below (kept in step with HERO_LIVE_QUERY in
+   HeroStage.tsx). 750px clears the hero copy at every width (measured at
+   most 731px, at 320px wide). HeroStage then drives --pc (copy), --pm
+   (portrait move), --pr (ring) and --k0..4 (cards), all 0 → 1, from scroll.
 --------------------------------------------------------------------------- */
 .hero-stage {
   position: relative;
@@ -813,17 +814,51 @@ html.no-scroll {
   object-position: top;
 }
 
+/* The ring and the five strength cards share one grid, so no card can land
+   on the ring or the portrait inside it. Phones and tablets: the ring, then
+   the cards two per row, the fifth across both columns. */
 .hero-orbit {
+  --ring: min(15rem, 62vw);
   position: relative;
-  padding-block: 2rem 5rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 20rem));
+  grid-template-areas:
+    "ring ring"
+    "s1 s2"
+    "s3 s4"
+    "s5 s5";
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem 1rem 5rem;
+}
+
+.strength-card:nth-child(1) {
+  grid-area: s1;
+}
+
+.strength-card:nth-child(2) {
+  grid-area: s2;
+}
+
+.strength-card:nth-child(3) {
+  grid-area: s3;
+}
+
+.strength-card:nth-child(4) {
+  grid-area: s4;
+}
+
+.strength-card:nth-child(5) {
+  grid-area: s5;
 }
 
 .orbit-box {
-  --card-w: min(15rem, 50vw);
   position: relative;
-  width: min(34rem, 80vw);
+  grid-area: ring;
+  justify-self: center;
+  width: var(--ring);
   aspect-ratio: 1;
-  margin-inline: auto;
+  margin-bottom: 1.25rem;
 }
 
 .orbit-ring {
@@ -842,129 +877,120 @@ html.no-scroll {
   inset: 19%;
 }
 
-.orbit-card {
-  position: absolute;
-  z-index: 3;
-  display: block;
-  width: var(--card-w);
-  padding: 1.25rem 1.5rem 1.4rem;
+.strength-card {
+  padding: 0.875rem 1rem 1rem;
   border-radius: var(--radius);
-  /* Tint over the .glass primitive (the reference's stat cards). */
+  /* The reference's stat-card tint. */
   background: linear-gradient(232.63deg, rgba(207, 228, 255, 0.55) 14.38%, rgba(240, 240, 245, 0.75) 71.65%);
-  text-align: left;
 }
 
-/* Phones: one card above the ring, one at its right edge, one below. */
-.orbit-card-0 {
-  left: -4%;
-  top: -34%;
-}
-
-.orbit-card-1 {
-  right: -6%;
-  top: 34%;
-}
-
-.orbit-card-2 {
-  left: -4%;
-  bottom: -40%;
-}
-
-@media (max-width: 767px) {
+/* Desktop: two cards either side of the ring, the fifth beneath it. */
+@media (min-width: 1024px) {
   .hero-orbit {
-    padding-block: 9rem 10rem;
+    --ring: min(26rem, 50svh);
+    grid-template-columns: minmax(0, 1fr) var(--ring) minmax(0, 1fr);
+    grid-template-areas:
+      "s1 ring s3"
+      "s2 ring s4"
+      ". s5 .";
+    column-gap: clamp(1.5rem, 3vw, 3rem);
+    row-gap: 1.25rem;
+    padding-inline: max(1rem, 4vw);
   }
 
-  .orbit-card {
-    padding: 0.875rem 1rem 1rem;
+  .orbit-box {
+    margin: 0;
+  }
+
+  .strength-card {
+    width: min(100%, 17.5rem);
+    align-self: center;
+    padding: 1.25rem 1.5rem 1.4rem;
+  }
+
+  /* Each card slides in from its outer edge (see the live stage below). */
+  .strength-card:nth-child(-n + 2) {
+    --fx: -1;
+    --fy: 0;
+    justify-self: end;
+  }
+
+  .strength-card:nth-child(n + 3):nth-child(-n + 4) {
+    --fx: 1;
+    --fy: 0;
+    justify-self: start;
+  }
+
+  /* Its one line fits without wrapping (the ring column is wide enough). */
+  .strength-card:nth-child(5) {
+    width: max-content;
+    max-width: 100%;
+    justify-self: center;
   }
 }
 
-@media (min-width: 768px) {
-  .orbit-card-0 {
-    left: calc(-1 * var(--card-w) * 0.55);
-    top: 38%;
+@media (prefers-reduced-motion: no-preference) and (min-height: 750px) {
+  .js .hero-stage {
+    height: 190svh;
   }
 
-  .orbit-card-1 {
-    right: calc(-1 * var(--card-w) * 0.5);
-    top: 14%;
+  .js .hero-sticky {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    overflow: hidden;
   }
 
-  .orbit-card-2 {
-    left: calc(50% - var(--card-w) / 2);
-    bottom: -6%;
+  .js .hero-top {
+    height: 100svh;
   }
-}
 
-.hero-stage[data-live] {
-  height: 190svh;
-}
+  .js .hero-copy {
+    opacity: calc(1 - var(--pc, 0));
+    transform: translateY(calc(var(--pc, 0) * -3rem));
+  }
 
-.hero-stage[data-live] .hero-sticky {
-  position: sticky;
-  top: 0;
-  height: 100svh;
-  overflow: hidden;
-}
+  /* Once the copy has faded, its invisible buttons stop taking clicks. */
+  .js .hero-stage[data-copy="off"] .hero-copy {
+    pointer-events: none;
+  }
 
-.hero-stage[data-live] .hero-top {
-  height: 100svh;
-}
+  /* Keyboard users can always see what they focus. */
+  .js .hero-copy:focus-within {
+    opacity: 1;
+    transform: none;
+  }
 
-/* Once the copy has faded, its invisible buttons stop taking clicks. */
-.hero-stage[data-live][data-copy="off"] .hero-copy {
-  pointer-events: none;
-}
+  .js .hero-portrait {
+    z-index: 2;
+    transform: translateY(calc(var(--pm, 0) * var(--dy, 0px))) scale(calc(1 + var(--pm, 0) * (var(--sc, 1) - 1)));
+  }
 
-.hero-stage[data-live] .hero-copy {
-  opacity: calc(1 - var(--pc, 0));
-  transform: translateY(calc(var(--pc, 0) * -3rem));
-}
+  /* The scene sits centred under the nav. */
+  .js .hero-orbit {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    align-content: center;
+    padding-block: 4.5rem 1rem;
+    pointer-events: none;
+  }
 
-.hero-stage[data-live] .hero-portrait {
-  z-index: 2;
-  transform: translateY(calc(var(--pm, 0) * var(--dy, 0px))) scale(calc(1 + var(--pm, 0) * (var(--sc, 1) - 1)));
-}
+  .js .orbit-ring {
+    opacity: var(--pr, 0);
+    transform: scale(calc(0.7 + 0.3 * var(--pr, 0)));
+  }
 
-.hero-stage[data-live] .hero-orbit {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  display: grid;
-  place-items: center;
-  padding: 0;
-}
+  .js .orbit-sphere {
+    display: none;
+  }
 
-.hero-stage[data-live] .orbit-box {
-  width: min(34rem, 80vw, 64svh);
-}
-
-.hero-stage[data-live] .orbit-ring {
-  opacity: var(--pr, 0);
-  transform: scale(calc(0.7 + 0.3 * var(--pr, 0)));
-}
-
-.hero-stage[data-live] .orbit-sphere {
-  display: none;
-}
-
-.hero-stage[data-live] .orbit-card {
-  opacity: var(--k);
-  transform: translateY(calc((1 - var(--k)) * 1.5rem));
-  pointer-events: none;
-}
-
-.hero-stage[data-live][data-cards="on"] .orbit-card {
-  pointer-events: auto;
-}
-
-/* Keyboard users can always see what they focus. */
-.hero-stage[data-live] .orbit-card:focus-visible,
-.hero-stage[data-live] .hero-copy:focus-within {
-  opacity: 1;
-  transform: none;
+  /* Cards fade in one after another, from below by default and from their
+     outer edge beside the ring, ending in their own grid cells. */
+  .js .strength-card {
+    opacity: var(--k);
+    transform: translate(calc((1 - var(--k)) * var(--fx, 0) * 3rem), calc((1 - var(--k)) * var(--fy, 1) * 1.5rem));
+  }
 }
 
 /* ---------------------------------------------------------------------------
@@ -980,14 +1006,27 @@ html.no-scroll {
     overflow: hidden;
     border-radius: var(--radius);
     background: var(--surface);
-    padding: clamp(1.5rem, 3.5vw, 3.5rem);
+  }
+
+  /* Closed: the name and a faint index number; the header is the button. */
+  .product-head {
+    position: relative;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 1rem;
+    padding: clamp(1.25rem, 2.6vw, 2.25rem) clamp(1.5rem, 3.5vw, 3.5rem);
+    text-align: left;
+  }
+
+  .product-plus {
+    display: none;
+    flex-shrink: 0;
+    transition: transform 0.3s var(--ease-out);
   }
 
   .product-num {
-    position: absolute;
-    z-index: 1;
-    top: clamp(1.25rem, 3vw, 3rem);
-    right: clamp(1.5rem, 3.5vw, 3.5rem);
+    padding-inline-end: 0.15em; /* italic figures lean past their box */
     font-family: var(--font-serif);
     font-style: italic;
     font-size: clamp(1.75rem, 3.33vw, 3rem);
@@ -996,13 +1035,44 @@ html.no-scroll {
     transition: color 0.4s;
   }
 
-  .product .kicker {
-    padding-right: 3.5rem;
-  }
-
   .product-num::after {
     content: counter(product, decimal-leading-zero);
     counter-increment: product;
+  }
+
+  /* Open: rows 0fr → 1fr (an animated height, by request; see DESIGN.md). */
+  .product-body {
+    position: relative;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 1.2s var(--ease-out);
+  }
+
+  .product-body-inner {
+    min-height: 0;
+    overflow: hidden;
+    padding-inline: clamp(1.5rem, 3.5vw, 3.5rem);
+    opacity: 0;
+    transform: translateY(-0.5rem);
+    transition:
+      opacity 0.2s,
+      transform 0.6s var(--ease-out);
+  }
+
+  .product[data-open] .product-body {
+    grid-template-rows: 1fr;
+  }
+
+  /* One open height for every card, measured in BuiltProjects.tsx. */
+  .product-content {
+    min-height: var(--built-open, 0px);
+  }
+
+  .product[data-open] .product-body-inner {
+    padding-bottom: clamp(1.25rem, 2.6vw, 2.25rem); /* the header's own padding */
+    opacity: 1;
+    transform: none;
+    transition-duration: 0.6s;
   }
 
   .product-wash {
@@ -1059,54 +1129,41 @@ html.no-scroll {
     transition-duration: 7s;
   }
 
-  [data-tone="blue"] {
-    --tone: #76a8f3;
-  }
-
-  [data-tone="teal"] {
-    --tone: #93c8cf;
-  }
-
-  [data-tone="lilac"] {
-    --tone: #9fa1ee;
-  }
-
-  [data-tone="sand"] {
-    --tone: #c9b48c;
-  }
-
-  /* Active: hover or keyboard focus on pointer devices; always on touch. */
-  .product:is(:hover, :focus-within) .product-wash {
+  .product[data-open] .product-wash {
     opacity: 1;
     transition-duration: 0.4s;
   }
 
-  .product:is(:hover, :focus-within) .product-sphere {
+  .product[data-open] .product-sphere {
     transform: translateY(0);
   }
 
-  .product:is(:hover, :focus-within) .product-num {
-    color: var(--tone);
+  .product[data-open] .product-num {
+    color: var(--primary);
+  }
+
+  .product[data-open] .product-plus {
+    transform: rotate(45deg);
+  }
+
+  /* Touch: a "+" shows the header toggles the card. */
+  @media (hover: none) {
+    .product-plus {
+      display: block;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .product-sphere {
-      transform: none;
+    .product-body,
+    .product-body-inner,
+    .product-sphere,
+    .product-plus {
       transition: none;
     }
-  }
 
-  @media (hover: none) {
-    .product .product-wash {
-      opacity: 1;
-    }
-
-    .product .product-sphere {
-      transform: translateY(0);
-    }
-
-    .product .product-num {
-      color: var(--tone);
+    .product-sphere,
+    .product-body-inner {
+      transform: none;
     }
   }
 }
@@ -1133,6 +1190,11 @@ html.no-scroll {
       gap: 1.75rem;
       padding-bottom: 3.5rem;
     }
+  }
+
+  /* The section's own padding ends it, as for every other section. */
+  .timeline-item:last-child {
+    padding-bottom: 0;
   }
 
   .timeline-item:not(:last-child)::before {
@@ -1183,6 +1245,27 @@ html.no-scroll {
     background: var(--blue-50);
   }
 
+  /* Desktop, beside the pinned Domains (DomainPills): the role at the reading
+     line gets a blue circle, the others dim slightly. */
+  @media (min-width: 1024px) {
+    .timeline[data-tracked] > .timeline-item > .timeline-num {
+      opacity: 0.6;
+    }
+
+    .timeline[data-tracked] > [data-active] > .timeline-num {
+      opacity: 1;
+      background: var(--primary);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .timeline[data-tracked] .timeline-num {
+      transition:
+        opacity 0.3s var(--ease-out),
+        background-color 0.3s var(--ease-out);
+    }
+  }
+
   .divider {
     position: relative;
     height: 1px;
@@ -1220,4 +1303,233 @@ html.no-scroll {
   ::view-transition-new(*) {
     animation: none !important;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Contact row (hero and footer), carousel, Impact tabs, stretched card links
+--------------------------------------------------------------------------- */
+@layer components {
+  .contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .contact-pill {
+    position: relative;
+    display: inline-flex;
+    height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0 0.875rem;
+    border: 1px solid rgba(17, 18, 18, 0.08);
+    border-radius: 9999px;
+    background: #fff;
+    box-shadow:
+      0 1px 2px rgba(17, 18, 18, 0.04),
+      0 6px 16px -8px rgba(118, 168, 243, 0.35);
+    color: var(--ink);
+    font-size: 0.875rem;
+    line-height: 1;
+    white-space: nowrap;
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .contact-icon {
+    width: 2.25rem;
+    padding: 0;
+  }
+
+  /* Phones: 44px tap targets. */
+  @media (max-width: 767px) {
+    .contact-pill {
+      height: 2.75rem;
+    }
+
+    .contact-icon {
+      width: 2.75rem;
+    }
+  }
+
+  /* Hover and focus: the hero buttons' blue-to-pink as the border. */
+  .contact-pill::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .contact-pill:is(:hover, :focus-visible)::before {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .contact-pill:is(:hover, :focus-visible) {
+      transform: translateY(-2px);
+    }
+  }
+
+  /* Names on hover for the icon buttons, and the "Copied" confirmation. The
+     text is generated content: the accessible names live in the markup. */
+  .contact-pill[data-tip]::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 0.5rem);
+    left: 50%;
+    translate: -50% 0;
+    padding: 0.3rem 0.625rem;
+    border-radius: 9999px;
+    background: var(--ink);
+    color: #fff;
+    font-size: 0.75rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+
+  .contact-icon:is(:hover, :focus-visible)::after,
+  .contact-pill[data-tip="Copied"]::after {
+    opacity: 1;
+  }
+
+  .contact-row-dark .contact-pill {
+    border-color: rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: none;
+    color: #fff;
+  }
+
+  .contact-row-dark .contact-pill[data-tip]::after {
+    background: #fff;
+    color: var(--ink);
+  }
+
+  /* The column is the size container, so cards are sized in cqw. */
+  .carousel {
+    container-type: inline-size;
+  }
+
+  /* Full width: out of the column to the viewport edges (main clips the
+     scrollbar's share of 100vw), with room above and below for focus rings. */
+  .carousel-track {
+    width: 100vw;
+    margin: -0.375rem calc(50% - 50vw);
+    padding-block: 0.375rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .carousel-list {
+    position: relative; /* the cards' offsetParent, see Carousel.tsx */
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+  }
+
+  .carousel-item {
+    display: flex;
+    flex: 0 0 auto;
+  }
+
+  .carousel-item > * {
+    flex: 1;
+  }
+
+  .carousel-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+  }
+
+  .carousel-button:hover {
+    background: var(--blue-50);
+  }
+
+  .tab {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+    padding: 0.625rem 1.25rem;
+    border: 1px solid rgba(17, 18, 18, 0.1);
+    border-radius: 9999px;
+    background: #fff;
+    text-align: left;
+    line-height: 1.2;
+    transition:
+      background-color 0.3s,
+      border-color 0.3s;
+  }
+
+  .tab:hover {
+    border-color: rgba(17, 18, 18, 0.22);
+  }
+
+  .tab-active {
+    border-color: transparent;
+    background: var(--gradient-primary);
+  }
+
+  /* Both panels share one grid cell; the inactive one fades, then hides. */
+  .tab-panel {
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.4s var(--ease-out),
+      visibility 0s linear 0.4s;
+  }
+
+  .tab-panel[data-active] {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.4s var(--ease-out) 0.1s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tab-panel,
+    .tab-panel[data-active] {
+      transition: none;
+    }
+  }
+
+  /* One link stretched over its card (the card is position: relative). */
+  .stretched {
+    position: static;
+  }
+
+  .stretched::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: var(--radius);
+  }
+
+  .stretched::after {
+    content: none;
+  }
+}
+
+/* Dates on the active (gradient) tab: darker than --muted for AA contrast.
+   Unlayered so it outranks the text-muted utility. */
+.tab-active .text-muted {
+  color: rgba(17, 18, 18, 0.72);
 }

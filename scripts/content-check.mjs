@@ -9,8 +9,8 @@
 // --url=https://faraz-website.vercel.app to compare the live site. Routes are
 // discovered by following internal links from "/". Text is read from the DOM,
 // so collapsed and hidden UI counts; whitespace differences are ignored.
-// The GitHub contributions API is answered with a fixed fixture so the
-// calendar renders the same every run. Exits 1 when anything is missing.
+// External requests are blocked so every run renders the same. Exits 1 when
+// anything is missing.
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
@@ -19,7 +19,6 @@ import { startServer } from "./serve-out.mjs";
 
 const PORT = 4174;
 const BASELINE = resolve(import.meta.dirname, "..", "docs/redesign/baseline");
-const CONTRIB_API = "https://github-contributions-api.jogruber.de/";
 // Compare runs every mode against the one baseline (captured in the first).
 const MODES = [
   { name: "reduced motion, 1440", width: 1440, reducedMotion: "reduce", js: true, settle: 800 },
@@ -30,24 +29,10 @@ const MODES = [
 // Changes approved in docs/redesign/SPEC.md: the theme colour follows the new
 // palette (BRIEF §4.7). Reported, but not counted as missing.
 const APPROVED = [/^meta: theme-color: /];
-// The contribution calendar (count, month labels, legend) renders client-side
-// only, so no-JS runs skip it.
-const CLIENT_ONLY = /contribution|^(Less|More|Less ?More)$|^((Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) ?)+$/i;
 
 const args = process.argv.slice(2);
 const command = args[0];
 const urlArg = args.find((a) => a.startsWith("--url="))?.slice("--url=".length);
-
-function contributionsFixture() {
-  const end = Date.UTC(2026, 9, 1);
-  const contributions = [];
-  for (let i = 370; i >= 0; i--) {
-    const count = (i * 7) % 5;
-    contributions.push({ date: new Date(end - i * 864e5).toISOString().slice(0, 10), count, level: count });
-  }
-  return { total: { lastYear: contributions.reduce((sum, d) => sum + d.count, 0) }, contributions };
-}
-const FIXTURE = JSON.stringify(contributionsFixture());
 
 // Runs in the page. Text is cut into runs the way innerText would lay it out:
 // a run breaks at every element not rendered inline, so inline wrappers
@@ -146,11 +131,8 @@ async function captureSite(browser, base, mode, seeds = ["/"]) {
   });
   const origin = new URL(base).origin;
   await context.route("**/*", (route) => {
-    const url = route.request().url();
-    if (url.startsWith(CONTRIB_API)) {
-      return route.fulfill({ status: 200, contentType: "application/json", headers: { "access-control-allow-origin": "*" }, body: FIXTURE });
-    }
-    return url.startsWith(origin) ? route.continue() : route.abort();
+    // Same-origin only: external requests are blocked so every run is the same.
+    return route.request().url().startsWith(origin) ? route.continue() : route.abort();
   });
   const page = await context.newPage();
   const queue = [...seeds];
@@ -197,9 +179,8 @@ function diffKeys(before, after) {
   return { missing, added };
 }
 
-function diffPage(before, after, mode) {
-  const skip = (s) => !mode.js && CLIENT_ONLY.test(s);
-  const beforeText = before.text.map((c) => c.t).filter((t) => !skip(t));
+function diffPage(before, after) {
+  const beforeText = before.text.map((c) => c.t);
   const afterText = after.text.map((c) => c.t);
   const beforeFull = beforeText.join(" ");
   const afterFull = afterText.join(" ");
@@ -207,8 +188,8 @@ function diffPage(before, after, mode) {
     .filter((t) => countIn(afterFull, t) < countIn(beforeFull, t))
     .map((t) => `${t} (${countIn(afterFull, t)} of ${countIn(beforeFull, t)})`);
   const newText = [...new Set(after.text.filter((c) => countIn(beforeFull, c.t) === 0).map((c) => `${c.t}${c.hidden ? " [aria-hidden]" : ""}${c.visible ? "" : " [not visible]"}`))];
-  const links = diffKeys(before.links.map(linkKey).filter((k) => !skip(k)), after.links.map(linkKey));
-  const images = diffKeys(before.images.map(imageKey).filter((k) => !skip(k)), after.images.map(imageKey));
+  const links = diffKeys(before.links.map(linkKey), after.links.map(linkKey));
+  const images = diffKeys(before.images.map(imageKey), after.images.map(imageKey));
   // Metadata is compared as a set: hydration can repeat the JSON-LD script.
   const meta = diffKeys([...new Set(before.meta.map(metaKey))], [...new Set(after.meta.map(metaKey))]);
   return {
@@ -229,7 +210,7 @@ function diffPage(before, after, mode) {
 
 // Text a JS visitor sees that a no-JS visitor (or a crawler) would not.
 function hiddenWithoutJs(withJs, withoutJs) {
-  const shown = (page) => new Set(page.text.filter((c) => c.visible && !c.hidden && !CLIENT_ONLY.test(c.t)).map((c) => c.t));
+  const shown = (page) => new Set(page.text.filter((c) => c.visible && !c.hidden).map((c) => c.t));
   const noJs = shown(withoutJs);
   return [...shown(withJs)].filter((t) => !noJs.has(t));
 }
@@ -285,7 +266,7 @@ async function compare() {
         lines.push(`  ${route}: MISSING ROUTE (did not load)`);
         continue;
       }
-      const diff = diffPage(baseline[route], pages[route], mode);
+      const diff = diffPage(baseline[route], pages[route]);
       const approved = diff.missing.filter((m) => APPROVED.some((re) => re.test(m)));
       const missing = diff.missing.filter((m) => !approved.includes(m));
       const added = diff.added.filter((a) => !APPROVED.some((re) => re.test(a)));

@@ -6,18 +6,22 @@ import { cn } from "@/lib/utils";
 // Numbered timeline shared by Experience and Education: outlined circles with
 // italic numerals (a CSS counter, not DOM text) joined by a thin blue line,
 // after the reference's step list. Renders gracefully when `dates` or
-// `bullets` are empty: no orphan separators or blank rows.
+// `bullets` are empty: no orphan separators or blank rows. A role's domains
+// sit under its company line on phones; from lg they are sr-only, because
+// Experience pins the active role's set beside the timeline (DomainPills).
 export default function Timeline({
+  id,
   roles,
   compact = false,
   className,
 }: {
+  id?: string;
   roles: Role[];
   compact?: boolean;
   className?: string;
 }) {
   return (
-    <ol className={cn("timeline", className)}>
+    <ol id={id} className={cn("timeline", className)}>
       {roles.map((role) => (
         <li
           key={`${role.company}-${role.title}`}
@@ -37,6 +41,15 @@ export default function Timeline({
               {role.company}
               {role.descriptor && `, ${role.descriptor}`} · {role.location}
             </p>
+            {role.domains && role.domains.length > 0 && (
+              <ul aria-label="Domains" className="mt-3 flex flex-wrap gap-2 lg:sr-only">
+                {role.domains.map((domain) => (
+                  <li key={domain} className="pill bg-surface-3 text-[0.875rem]">
+                    {domain}
+                  </li>
+                ))}
+              </ul>
+            )}
             {role.summary && <p className="t-lead prose-measure mt-4">{role.summary}</p>}
             {role.bullets.length > 0 && (
               <ul className="prose-measure mt-5 space-y-3 leading-relaxed text-muted">

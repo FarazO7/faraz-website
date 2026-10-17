@@ -1,24 +1,28 @@
 "use client";
 
 import { useEffect, useRef, type CSSProperties } from "react";
-import Link from "next/link";
 import { ArrowUpRight, Download } from "lucide-react";
-import Numeral from "./Numeral";
+import ContactRow from "./ContactRow";
 import Words from "./Words";
-import { heroStats, identity, metricLabel } from "@/lib/content";
-import { heroFits } from "@/lib/heroFit";
+import { heroStrengths, identity } from "@/lib/content";
+import { linkProps, resumeLinkProps } from "@/lib/links";
 import { withBase } from "@/lib/utils";
 
 const clamp01 = (n: number) => Math.min(1, Math.max(0, n));
 
 const easeOut = (t: number) => 1 - (1 - t) * (1 - t); // power1.out, as measured
 
+// Must match the gate in app/globals.css (Hero stage): motion allowed and a
+// screen tall enough for the hero copy at any width (measured at most 731px).
+const HERO_LIVE_QUERY = "(prefers-reduced-motion: no-preference) and (min-height: 750px)";
+
 // The reference's hero: a headline with a small sphere above it; scrolling
-// carries the sphere down into a ring while three stat cards fade in around
-// it. Here the portrait plays the sphere. Server-rendered as a static stack
-// (portrait + copy, then the orbit), which is also the reduced-motion, no-JS
-// and short-screen layout. The client upgrades it to a sticky scroll stage
-// (data-live) only when motion is allowed and the copy fits one screen.
+// carries the sphere down into a ring while cards fade in around it. Here the
+// portrait plays the sphere and the cards are five strengths, laid out on a
+// CSS grid so they never cover the portrait. CSS alone decides between the
+// sticky scroll stage and the static stack (reduced motion, no JS, short
+// screens), before first paint; this component only drives the scroll
+// variables while the stage is live.
 export default function HeroStage() {
   const stageRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
@@ -31,7 +35,7 @@ export default function HeroStage() {
     const portrait = portraitRef.current;
     const box = boxRef.current;
     if (!stage || !sticky || !portrait || !box) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const live = window.matchMedia(HERO_LIVE_QUERY);
 
     const offsetIn = (el: HTMLElement) => {
       let y = 0;
@@ -48,56 +52,34 @@ export default function HeroStage() {
       set("--pc", clamp01(p / 0.22));
       set("--pm", easeOut(clamp01(p / 0.5)));
       set("--pr", clamp01((p - 0.25) / 0.25));
-      heroStats.forEach((_, i) => set(`--k${i}`, clamp01((p - 0.38 - i * 0.06) / 0.2)));
+      heroStrengths.forEach((_, i) => set(`--k${i}`, clamp01((p - 0.38 - i * 0.06) / 0.2)));
       stage.dataset.copy = p < 0.12 ? "on" : "off";
-      stage.dataset.cards = p > 0.7 ? "on" : "off";
-      if (p > 0.38) stage.dataset.roll = ""; // stat odometers roll as the cards arrive
     };
     const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(update);
+      if (live.matches && !raf) raf = requestAnimationFrame(update);
     };
-
     const measure = () => {
+      if (!live.matches) return;
       const dy = offsetIn(box) + box.offsetHeight / 2 - (offsetIn(portrait) + portrait.offsetHeight / 2);
       stage.style.setProperty("--dy", `${dy}px`);
       stage.style.setProperty("--sc", ((box.offsetWidth * 0.62) / portrait.offsetWidth).toFixed(3));
       update();
     };
-    // Live or static is decided from the width-dependent content height and
-    // re-decided only when the width changes, so mobile toolbars collapsing
-    // (a height-only resize) can never flip the layout mid-scroll.
-    let width = window.innerWidth;
-    const decide = () => {
-      if (heroFits(stage)) stage.setAttribute("data-live", "");
-      else stage.removeAttribute("data-live");
-      if (stage.hasAttribute("data-live")) measure();
-    };
-    const onResize = () => {
-      if (window.innerWidth !== width) {
-        width = window.innerWidth;
-        decide();
-      } else if (stage.hasAttribute("data-live")) measure();
-    };
 
-    const wasLive = stage.hasAttribute("data-live");
-    if (wasLive) measure();
-    else decide();
-    // After a client-side navigation to "/#section" the page scrolled before
-    // the stage grew; land on the target again.
-    if (!wasLive && stage.hasAttribute("data-live") && location.hash) {
-      document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView({ behavior: "instant" });
-    }
+    measure();
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize);
+    window.addEventListener("resize", measure);
+    live.addEventListener("change", measure);
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onResize);
+      window.removeEventListener("resize", measure);
+      live.removeEventListener("change", measure);
     };
   }, []);
 
   return (
-    <div ref={stageRef} id="hero-stage" className="hero-stage" suppressHydrationWarning>
+    <div ref={stageRef} className="hero-stage">
       <div ref={stickyRef} className="hero-sticky">
         <div aria-hidden className="hero-arc hero-arc-top" />
         <div aria-hidden className="hero-arc hero-arc-bottom" />
@@ -127,37 +109,38 @@ export default function HeroStage() {
               className="enter-fade mt-8 flex flex-wrap items-center justify-center gap-3"
               style={{ "--d": "0.45s" } as CSSProperties}
             >
-              <a href={`mailto:${identity.email}`} className="btn btn-primary">
+              <a {...linkProps(identity.emailHref)} className="btn btn-primary">
                 Get in touch
                 <ArrowUpRight className="size-4" aria-hidden />
               </a>
-              <a href={withBase(identity.resumePath)} download className="btn btn-secondary">
+              <a {...resumeLinkProps()} className="btn btn-secondary">
                 <Download className="size-4" aria-hidden />
                 Download Resume
               </a>
             </div>
+            <div className="enter-fade mt-5" style={{ "--d": "0.55s" } as CSSProperties}>
+              <ContactRow />
+            </div>
           </div>
         </div>
         <div className="hero-orbit">
-          <div ref={boxRef} className="orbit-box">
-            <div aria-hidden className="orbit-ring" />
-            <div aria-hidden className="orbit-sphere sphere sphere-blue" />
-            {heroStats.map((metric, i) => (
-              <Link
-                key={metric.slug}
-                href={`/impact/${metric.slug}`}
-                aria-label={metricLabel(metric)}
-                className={`orbit-card orbit-card-${i} group`}
-                // Hidden until the stage measures (live mode only); the same
-                // figures are always visible in the Impact section.
-                style={{ "--k": `var(--k${i}, 0)` } as CSSProperties}
-              >
-                <span className="t-numeral block text-[clamp(2.25rem,3.6vw,3.75rem)]">
-                  <Numeral metric={metric} />
-                </span>
-                <span className="mt-3 block text-[0.9375rem] leading-snug md:text-base">{metric.label}</span>
-              </Link>
-            ))}
+          {heroStrengths.map((strength, i) => (
+            <div
+              key={strength.title}
+              className="strength-card"
+              // Hidden until the stage measures (live mode only).
+              style={{ "--k": `var(--k${i}, 0)` } as CSSProperties}
+            >
+              <p className="font-serif text-[clamp(1.25rem,1rem+1.2vw,2rem)] leading-tight italic">{strength.title}</p>
+              <p className="mt-2 text-[0.875rem] leading-snug text-muted md:text-[0.9375rem]">
+                {strength.tags ? strength.tags.join(" · ") : strength.line}
+              </p>
+            </div>
+          ))}
+          {/* After the cards, so the grid's nth-child areas count cards only. */}
+          <div ref={boxRef} aria-hidden className="orbit-box">
+            <div className="orbit-ring" />
+            <div className="orbit-sphere sphere sphere-blue" />
           </div>
         </div>
       </div>
