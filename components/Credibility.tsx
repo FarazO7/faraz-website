@@ -1,15 +1,22 @@
 import { credibility, type CredibilityOrg } from "@/lib/content";
 import LogoTile from "./LogoTile";
 
-// Replaces the old "Worked With" chips and the capabilities card with one
-// framed proof strip: Experience and Education as two labelled clusters,
-// each org a monogram tile + name + one-word descriptor (not a logo wall).
+// Experience and Education, each a labelled row of white pills (the
+// reference's tag style): logo or monogram, name, one-word descriptor. From
+// xl the two rows sit side by side, split by a thin rule, every pill on one
+// line: the panel takes its content's width (about 1,210px), centred in the
+// viewport rather than the column. Below xl they stack, one line per group
+// from lg; tablets wrap; phones two per row. Static on purpose, so a
+// skimming recruiter can read every name.
 export default function Credibility() {
   return (
-    <div className="glass mt-10 p-5 sm:p-6">
-      <div className="flex flex-col gap-7 lg:flex-row lg:items-stretch lg:gap-8">
+    <div className="xl:mx-[calc(50%-50vw)] xl:flex xl:justify-center">
+      <div
+        className="space-y-7 rounded-[var(--radius)] bg-surface-3 px-5 py-7 sm:px-8 xl:grid xl:w-max xl:grid-cols-[auto_1px_auto] xl:gap-x-8 xl:space-y-0"
+        data-reveal="up"
+      >
         <Cluster label="Experience" items={credibility.experience} />
-        <div className="hidden w-px self-stretch bg-white/10 lg:block" aria-hidden />
+        <div aria-hidden className="hidden bg-line xl:block" />
         <Cluster label="Education" items={credibility.education} />
       </div>
     </div>
@@ -18,25 +25,15 @@ export default function Credibility() {
 
 function Cluster({ label, items }: { label: string; items: CredibilityOrg[] }) {
   return (
-    <div className="lg:flex-1">
-      <p className="font-mono text-xs tracking-[0.2em] text-muted uppercase">
-        {label}
-      </p>
-      <span className="mt-2 block h-px w-8 bg-accent-a/60" aria-hidden />
-      <ul className="mt-4 grid grid-cols-2 gap-x-5 gap-y-4 sm:grid-cols-3 lg:flex lg:flex-wrap lg:gap-x-7">
+    <div>
+      <p className="kicker">{label}</p>
+      <ul className="mt-4 grid grid-cols-2 gap-2.5 sm:flex sm:flex-wrap lg:flex-nowrap">
         {items.map((org) => (
-          <li key={org.name} className="flex items-center gap-3">
-            <LogoTile
-              logo={org.logo}
-              mark={org.mark}
-              accent={org.accent}
-              name={org.name}
-            />
-            <span className="min-w-0">
-              <span className="block truncate text-sm font-medium text-foreground">
-                {org.name}
-              </span>
-              <span className="block text-xs text-muted">{org.descriptor}</span>
+          <li key={org.name} className="pill min-w-0 gap-3 py-2 pr-5 pl-2">
+            <LogoTile logo={org.logo} mark={org.mark} accent={org.accent} name={org.name} />
+            <span className="min-w-0 text-left">
+              <span className="block text-[0.9375rem] leading-tight font-medium">{org.name}</span>
+              <span className="block text-[0.8125rem] leading-tight text-muted">{org.descriptor}</span>
             </span>
           </li>
         ))}

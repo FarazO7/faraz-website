@@ -1,12 +1,11 @@
 import Nav from "@/components/Nav";
+import PageTransition from "@/components/PageTransition";
 import Hero from "@/components/Hero";
 import Metrics from "@/components/Metrics";
 import Section from "@/components/Section";
 import CaseStudies from "@/components/CaseStudies";
 import BuiltProjects from "@/components/BuiltProjects";
 import Experience from "@/components/Experience";
-import Achievements from "@/components/Achievements";
-import GitHubSection from "@/components/GitHubSection";
 import Skills from "@/components/Skills";
 import Footer from "@/components/Footer";
 import type { Metadata } from "next";
@@ -24,7 +23,7 @@ const personJsonLd = {
   name: identity.name,
   url: identity.siteUrl,
   jobTitle: currentRole.title,
-  email: `mailto:${identity.email}`,
+  email: identity.emailHref,
   telephone: identity.phone,
   address: {
     "@type": "PostalAddress",
@@ -39,17 +38,22 @@ export default function Home() {
   return (
     <>
       <Nav />
-      <main id="main">
-        <Hero />
-        <Section id="impact" kicker="Impact" title="Proof in the numbers">
-          <Metrics />
-        </Section>
-        <CaseStudies />
-        <BuiltProjects />
-        <Experience />
-        <Achievements />
-        <GitHubSection />
-        <Skills />
+      <main id="main" tabIndex={-1} className="overflow-x-clip">
+        <PageTransition>
+          <Hero />
+          <Section
+            id="impact"
+            kicker="Impact"
+            title="Proof in the numbers"
+            accent="numbers"
+          >
+            <Metrics />
+          </Section>
+          <CaseStudies />
+          <BuiltProjects />
+          <Experience />
+          <Skills />
+        </PageTransition>
       </main>
       <Footer />
       <script

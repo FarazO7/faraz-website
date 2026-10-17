@@ -1,0 +1,475 @@
+{
+  "route": "/impact/signup-conversion/",
+  "text": [
+    {
+      "t": "Skip to content",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "FA",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Impact",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Work",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Built",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Experience",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Skills",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Contact",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Download Resume",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Impact",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Work",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Built",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Experience",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Skills",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Contact",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Download Resume",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Back to portfolio",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "19.1% Sign-Up Conversion",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Nearly doubled, from 10%.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Project type",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Acquisition-funnel experimentation",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Company",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Newton School",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Industry",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "EdTech",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Role",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Associate Product Manager",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Tenure",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Mar 2025 – Mar 2026",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Problem",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Acquisition-funnel sign-up conversion stood at 10%.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Approach & key decisions",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Owned acquisition-funnel experimentation: landing-page A/B tests prioritised by impact and effort and tracked on self-serve dashboards (DAU/MAU, activation).",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Results",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Sign-up conversion nearly doubled, from 10% to 19.1%.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Specific internal data is summarised at the level Newton School permits publicly; happy to discuss details in conversation.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "faraz139@gmail.com",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "LinkedIn",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Get in touch",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Product Manager · Bengaluru, India",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Download Resume",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "+91 79911 93433",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "faraz139@gmail.com",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "LinkedIn (opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "GitHub (opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "© 2026 Faraz Ali",
+      "hidden": false,
+      "visible": true
+    }
+  ],
+  "links": [
+    {
+      "href": "#main",
+      "name": "Skip to content",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#top",
+      "name": "Faraz Ali, back to top",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#impact",
+      "name": "Impact",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#work",
+      "name": "Work",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#built",
+      "name": "Built",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#experience",
+      "name": "Experience",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#skills",
+      "name": "Skills",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#contact",
+      "name": "Contact",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/resume/Faraz-Ali-Product-Manager.pdf?v=931755c0",
+      "name": "Download Resume",
+      "target": "",
+      "download": true
+    },
+    {
+      "href": "/#impact",
+      "name": "Impact",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#work",
+      "name": "Work",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#built",
+      "name": "Built",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#experience",
+      "name": "Experience",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#skills",
+      "name": "Skills",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#contact",
+      "name": "Contact",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/resume/Faraz-Ali-Product-Manager.pdf?v=931755c0",
+      "name": "Download Resume",
+      "target": "",
+      "download": true
+    },
+    {
+      "href": "/#work",
+      "name": "Back to portfolio",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "mailto:faraz139@gmail.com",
+      "name": "faraz139@gmail.com",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://linkedin.com/in/-faraz",
+      "name": "LinkedIn (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "/resume/Faraz-Ali-Product-Manager.pdf?v=931755c0",
+      "name": "Download Resume",
+      "target": "",
+      "download": true
+    },
+    {
+      "href": "tel:+917991193433",
+      "name": "+91 79911 93433",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "https://linkedin.com/in/-faraz",
+      "name": "LinkedIn (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://github.com/FarazO7",
+      "name": "GitHub (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    }
+  ],
+  "images": [],
+  "meta": [
+    [
+      "title",
+      "19.1% Sign-Up Conversion — Faraz Ali"
+    ],
+    [
+      "theme-color",
+      "#ffffff"
+    ],
+    [
+      "description",
+      "Nearly doubled, from 10%."
+    ],
+    [
+      "og:title",
+      "19.1% Sign-Up Conversion — Faraz Ali"
+    ],
+    [
+      "og:description",
+      "Nearly doubled, from 10%."
+    ],
+    [
+      "og:url",
+      "https://faraz-website.vercel.app/impact/signup-conversion/"
+    ],
+    [
+      "og:image",
+      "https://faraz-website.vercel.app/impact/signup-conversion/opengraph-image"
+    ],
+    [
+      "og:image:type",
+      "image/png"
+    ],
+    [
+      "og:image:width",
+      "1200"
+    ],
+    [
+      "og:image:height",
+      "630"
+    ],
+    [
+      "og:image:alt",
+      "Impact case study — Faraz Ali"
+    ],
+    [
+      "og:type",
+      "article"
+    ],
+    [
+      "twitter:card",
+      "summary_large_image"
+    ],
+    [
+      "twitter:title",
+      "19.1% Sign-Up Conversion — Faraz Ali"
+    ],
+    [
+      "twitter:description",
+      "Nearly doubled, from 10%."
+    ],
+    [
+      "twitter:image",
+      "https://faraz-website.vercel.app/impact/signup-conversion/twitter-image"
+    ],
+    [
+      "twitter:image:alt",
+      "Impact case study — Faraz Ali"
+    ],
+    [
+      "twitter:image:type",
+      "image/png"
+    ],
+    [
+      "twitter:image:width",
+      "1200"
+    ],
+    [
+      "twitter:image:height",
+      "630"
+    ],
+    [
+      "link canonical",
+      "https://faraz-website.vercel.app/impact/signup-conversion/"
+    ],
+    [
+      "link icon",
+      "/favicon.ico"
+    ],
+    [
+      "link icon",
+      "/icon.svg"
+    ]
+  ]
+}

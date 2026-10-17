@@ -5,12 +5,15 @@
 //
 // The rule it enforces: update the resume PDF first, then content.ts.
 
+import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join, resolve } from "node:path";
 import * as content from "../lib/content";
 import {
+  bioAccents,
+  bioEmphasis,
   bulletParts,
-  educationTimeline,
+  credibility,
   experience,
   getRole,
   identity,
@@ -153,14 +156,7 @@ async function checkResumeEvidence() {
   }
 }
 
-// e. Every education entry has dates.
-function checkEducationDates() {
-  for (const entry of educationTimeline) {
-    if (!entry.dates.trim()) {
-      fail("e", `educationTimeline[${entry.id}].dates`, "Add the years, as they appear on the resume.");
-    }
-  }
-}
+// e. Retired (October 2026): education shows no years.
 
 // f. Every root-relative asset path in content exists under public/.
 const ASSET_PATH = /^\/[\w\-./]+\.(pdf|png|jpe?g|webp|svg|gif|ico|html)$/i;
@@ -189,7 +185,8 @@ function checkAssets() {
 
 // g. Components and routes never hardcode identity; h. retired claims stay retired.
 const IDENTITY_LITERALS = ["Faraz Ali", "Product Manager", "Zamplitude", "Newton School", "Incanus", "HealthKart", "Healthmug"];
-const RETIRED_CLAIMS = ["2+ years"];
+// Retired by the October 2026 resume; "2+ years" is back on the resume.
+const RETIRED_CLAIMS = ["Nafath", "GCC", "Pharmacloud", "Remote, Dubai", "audit-preparation"];
 
 function sourceFiles(dir: string): string[] {
   return readdirSync(join(ROOT, dir), { recursive: true, encoding: "utf8" })
@@ -209,10 +206,54 @@ function scanFiles(files: string[], literals: string[], check: string, fix: stri
   }
 }
 
+// i. Every mailto: and external link renders through lib/links.ts, which opens
+// it in a new tab (a web mail handler would otherwise replace the site).
+const LINK_LITERALS = ['target="_blank"', 'target: "_blank"', "mailto:"];
+
+// l. No component renders a <script>: React never runs one on the client and
+// warns about it in development (the hero's former layout script).
 function checkLiteralsAndClaims() {
   const code = [...sourceFiles("app"), ...sourceFiles("components")];
   scanFiles(code, IDENTITY_LITERALS, "g", "import it from lib/content.ts instead.");
   scanFiles([...code, "lib/content.ts", "README.md"], RETIRED_CLAIMS, "h", "retired claim; remove it.");
+  scanFiles(code, LINK_LITERALS, "i", "render the link with linkProps() from lib/links.ts.");
+  scanFiles(sourceFiles("components"), ["<script"], "l", "decide it in CSS or in an effect instead.");
+}
+
+// j. The About intro styles exact phrases of the bio; each must still be there.
+function checkBioPhrases() {
+  for (const phrase of [...bioAccents, ...bioEmphasis]) {
+    if (!identity.bio.includes(phrase)) {
+      fail("j", `bioAccents/bioEmphasis "${phrase}"`, "no longer in identity.bio; update the list to match the bio.");
+    }
+  }
+}
+
+// k. Logos are square images, so each fills its circle the same way.
+function checkLogos() {
+  for (const org of [...credibility.experience, ...credibility.education]) {
+    if (!org.logo) continue;
+    const bytes = readFileSync(join(ROOT, "public", org.logo));
+    if (bytes.toString("ascii", 1, 4) !== "PNG") {
+      fail("k", `credibility ${org.name}.logo`, "use a PNG so its size can be checked.");
+      continue;
+    }
+    const [width, height] = [bytes.readUInt32BE(16), bytes.readUInt32BE(20)];
+    if (width !== height) {
+      fail("k", `credibility ${org.name}.logo`, `${width}×${height}: crop it to a square around the mark.`);
+    }
+  }
+}
+
+// m. Download links carry the resume's fingerprint (?v=), so a new PDF gets a
+// new URL and nobody downloads a cached copy.
+function checkResumeVersion() {
+  const pdf = join(ROOT, "public", identity.resumePath);
+  if (!existsSync(pdf)) return; // check d reports the missing file
+  const version = createHash("sha256").update(readFileSync(pdf)).digest("hex").slice(0, 8);
+  if (identity.resumeVersion !== version) {
+    fail("m", "identity.resumeVersion", `"${identity.resumeVersion}" is stale: set it to "${version}" for the current PDF.`);
+  }
 }
 
 async function main() {
@@ -220,9 +261,11 @@ async function main() {
   checkImpactLinks();
   checkTileNumbers();
   await checkResumeEvidence();
-  checkEducationDates();
   checkAssets();
   checkLiteralsAndClaims();
+  checkBioPhrases();
+  checkLogos();
+  checkResumeVersion();
 
   if (failures.length > 0) {
     console.error(`\nContent guard: ${failures.length} failure(s)\n`);
@@ -230,7 +273,7 @@ async function main() {
     console.error("");
     process.exit(1);
   }
-  console.log(`Content guard passed: ${tiles.length} tiles, ${impactDetails.length} impact pages, checks a to h.`);
+  console.log(`Content guard passed: ${tiles.length} tiles, ${impactDetails.length} impact pages, checks a to m (e retired).`);
 }
 
 main().catch((err) => {

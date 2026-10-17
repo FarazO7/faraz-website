@@ -1,27 +1,34 @@
 # Faraz Ali: Portfolio
 
-Dark-glassmorphism portfolio for Faraz Ali, Product Manager.
+Light, editorial portfolio for Faraz Ali, Product Manager, with its visual
+language taken from capslock.global (see `docs/DESIGN.md` and
+`docs/redesign/SPEC.md`).
 Next.js (App Router) + TypeScript strict + Tailwind CSS v4, fully static
 (`output: 'export'`): no server, no CMS, no database. Hosted on Vercel at
 https://faraz-website.vercel.app.
 
 ## Sections
 
-- **Hero**: local headshot, name, current title, bio, resume download,
-  contact row, and the Experience & Education credibility strip.
-- **Impact**: role-segmented metric tiles. A tab per role (current role
-  first; arrow keys, Home and End), four count-up tiles per tab, each linking
-  to its impact page.
-- **Selected Work**: four case-study cards, each topped with a rendered
-  preview of the PDF's first page.
-- **Built**: Signal as the flagship (subtitle, year, resume highlights, live
-  demo) plus three project cards.
-- **Experience + Education**: a Domains strip, then one shared vertical
-  timeline. Bullets with an impact page end in a "Read the case" link.
-- **Recognition**: a scroll-pinned Achievements section (framer-motion).
-- **GitHub**: live contribution calendar and a curated repo grid.
-- **Skills**: an intro line, five hub cards with brand logos, an "All skills"
-  index holding the resume's full taxonomy, and Certifications.
+- **Hero**: headshot, name, current title, Get in touch, Download Resume and
+  the contact row; with motion, a scroll stage carries the portrait into a
+  ring with five strength cards around it. Then the "About" intro and the
+  Experience and Education logo rows.
+- **Impact**: a tab per company (current role first; arrow keys, Home and
+  End), four tiles each with odometer numerals, every tile linking to its
+  impact page.
+- **Selected Work**: a full-width, drifting carousel of four case studies,
+  each with a rendered preview of the PDF's first page.
+- **Built**: "Prototypes I've built" as four expanding cards, Signal first;
+  open, each shows its description and links.
+- **Experience**: a sticky heading beside a numbered timeline; from lg the
+  sticky side shows the Domains of the role being read. Each role shows the
+  resume's company descriptor, its domains and, where the resume has one,
+  its one-line summary. Bullets with an impact page end in a "Read the case"
+  link.
+- **Education**: its own section on the same two columns, nothing pinned:
+  each entry reads degree, then institution (no years).
+- **Skills**: the resume's four skill groups as pastel cards with brand logos
+  (2×2), then a Certifications carousel (images in `public/certifications/`).
 - **/impact/[slug]**: ten detail pages, five for Zamplitude and five for
   Newton School (problem, approach, results). The Tenure row derives from the
   timeline; the confidentiality note is per organisation.
@@ -58,10 +65,19 @@ only render it. Lines marked `REVIEW(Faraz)` are drafted copy awaiting review.
 - **Impact pages:** `impactDetails`. Each page names its organisation (`org`)
   for the Tenure row and confidentiality note. A bullet links to a page with
   `{ text, impact: "slug" }`.
-- **Skills:** `skills` (the five hubs) and `skillsIndex` (the resume's six
-  groups verbatim). `domains` feeds both the Experience strip and the index.
+- **Skills:** `skills`, the resume's four groups verbatim. `certifications`
+  feeds the carousel (name, issuer, link, local image).
+- **Domains:** each role's `domains` in `experience`; **hero cards:**
+  `heroStrengths`.
+- **Links:** render `mailto:` and external links with `linkProps()` from
+  `lib/links.ts`; the content guard enforces it.
 
-The resume PDF lives at `public/resume/Faraz-Ali-Product-Manager.pdf`.
+The resume PDF lives at `public/resume/Faraz-Ali-Product-Manager.pdf` (a
+fixed path, so shared links keep working). Every Download Resume link comes
+from `resumeLinkProps()` in `lib/links.ts`: it adds `?v=` with
+`identity.resumeVersion`, the first 8 characters of the PDF's SHA-256, and
+downloads as `identity.resumeFileName`. After replacing the PDF, run
+`npm run check:content`: check m prints the new version to paste in.
 
 ## Content guard
 
@@ -74,12 +90,21 @@ so Vercel and CI fail fast on drift. It checks:
 - **c.** Each tile's number appears in its page's metric or Results.
 - **d.** Each tile's `resumeEvidence` appears in the resume PDF (compared
   lowercase, with dashes and hyphens as spaces).
-- **e.** Every education entry has dates.
+- **e.** Retired (October 2026): education shows no years.
 - **f.** Every root-relative asset path in content exists under `public/`.
 - **g.** No identity literals (name, titles, employers) are hardcoded in
   `app/` or `components/`.
 - **h.** No retired claims (listed in `RETIRED_CLAIMS` in the script) in
   content, `app/`, `components/` or this README.
+- **i.** No hand-written `target="_blank"` or `mailto:` in `app/` or
+  `components/`: links go through `linkProps()` in `lib/links.ts`.
+- **j.** Every phrase in `bioAccents` and `bioEmphasis` still appears in the
+  bio.
+- **k.** Every logo in `credibility` is a square PNG.
+- **l.** No component renders a `<script>` (React never runs it on the
+  client).
+- **m.** `identity.resumeVersion` matches the resume PDF's fingerprint, so a
+  new PDF always gets a new download URL.
 
 Each failure names the field and the fix. **Rule: update the resume PDF first,
 then `content.ts`.** A new metric fails check d until the PDF carries it.
@@ -89,19 +114,13 @@ then `content.ts`.** A new metric fails check d until the PDF carries it.
 A local WebP, `public/images/faraz-ali.webp` (1024 × 1024, about 40 KB),
 loaded eagerly as the hero image. Nothing is fetched from GitHub.
 
-## GitHub section: how it behaves
+## Local dev on the network address
 
-**Contribution calendar** (custom 53×7 grid), fetched client-side at view time:
-1. `github-contributions-api.jogruber.de/v4/FarazO7?y=last` → custom grid with
-   tooltips, month labels and a Less→More legend
-2. API error → `ghchart.rshah.org` image inside the same panel
-3. Image error → a quiet "View contribution activity on GitHub" link
-
-Never an empty box, never an endless spinner.
-
-**Repository grid:** a hand-curated, ordered list (`curatedRepos` in
-`content.ts`) with hand-written descriptions. There is no live repo fetch, so
-the flagships always show regardless of push recency.
+`next dev` blocks its own assets for origins other than `localhost`;
+`next.config.ts` allows this machine's LAN IPv4 addresses
+(`allowedDevOrigins`), so the dev site also works at e.g.
+`http://192.168.x.x:3000` from a phone. Copy-to-clipboard falls back to a
+textarea there, because `navigator.clipboard` needs a secure context.
 
 ## Case-study previews
 
@@ -115,21 +134,22 @@ unless you mean to update them. Run it on demand with `npm run previews`.
 
 ## Design system
 
-Locked tokens in [`app/globals.css`](app/globals.css): ink `#070B14`, text
-`#E8ECF5`, muted `#9AA4B8`, indigo/teal/amber accents, GitHub green scale, plus
-four V2 support tokens (`--space-deep`, `--nebula-orchid`, `--star-blue`,
-`--solar-gold`). One glass primitive (`.glass`). At most 6 elements with live
-`backdrop-filter` per viewport: dense grids (case studies, repo cards, skills
-hubs) add `.glass-nested`, the same recipe without its own blur.
+Tokens in [`app/globals.css`](app/globals.css), taken from the reference:
+white page, ink `#111212`, AA muted `#5B6066`, pastel surfaces, and blue/pink
+accents that stay decorative. One glass primitive (`.glass`), at most 6 live
+`backdrop-filter` elements per viewport (measured at most 4). Fonts are Geist
+and Instrument Serif Italic, self-hosted via `next/font`.
 
-The background is a WebGL star field
-([`ReactiveGalaxy.tsx`](components/ReactiveGalaxy.tsx), `ogl`) behind drifting
-nebula orbs, skipped under reduced motion and on mobile. Metric numerals use
-an amber→solar-gold gradient (AA-safe on glass). Hovers animate
-transform/border/shadow only; count-ups, scroll reveals, smooth scrolling, the
-orbital ring and the Achievements pin are all disabled under
-`prefers-reduced-motion`. Fonts (Sora / Inter / JetBrains Mono) are self-hosted
-via `next/font`. See [`docs/DESIGN.md`](docs/DESIGN.md).
+Motion is CSS driven by one IntersectionObserver
+([`RevealController.tsx`](components/RevealController.tsx)): masked word
+reveals, odometer numerals, image scale-ins, drawn dividers and the hero scroll
+stage ([`HeroStage.tsx`](components/HeroStage.tsx)), which CSS alone switches
+on (motion allowed, screen at least 750px tall). Nothing is hidden
+without JavaScript or under `prefers-reduced-motion`; smooth scrolling (Lenis)
+is off on touch and under reduced motion. See [`docs/DESIGN.md`](docs/DESIGN.md).
+
+`node scripts/content-check.mjs compare` checks every route's text, links,
+images and metadata against `docs/redesign/baseline/` (run after a build).
 
 ## Hosting
 

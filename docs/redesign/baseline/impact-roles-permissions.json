@@ -1,0 +1,485 @@
+{
+  "route": "/impact/roles-permissions/",
+  "text": [
+    {
+      "t": "Skip to content",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "FA",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Impact",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Work",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Built",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Experience",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Skills",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Contact",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Download Resume",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Impact",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Work",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Built",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Experience",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Skills",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Contact",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Download Resume",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Back to portfolio",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Every Shared Login Replaced",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Individual, role-based access, prioritised from an audit of 30+ compliance actions.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Project type",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Access control",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Company",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Zamplitude (client: regulated investment firm)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Industry",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Regulated Fintech (KYC/AML)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Role",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Product Manager, first PM hire",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Audit scope",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "30+ compliance actions",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Tenure",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Mar 2026 – Present",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Problem",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Shared logins posed a risk against the platform's regulatory obligations.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Approach & key decisions",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Audited 30+ compliance actions against regulatory obligations, exposing shared-login risk, and prioritised a Roles and Permissions module over competing scope.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Results",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Every shared login replaced with individual, role-based access, following an audit of 30+ compliance actions.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Client work. Details are limited to what can be shared publicly, and the client is not named. Happy to walk through the approach in conversation.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "faraz139@gmail.com",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "LinkedIn",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Get in touch",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Product Manager · Bengaluru, India",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Download Resume",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "+91 79911 93433",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "faraz139@gmail.com",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "LinkedIn (opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "GitHub (opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "© 2026 Faraz Ali",
+      "hidden": false,
+      "visible": true
+    }
+  ],
+  "links": [
+    {
+      "href": "#main",
+      "name": "Skip to content",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#top",
+      "name": "Faraz Ali, back to top",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#impact",
+      "name": "Impact",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#work",
+      "name": "Work",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#built",
+      "name": "Built",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#experience",
+      "name": "Experience",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#skills",
+      "name": "Skills",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#contact",
+      "name": "Contact",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/resume/Faraz-Ali-Product-Manager.pdf?v=931755c0",
+      "name": "Download Resume",
+      "target": "",
+      "download": true
+    },
+    {
+      "href": "/#impact",
+      "name": "Impact",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#work",
+      "name": "Work",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#built",
+      "name": "Built",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#experience",
+      "name": "Experience",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#skills",
+      "name": "Skills",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#contact",
+      "name": "Contact",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/resume/Faraz-Ali-Product-Manager.pdf?v=931755c0",
+      "name": "Download Resume",
+      "target": "",
+      "download": true
+    },
+    {
+      "href": "/#work",
+      "name": "Back to portfolio",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "mailto:faraz139@gmail.com",
+      "name": "faraz139@gmail.com",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://linkedin.com/in/-faraz",
+      "name": "LinkedIn (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "/resume/Faraz-Ali-Product-Manager.pdf?v=931755c0",
+      "name": "Download Resume",
+      "target": "",
+      "download": true
+    },
+    {
+      "href": "tel:+917991193433",
+      "name": "+91 79911 93433",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "https://linkedin.com/in/-faraz",
+      "name": "LinkedIn (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://github.com/FarazO7",
+      "name": "GitHub (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    }
+  ],
+  "images": [],
+  "meta": [
+    [
+      "title",
+      "Every Shared Login Replaced — Faraz Ali"
+    ],
+    [
+      "theme-color",
+      "#ffffff"
+    ],
+    [
+      "description",
+      "Individual, role-based access, prioritised from an audit of 30+ compliance actions."
+    ],
+    [
+      "og:title",
+      "Every Shared Login Replaced — Faraz Ali"
+    ],
+    [
+      "og:description",
+      "Individual, role-based access, prioritised from an audit of 30+ compliance actions."
+    ],
+    [
+      "og:url",
+      "https://faraz-website.vercel.app/impact/roles-permissions/"
+    ],
+    [
+      "og:image",
+      "https://faraz-website.vercel.app/impact/roles-permissions/opengraph-image"
+    ],
+    [
+      "og:image:type",
+      "image/png"
+    ],
+    [
+      "og:image:width",
+      "1200"
+    ],
+    [
+      "og:image:height",
+      "630"
+    ],
+    [
+      "og:image:alt",
+      "Impact case study — Faraz Ali"
+    ],
+    [
+      "og:type",
+      "article"
+    ],
+    [
+      "twitter:card",
+      "summary_large_image"
+    ],
+    [
+      "twitter:title",
+      "Every Shared Login Replaced — Faraz Ali"
+    ],
+    [
+      "twitter:description",
+      "Individual, role-based access, prioritised from an audit of 30+ compliance actions."
+    ],
+    [
+      "twitter:image",
+      "https://faraz-website.vercel.app/impact/roles-permissions/twitter-image"
+    ],
+    [
+      "twitter:image:alt",
+      "Impact case study — Faraz Ali"
+    ],
+    [
+      "twitter:image:type",
+      "image/png"
+    ],
+    [
+      "twitter:image:width",
+      "1200"
+    ],
+    [
+      "twitter:image:height",
+      "630"
+    ],
+    [
+      "link canonical",
+      "https://faraz-website.vercel.app/impact/roles-permissions/"
+    ],
+    [
+      "link icon",
+      "/favicon.ico"
+    ],
+    [
+      "link icon",
+      "/icon.svg"
+    ]
+  ]
+}

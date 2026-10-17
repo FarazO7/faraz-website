@@ -16,13 +16,15 @@ export function withBase(path: string): string {
   return `${BASE_PATH}${path}`;
 }
 
-const TOOLTIP_DATE = new Intl.DateTimeFormat("en-US", {
-  month: "long",
-  day: "numeric",
-  year: "numeric",
-});
-
-/** "2026-06-11" → "June 11, 2026" (parsed as local time, not UTC) */
-export function formatTooltipDate(isoDate: string): string {
-  return TOOLTIP_DATE.format(new Date(`${isoDate}T00:00:00`));
+/**
+ * Cut `text` around the given exact phrases, in order, so a component can
+ * style them: "a b c" + ["b"] → [{a }, {b, match}, { c}].
+ */
+export function splitByPhrases(text: string, phrases: string[]): { text: string; match: boolean }[] {
+  if (phrases.length === 0) return [{ text, match: false }];
+  const escaped = phrases.map((p) => p.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  return text
+    .split(new RegExp(`(${escaped.join("|")})`))
+    .filter(Boolean)
+    .map((part) => ({ text: part, match: phrases.includes(part) }));
 }

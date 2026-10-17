@@ -1,0 +1,475 @@
+{
+  "route": "/impact/waitlist-automation/",
+  "text": [
+    {
+      "t": "Skip to content",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "FA",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Impact",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Work",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Built",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Experience",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Skills",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Contact",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Download Resume",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Impact",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Work",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Built",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Experience",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Skills",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Contact",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Download Resume",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Back to portfolio",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "30% Waitlist Conversion, Zero Vacant Seats",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "An automated waitlist filled seats directly — no CRM needed.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Project type",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Workflow automation",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Company",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Newton School",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Industry",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "EdTech",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Role",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "APM (user stories, acceptance criteria, UAT, release coordination)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Tenure",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Mar 2025 – Mar 2026",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Problem",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Refund-driven seat loss; operations proposed a full CRM to manage it.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Approach & key decisions",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Ran a cost-effort analysis showing a CRM added complexity while an automated waitlist could fulfil seats directly. Aligned stakeholders on the data (fewer manual calls, ~90% faster turnaround), then wrote the stories and acceptance criteria, facilitated UAT, and coordinated release.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Results",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "60 of 200 waitlisted learners (30%) converted to enrolments and no seats went unfilled; CRM complexity avoided. Everyone aligned once the results landed.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Specific internal data is summarised at the level Newton School permits publicly; happy to discuss details in conversation.",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "faraz139@gmail.com",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "LinkedIn",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Get in touch",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Product Manager · Bengaluru, India",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Download Resume",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "+91 79911 93433",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "faraz139@gmail.com",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "LinkedIn (opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "GitHub (opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "© 2026 Faraz Ali",
+      "hidden": false,
+      "visible": true
+    }
+  ],
+  "links": [
+    {
+      "href": "#main",
+      "name": "Skip to content",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#top",
+      "name": "Faraz Ali, back to top",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#impact",
+      "name": "Impact",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#work",
+      "name": "Work",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#built",
+      "name": "Built",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#experience",
+      "name": "Experience",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#skills",
+      "name": "Skills",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#contact",
+      "name": "Contact",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/resume/Faraz-Ali-Product-Manager.pdf?v=931755c0",
+      "name": "Download Resume",
+      "target": "",
+      "download": true
+    },
+    {
+      "href": "/#impact",
+      "name": "Impact",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#work",
+      "name": "Work",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#built",
+      "name": "Built",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#experience",
+      "name": "Experience",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#skills",
+      "name": "Skills",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/#contact",
+      "name": "Contact",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/resume/Faraz-Ali-Product-Manager.pdf?v=931755c0",
+      "name": "Download Resume",
+      "target": "",
+      "download": true
+    },
+    {
+      "href": "/#work",
+      "name": "Back to portfolio",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "mailto:faraz139@gmail.com",
+      "name": "faraz139@gmail.com",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://linkedin.com/in/-faraz",
+      "name": "LinkedIn (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "/resume/Faraz-Ali-Product-Manager.pdf?v=931755c0",
+      "name": "Download Resume",
+      "target": "",
+      "download": true
+    },
+    {
+      "href": "tel:+917991193433",
+      "name": "+91 79911 93433",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "https://linkedin.com/in/-faraz",
+      "name": "LinkedIn (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://github.com/FarazO7",
+      "name": "GitHub (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    }
+  ],
+  "images": [],
+  "meta": [
+    [
+      "title",
+      "30% Waitlist Conversion, Zero Vacant Seats — Faraz Ali"
+    ],
+    [
+      "theme-color",
+      "#ffffff"
+    ],
+    [
+      "description",
+      "An automated waitlist filled seats directly — no CRM needed."
+    ],
+    [
+      "og:title",
+      "30% Waitlist Conversion, Zero Vacant Seats — Faraz Ali"
+    ],
+    [
+      "og:description",
+      "An automated waitlist filled seats directly — no CRM needed."
+    ],
+    [
+      "og:url",
+      "https://faraz-website.vercel.app/impact/waitlist-automation/"
+    ],
+    [
+      "og:image",
+      "https://faraz-website.vercel.app/impact/waitlist-automation/opengraph-image"
+    ],
+    [
+      "og:image:type",
+      "image/png"
+    ],
+    [
+      "og:image:width",
+      "1200"
+    ],
+    [
+      "og:image:height",
+      "630"
+    ],
+    [
+      "og:image:alt",
+      "Impact case study — Faraz Ali"
+    ],
+    [
+      "og:type",
+      "article"
+    ],
+    [
+      "twitter:card",
+      "summary_large_image"
+    ],
+    [
+      "twitter:title",
+      "30% Waitlist Conversion, Zero Vacant Seats — Faraz Ali"
+    ],
+    [
+      "twitter:description",
+      "An automated waitlist filled seats directly — no CRM needed."
+    ],
+    [
+      "twitter:image",
+      "https://faraz-website.vercel.app/impact/waitlist-automation/twitter-image"
+    ],
+    [
+      "twitter:image:alt",
+      "Impact case study — Faraz Ali"
+    ],
+    [
+      "twitter:image:type",
+      "image/png"
+    ],
+    [
+      "twitter:image:width",
+      "1200"
+    ],
+    [
+      "twitter:image:height",
+      "630"
+    ],
+    [
+      "link canonical",
+      "https://faraz-website.vercel.app/impact/waitlist-automation/"
+    ],
+    [
+      "link icon",
+      "/favicon.ico"
+    ],
+    [
+      "link icon",
+      "/icon.svg"
+    ]
+  ]
+}
