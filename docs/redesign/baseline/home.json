@@ -32,11 +32,6 @@
       "visible": true
     },
     {
-      "t": "GitHub",
-      "hidden": false,
-      "visible": true
-    },
-    {
       "t": "Skills",
       "hidden": false,
       "visible": true
@@ -52,6 +47,41 @@
       "visible": true
     },
     {
+      "t": "Impact",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Work",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Built",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Experience",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Skills",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Contact",
+      "hidden": false,
+      "visible": false
+    },
+    {
+      "t": "Download Resume",
+      "hidden": false,
+      "visible": false
+    },
+    {
       "t": "Hello there!",
       "hidden": false,
       "visible": true
@@ -63,11 +93,6 @@
     },
     {
       "t": "Product Manager",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "I'm a product manager with 2+ years across regulated fintech (KYC/AML), edtech growth and e-commerce operations (WMS, OMS). As the first PM hire at Zamplitude, I own a regulated investment firm's KYC/AML platform; at Newton School, I launched AI exam monitoring and nearly doubled sign-up conversion. I'm focused on B2B fintech platforms and applied AI, and I build AI prototypes myself, with evaluation harnesses and human-in-the-loop review.",
       "hidden": false,
       "visible": true
     },
@@ -92,22 +117,77 @@
       "visible": true
     },
     {
-      "t": "LinkedIn",
+      "t": "LinkedIn (opens in a new tab)",
       "hidden": false,
       "visible": true
     },
     {
-      "t": "(opens in a new tab)",
+      "t": "GitHub (opens in a new tab)",
       "hidden": false,
       "visible": true
     },
     {
-      "t": "GitHub",
+      "t": "Fintech",
       "hidden": false,
       "visible": true
     },
     {
-      "t": "(opens in a new tab)",
+      "t": "Payments · APIs · Integrations",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Growth",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Referrals · Funnels · Conversion",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "PGDM × B.Tech",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Marketing · Supply Chain · Electronics & Telecom",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "AI × Automation",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "AI workflows · Agentic AI · RAG",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "0 → 1",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "From Problems to Shipped Solutions",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "About",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "I'm a product manager with 2+ years across regulated fintech (KYC/AML), EdTech growth and e-commerce operations (WMS, OMS).",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "As the first PM hire at Zamplitude, I own a regulated investment firm's KYC/AML platform; at Newton School, I launched AI exam monitoring and nearly doubled sign-up conversion. I'm focused on B2B fintech platforms and applied AI, and I build AI prototypes myself, with evaluation harnesses and human-in-the-loop review.",
       "hidden": false,
       "visible": true
     },
@@ -127,7 +207,7 @@
       "visible": true
     },
     {
-      "t": "SaaS",
+      "t": "Fintech",
       "hidden": false,
       "visible": true
     },
@@ -167,22 +247,22 @@
       "visible": true
     },
     {
-      "t": "KIIT University",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "B.Tech",
-      "hidden": false,
-      "visible": true
-    },
-    {
       "t": "MDI Murshidabad",
       "hidden": false,
       "visible": true
     },
     {
       "t": "PGDM",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "KIIT University",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "B.Tech",
       "hidden": false,
       "visible": true
     },
@@ -347,12 +427,147 @@
       "visible": true
     },
     {
+      "t": "Growth strategy",
+      "hidden": true,
+      "visible": true
+    },
+    {
       "t": "Bumble — “Date Vibe”",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Simplified pre-date planning from user research; gamified solution projected ₹10 Cr annual revenue and +20% profile interactions.",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Open case study",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Product teardown",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "MakeMyTrip",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "A Growth-team teardown answering MakeMyTrip's mandate to crack trip planning — an unsolved gap in travel — with a GenAI-powered planner. Works through the business model, competitor and actor mapping, and a structured problem breakdown.",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Open case study",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Product teardown",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Zepto",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "A Growth teardown targeting Zepto's low average order value — the lever for quick-commerce unit economics. Maps the business outcome (profitability) to product outcomes (higher basket quantity and unit price), with problem validation and framing.",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Open case study",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Outcomes → insights → product note → PRD",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Zomato — Increasing Reviews",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "A four-part arc on growing review volume on Zomato — from defining the product outcome, through user-insight discovery, to a product note and a full PRD.",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "View 4 documents",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Defining Product Outcomes",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "Deriving Insights from Users",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "Product Note",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "PRD",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "Growth strategy",
       "hidden": false,
       "visible": true
     },
     {
-      "t": "Growth strategy",
+      "t": "Bumble — “Date Vibe”",
       "hidden": false,
       "visible": true
     },
@@ -372,12 +587,12 @@
       "visible": true
     },
     {
-      "t": "MakeMyTrip",
+      "t": "Product teardown",
       "hidden": false,
       "visible": true
     },
     {
-      "t": "Product teardown",
+      "t": "MakeMyTrip",
       "hidden": false,
       "visible": true
     },
@@ -397,12 +612,12 @@
       "visible": true
     },
     {
-      "t": "Zepto",
+      "t": "Product teardown",
       "hidden": false,
       "visible": true
     },
     {
-      "t": "Product teardown",
+      "t": "Zepto",
       "hidden": false,
       "visible": true
     },
@@ -422,12 +637,12 @@
       "visible": true
     },
     {
-      "t": "Zomato — Increasing Reviews",
+      "t": "Outcomes → insights → product note → PRD",
       "hidden": false,
       "visible": true
     },
     {
-      "t": "Outcomes → insights → product note → PRD",
+      "t": "Zomato — Increasing Reviews",
       "hidden": false,
       "visible": true
     },
@@ -482,6 +697,276 @@
       "visible": false
     },
     {
+      "t": "Growth strategy",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Bumble — “Date Vibe”",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Simplified pre-date planning from user research; gamified solution projected ₹10 Cr annual revenue and +20% profile interactions.",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Open case study",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Product teardown",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "MakeMyTrip",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "A Growth-team teardown answering MakeMyTrip's mandate to crack trip planning — an unsolved gap in travel — with a GenAI-powered planner. Works through the business model, competitor and actor mapping, and a structured problem breakdown.",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Open case study",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Product teardown",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Zepto",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "A Growth teardown targeting Zepto's low average order value — the lever for quick-commerce unit economics. Maps the business outcome (profitability) to product outcomes (higher basket quantity and unit price), with problem validation and framing.",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Open case study",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Outcomes → insights → product note → PRD",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Zomato — Increasing Reviews",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "A four-part arc on growing review volume on Zomato — from defining the product outcome, through user-insight discovery, to a product note and a full PRD.",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "View 4 documents",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Defining Product Outcomes",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "Deriving Insights from Users",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "Product Note",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "PRD",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "Growth strategy",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Bumble — “Date Vibe”",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Simplified pre-date planning from user research; gamified solution projected ₹10 Cr annual revenue and +20% profile interactions.",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Open case study",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Product teardown",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "MakeMyTrip",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "A Growth-team teardown answering MakeMyTrip's mandate to crack trip planning — an unsolved gap in travel — with a GenAI-powered planner. Works through the business model, competitor and actor mapping, and a structured problem breakdown.",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Open case study",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Product teardown",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Zepto",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "A Growth teardown targeting Zepto's low average order value — the lever for quick-commerce unit economics. Maps the business outcome (profitability) to product outcomes (higher basket quantity and unit price), with problem validation and framing.",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Open case study",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Outcomes → insights → product note → PRD",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Zomato — Increasing Reviews",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "A four-part arc on growing review volume on Zomato — from defining the product outcome, through user-insight discovery, to a product note and a full PRD.",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "View 4 documents",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Defining Product Outcomes",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "Deriving Insights from Users",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "Product Note",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "PRD",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "(PDF, opens in a new tab)",
+      "hidden": true,
+      "visible": false
+    },
+    {
       "t": "Built",
       "hidden": false,
       "visible": true
@@ -492,59 +977,34 @@
       "visible": true
     },
     {
-      "t": "Flagship · Agentic feedback-to-roadmap",
-      "hidden": false,
-      "visible": true
-    },
-    {
       "t": "Signal",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Agentic LLM feedback-triage prototype · 2026",
       "hidden": false,
       "visible": true
     },
     {
       "t": "AI feedback-triage agent: clusters user feedback into themes, grounds every recommendation in real source quotes, routes low-confidence calls to a human, and evaluates its own output.",
       "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Built an agentic LLM pipeline that classifies, clusters and scores scattered user feedback into ranked, evidence-linked recommendations on what to build next.",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Added explainable scoring, a human-in-the-loop review step and an evaluation harness that measures theme recall, precision and hallucination rate against a labelled set.",
-      "hidden": false,
-      "visible": true
+      "visible": false
     },
     {
       "t": "Live demo",
       "hidden": false,
-      "visible": true
+      "visible": false
     },
     {
       "t": "(opens in a new tab)",
       "hidden": false,
-      "visible": true
+      "visible": false
     },
     {
       "t": "View repo",
       "hidden": false,
-      "visible": true
+      "visible": false
     },
     {
       "t": "(opens in a new tab)",
       "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Growth CRM · D2C",
-      "hidden": false,
-      "visible": true
+      "visible": false
     },
     {
       "t": "engagR",
@@ -554,22 +1014,17 @@
     {
       "t": "Event-driven growth CRM for D2C — captures user events, flags where people drop off, and auto-generates personalised re-engagement across email, WhatsApp, and SMS, with A/B testing built in.",
       "hidden": false,
-      "visible": true
+      "visible": false
     },
     {
       "t": "View repo",
       "hidden": false,
-      "visible": true
+      "visible": false
     },
     {
       "t": "(opens in a new tab)",
       "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "RAG · Coaching assistant",
-      "hidden": false,
-      "visible": true
+      "visible": false
     },
     {
       "t": "Cairn",
@@ -579,22 +1034,17 @@
     {
       "t": "A RAG coaching assistant prototype that grounds its answers in a custom corpus using cosine-similarity embedding search.",
       "hidden": false,
-      "visible": true
+      "visible": false
     },
     {
       "t": "View repo",
       "hidden": false,
-      "visible": true
+      "visible": false
     },
     {
       "t": "(opens in a new tab)",
       "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Agentic · Job search",
-      "hidden": false,
-      "visible": true
+      "visible": false
     },
     {
       "t": "Application Desk",
@@ -604,22 +1054,17 @@
     {
       "t": "An agentic job-search assistant — finds relevant roles, drafts tailored applications, and schedules sends, on FastAPI, MongoDB, OpenAI, and Gmail.",
       "hidden": false,
-      "visible": true
+      "visible": false
     },
     {
       "t": "View repo",
       "hidden": false,
-      "visible": true
+      "visible": false
     },
     {
       "t": "(opens in a new tab)",
       "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Track Record",
-      "hidden": false,
-      "visible": true
+      "visible": false
     },
     {
       "t": "Experience",
@@ -628,6 +1073,101 @@
     },
     {
       "t": "Domains",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Regulated Fintech",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "KYC/AML",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "Risk & Compliance",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "EdTech",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "Growth",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "AI",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "Payments",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "E-commerce",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "Supply Chain",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "WMS",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "OMS",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "E-commerce",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "Category Management",
+      "hidden": true,
+      "visible": false
+    },
+    {
+      "t": "Regulated Fintech",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "KYC/AML",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Risk & Compliance",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Product Manager",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Mar 2026 – Present",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Zamplitude, Dubai-based fintech firm · Remote, India",
       "hidden": false,
       "visible": true
     },
@@ -642,42 +1182,7 @@
       "visible": true
     },
     {
-      "t": "Payments",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Edtech",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "E-commerce",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "WMS",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "OMS",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Product Manager",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Mar 2026 – Present",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Zamplitude, Dubai-based SaaS firm · Remote, India",
+      "t": "Risk & Compliance",
       "hidden": false,
       "visible": true
     },
@@ -722,7 +1227,27 @@
       "visible": true
     },
     {
-      "t": "Newton School, edtech · Bengaluru",
+      "t": "Newton School, EdTech · Bengaluru",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "EdTech",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Growth",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "AI",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Payments",
       "hidden": false,
       "visible": true
     },
@@ -772,6 +1297,26 @@
       "visible": true
     },
     {
+      "t": "E-commerce",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Supply Chain",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "WMS",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "OMS",
+      "hidden": false,
+      "visible": true
+    },
+    {
       "t": "Product trainee on the warehouse, inventory and order management systems (WMS, OMS) that run HealthKart's fulfilment.",
       "hidden": false,
       "visible": true
@@ -807,6 +1352,16 @@
       "visible": true
     },
     {
+      "t": "E-commerce",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Category Management",
+      "hidden": false,
+      "visible": true
+    },
+    {
       "t": "With the category team, lifted the repeat-purchase rate from 20% to 25% by analysing purchase behaviour for repeat drivers and changing merchandising and retention tactics to match.",
       "hidden": false,
       "visible": true
@@ -832,11 +1387,6 @@
       "visible": true
     },
     {
-      "t": "2022 – 2024",
-      "hidden": false,
-      "visible": true
-    },
-    {
       "t": "Management Development Institute (MDI) · Murshidabad",
       "hidden": false,
       "visible": true
@@ -847,252 +1397,12 @@
       "visible": true
     },
     {
-      "t": "2014 – 2018",
-      "hidden": false,
-      "visible": true
-    },
-    {
       "t": "KIIT University · Bhubaneswar",
       "hidden": false,
       "visible": true
     },
     {
-      "t": "Achievements",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Recognition",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "NextLeap Product Manager Top Fellow",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "2024",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Runner-Up, “Call for Article” — Analytics Club, IIM Rohtak",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "2023",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "GitHub",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Building in public",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "740 contributions in the last year",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Oct",
-      "hidden": true,
-      "visible": true
-    },
-    {
-      "t": "Nov",
-      "hidden": true,
-      "visible": true
-    },
-    {
-      "t": "Dec",
-      "hidden": true,
-      "visible": true
-    },
-    {
-      "t": "Jan",
-      "hidden": true,
-      "visible": true
-    },
-    {
-      "t": "Feb",
-      "hidden": true,
-      "visible": true
-    },
-    {
-      "t": "Mar",
-      "hidden": true,
-      "visible": true
-    },
-    {
-      "t": "Apr",
-      "hidden": true,
-      "visible": true
-    },
-    {
-      "t": "May",
-      "hidden": true,
-      "visible": true
-    },
-    {
-      "t": "Jun",
-      "hidden": true,
-      "visible": true
-    },
-    {
-      "t": "Jul",
-      "hidden": true,
-      "visible": true
-    },
-    {
-      "t": "Aug",
-      "hidden": true,
-      "visible": true
-    },
-    {
-      "t": "Sep",
-      "hidden": true,
-      "visible": true
-    },
-    {
-      "t": "Less",
-      "hidden": true,
-      "visible": true
-    },
-    {
-      "t": "More",
-      "hidden": true,
-      "visible": true
-    },
-    {
-      "t": "Signal",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Agentic LLM feedback-triage prototype: classifies, clusters and scores user feedback into ranked, evidence-linked recommendations, with an evaluation harness.",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "View repo",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "(opens GitHub in a new tab)",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "journey-mapper",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Event-driven growth CRM with drop-off detection and multi-channel re-engagement.",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "View repo",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "(opens GitHub in a new tab)",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "cairn",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "RAG coaching assistant prototype (cosine-similarity embedding search).",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "View repo",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "(opens GitHub in a new tab)",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "job-apply-assistant-1",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Agentic job-search assistant (FastAPI, MongoDB, OpenAI, Gmail).",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "View repo",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "(opens GitHub in a new tab)",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "lighthouse-qa-monitor",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "AI QA-monitoring agent for marketplaces: detects workflow failures, deduplicates issues, translates errors into seller-friendly insights.",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "View repo",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "(opens GitHub in a new tab)",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "All repositories on GitHub",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "(opens in a new tab)",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Toolkit",
-      "hidden": false,
-      "visible": true
-    },
-    {
       "t": "Skills & Credentials",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "Fluent in product discovery, user research, JTBD, prioritisation, experimentation, A/B testing, APIs, and SQL-driven decisions.",
       "hidden": false,
       "visible": true
     },
@@ -1307,13 +1617,423 @@
       "visible": true
     },
     {
-      "t": "Lean Six Sigma (KPMG)",
+      "t": "Top Fellow, Product Management",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "NextLeap",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Lean Six Sigma",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "KPMG",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Business Analytics with Excel",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Johns Hopkins University · Coursera",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Google Analytics 4",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Google · Skillshop",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "SQL for Data Science",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "University of California, Davis · Coursera",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Business Analysis & Process Management",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Coursera",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Get Started with Jira",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Coursera",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Top Fellow, Product Management",
       "hidden": false,
       "visible": true
     },
     {
-      "t": "Google Analytics 4 (Google)",
+      "t": "NextLeap",
       "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Lean Six Sigma",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "KPMG",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Business Analytics with Excel",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Johns Hopkins University · Coursera",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Google Analytics 4",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Google · Skillshop",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "SQL for Data Science",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "University of California, Davis · Coursera",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Business Analysis & Process Management",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Coursera",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Get Started with Jira",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Coursera",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Top Fellow, Product Management",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "NextLeap",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Lean Six Sigma",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "KPMG",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Business Analytics with Excel",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Johns Hopkins University · Coursera",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Google Analytics 4",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Google · Skillshop",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "SQL for Data Science",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "University of California, Davis · Coursera",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Business Analysis & Process Management",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Coursera",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Get Started with Jira",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Coursera",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Top Fellow, Product Management",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "NextLeap",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Lean Six Sigma",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "KPMG",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Business Analytics with Excel",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Johns Hopkins University · Coursera",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Google Analytics 4",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Google · Skillshop",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "SQL for Data Science",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "University of California, Davis · Coursera",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Business Analysis & Process Management",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Coursera",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Get Started with Jira",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "Coursera",
+      "hidden": true,
+      "visible": true
+    },
+    {
+      "t": "(opens in a new tab)",
+      "hidden": true,
       "visible": true
     },
     {
@@ -1323,6 +2043,11 @@
     },
     {
       "t": "Product Manager · Bengaluru, India",
+      "hidden": false,
+      "visible": true
+    },
+    {
+      "t": "Download Resume",
       "hidden": false,
       "visible": true
     },
@@ -1337,22 +2062,12 @@
       "visible": true
     },
     {
-      "t": "LinkedIn",
+      "t": "LinkedIn (opens in a new tab)",
       "hidden": false,
       "visible": true
     },
     {
-      "t": "(opens in a new tab)",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "GitHub",
-      "hidden": false,
-      "visible": true
-    },
-    {
-      "t": "(opens in a new tab)",
+      "t": "GitHub (opens in a new tab)",
       "hidden": false,
       "visible": true
     },
@@ -1400,8 +2115,44 @@
       "download": false
     },
     {
-      "href": "#github",
-      "name": "GitHub",
+      "href": "#skills",
+      "name": "Skills",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "#contact",
+      "name": "Contact",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "/resume/Faraz-Ali-Product-Manager.pdf?v=931755c0",
+      "name": "Download Resume",
+      "target": "",
+      "download": true
+    },
+    {
+      "href": "#impact",
+      "name": "Impact",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "#work",
+      "name": "Work",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "#built",
+      "name": "Built",
+      "target": "",
+      "download": false
+    },
+    {
+      "href": "#experience",
+      "name": "Experience",
       "target": "",
       "download": false
     },
@@ -1418,7 +2169,7 @@
       "download": false
     },
     {
-      "href": "/resume/Faraz-Ali-Product-Manager.pdf",
+      "href": "/resume/Faraz-Ali-Product-Manager.pdf?v=931755c0",
       "name": "Download Resume",
       "target": "",
       "download": true
@@ -1426,11 +2177,11 @@
     {
       "href": "mailto:faraz139@gmail.com",
       "name": "Get in touch",
-      "target": "",
+      "target": "_blank",
       "download": false
     },
     {
-      "href": "/resume/Faraz-Ali-Product-Manager.pdf",
+      "href": "/resume/Faraz-Ali-Product-Manager.pdf?v=931755c0",
       "name": "Download Resume",
       "target": "",
       "download": true
@@ -1438,12 +2189,6 @@
     {
       "href": "tel:+917991193433",
       "name": "+91 79911 93433",
-      "target": "",
-      "download": false
-    },
-    {
-      "href": "mailto:faraz139@gmail.com",
-      "name": "faraz139@gmail.com",
       "target": "",
       "download": false
     },
@@ -1550,6 +2295,132 @@
       "download": false
     },
     {
+      "href": "https://assets.nextleap.app/submissions/NLBumble-da078847-c1b6-4b73-b9c3-760f63b97b4c.pdf",
+      "name": "Open case study (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/Makemytrip-9eb8bfaa-0280-463f-a9df-6ca31ed1887f.pdf",
+      "name": "Open case study (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/Zepto-da51ae3f-a48d-40c6-9f3a-7615f18849e7.pdf",
+      "name": "Open case study (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/Zomato_milestone_1-649634e2-0d24-4ac4-8f94-c6501973d4da.pdf",
+      "name": "Defining Product Outcomes (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/Zomato_milestone_2-c5178530-7bea-4788-891f-3d1048b81820.pdf",
+      "name": "Deriving Insights from Users (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/PRD_1-38d725a5-c2e1-4d2a-8cd9-ff2e1bb0d11c.pdf",
+      "name": "Product Note (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/ZomatoPRD_2-d66f3915-fb5d-40fb-9308-8e6aeb753989.pdf",
+      "name": "PRD (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/NLBumble-da078847-c1b6-4b73-b9c3-760f63b97b4c.pdf",
+      "name": "Open case study (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/Makemytrip-9eb8bfaa-0280-463f-a9df-6ca31ed1887f.pdf",
+      "name": "Open case study (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/Zepto-da51ae3f-a48d-40c6-9f3a-7615f18849e7.pdf",
+      "name": "Open case study (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/Zomato_milestone_1-649634e2-0d24-4ac4-8f94-c6501973d4da.pdf",
+      "name": "Defining Product Outcomes (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/Zomato_milestone_2-c5178530-7bea-4788-891f-3d1048b81820.pdf",
+      "name": "Deriving Insights from Users (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/PRD_1-38d725a5-c2e1-4d2a-8cd9-ff2e1bb0d11c.pdf",
+      "name": "Product Note (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/ZomatoPRD_2-d66f3915-fb5d-40fb-9308-8e6aeb753989.pdf",
+      "name": "PRD (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/NLBumble-da078847-c1b6-4b73-b9c3-760f63b97b4c.pdf",
+      "name": "Open case study (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/Makemytrip-9eb8bfaa-0280-463f-a9df-6ca31ed1887f.pdf",
+      "name": "Open case study (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/Zepto-da51ae3f-a48d-40c6-9f3a-7615f18849e7.pdf",
+      "name": "Open case study (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/Zomato_milestone_1-649634e2-0d24-4ac4-8f94-c6501973d4da.pdf",
+      "name": "Defining Product Outcomes (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/Zomato_milestone_2-c5178530-7bea-4788-891f-3d1048b81820.pdf",
+      "name": "Deriving Insights from Users (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/PRD_1-38d725a5-c2e1-4d2a-8cd9-ff2e1bb0d11c.pdf",
+      "name": "Product Note (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/submissions/ZomatoPRD_2-d66f3915-fb5d-40fb-9308-8e6aeb753989.pdf",
+      "name": "PRD (PDF, opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
       "href": "https://signal-theta-ten.vercel.app",
       "name": "Live demo (opens in a new tab)",
       "target": "_blank",
@@ -1563,19 +2434,19 @@
     },
     {
       "href": "https://github.com/FarazO7/journey-mapper",
-      "name": "Growth CRM · D2C engagR Event-driven growth CRM for D2C — captures user events, flags where people drop off, and auto-generates personalised re-engagement across email, WhatsApp, and SMS, with A/B testing built in. View repo (opens in a new tab)",
+      "name": "View repo (opens in a new tab)",
       "target": "_blank",
       "download": false
     },
     {
       "href": "https://github.com/FarazO7/cairn",
-      "name": "RAG · Coaching assistant Cairn A RAG coaching assistant prototype that grounds its answers in a custom corpus using cosine-similarity embedding search. View repo (opens in a new tab)",
+      "name": "View repo (opens in a new tab)",
       "target": "_blank",
       "download": false
     },
     {
       "href": "https://github.com/FarazO7/job-apply-assistant-1",
-      "name": "Agentic · Job search Application Desk An agentic job-search assistant — finds relevant roles, drafts tailored applications, and schedules sends, on FastAPI, MongoDB, OpenAI, and Gmail. View repo (opens in a new tab)",
+      "name": "View repo (opens in a new tab)",
       "target": "_blank",
       "download": false
     },
@@ -1640,50 +2511,182 @@
       "download": false
     },
     {
-      "href": "https://github.com/FarazO7/Signal",
-      "name": "Signal Agentic LLM feedback-triage prototype: classifies, clusters and scores user feedback into ranked, evidence-linked recommendations, with an evaluation harness. View repo (opens GitHub in a new tab)",
+      "href": "https://assets.nextleap.app/user-badge/nlcfsmvdovkfsgn6f8lqy/536786c34e5e988c829d05819e6d0cbf.png",
+      "name": "Top Fellow, Product Management certificate Top Fellow, Product Management NextLeap (opens in a new tab)",
       "target": "_blank",
       "download": false
     },
     {
-      "href": "https://github.com/FarazO7/journey-mapper",
-      "name": "journey-mapper Event-driven growth CRM with drop-off detection and multi-channel re-engagement. View repo (opens GitHub in a new tab)",
+      "href": "https://drive.google.com/file/d/15x5ujUoloCr15aegrzAZd6bacXH3uaSS/view?usp=sharing",
+      "name": "Lean Six Sigma certificate Lean Six Sigma KPMG (opens in a new tab)",
       "target": "_blank",
       "download": false
     },
     {
-      "href": "https://github.com/FarazO7/cairn",
-      "name": "cairn RAG coaching assistant prototype (cosine-similarity embedding search). View repo (opens GitHub in a new tab)",
+      "href": "https://www.coursera.org/account/accomplishments/certificate/NBPFP8DPKX7F",
+      "name": "Business Analytics with Excel certificate Business Analytics with Excel Johns Hopkins University · Coursera (opens in a new tab)",
       "target": "_blank",
       "download": false
     },
     {
-      "href": "https://github.com/FarazO7/job-apply-assistant-1",
-      "name": "job-apply-assistant-1 Agentic job-search assistant (FastAPI, MongoDB, OpenAI, Gmail). View repo (opens GitHub in a new tab)",
+      "href": "https://skillshop.credential.net/84e8ebd8-0bb5-47f7-9685-e6124ad130b6#acc.R9ACs1jo",
+      "name": "Google Analytics 4 certificate Google Analytics 4 Google · Skillshop (opens in a new tab)",
       "target": "_blank",
       "download": false
     },
     {
-      "href": "https://github.com/FarazO7/lighthouse-qa-monitor",
-      "name": "lighthouse-qa-monitor AI QA-monitoring agent for marketplaces: detects workflow failures, deduplicates issues, translates errors into seller-friendly insights. View repo (opens GitHub in a new tab)",
+      "href": "https://www.coursera.org/account/accomplishments/certificate/HZCGAG3EY3W8",
+      "name": "SQL for Data Science certificate SQL for Data Science University of California, Davis · Coursera (opens in a new tab)",
       "target": "_blank",
       "download": false
     },
     {
-      "href": "https://github.com/FarazO7",
-      "name": "All repositories on GitHub (opens in a new tab)",
+      "href": "https://www.coursera.org/account/accomplishments/certificate/C4HQ5YMTTBHU",
+      "name": "Business Analysis & Process Management certificate Business Analysis & Process Management Coursera (opens in a new tab)",
       "target": "_blank",
       "download": false
+    },
+    {
+      "href": "https://www.coursera.org/account/accomplishments/certificate/F8Q5YPGBJSGD",
+      "name": "Get Started with Jira certificate Get Started with Jira Coursera (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/user-badge/nlcfsmvdovkfsgn6f8lqy/536786c34e5e988c829d05819e6d0cbf.png",
+      "name": "Top Fellow, Product Management certificate Top Fellow, Product Management NextLeap (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://drive.google.com/file/d/15x5ujUoloCr15aegrzAZd6bacXH3uaSS/view?usp=sharing",
+      "name": "Lean Six Sigma certificate Lean Six Sigma KPMG (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://www.coursera.org/account/accomplishments/certificate/NBPFP8DPKX7F",
+      "name": "Business Analytics with Excel certificate Business Analytics with Excel Johns Hopkins University · Coursera (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://skillshop.credential.net/84e8ebd8-0bb5-47f7-9685-e6124ad130b6#acc.R9ACs1jo",
+      "name": "Google Analytics 4 certificate Google Analytics 4 Google · Skillshop (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://www.coursera.org/account/accomplishments/certificate/HZCGAG3EY3W8",
+      "name": "SQL for Data Science certificate SQL for Data Science University of California, Davis · Coursera (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://www.coursera.org/account/accomplishments/certificate/C4HQ5YMTTBHU",
+      "name": "Business Analysis & Process Management certificate Business Analysis & Process Management Coursera (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://www.coursera.org/account/accomplishments/certificate/F8Q5YPGBJSGD",
+      "name": "Get Started with Jira certificate Get Started with Jira Coursera (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/user-badge/nlcfsmvdovkfsgn6f8lqy/536786c34e5e988c829d05819e6d0cbf.png",
+      "name": "Top Fellow, Product Management certificate Top Fellow, Product Management NextLeap (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://drive.google.com/file/d/15x5ujUoloCr15aegrzAZd6bacXH3uaSS/view?usp=sharing",
+      "name": "Lean Six Sigma certificate Lean Six Sigma KPMG (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://www.coursera.org/account/accomplishments/certificate/NBPFP8DPKX7F",
+      "name": "Business Analytics with Excel certificate Business Analytics with Excel Johns Hopkins University · Coursera (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://skillshop.credential.net/84e8ebd8-0bb5-47f7-9685-e6124ad130b6#acc.R9ACs1jo",
+      "name": "Google Analytics 4 certificate Google Analytics 4 Google · Skillshop (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://www.coursera.org/account/accomplishments/certificate/HZCGAG3EY3W8",
+      "name": "SQL for Data Science certificate SQL for Data Science University of California, Davis · Coursera (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://www.coursera.org/account/accomplishments/certificate/C4HQ5YMTTBHU",
+      "name": "Business Analysis & Process Management certificate Business Analysis & Process Management Coursera (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://www.coursera.org/account/accomplishments/certificate/F8Q5YPGBJSGD",
+      "name": "Get Started with Jira certificate Get Started with Jira Coursera (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://assets.nextleap.app/user-badge/nlcfsmvdovkfsgn6f8lqy/536786c34e5e988c829d05819e6d0cbf.png",
+      "name": "Top Fellow, Product Management certificate Top Fellow, Product Management NextLeap (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://drive.google.com/file/d/15x5ujUoloCr15aegrzAZd6bacXH3uaSS/view?usp=sharing",
+      "name": "Lean Six Sigma certificate Lean Six Sigma KPMG (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://www.coursera.org/account/accomplishments/certificate/NBPFP8DPKX7F",
+      "name": "Business Analytics with Excel certificate Business Analytics with Excel Johns Hopkins University · Coursera (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://skillshop.credential.net/84e8ebd8-0bb5-47f7-9685-e6124ad130b6#acc.R9ACs1jo",
+      "name": "Google Analytics 4 certificate Google Analytics 4 Google · Skillshop (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://www.coursera.org/account/accomplishments/certificate/HZCGAG3EY3W8",
+      "name": "SQL for Data Science certificate SQL for Data Science University of California, Davis · Coursera (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://www.coursera.org/account/accomplishments/certificate/C4HQ5YMTTBHU",
+      "name": "Business Analysis & Process Management certificate Business Analysis & Process Management Coursera (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "https://www.coursera.org/account/accomplishments/certificate/F8Q5YPGBJSGD",
+      "name": "Get Started with Jira certificate Get Started with Jira Coursera (opens in a new tab)",
+      "target": "_blank",
+      "download": false
+    },
+    {
+      "href": "/resume/Faraz-Ali-Product-Manager.pdf?v=931755c0",
+      "name": "Download Resume",
+      "target": "",
+      "download": true
     },
     {
       "href": "tel:+917991193433",
       "name": "+91 79911 93433",
-      "target": "",
-      "download": false
-    },
-    {
-      "href": "mailto:faraz139@gmail.com",
-      "name": "faraz139@gmail.com",
       "target": "",
       "download": false
     },
@@ -1718,12 +2721,12 @@
       "alt": "Healthmug logo"
     },
     {
-      "src": "/logos/kiit.png",
-      "alt": "KIIT University logo"
-    },
-    {
       "src": "/logos/mdi.png",
       "alt": "MDI Murshidabad logo"
+    },
+    {
+      "src": "/logos/kiit.png",
+      "alt": "KIIT University logo"
     },
     {
       "src": "/previews/bumble.webp",
@@ -1742,8 +2745,164 @@
       "alt": "First page of Zomato — Increasing Reviews case study"
     },
     {
-      "src": "[role=img]",
-      "alt": "Contribution calendar: 740 contributions in the last year"
+      "src": "/previews/bumble.webp",
+      "alt": "First page of Bumble — “Date Vibe” case study"
+    },
+    {
+      "src": "/previews/makemytrip.webp",
+      "alt": "First page of MakeMyTrip case study"
+    },
+    {
+      "src": "/previews/zepto.webp",
+      "alt": "First page of Zepto case study"
+    },
+    {
+      "src": "/previews/zomato.webp",
+      "alt": "First page of Zomato — Increasing Reviews case study"
+    },
+    {
+      "src": "/previews/bumble.webp",
+      "alt": "First page of Bumble — “Date Vibe” case study"
+    },
+    {
+      "src": "/previews/makemytrip.webp",
+      "alt": "First page of MakeMyTrip case study"
+    },
+    {
+      "src": "/previews/zepto.webp",
+      "alt": "First page of Zepto case study"
+    },
+    {
+      "src": "/previews/zomato.webp",
+      "alt": "First page of Zomato — Increasing Reviews case study"
+    },
+    {
+      "src": "/previews/bumble.webp",
+      "alt": "First page of Bumble — “Date Vibe” case study"
+    },
+    {
+      "src": "/previews/makemytrip.webp",
+      "alt": "First page of MakeMyTrip case study"
+    },
+    {
+      "src": "/previews/zepto.webp",
+      "alt": "First page of Zepto case study"
+    },
+    {
+      "src": "/previews/zomato.webp",
+      "alt": "First page of Zomato — Increasing Reviews case study"
+    },
+    {
+      "src": "/certifications/nextleap-top-fellow.webp",
+      "alt": "Top Fellow, Product Management certificate"
+    },
+    {
+      "src": "/certifications/kpmg-lean-six-sigma.webp",
+      "alt": "Lean Six Sigma certificate"
+    },
+    {
+      "src": "/certifications/business-analytics-excel.webp",
+      "alt": "Business Analytics with Excel certificate"
+    },
+    {
+      "src": "/certifications/google-analytics.webp",
+      "alt": "Google Analytics 4 certificate"
+    },
+    {
+      "src": "/certifications/sql-data-science.webp",
+      "alt": "SQL for Data Science certificate"
+    },
+    {
+      "src": "/certifications/business-analysis-process-management.webp",
+      "alt": "Business Analysis & Process Management certificate"
+    },
+    {
+      "src": "/certifications/get-started-with-jira.webp",
+      "alt": "Get Started with Jira certificate"
+    },
+    {
+      "src": "/certifications/nextleap-top-fellow.webp",
+      "alt": "Top Fellow, Product Management certificate"
+    },
+    {
+      "src": "/certifications/kpmg-lean-six-sigma.webp",
+      "alt": "Lean Six Sigma certificate"
+    },
+    {
+      "src": "/certifications/business-analytics-excel.webp",
+      "alt": "Business Analytics with Excel certificate"
+    },
+    {
+      "src": "/certifications/google-analytics.webp",
+      "alt": "Google Analytics 4 certificate"
+    },
+    {
+      "src": "/certifications/sql-data-science.webp",
+      "alt": "SQL for Data Science certificate"
+    },
+    {
+      "src": "/certifications/business-analysis-process-management.webp",
+      "alt": "Business Analysis & Process Management certificate"
+    },
+    {
+      "src": "/certifications/get-started-with-jira.webp",
+      "alt": "Get Started with Jira certificate"
+    },
+    {
+      "src": "/certifications/nextleap-top-fellow.webp",
+      "alt": "Top Fellow, Product Management certificate"
+    },
+    {
+      "src": "/certifications/kpmg-lean-six-sigma.webp",
+      "alt": "Lean Six Sigma certificate"
+    },
+    {
+      "src": "/certifications/business-analytics-excel.webp",
+      "alt": "Business Analytics with Excel certificate"
+    },
+    {
+      "src": "/certifications/google-analytics.webp",
+      "alt": "Google Analytics 4 certificate"
+    },
+    {
+      "src": "/certifications/sql-data-science.webp",
+      "alt": "SQL for Data Science certificate"
+    },
+    {
+      "src": "/certifications/business-analysis-process-management.webp",
+      "alt": "Business Analysis & Process Management certificate"
+    },
+    {
+      "src": "/certifications/get-started-with-jira.webp",
+      "alt": "Get Started with Jira certificate"
+    },
+    {
+      "src": "/certifications/nextleap-top-fellow.webp",
+      "alt": "Top Fellow, Product Management certificate"
+    },
+    {
+      "src": "/certifications/kpmg-lean-six-sigma.webp",
+      "alt": "Lean Six Sigma certificate"
+    },
+    {
+      "src": "/certifications/business-analytics-excel.webp",
+      "alt": "Business Analytics with Excel certificate"
+    },
+    {
+      "src": "/certifications/google-analytics.webp",
+      "alt": "Google Analytics 4 certificate"
+    },
+    {
+      "src": "/certifications/sql-data-science.webp",
+      "alt": "SQL for Data Science certificate"
+    },
+    {
+      "src": "/certifications/business-analysis-process-management.webp",
+      "alt": "Business Analysis & Process Management certificate"
+    },
+    {
+      "src": "/certifications/get-started-with-jira.webp",
+      "alt": "Get Started with Jira certificate"
     }
   ],
   "meta": [
@@ -1753,11 +2912,11 @@
     ],
     [
       "theme-color",
-      "#070B14"
+      "#ffffff"
     ],
     [
       "description",
-      "Product Manager with 2+ years across regulated fintech (KYC/AML), edtech growth and e-commerce operations (WMS, OMS). Focused on B2B fintech platforms and applied AI."
+      "Product Manager with 2+ years across regulated fintech (KYC/AML), EdTech growth and e-commerce operations (WMS, OMS). Focused on B2B fintech platforms and applied AI."
     ],
     [
       "og:title",
@@ -1765,7 +2924,7 @@
     ],
     [
       "og:description",
-      "Product Manager with 2+ years across regulated fintech (KYC/AML), edtech growth and e-commerce operations (WMS, OMS). Focused on B2B fintech platforms and applied AI."
+      "Product Manager with 2+ years across regulated fintech (KYC/AML), EdTech growth and e-commerce operations (WMS, OMS). Focused on B2B fintech platforms and applied AI."
     ],
     [
       "og:url",
@@ -1801,7 +2960,7 @@
     ],
     [
       "twitter:description",
-      "Product Manager with 2+ years across regulated fintech (KYC/AML), edtech growth and e-commerce operations (WMS, OMS). Focused on B2B fintech platforms and applied AI."
+      "Product Manager with 2+ years across regulated fintech (KYC/AML), EdTech growth and e-commerce operations (WMS, OMS). Focused on B2B fintech platforms and applied AI."
     ],
     [
       "twitter:image",
@@ -1834,10 +2993,6 @@
     [
       "link icon",
       "/icon.svg"
-    ],
-    [
-      "json-ld",
-      "{\"@context\":\"https://schema.org\",\"@type\":\"Person\",\"name\":\"Faraz Ali\",\"url\":\"https://faraz-website.vercel.app\",\"jobTitle\":\"Product Manager\",\"email\":\"mailto:faraz139@gmail.com\",\"telephone\":\"+91 79911 93433\",\"address\":{\"@type\":\"PostalAddress\",\"addressLocality\":\"Bengaluru\",\"addressCountry\":\"IN\"},\"worksFor\":{\"@type\":\"Organization\",\"name\":\"Zamplitude\"},\"sameAs\":[\"https://linkedin.com/in/-faraz\",\"https://github.com/FarazO7\"]}"
     ],
     [
       "json-ld",

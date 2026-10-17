@@ -1,42 +1,38 @@
+import DomainPills from "./DomainPills";
 import { SectionHead } from "./Section";
 import Timeline from "./Timeline";
-import { domains, educationTimeline, experience } from "@/lib/content";
+import { educationTimeline, experience } from "@/lib/content";
 
-// The reference's "What to expect" layout: heading and Domains pinned on the
-// left from lg, the numbered timeline on the right. Reading-first: full text,
-// no collapsing, nothing dims after it has appeared.
+const COLUMNS = "wrap grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.5fr)] lg:gap-16";
+
+// The reference's "What to expect" layout: heading and the active role's
+// Domains pinned on the left from lg, the numbered timeline on the right.
+// Education is its own section on the same columns, so the pinned panel's
+// grid ends with the last role and the panel scrolls away with it.
+// Reading-first: full text, no collapsing, nothing dims after it has appeared.
 export default function Experience() {
   return (
-    <section id="experience" aria-labelledby="experience-title" tabIndex={-1} className="section">
-      <div className="wrap grid gap-12 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.5fr)] lg:gap-16">
-        <div className="lg:sticky lg:top-28 lg:self-start">
-          <SectionHead id="experience" kicker="Track Record" title="Experience" />
-          <div className="mt-10" data-reveal="fade">
-            <p id="domains-label" className="kicker">
-              Domains
-            </p>
-            <ul aria-labelledby="domains-label" className="mt-4 flex flex-wrap gap-2">
-              {domains.map((domain) => (
-                <li key={domain} className="pill bg-surface-3 text-[0.875rem]">
-                  {domain}
-                </li>
-              ))}
-            </ul>
+    <>
+      <section id="experience" aria-labelledby="experience-title" tabIndex={-1} className="section">
+        <div className={COLUMNS}>
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <SectionHead id="experience" title="Experience" />
+            <DomainPills sets={experience.map((role) => role.domains ?? [])} timelineId="experience-roles" />
           </div>
+          <Timeline id="experience-roles" roles={experience} />
         </div>
-        <div>
-          <Timeline roles={experience} />
-          <div className="mt-16 md:mt-24">
-            <h3 className="t-h2" data-reveal="fade">
-              Education
-            </h3>
+      </section>
+      <section id="education" aria-labelledby="education-title" tabIndex={-1} className="section">
+        <div className={COLUMNS}>
+          <div>
+            <SectionHead id="education" title="Education" />
             <p className="mt-3 text-muted" data-reveal="fade">
               Where the foundation was laid.
             </p>
-            <Timeline roles={educationTimeline} compact className="mt-10" />
           </div>
+          <Timeline roles={educationTimeline} compact />
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

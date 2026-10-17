@@ -8,8 +8,12 @@
 // 2. Glass budget: at most 6 painted, in-viewport backdrop-filter elements at
 //    the hero, Impact, GitHub, GitHub-to-Skills and Skills scroll positions.
 // 3. axe: zero serious or critical violations on / and two impact pages.
-// 4. Keyboard: Impact tiles, "Read the case" links, the Zomato documents
-//    toggle and the mobile menu (Escape closes it and returns focus).
+// 4. Keyboard: Impact tabs and tiles, "Read the case" links, the Zomato
+//    documents toggle, the Built cards and the mobile menu (Escape closes it
+//    and returns focus). Carousels: the loop's copies are aria-hidden and
+//    inert, and the row drifts. The hero renders no <script>.
+// 5. Links: every mailto: and external link opens in a new tab with
+//    rel="noopener noreferrer" (lib/links.ts).
 //
 // Uses the installed Google Chrome when present, else Playwright's Chromium
 // (`npx playwright install chromium`). Exits 1 on any failure.
@@ -110,8 +114,7 @@ async function checkGlass(browser, width) {
   const { context, page } = await openPage(browser, { width });
   await page.goto(`${BASE}/`, { waitUntil: "load" });
   const stops = [["hero", 0]];
-  for (const id of ["impact", "github", "skills"]) stops.push([id, (await sectionY(page, id)) - 80]);
-  stops.push(["github-to-skills", (await sectionY(page, "skills")) - HEIGHT / 2]);
+  for (const id of ["impact", "work", "skills", "contact"]) stops.push([id, (await sectionY(page, id)) - 80]);
 
   const counts = [];
   for (const [name, y] of stops) {
@@ -146,6 +149,61 @@ async function checkAxe(browser) {
 }
 
 // ---------------------------------------------------------------- keyboard
+const tabState = () =>
+  [...document.querySelectorAll('[role="tab"]')].map((tab) => ({
+    selected: tab.getAttribute("aria-selected") === "true",
+    focused: tab === document.activeElement,
+    panelVisible: getComputedStyle(document.getElementById(tab.getAttribute("aria-controls"))).visibility === "visible",
+  }));
+
+async function checkTablist(page) {
+  const tabs = page.getByRole("tab");
+  const count = await tabs.count();
+  if (count < 2) return fail("keyboard: Impact tablist with two or more tabs not found");
+  await tabs.first().focus();
+  for (const [key, index] of [["ArrowRight", 1 % count], ["End", count - 1], ["Home", 0], ["ArrowLeft", count - 1], ["Home", 0]]) {
+    await page.keyboard.press(key);
+    await page.waitForTimeout(600); // panel cross-fade
+    const state = await page.evaluate(tabState);
+    const ok = state.every((t, i) => t.selected === (i === index) && t.panelVisible === (i === index)) && state[index].focused;
+    if (!ok) return fail(`keyboard: after ${key}, tab ${index + 1} should be selected, focused and showing its panel`);
+  }
+  note(`keyboard: Impact tablist ${count} tabs, arrows/Home/End ok`);
+}
+
+async function checkBuiltCards(page) {
+  const headers = page.locator('#built button[aria-expanded]');
+  const count = await headers.count();
+  if (count < 2) return fail("keyboard: Built card headers not found");
+  const first = headers.first();
+  const bodyInert = () => first.evaluate((el) => document.getElementById(el.getAttribute("aria-controls")).inert);
+  const startsClosed = (await first.getAttribute("aria-expanded")) === "false" && (await bodyInert());
+  await first.focus();
+  await page.keyboard.press("Enter");
+  const opens = (await first.getAttribute("aria-expanded")) === "true" && !(await bodyInert());
+  await page.keyboard.press(" ");
+  const closes = (await first.getAttribute("aria-expanded")) === "false";
+  if (!startsClosed || !opens || !closes) fail("keyboard: Built card header does not toggle with Enter and Space");
+  else note(`keyboard: ${count} Built cards toggle with Enter and Space`);
+}
+
+async function checkLinkTargets(browser) {
+  const { context, page } = await openPage(browser);
+  let checked = 0;
+  for (const path of ["/", ...IMPACT_PAGES]) {
+    await page.goto(`${BASE}${path}`, { waitUntil: "load" });
+    const bad = await page.evaluate(() =>
+      [...document.querySelectorAll('a[href^="mailto:"], a[href^="http"]')]
+        .filter((a) => a.target !== "_blank" || !/noopener/.test(a.rel) || !/noreferrer/.test(a.rel))
+        .map((a) => a.getAttribute("href")),
+    );
+    checked += await page.locator('a[href^="mailto:"], a[href^="http"]').count();
+    for (const href of bad) fail(`links ${path}: ${href} must open in a new tab with rel="noopener noreferrer"`);
+  }
+  note(`links: ${checked} mailto/external links open in a new tab`);
+  await context.close();
+}
+
 async function checkImpactTiles(page) {
   const tiles = await page.evaluate(() =>
     [...document.querySelectorAll('#impact a[href^="/impact/"]')].map((a) => ({
@@ -204,12 +262,38 @@ async function checkCaseLinks(page) {
   note(`keyboard: ${links.length} "Read the case" links, unique names`);
 }
 
+async function checkCarousels(page) {
+  const carousels = await page.evaluate(() =>
+    [...document.querySelectorAll('[aria-roledescription="carousel"]')].map((root) => {
+      const items = [...root.querySelectorAll(".carousel-item")];
+      const copies = items.filter((item) => item.getAttribute("aria-hidden") === "true");
+      return { label: root.getAttribute("aria-label"), items: items.length, copies: copies.length, inert: copies.every((item) => item.inert) };
+    }),
+  );
+  if (carousels.length !== 2) return fail(`carousels: expected 2, found ${carousels.length}`);
+  for (const c of carousels) {
+    if (c.copies !== (c.items * 3) / 4 || !c.inert) fail(`carousel ${c.label}: ${c.copies} of ${c.items} items are copies; copies must be 3 sets, aria-hidden and inert`);
+  }
+  await scrollToY(page, (await sectionY(page, "work")) - 80);
+  const track = page.locator("#work .carousel-track");
+  const before = await track.evaluate((el) => el.scrollLeft);
+  await page.waitForTimeout(3000);
+  const after = await track.evaluate((el) => el.scrollLeft);
+  if (after === before) fail("carousel: Selected Work does not drift");
+  note(`carousels: ${carousels.map((c) => `${c.label} ${c.items / 4} + ${c.copies} copies`).join(" · ")}; drift ${Math.round(after - before)}px in 3s`);
+}
+
 async function checkKeyboard(browser) {
   const { context, page } = await openPage(browser);
   await page.goto(`${BASE}/`, { waitUntil: "load" });
+  const heroScripts = await page.locator("#top script").count();
+  if (heroScripts > 0) fail(`hero: renders ${heroScripts} <script> element(s); React never runs them on the client`);
+  await checkTablist(page);
   await checkImpactTiles(page);
   await checkCaseLinks(page);
   await checkDocsToggle(page);
+  await checkBuiltCards(page);
+  await checkCarousels(page);
   await context.close();
 }
 
@@ -267,6 +351,7 @@ async function main() {
     await checkAxe(browser);
     await checkKeyboard(browser);
     await checkMenu(browser);
+    await checkLinkTargets(browser);
     if (crawlLinks) await crawlAllLinks();
     if (lighthouseDir) await runLighthouse(lighthouseDir);
   } finally {

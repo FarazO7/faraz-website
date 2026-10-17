@@ -2,29 +2,71 @@
 
 import { useEffect, useRef, useState } from "react";
 import { identity, navLinks } from "@/lib/content";
-import { cn, withBase } from "@/lib/utils";
+import { resumeLinkProps } from "@/lib/links";
+import { cn } from "@/lib/utils";
 
 // The reference's floating navbar strip: a centred glass pill that drops in on
-// load, hides while scrolling down past the first viewport and returns on the
-// way up. Below lg it is a full-width pill whose menu opens in place (clip-path
+// load and slides away once the page is scrolled past ~80px. With a mouse it
+// comes back when the pointer reaches the top of the window (after a short
+// delay, so heading for the browser tabs doesn't pop it out), stays while
+// hovered and leaves 400ms after the pointer does. On touch it shows on scroll
+// up and hides on scroll down. Keyboard focus always shows it (focus-within).
+// Below lg it is a full-width pill whose menu opens in place (clip-path
 // reveal). Menu links stay in the DOM when closed (inert), so they remain in
 // the HTML for crawlers and no-JS visitors. `base` prefixes the section
 // anchors on pages other than home ("/" → "/#impact").
+const TOP_PX = 80; // scrolled further than this, the nav may hide
+const STRIP_PX = 96; // pointer this close to the top brings it back (nav height + margin)
+const SHOW_MS = 150;
+const HIDE_MS = 400;
+
 export default function Nav({ base = "" }: { base?: string }) {
   const [open, setOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
+    const mouse = window.matchMedia("(hover: hover) and (pointer: fine)");
     let last = window.scrollY;
+    let near = false; // pointer in the top strip (which contains the nav)
+    let showTimer = 0;
+    let hideTimer = 0;
+    const later = (show: boolean) => {
+      window.clearTimeout(showTimer);
+      window.clearTimeout(hideTimer);
+      if (show) showTimer = window.setTimeout(() => setHidden(false), SHOW_MS);
+      else hideTimer = window.setTimeout(() => setHidden(window.scrollY > TOP_PX), HIDE_MS);
+    };
     const onScroll = () => {
       const y = window.scrollY;
-      setHidden(y > window.innerHeight && y > last);
+      if (y <= TOP_PX) setHidden(false);
+      else if (mouse.matches) setHidden((wasHidden) => (near ? wasHidden : true));
+      else setHidden(y > last);
       last = y;
+    };
+    const onMove = (event: PointerEvent) => {
+      if (!mouse.matches || event.pointerType !== "mouse") return;
+      const inStrip = event.clientY <= STRIP_PX;
+      if (inStrip !== near) later(inStrip);
+      near = inStrip;
+    };
+    // Leaving the window (towards the tabs) cancels a pending show.
+    const onOut = (event: MouseEvent) => {
+      if (event.relatedTarget || !near) return;
+      near = false;
+      later(false);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("pointermove", onMove, { passive: true });
+    document.addEventListener("mouseout", onOut);
+    return () => {
+      window.clearTimeout(showTimer);
+      window.clearTimeout(hideTimer);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("pointermove", onMove);
+      document.removeEventListener("mouseout", onOut);
+    };
   }, []);
 
   useEffect(() => {
@@ -76,8 +118,7 @@ export default function Nav({ base = "" }: { base?: string }) {
           </ul>
           <div className="flex items-center gap-2">
             <a
-              href={withBase(identity.resumePath)}
-              download
+              {...resumeLinkProps()}
               className="btn btn-primary hidden h-10 min-w-0 px-5 text-sm sm:inline-flex"
             >
               Download Resume
@@ -132,8 +173,7 @@ export default function Nav({ base = "" }: { base?: string }) {
             ))}
           </ul>
           <a
-            href={withBase(identity.resumePath)}
-            download
+            {...resumeLinkProps()}
             onClick={() => setOpen(false)}
             className="btn btn-primary mt-6 w-full"
           >

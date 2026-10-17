@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import Words from "./Words";
 
-// Kicker (sparkle label) + h2 whose words rise out of masks on first view.
+// Optional kicker (sparkle label) + h2 whose words rise out of masks on first view.
 export function SectionHead({
   id,
   kicker,
@@ -11,7 +11,7 @@ export function SectionHead({
   className,
 }: {
   id: string;
-  kicker: string;
+  kicker?: string;
   title: string;
   accent?: string;
   center?: boolean;
@@ -19,10 +19,12 @@ export function SectionHead({
 }) {
   return (
     <div className={cn(center && "text-center", className)}>
-      <p className="kicker" data-reveal="fade">
-        {kicker}
-      </p>
-      <h2 id={`${id}-title`} className="t-h2 mt-4" data-reveal="words">
+      {kicker && (
+        <p className="kicker" data-reveal="fade">
+          {kicker}
+        </p>
+      )}
+      <h2 id={`${id}-title`} className={cn("t-h2", kicker && "mt-4")} data-reveal="words">
         <Words text={title} accent={accent} />
       </h2>
     </div>
@@ -39,7 +41,7 @@ export default function Section({
   className,
 }: {
   id: string;
-  kicker: string;
+  kicker?: string;
   title: string;
   accent?: string;
   center?: boolean;

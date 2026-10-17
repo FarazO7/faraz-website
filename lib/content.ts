@@ -32,6 +32,9 @@ export type Role = {
   current?: boolean;
   /** The resume's one-line role summary, shown above the bullets. */
   summary?: string;
+  /** Domains for this role: pills under the company line, and the pinned
+   *  Experience panel that follows the role in view (desktop). */
+  domains?: string[];
   bullets: Bullet[];
 };
 
@@ -43,7 +46,8 @@ export const experience: Role[] = [
     id: "zamplitude",
     title: "Product Manager",
     company: "Zamplitude",
-    descriptor: "Dubai-based SaaS firm",
+    descriptor: "Dubai-based fintech firm",
+    domains: ["Regulated Fintech", "KYC/AML", "Risk & Compliance"],
     location: "Remote, India",
     dates: "Mar 2026 – Present",
     current: true,
@@ -76,7 +80,8 @@ export const experience: Role[] = [
     id: "newton",
     title: "Associate Product Manager",
     company: "Newton School",
-    descriptor: "edtech",
+    descriptor: "EdTech",
+    domains: ["EdTech", "Growth", "AI", "Payments"],
     location: "Bengaluru",
     dates: "Mar 2025 – Mar 2026",
     summary:
@@ -109,6 +114,7 @@ export const experience: Role[] = [
     title: "Product Management Trainee",
     company: "HealthKart",
     descriptor: "health and nutrition e-commerce",
+    domains: ["E-commerce", "Supply Chain", "WMS", "OMS"],
     location: "Gurugram",
     dates: "Aug 2024 – Mar 2025",
     summary:
@@ -124,6 +130,7 @@ export const experience: Role[] = [
     title: "Category Management Intern (PGDM internship)",
     company: "Healthmug",
     descriptor: "health e-commerce",
+    domains: ["E-commerce", "Category Management"],
     location: "New Delhi",
     dates: "Apr 2023 – Jul 2023",
     bullets: [
@@ -131,17 +138,6 @@ export const experience: Role[] = [
       "Spotted demand gaps in category data and expanded the assortment from 1,230 to 1,820 SKUs (+48%), driving 35% month-on-month category growth.",
     ],
   },
-];
-
-/** Sectors worked in, shown as chips atop Experience. */
-export const domains = [
-  "Regulated Fintech",
-  "KYC/AML",
-  "Payments",
-  "Edtech",
-  "E-commerce",
-  "WMS",
-  "OMS",
 ];
 
 /** The role marked `current: true` (scripts/check-content.ts asserts exactly one, listed first). */
@@ -153,6 +149,7 @@ export function getRole(id: OrgId): Role | undefined {
 }
 
 const NAME = "Faraz Ali";
+const EMAIL = "faraz139@gmail.com";
 
 export const identity = {
   name: NAME,
@@ -162,26 +159,43 @@ export const identity = {
   tenure: currentRole.dates,
   // Resume summary, sentences one and three (meta description, OG and Twitter text).
   positioning:
-    "Product Manager with 2+ years across regulated fintech (KYC/AML), edtech growth and e-commerce operations (WMS, OMS). Focused on B2B fintech platforms and applied AI.",
+    "Product Manager with 2+ years across regulated fintech (KYC/AML), EdTech growth and e-commerce operations (WMS, OMS). Focused on B2B fintech platforms and applied AI.",
   companyShort: currentRole.companyShort ?? currentRole.company,
   greeting: "Hello there!",
   // REVIEW(Faraz): resume summary in the first person (October 2026 resume
   // sync), plus the AI-builder line drawn from the Signal project.
   bio:
-    "I'm a product manager with 2+ years across regulated fintech (KYC/AML), edtech growth and e-commerce operations (WMS, OMS). As the first PM hire at Zamplitude, I own a regulated investment firm's KYC/AML platform; at Newton School, I launched AI exam monitoring and nearly doubled sign-up conversion. I'm focused on B2B fintech platforms and applied AI, and I build AI prototypes myself, with evaluation harnesses and human-in-the-loop review.",
+    "I'm a product manager with 2+ years across regulated fintech (KYC/AML), EdTech growth and e-commerce operations (WMS, OMS). As the first PM hire at Zamplitude, I own a regulated investment firm's KYC/AML platform; at Newton School, I launched AI exam monitoring and nearly doubled sign-up conversion. I'm focused on B2B fintech platforms and applied AI, and I build AI prototypes myself, with evaluation harnesses and human-in-the-loop review.",
   siteUrl: "https://faraz-website.vercel.app",
   phone: "+91 79911 93433",
   phoneHref: "tel:+917991193433",
-  email: "faraz139@gmail.com",
+  email: EMAIL,
+  // The one mailto: every email link uses it (render it via lib/links.ts).
+  emailHref: `mailto:${EMAIL}`,
   linkedin: "https://linkedin.com/in/-faraz",
   github: "https://github.com/FarazO7",
-  githubUsername: "FarazO7",
-  // Place the PDF at public/resume/Faraz-Ali-Product-Manager.pdf
+  // Place the PDF at public/resume/Faraz-Ali-Product-Manager.pdf. The path
+  // stays fixed, so links shared elsewhere keep working.
   resumePath: "/resume/Faraz-Ali-Product-Manager.pdf",
+  // First 8 characters of the PDF's SHA-256. Download links carry it as ?v=,
+  // so a new resume gets a new URL and no browser serves a cached copy. The
+  // content guard (check m) fails the build until it matches the PDF.
+  resumeVersion: "931755c0",
+  resumeFileName: "Faraz-Ali-Resume.pdf",
   // Optimised WebP headshot (1024×1024). Source PNG kept in public/images/.
   headshotPath: "/images/faraz-ali.webp",
   headshotAlt: `${NAME}, ${currentRole.title}`,
 } as const;
+
+// The About intro styles phrases of `identity.bio` (exact substrings; the
+// content guard fails if one stops matching): accents in the serif italic in
+// the first sentence, emphasis in ink in the rest.
+export const bioAccents = ["regulated fintech", "EdTech growth", "e-commerce operations"];
+export const bioEmphasis = [
+  "first PM hire at Zamplitude",
+  "nearly doubled sign-up conversion",
+  "build AI prototypes myself",
+];
 
 // Experience & Education proof strip in the hero (monogram + name + descriptor).
 export type CredibilityOrg = {
@@ -197,26 +211,23 @@ export const credibility: {
   education: CredibilityOrg[];
 } = {
   experience: [
-    { name: "Zamplitude", mark: "Z", descriptor: "SaaS", accent: "#FFD68A" },
+    { name: "Zamplitude", mark: "Z", descriptor: "Fintech", accent: "#FFD68A" },
     { name: "Newton School", mark: "NS", descriptor: "EdTech", accent: "#4F7CFF", logo: "/logos/newton-school.png" },
     { name: "HealthKart", mark: "HK", descriptor: "E-commerce", accent: "#18C6B4", logo: "/logos/healthkart.png" },
     { name: "Healthmug", mark: "hm", descriptor: "E-commerce", accent: "#9DB8FF", logo: "/logos/healthmug.png" },
   ],
   education: [
-    { name: "KIIT University", mark: "KIIT", descriptor: "B.Tech", accent: "#FFB454", logo: "/logos/kiit.png" },
+    // Newest first, matching Experience.
     { name: "MDI Murshidabad", mark: "MDI", descriptor: "PGDM", accent: "#C77BD8", logo: "/logos/mdi.png" },
+    { name: "KIIT University", mark: "KIIT", descriptor: "B.Tech", accent: "#FFB454", logo: "/logos/kiit.png" },
   ],
 };
-
-// REVIEW(Faraz): label over the footer's copy of the section links (redesign).
-export const footerMenuLabel = "Menu";
 
 export const navLinks = [
   { label: "Impact", href: "#impact" },
   { label: "Work", href: "#work" },
   { label: "Built", href: "#built" },
   { label: "Experience", href: "#experience" },
-  { label: "GitHub", href: "#github" },
   { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
 ] as const;
@@ -331,16 +342,18 @@ export const metricGroups: MetricGroup[] = [
   },
 ];
 
-// Three tiles repeated in the hero's stat orbit, values and labels unchanged,
-// one per lever (compliance automation, growth, payments). Each links to the
-// same impact page as its tile.
-const HERO_STAT_SLUGS = ["risk-scoring", "signup-conversion", "razorpay-route"];
+// The hero's strength cards, around the photo once the scroll scene plays.
+// Text as given in the round-2 site brief (18 October 2026); a card has tags
+// (joined with " · ") or one line.
+export type Strength = { title: string; tags?: string[]; line?: string };
 
-export const heroStats: Metric[] = HERO_STAT_SLUGS.map((slug) => {
-  const metric = metricGroups.flatMap((group) => group.metrics).find((m) => m.slug === slug);
-  if (!metric) throw new Error(`heroStats: no metric tile for "${slug}"`);
-  return metric;
-});
+export const heroStrengths: Strength[] = [
+  { title: "Fintech", tags: ["Payments", "APIs", "Integrations"] },
+  { title: "Growth", tags: ["Referrals", "Funnels", "Conversion"] },
+  { title: "PGDM × B.Tech", tags: ["Marketing", "Supply Chain", "Electronics & Telecom"] },
+  { title: "AI × Automation", tags: ["AI workflows", "Agentic AI", "RAG"] },
+  { title: "0 → 1", line: "From Problems to Shipped Solutions" },
+];
 
 /** The tile's full accessible name, shared by the tile and its hero copy. */
 export function metricLabel(metric: Metric): string {
@@ -567,49 +580,67 @@ export const skills: SkillHub[] = [
   },
 ];
 
-// The line under the Skills heading, limited to skills the resume lists.
-export const skillsIntro =
-  "Fluent in product discovery, user research, JTBD, prioritisation, experimentation, A/B testing, APIs, and SQL-driven decisions.";
+// Certifications carousel (Skills & Credentials), in Faraz's order. Names as
+// given in the October 2026 site brief; each image is a local copy of the
+// certificate (public/certifications), so nothing loads from other sites.
+// REVIEW(Faraz): issuer lines read from each certificate (17 October 2026).
+export type Certification = { name: string; issuer: string; href: string; image: string };
 
-export type Credential = { text: string; href?: string };
-
-// Promoted into its own dramatic scroll section (Phase 6). `icon` selects a
-// lucide mark; `href` (when supplied) turns the line into a link.
-export type Achievement = {
-  title: string;
-  year?: string;
-  icon: "trophy" | "award" | "fileBadge";
-  href?: string;
-};
-
-export const achievements: Achievement[] = [
+export const certifications: Certification[] = [
   {
-    title: "NextLeap Product Manager Top Fellow",
-    year: "2024",
-    icon: "trophy",
+    name: "Top Fellow, Product Management",
+    issuer: "NextLeap",
+    href: "https://assets.nextleap.app/user-badge/nlcfsmvdovkfsgn6f8lqy/536786c34e5e988c829d05819e6d0cbf.png",
+    image: "/certifications/nextleap-top-fellow.webp",
   },
   {
-    title: "Runner-Up, “Call for Article” — Analytics Club, IIM Rohtak",
-    year: "2023",
-    icon: "award",
+    name: "Lean Six Sigma",
+    issuer: "KPMG",
+    href: "https://drive.google.com/file/d/15x5ujUoloCr15aegrzAZd6bacXH3uaSS/view?usp=sharing",
+    image: "/certifications/kpmg-lean-six-sigma.webp",
   },
-];
-
-// The resume's certifications; NextLeap Top Fellow sits in `achievements`.
-export const certifications: Credential[] = [
-  { text: "Lean Six Sigma (KPMG)" },
-  { text: "Google Analytics 4 (Google)" },
+  {
+    name: "Business Analytics with Excel",
+    issuer: "Johns Hopkins University · Coursera",
+    href: "https://www.coursera.org/account/accomplishments/certificate/NBPFP8DPKX7F",
+    image: "/certifications/business-analytics-excel.webp",
+  },
+  {
+    name: "Google Analytics 4",
+    issuer: "Google · Skillshop",
+    href: "https://skillshop.credential.net/84e8ebd8-0bb5-47f7-9685-e6124ad130b6#acc.R9ACs1jo",
+    image: "/certifications/google-analytics.webp",
+  },
+  {
+    name: "SQL for Data Science",
+    issuer: "University of California, Davis · Coursera",
+    href: "https://www.coursera.org/account/accomplishments/certificate/HZCGAG3EY3W8",
+    image: "/certifications/sql-data-science.webp",
+  },
+  {
+    name: "Business Analysis & Process Management",
+    issuer: "Coursera",
+    href: "https://www.coursera.org/account/accomplishments/certificate/C4HQ5YMTTBHU",
+    image: "/certifications/business-analysis-process-management.webp",
+  },
+  {
+    name: "Get Started with Jira",
+    issuer: "Coursera",
+    href: "https://www.coursera.org/account/accomplishments/certificate/F8Q5YPGBJSGD",
+    image: "/certifications/get-started-with-jira.webp",
+  },
 ];
 
 // Rendered with the same vertical timeline as Experience (Phase 3). Empty
-// `dates`/`bullets` render gracefully — no orphan separators.
+// `dates`/`bullets` render gracefully — no orphan separators. Education shows
+// no years, by request (October 2026).
 export const educationTimeline: Role[] = [
   {
     id: "mdi",
     title: "PGDM — Marketing & Supply Chain Management",
     company: "Management Development Institute (MDI)",
     location: "Murshidabad",
-    dates: "2022 – 2024",
+    dates: "",
     bullets: [],
   },
   {
@@ -617,7 +648,7 @@ export const educationTimeline: Role[] = [
     title: "B.Tech, Electronics & Telecommunication Engineering",
     company: "KIIT University",
     location: "Bhubaneswar",
-    dates: "2014 – 2018",
+    dates: "",
     bullets: [],
   },
 ];
@@ -802,7 +833,7 @@ export const impactDetails: ImpactDetail[] = [
     meta: [
       { label: "Project type", value: "Acquisition-funnel experimentation" },
       { label: "Company", value: "Newton School" },
-      { label: "Industry", value: "Edtech" },
+      { label: "Industry", value: "EdTech" },
       { label: "Role", value: "Associate Product Manager" },
     ],
     sections: [
@@ -830,7 +861,7 @@ export const impactDetails: ImpactDetail[] = [
     meta: [
       { label: "Project type", value: "Growth module, end-to-end ownership" },
       { label: "Company", value: "Newton School" },
-      { label: "Industry", value: "Edtech" },
+      { label: "Industry", value: "EdTech" },
       { label: "Role", value: "Associate Product Manager" },
       { label: "Collaboration", value: "PM + engineering + programme team" },
     ],
@@ -865,7 +896,7 @@ export const impactDetails: ImpactDetail[] = [
     meta: [
       { label: "Project type", value: "AI feature, discovery → release" },
       { label: "Company", value: "Newton School" },
-      { label: "Industry", value: "Edtech" },
+      { label: "Industry", value: "EdTech" },
       { label: "Role", value: "APM (PRD, edge cases, success metrics)" },
       { label: "Collaboration", value: "PM + ML/engineering + ops reviewers" },
       { label: "Scale", value: "15,000+ sessions" },
@@ -893,7 +924,7 @@ export const impactDetails: ImpactDetail[] = [
     meta: [
       { label: "Project type", value: "Payments integration" },
       { label: "Company", value: "Newton School + partner institute" },
-      { label: "Industry", value: "Edtech / Fintech" },
+      { label: "Industry", value: "EdTech / Fintech" },
       {
         label: "Role",
         value: "APM (scoping, API documentation, testing, automation)",
@@ -923,7 +954,7 @@ export const impactDetails: ImpactDetail[] = [
     meta: [
       { label: "Project type", value: "Workflow automation" },
       { label: "Company", value: "Newton School" },
-      { label: "Industry", value: "Edtech" },
+      { label: "Industry", value: "EdTech" },
       {
         label: "Role",
         value: "APM (user stories, acceptance criteria, UAT, release coordination)",
@@ -949,43 +980,3 @@ export const impactDetails: ImpactDetail[] = [
 export function getImpactDetail(slug: string): ImpactDetail | undefined {
   return impactDetails.find((d) => d.slug === slug);
 }
-
-// ---------------------------------------------------------------------------
-// Curated GitHub grid (the "Building in public" section). A hand-ordered list
-// with hand-written descriptions, so the flagships always show regardless of
-// API recency — no live "most-recent-N" fetch.
-// ---------------------------------------------------------------------------
-export type CuratedRepo = { name: string; description: string; url: string };
-
-export const curatedRepos: CuratedRepo[] = [
-  {
-    name: "Signal",
-    description:
-      "Agentic LLM feedback-triage prototype: classifies, clusters and scores user feedback into ranked, evidence-linked recommendations, with an evaluation harness.",
-    url: "https://github.com/FarazO7/Signal",
-  },
-  {
-    name: "journey-mapper",
-    description:
-      "Event-driven growth CRM with drop-off detection and multi-channel re-engagement.",
-    url: "https://github.com/FarazO7/journey-mapper",
-  },
-  {
-    name: "cairn",
-    description:
-      "RAG coaching assistant prototype (cosine-similarity embedding search).",
-    url: "https://github.com/FarazO7/cairn",
-  },
-  {
-    name: "job-apply-assistant-1",
-    description:
-      "Agentic job-search assistant (FastAPI, MongoDB, OpenAI, Gmail).",
-    url: "https://github.com/FarazO7/job-apply-assistant-1",
-  },
-  {
-    name: "lighthouse-qa-monitor",
-    description:
-      "AI QA-monitoring agent for marketplaces: detects workflow failures, deduplicates issues, translates errors into seller-friendly insights.",
-    url: "https://github.com/FarazO7/lighthouse-qa-monitor",
-  },
-];

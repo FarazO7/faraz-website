@@ -1,42 +1,126 @@
-import type { CSSProperties } from "react";
+"use client";
+
+import { useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import Numeral from "./Numeral";
-import { getRole, metricGroups, metricLabel, type Metric } from "@/lib/content";
+import { revealNow } from "./RevealController";
+import { currentRole, getRole, metricGroups, metricLabel, type Metric } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
-// The reference's "numbers" bento: one group per role (employer and dates as
-// the heading, current role first), four tiles each on a three-column grid.
-// Spans alternate 2+1 / 1+2 and mirror for the next group; surfaces cycle the
-// reference's pastels with one inverted ink tile. Every tile is one link to
-// its impact page, with the same accessible name as before.
+// One tab per company (name and dates), current role first: a WAI-ARIA
+// tablist with roving tabindex, arrow keys, Home and End. Each panel is the
+// company's bento of four tiles, every tile one link to its impact page. Both
+// panels share one grid cell, so the section is always as tall as the taller
+// panel and switching never moves the page; the inactive panel fades out and
+// is then visibility:hidden and inert. Switching replays the tiles' rise and
+// odometer (instant under reduced motion).
+// Five columns, so the narrow tiles take two fifths of a row, not a third.
 const SPANS = [
-  [2, 1, 1, 2],
-  [1, 2, 2, 1],
+  [3, 2, 2, 3],
+  [2, 3, 3, 2],
 ];
 const TONES = [
   ["bg-blue-50", "bg-ink text-white", "bg-pink-50", "bg-surface-3"],
   ["bg-pink-50", "bg-surface-3", "bg-blue-50", "bg-ink text-white"],
 ];
+const DEFAULT_TAB = Math.max(
+  0,
+  metricGroups.findIndex((group) => group.org === currentRole.id),
+);
 
 export default function Metrics() {
+  const [active, setActive] = useState(DEFAULT_TAB);
+  // Bumped on every switch; it keys the active panel's tiles so they remount
+  // and reveal again.
+  const [switches, setSwitches] = useState(0);
+  const tabs = useRef<(HTMLButtonElement | null)[]>([]);
+  const panels = useRef<(HTMLDivElement | null)[]>([]);
+  const id = useId();
+
+  useEffect(() => {
+    const panel = panels.current[active];
+    if (switches > 0 && panel) revealNow(panel);
+  }, [active, switches]);
+
+  function select(index: number) {
+    if (index === active) return;
+    setActive(index);
+    setSwitches((n) => n + 1);
+  }
+
+  function onKeyDown(event: KeyboardEvent<HTMLButtonElement>) {
+    const last = metricGroups.length - 1;
+    const targets: Record<string, number> = {
+      ArrowRight: active === last ? 0 : active + 1,
+      ArrowLeft: active === 0 ? last : active - 1,
+      Home: 0,
+      End: last,
+    };
+    const next = targets[event.key];
+    if (next === undefined) return;
+    event.preventDefault();
+    select(next);
+    tabs.current[next]?.focus();
+  }
+
   return (
-    <div className="space-y-14 md:space-y-20">
-      {metricGroups.map((group, g) => (
-        <div key={group.org}>
-          <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-line pb-4" data-reveal="fade">
-            <h3 className="t-h3">{group.label}</h3>
-            <p className="t-label">{getRole(group.org)?.dates}</p>
-          </div>
-          <ul className="mt-5 grid gap-3 md:grid-cols-3 md:gap-4">
-            {group.metrics.map((metric, i) => (
-              <li key={metric.slug} className={SPANS[g % 2][i] === 2 ? "md:col-span-2" : undefined}>
-                <MetricTile metric={metric} tone={TONES[g % 2][i]} index={i} />
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+    <div>
+      <div role="tablist" aria-label="Impact by company" className="mb-4 flex flex-wrap gap-2">
+        {metricGroups.map((group, i) => {
+          const selected = i === active;
+          return (
+            <button
+              key={group.org}
+              ref={(el) => {
+                tabs.current[i] = el;
+              }}
+              type="button"
+              role="tab"
+              id={`${id}-tab-${i}`}
+              aria-selected={selected}
+              aria-controls={`${id}-panel-${i}`}
+              tabIndex={selected ? 0 : -1}
+              onClick={() => select(i)}
+              onKeyDown={onKeyDown}
+              className={cn("tab", selected && "tab-active")}
+            >
+              <span className="block text-[0.9375rem] font-medium">{group.label}</span>
+              <span className="block text-[0.8125rem] text-muted">{getRole(group.org)?.dates}</span>
+            </button>
+          );
+        })}
+      </div>
+      <div className="grid">
+        {metricGroups.map((group, g) => {
+          const selected = g === active;
+          return (
+            <div
+              key={group.org}
+              ref={(el) => {
+                panels.current[g] = el;
+              }}
+              role="tabpanel"
+              id={`${id}-panel-${g}`}
+              aria-labelledby={`${id}-tab-${g}`}
+              inert={!selected}
+              data-active={selected ? "" : undefined}
+              className="tab-panel col-start-1 row-start-1"
+            >
+              <ul className="grid gap-3 md:grid-cols-5 md:gap-4">
+                {group.metrics.map((metric, i) => (
+                  <li
+                    key={selected ? `${metric.slug}-${switches}` : metric.slug}
+                    className={SPANS[g % 2][i] === 3 ? "md:col-span-3" : "md:col-span-2"}
+                  >
+                    <MetricTile metric={metric} tone={TONES[g % 2][i]} index={i} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
@@ -50,12 +134,12 @@ function MetricTile({ metric, tone, index }: { metric: Metric; tone: string; ind
       data-reveal="up"
       style={{ "--i": index, "--num-color": dark ? "#fff" : "var(--ink)" } as CSSProperties}
       className={cn(
-        "group lift flex h-full min-h-[15rem] flex-col justify-between gap-8 rounded-[var(--radius)] p-6 md:min-h-[17.5rem] md:p-8",
+        "group lift flex h-full flex-col gap-3 rounded-[var(--radius)] p-6",
         tone,
       )}
     >
       <div className="flex items-start justify-between gap-4">
-        <p className="t-numeral">
+        <p className="t-numeral text-[clamp(2.5rem,3.5vw,4.25rem)]">
           <Numeral metric={metric} />
         </p>
         <span aria-hidden className={cn("round", dark ? "bg-white/15" : "bg-white/80")}>
@@ -64,7 +148,7 @@ function MetricTile({ metric, tone, index }: { metric: Metric; tone: string; ind
       </div>
       <div>
         <p className="t-lead">{metric.label}</p>
-        <p className={cn("mt-2 max-w-[52ch] text-base leading-relaxed", dark ? "text-[var(--on-dark-muted)]" : "text-muted")}>
+        <p className={cn("mt-1.5 max-w-[52ch] text-base leading-relaxed", dark ? "text-[var(--on-dark-muted)]" : "text-muted")}>
           {metric.detail}
         </p>
       </div>
