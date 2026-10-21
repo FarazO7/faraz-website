@@ -12,9 +12,12 @@ const clamp01 = (n: number) => Math.min(1, Math.max(0, n));
 
 const easeOut = (t: number) => 1 - (1 - t) * (1 - t); // power1.out, as measured
 
-// Must match the gate in app/globals.css (Hero stage): motion allowed and a
-// screen tall enough for the hero copy at any width (measured at most 731px).
-const HERO_LIVE_QUERY = "(prefers-reduced-motion: no-preference) and (min-height: 750px)";
+// Identical to the gate in app/globals.css (Hero stage; values in
+// docs/DESIGN.md): motion allowed, and either a screen at least 750px tall or
+// a portrait phone 360 to 559px wide and at least 540px tall.
+const HERO_LIVE_QUERY =
+  "(prefers-reduced-motion: no-preference) and (min-height: 750px), " +
+  "(prefers-reduced-motion: no-preference) and (orientation: portrait) and (min-width: 360px) and (max-width: 559px) and (min-height: 540px)";
 
 // The reference's hero: a headline with a small sphere above it; scrolling
 // carries the sphere down into a ring while cards fade in around it. Here the
@@ -46,7 +49,9 @@ export default function HeroStage() {
     let raf = 0;
     const update = () => {
       raf = 0;
-      const range = stage.offsetHeight - window.innerHeight;
+      // Stage and frame are both in svh, so Safari's toolbar collapsing (which
+      // changes innerHeight) can't change the range or make progress jump.
+      const range = stage.offsetHeight - sticky.offsetHeight;
       const p = clamp01(-stage.getBoundingClientRect().top / range);
       const set = (name: string, value: number) => stage.style.setProperty(name, value.toFixed(4));
       set("--pc", clamp01(p / 0.22));
@@ -66,14 +71,24 @@ export default function HeroStage() {
       update();
     };
 
+    // Geometry depends on width only: re-measure on width or orientation
+    // changes, a gate change and once the web fonts have settled the copy,
+    // never on the height-only resizes Safari's toolbar causes.
+    let width = window.innerWidth;
+    const onResize = () => {
+      if (window.innerWidth === width) return;
+      width = window.innerWidth;
+      measure();
+    };
     measure();
+    document.fonts.ready.then(measure);
     window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", measure);
+    window.addEventListener("resize", onResize);
     live.addEventListener("change", measure);
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", measure);
+      window.removeEventListener("resize", onResize);
       live.removeEventListener("change", measure);
     };
   }, []);

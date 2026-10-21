@@ -725,12 +725,12 @@ html.no-scroll {
 }
 
 /* ---------------------------------------------------------------------------
-   Hero stage. Static stack by default (reduced motion, no JS, short screens).
-   The live scroll stage is chosen in CSS alone, before first paint: the .js
-   class plus the media query below (kept in step with HERO_LIVE_QUERY in
-   HeroStage.tsx). 750px clears the hero copy at every width (measured at
-   most 731px, at 320px wide). HeroStage then drives --pc (copy), --pm
-   (portrait move), --pr (ring) and --k0..4 (cards), all 0 → 1, from scroll.
+   Hero stage. Static stack by default (reduced motion, no JS, short or
+   narrow screens, landscape phones). The live scroll stage is chosen in CSS
+   alone, before first paint: the .js class plus the gate media query below
+   (identical to HERO_LIVE_QUERY in HeroStage.tsx). HeroStage then drives --pc
+   (copy), --pm (portrait move), --pr (ring) and --k0..4 (cards), all 0 → 1,
+   from scroll.
 --------------------------------------------------------------------------- */
 .hero-stage {
   position: relative;
@@ -814,22 +814,77 @@ html.no-scroll {
   object-position: top;
 }
 
-/* The ring and the five strength cards share one grid, so no card can land
-   on the ring or the portrait inside it. Phones and tablets: the ring, then
-   the cards two per row, the fifth across both columns. */
+/* Phones (under 560px): a compact hero, so the opening (portrait to contact
+   row) and the final composition (portrait in the ring, five cards) each fit
+   375×540 with Safari's toolbar showing. Same hierarchy, tighter spacing,
+   16px gutters, both buttons on one row from 360px. */
+@media (max-width: 559px) {
+  .hero-top {
+    width: calc(100% - 2rem);
+    padding-block: 4.5rem 1rem;
+  }
+
+  .hero-portrait {
+    width: 6rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-copy h1 {
+    margin-top: 0.75rem;
+  }
+
+  .hero-copy h2 {
+    margin-top: 0.5rem;
+  }
+
+  .hero-copy > div:nth-of-type(1) {
+    margin-top: 1.25rem;
+    gap: 0.5rem;
+  }
+
+  .hero-copy .btn {
+    min-width: 0;
+    padding-inline: 0.75rem;
+  }
+
+  .hero-copy > div:nth-of-type(2) {
+    margin-top: 1rem;
+  }
+}
+
+/* Static (reduced motion, no JS, short or narrow screens, landscape): no ring
+   or sphere, which would sit empty with the portrait still in the hero. The
+   five cards follow the hero as a centred grid: two per row with the fifth
+   across both on phones, one column under 360px, three then two from 560px. */
 .hero-orbit {
   --ring: min(15rem, 62vw);
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 20rem));
   grid-template-areas:
-    "ring ring"
     "s1 s2"
     "s3 s4"
     "s5 s5";
   justify-content: center;
   gap: 0.75rem;
-  padding: 2rem 1rem 5rem;
+  padding: 1rem 1rem 4rem;
+}
+
+@media (max-width: 359px) {
+  .hero-orbit {
+    grid-template-columns: minmax(0, 20rem);
+    grid-template-areas: "s1" "s2" "s3" "s4" "s5";
+  }
+}
+
+@media (min-width: 560px) {
+  .hero-orbit {
+    grid-template-columns: repeat(6, minmax(0, 8.75rem));
+    grid-template-areas:
+      "s1 s1 s2 s2 s3 s3"
+      ". s4 s4 s5 s5 .";
+    padding-inline: max(1rem, 4vw);
+  }
 }
 
 .strength-card:nth-child(1) {
@@ -854,6 +909,7 @@ html.no-scroll {
 
 .orbit-box {
   position: relative;
+  display: none;
   grid-area: ring;
   justify-self: center;
   width: var(--ring);
@@ -884,52 +940,32 @@ html.no-scroll {
   background: linear-gradient(232.63deg, rgba(207, 228, 255, 0.55) 14.38%, rgba(240, 240, 245, 0.75) 71.65%);
 }
 
-/* Desktop: two cards either side of the ring, the fifth beneath it. */
-@media (min-width: 1024px) {
-  .hero-orbit {
-    --ring: min(26rem, 50svh);
-    grid-template-columns: minmax(0, 1fr) var(--ring) minmax(0, 1fr);
-    grid-template-areas:
-      "s1 ring s3"
-      "s2 ring s4"
-      ". s5 .";
-    column-gap: clamp(1.5rem, 3vw, 3rem);
-    row-gap: 1.25rem;
-    padding-inline: max(1rem, 4vw);
-  }
-
-  .orbit-box {
-    margin: 0;
-  }
-
+@media (max-width: 559px) {
   .strength-card {
-    width: min(100%, 17.5rem);
-    align-self: center;
-    padding: 1.25rem 1.5rem 1.4rem;
+    padding: 0.625rem 0.875rem 0.75rem;
   }
 
-  /* Each card slides in from its outer edge (see the live stage below). */
-  .strength-card:nth-child(-n + 2) {
-    --fx: -1;
-    --fy: 0;
-    justify-self: end;
-  }
-
-  .strength-card:nth-child(n + 3):nth-child(-n + 4) {
-    --fx: 1;
-    --fy: 0;
-    justify-self: start;
-  }
-
-  /* Its one line fits without wrapping (the ring column is wide enough). */
-  .strength-card:nth-child(5) {
-    width: max-content;
-    max-width: 100%;
-    justify-self: center;
+  .strength-card p + p {
+    margin-top: 0.25rem;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) and (min-height: 750px) {
+@media (min-width: 1024px) {
+  .strength-card {
+    padding: 1.25rem 1.5rem 1.4rem;
+  }
+}
+
+/* Live: the gate, kept identical to HERO_LIVE_QUERY in HeroStage.tsx (see
+   docs/DESIGN.md for the measured values):
+   - any screen at least 750px tall, as before (tablets and desktops);
+   - phones in portrait, 360 to 559px wide and at least 540px tall: the
+     compact composition above fits there, and no common iPhone sits between
+     its toolbar-shown and toolbar-hidden heights at 540px.
+   The media-query height is the small viewport (toolbar showing), so
+   Safari's toolbar can't flip the mode mid-scroll. */
+@media (prefers-reduced-motion: no-preference) and (min-height: 750px),
+  (prefers-reduced-motion: no-preference) and (orientation: portrait) and (min-width: 360px) and (max-width: 559px) and (min-height: 540px) {
   .js .hero-stage {
     height: 190svh;
   }
@@ -966,14 +1002,24 @@ html.no-scroll {
     transform: translateY(calc(var(--pm, 0) * var(--dy, 0px))) scale(calc(1 + var(--pm, 0) * (var(--sc, 1) - 1)));
   }
 
-  /* The scene sits centred under the nav. */
+  /* The scene: the ring above the cards, centred under the nav. */
   .js .hero-orbit {
     position: absolute;
     inset: 0;
     z-index: 2;
+    grid-template-columns: repeat(2, minmax(0, 20rem));
+    grid-template-areas:
+      "ring ring"
+      "s1 s2"
+      "s3 s4"
+      "s5 s5";
     align-content: center;
-    padding-block: 4.5rem 1rem;
+    padding: 4.5rem 1rem 1rem;
     pointer-events: none;
+  }
+
+  .js .orbit-box {
+    display: block;
   }
 
   .js .orbit-ring {
@@ -990,6 +1036,70 @@ html.no-scroll {
   .js .strength-card {
     opacity: var(--k);
     transform: translate(calc((1 - var(--k)) * var(--fx, 0) * 3rem), calc((1 - var(--k)) * var(--fy, 1) * 1.5rem));
+  }
+
+  /* Phones: a shorter pin, a ring sized to the screen and tighter gaps. The
+     nav hides while scrolling down, so the scene can use the full height. */
+  @media (max-width: 559px) {
+    .js .hero-stage {
+      height: 150svh;
+    }
+
+    /* Room for the nav above the scene only when the screen has it to spare
+       (the nav shows again on scrolling up); 33rem is about the scene. */
+    .js .hero-orbit {
+      --ring: min(11rem, 44vw, 30svh);
+      gap: 0.5rem;
+      padding-block: clamp(0.75rem, 100svh - 33rem, 4.5rem) 0.75rem;
+    }
+
+    .js .orbit-box {
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  /* Desktop: two cards either side of the ring, the fifth beneath it. */
+  @media (min-width: 1024px) {
+    .js .hero-orbit {
+      --ring: min(26rem, 50svh);
+      grid-template-columns: minmax(0, 1fr) var(--ring) minmax(0, 1fr);
+      grid-template-areas:
+        "s1 ring s3"
+        "s2 ring s4"
+        ". s5 .";
+      column-gap: clamp(1.5rem, 3vw, 3rem);
+      row-gap: 1.25rem;
+      padding-inline: max(1rem, 4vw);
+    }
+
+    .js .orbit-box {
+      margin: 0;
+    }
+
+    .js .strength-card {
+      width: min(100%, 17.5rem);
+      align-self: center;
+    }
+
+    /* Each card slides in from its outer edge. */
+    .js .strength-card:nth-child(-n + 2) {
+      --fx: -1;
+      --fy: 0;
+      justify-self: end;
+    }
+
+    .js .strength-card:nth-child(n + 3):nth-child(-n + 4) {
+      --fx: 1;
+      --fy: 0;
+      justify-self: start;
+    }
+
+    /* Its one line fits without wrapping (the ring column is wide enough). */
+    .js .strength-card:nth-child(5) {
+      width: max-content;
+      max-width: 100%;
+      justify-self: center;
+    }
   }
 }
 

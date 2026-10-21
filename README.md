@@ -144,7 +144,8 @@ Motion is CSS driven by one IntersectionObserver
 ([`RevealController.tsx`](components/RevealController.tsx)): masked word
 reveals, odometer numerals, image scale-ins, drawn dividers and the hero scroll
 stage ([`HeroStage.tsx`](components/HeroStage.tsx)), which CSS alone switches
-on (motion allowed, screen at least 750px tall). Nothing is hidden
+on (motion allowed and the measured hero gate in `docs/DESIGN.md`: 750px tall,
+or a portrait phone 360 to 559px wide and 540px tall). Nothing is hidden
 without JavaScript or under `prefers-reduced-motion`; smooth scrolling (Lenis)
 is off on touch and under reduced motion. See [`docs/DESIGN.md`](docs/DESIGN.md).
 

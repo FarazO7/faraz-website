@@ -75,6 +75,46 @@ stands between them and the content.
   accessible names don't change.
 - **AA contrast** on every surface, including pastel tiles and the ink footer.
 
+## Hero gate (measured October 2026)
+
+The live scroll stage is decided in CSS before first paint: `html.js` plus
+the media query in `app/globals.css`, identical to `HERO_LIVE_QUERY` in
+`components/HeroStage.tsx` (change both together).
+
+```
+(prefers-reduced-motion: no-preference) and (min-height: 750px),
+(prefers-reduced-motion: no-preference) and (orientation: portrait)
+  and (min-width: 360px) and (max-width: 559px) and (min-height: 540px)
+```
+
+- **Desktop and tablet clause:** unchanged. 750px clears the full-size hero
+  copy at every width (731px at most).
+- **Phone clause:** under 560px wide, the hero uses a compact composition:
+  - 96px portrait, tighter spacing and 16px gutters;
+  - both buttons on one row from 360px;
+  - a ring of `min(11rem, 44vw, 30svh)`.
+- **Measured fit:** with Safari's toolbar showing (Playwright WebKit iPhone
+  profiles, which use the visible viewport), at 360 to 430 × 540:
+  - the opening (portrait to contact row) runs from 95 to 501px;
+  - the final composition (ring and five cards) runs from 36 to 504px.
+- **Below 360px:** the contact pills need a third row and the opening no
+  longer fits, so 320px widths (the first SE, Display Zoom) stay static.
+- **Landscape phones:** static.
+- **Toolbar:** the media-query height is the small viewport (toolbar
+  showing; CSSWG resolution in csswg-drafts#6453, the same in WebKit, Blink
+  and Gecko), so the toolbar can't flip the mode mid-scroll. 540px also sits
+  below every common iPhone's toolbar-shown height: the SE (3rd gen) at about
+  548px, the Mini at 629px, others 651 to 763px. So even a dynamic height
+  wouldn't straddle it.
+- **Frame and range:**
+  - the sticky frame is `100svh`;
+  - the range is stage height minus frame height, both in `svh`, never
+    `innerHeight`, which changes with the toolbar;
+  - geometry is re-measured on width, orientation and gate changes and once
+    the web fonts load, never on height-only resizes.
+- **Pinned distance:** 150svh stage on phones (50svh of pinned scroll) and
+  190svh elsewhere.
+
 ## Page architecture (top → bottom)
 
 1. **Nav:** floating centred glass pill; visible at the top, slides away past
@@ -84,13 +124,14 @@ stands between them and the content.
    pill, menu opens in place (clip-path), Escape closes it.
 2. **Hero:** portrait, greeting, "*I am* Faraz Ali.", title, Get in touch and
    Download Resume, then the contact row (phone and copy-email pills,
-   LinkedIn and GitHub icon buttons). With motion and a screen at least
-   750px tall (CSS: `html.js` plus a media query, before first paint), a
+   LinkedIn and GitHub icon buttons). Where the hero gate (below) passes, a
    sticky scroll stage carries the portrait into a gradient ring while five
    strength cards (`heroStrengths`) fade in one after another, sliding from
-   their outer edge. The ring and cards share one CSS grid, so no card can
-   cover the portrait: two cards either side and one below on desktop, the
-   ring above the cards two per row on phones. Then the "About" intro (the
+   their outer edge (from below on phones). The ring and cards share one CSS
+   grid, so no card can cover the portrait: two cards either side and one
+   below on desktop, the ring above the cards two per row on phones.
+   Elsewhere the static layout shows the hero, then the five cards as a
+   centred grid with no ring or sphere. Then the "About" intro (the
    bio in two full-width paragraphs, styled phrases from
    `bioAccents`/`bioEmphasis` that never wrap) and the Experience and
    Education logo rows, side by side from 1280px.
