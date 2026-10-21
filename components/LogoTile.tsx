@@ -29,14 +29,14 @@ export default function LogoTile({
         height={40}
         loading="lazy"
         onError={() => setFailed(true)}
-        className="size-10 shrink-0 rounded-full bg-white object-contain p-1.5 ring-1 ring-line"
+        className="size-9 shrink-0 rounded-full bg-white object-contain p-1.5 ring-1 ring-line sm:size-10"
       />
     );
   }
 
   return (
     <span
-      className="grid size-10 shrink-0 place-items-center rounded-full text-xs font-semibold text-ink"
+      className="grid size-9 shrink-0 place-items-center rounded-full text-xs font-semibold text-ink sm:size-10"
       style={{ backgroundColor: `${accent}66` }}
     >
       {mark}

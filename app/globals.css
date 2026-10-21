@@ -1464,6 +1464,18 @@ html.no-scroll {
     }
   }
 
+  /* Under 360px: two rows, not three (email and both icons share one). */
+  @media (max-width: 359px) {
+    .contact-pill {
+      padding-inline: 0.625rem;
+      font-size: 0.8125rem;
+    }
+
+    .contact-icon {
+      padding: 0;
+    }
+  }
+
   /* Hover and focus: the hero buttons' blue-to-pink as the border. */
   .contact-pill::before {
     content: "";
@@ -1587,6 +1599,13 @@ html.no-scroll {
     transition:
       background-color 0.3s,
       border-color 0.3s;
+  }
+
+  /* Phones: both tabs share one row from 360px (Metrics.tsx), so less padding. */
+  @media (max-width: 639px) {
+    .tab {
+      padding-inline: 0.625rem;
+    }
   }
 
   .tab:hover {

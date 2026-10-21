@@ -31,7 +31,7 @@ export default function Hero() {
         <p className="mt-5 leading-[1.65] text-muted lg:text-[1.125rem]">
           {splitByPhrases(detail, bioEmphasis).map((part, i) =>
             part.match ? (
-              <span key={i} className="text-ink">
+              <span key={i} className="whitespace-nowrap text-ink">
                 {part.text}
               </span>
             ) : (

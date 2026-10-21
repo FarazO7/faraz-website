@@ -44,7 +44,7 @@ export default function Timeline({
             {role.domains && role.domains.length > 0 && (
               <ul aria-label="Domains" className="mt-3 flex flex-wrap gap-2 lg:sr-only">
                 {role.domains.map((domain) => (
-                  <li key={domain} className="pill bg-surface-3 text-[0.875rem]">
+                  <li key={domain} className="pill bg-surface-3 text-[0.875rem] max-[359px]:text-[0.8125rem]">
                     {domain}
                   </li>
                 ))}

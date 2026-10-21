@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
+import { useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import Numeral from "./Numeral";
@@ -66,7 +66,12 @@ export default function Metrics() {
 
   return (
     <div>
-      <div role="tablist" aria-label="Impact by company" className="mb-4 flex flex-wrap gap-2">
+      <div
+        role="tablist"
+        aria-label="Impact by company"
+        // Phones from 360px: both tabs side by side, sized to their content.
+        className="mb-4 grid grid-cols-1 gap-2 min-[360px]:grid-cols-[auto_auto] min-[360px]:justify-start sm:flex sm:flex-wrap"
+      >
         {metricGroups.map((group, i) => {
           const selected = i === active;
           return (
@@ -86,7 +91,7 @@ export default function Metrics() {
               className={cn("tab", selected && "tab-active")}
             >
               <span className="block text-[0.9375rem] font-medium">{group.label}</span>
-              <span className="block text-[0.8125rem] text-muted">{getRole(group.org)?.dates}</span>
+              <span className="block text-[0.8125rem] whitespace-nowrap text-muted">{getRole(group.org)?.dates}</span>
             </button>
           );
         })}
@@ -125,6 +130,28 @@ export default function Metrics() {
   );
 }
 
+// Keeps a number with its preposition or unit ("from 72 hours", "under 8",
+// "3 weeks", "from 0 to 1") and "A/B tests" on one line, so a description
+// never ends on a lone figure. Only spans are added; the text is unchanged.
+const PAIRS =
+  /(?:under|over|from|to) \d+(?:[.,]\d+)*%?(?: to \d+(?:[.,]\d+)*%?)?(?: (?:hours?|weeks?|days?))?|\d+(?:[.,]\d+)*(?: to \d+)? (?:hours?|weeks?|days?)|A\/B tests?/g;
+
+function keepPairs(text: string): ReactNode[] {
+  const parts: ReactNode[] = [];
+  let last = 0;
+  for (const match of text.matchAll(PAIRS)) {
+    parts.push(
+      text.slice(last, match.index),
+      <span key={match.index} className="whitespace-nowrap">
+        {match[0]}
+      </span>,
+    );
+    last = match.index + match[0].length;
+  }
+  parts.push(text.slice(last));
+  return parts;
+}
+
 function MetricTile({ metric, tone, index }: { metric: Metric; tone: string; index: number }) {
   const dark = tone.includes("bg-ink");
   return (
@@ -148,8 +175,13 @@ function MetricTile({ metric, tone, index }: { metric: Metric; tone: string; ind
       </div>
       <div>
         <p className="t-lead">{metric.label}</p>
-        <p className={cn("mt-1.5 max-w-[52ch] text-base leading-relaxed", dark ? "text-[var(--on-dark-muted)]" : "text-muted")}>
-          {metric.detail}
+        <p
+          className={cn(
+            "mt-1.5 max-w-[52ch] text-base leading-relaxed text-pretty",
+            dark ? "text-[var(--on-dark-muted)]" : "text-muted",
+          )}
+        >
+          {keepPairs(metric.detail)}
         </p>
       </div>
     </Link>

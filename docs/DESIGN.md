@@ -134,12 +134,17 @@ the media query in `app/globals.css`, identical to `HERO_LIVE_QUERY` in
    centred grid with no ring or sphere. Then the "About" intro (the
    bio in two full-width paragraphs, styled phrases from
    `bioAccents`/`bioEmphasis` that never wrap) and the Experience and
-   Education logo rows, side by side from 1280px.
-3. **Impact:** a tablist, one tab per company with its dates; each panel is
-   a bento of four tiles on five columns (3 + 2, then 2 + 3) with odometer
-   numerals, every tile linking to its impact page. Heading, tabs and tiles
-   fit one screen at 1366×768. Panels share one grid cell, so switching never
-   moves the page.
+   Education logo rows: side by side from 1280px, one tile per row below
+   520px so every name and descriptor reads on one line (descriptors never
+   break, even at the hyphen in "E-commerce"; 36px logos on phones).
+3. **Impact:** a tablist, one tab per company with its dates (side by side
+   from 360px); each panel is a bento of four tiles on five columns (3 + 2,
+   then 2 + 3) with odometer numerals, every tile linking to its impact page.
+   Heading, tabs and tiles fit one screen at 1366×768. Panels share one grid
+   cell, so switching never moves the page. Descriptions use
+   `text-wrap: pretty`, and `keepPairs()` in `Metrics.tsx` keeps a number
+   with its preposition or unit ("from 72 hours", "under 8", "3 weeks",
+   "from 0 to 1", "A/B tests") on one line: spans only, the text unchanged.
 4. **Selected Work:** a full-width carousel (`Carousel.tsx`: a continuous
    drift at `DRIFT_PX_PER_S` over aria-hidden, inert copies, prev/next,
    pause/play, with the pause rules) of case-study cards; card widths follow

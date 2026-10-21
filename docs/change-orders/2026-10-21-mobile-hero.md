@@ -205,3 +205,27 @@ I recommend the pinned compact stage. It is the same mechanism desktop already p
 - **Pinned scroll:** 274 to 420px on phones (50svh), against 600 to 760px before.
 - **Screenshots:** `.scratch/mobile/before/` and `.scratch/mobile/after/`.
 - **Environment:** iCloud "Optimise Mac Storage" had offloaded 29,239 files in `node_modules`, plus source files, `.git` objects and `.next`, and wasn't restoring them on request. Repository files were brought back by reading them, `node_modules` was reinstalled with `npm ci` from the lockfile (no new dependencies), and `.next` was cleared.
+
+## 7. Phase 3 outcome (22 October 2026)
+
+3c, 3d, 3e and the approved 3f items (2, 5, 7) are implemented. Checks used `.scratch/mobile/phase3.mjs` (WebKit, at 320, 360, 375, 390 and 430px, plus 1366×768 and 1440×785); screenshots are `after/p3-*.png`.
+
+- **3c tiles** (`Credibility.tsx`, `LogoTile.tsx`):
+  - One tile per row below 520px and two from 520px; the flex row from 640px is unchanged.
+  - Logos are 36px below 640px and keep their aspect ratio. The gap and right padding are tighter, and descriptors don't wrap.
+  - **Result:** every name and descriptor takes one line at every phone width. At 1280px and up the panel is still 1,209px.
+  - **Deviation:** the plan said 480px. At 480 to 519px "MDI Murshidabad" would still wrap in two columns, so two columns start at 520px.
+- **3d Impact** (`Metrics.tsx`):
+  - `text-wrap: pretty` on the descriptions.
+  - `keepPairs()` keeps number pairs together: "from 72 hours", "under 8", "from 23%", "3 weeks", "from 100 hours", "from 0 to 1", "from 7%", "from 10%" and "A/B tests". Its pattern is self-checked against all eight descriptions (`.scratch/mobile/pairs-test.mjs`, `pairs-real.ts`).
+  - **Result:** no description ends on a single word at any width tested, on either tab. The text is unchanged (spans only; the content compare is clean).
+  - The Impact section still fits one screen: 693px at 1440×785 and 686px at 1366×768.
+- **3e** (`Hero.tsx`, `globals.css`):
+  - The `bioEmphasis` phrases don't wrap (the widest is 251px against a 277px column at 320px).
+  - Under 360px the contact pills have 10px side padding and 13px text, so the row takes two rows, not three, in the hero and the footer (3f item 7). Tap height stays 44px.
+- **3f item 2** (`Metrics.tsx`, `globals.css`):
+  - From 360px the two tabs share a row, sized to their content (304 of 312px at 360px). Their phone padding is 10px, and the dates don't wrap.
+  - Below 360px they stack, and from 640px they're unchanged.
+- **3f item 5** (`Timeline.tsx`): the Domains pills are 13px under 360px.
+- **Desktop:** the 1440×900 hero positions are still pixel-identical.
+- **Phase 2 regression:** all 22 phone cases and 5 corners pass again.
