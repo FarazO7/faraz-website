@@ -180,7 +180,7 @@ export const identity = {
   // First 8 characters of the PDF's SHA-256. Download links carry it as ?v=,
   // so a new resume gets a new URL and no browser serves a cached copy. The
   // content guard (check m) fails the build until it matches the PDF.
-  resumeVersion: "931755c0",
+  resumeVersion: "c61849f3",
   resumeFileName: "Faraz-Ali-Resume.pdf",
   // Optimised WebP headshot (1024×1024). Source PNG kept in public/images/.
   headshotPath: "/images/faraz-ali.webp",
