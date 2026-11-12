@@ -99,15 +99,17 @@ stands between them and the content.
    numerals, every tile linking to its impact page. Heading, tabs and tiles
    fit one screen at 1366×768. Panels share one grid cell, so switching never
    moves the page.
-4. **Selected Work:** a full-width carousel (`Carousel.tsx`: a continuous
+4. **Built:** six expanding cards; closed, the name and a faint index; open
+   (hover intent, or the header button), the description above the links,
+   every card at one measured height (`--built-open`). One open at a time;
+   it stays open when the pointer leaves. Extra links, an MCP endpoint and a
+   test login (ProofFlow) sit under the buttons as small muted lines with
+   copy buttons.
+5. **Selected Work:** a full-width carousel (`Carousel.tsx`: a continuous
    drift at `DRIFT_PX_PER_S` over aria-hidden, inert copies, prev/next,
    pause/play, with the pause rules) of case-study cards; card widths follow
    the column (`cqw`); previews contained, never cropped; one stretched link
    per card, except Zomato, which keeps its four-document toggle.
-5. **Built:** four expanding cards; closed, the name and a faint index; open
-   (hover intent, or the header button), the description above the links,
-   every card at one measured height (`--built-open`). One open at a time;
-   it stays open when the pointer leaves.
 6. **Experience:** sticky heading and, from lg, the Domains of the role at
    the reading line (40% down the viewport), changing with a FLIP animation
    (`DomainPills.tsx`); a numbered timeline on the right, its active circle

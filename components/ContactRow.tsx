@@ -62,7 +62,7 @@ export default function ContactRow({
 
 // navigator.clipboard only exists in secure contexts (https, localhost), so
 // the site opened at a plain-http LAN address falls back to a hidden textarea.
-async function copyText(text: string): Promise<boolean> {
+export async function copyText(text: string): Promise<boolean> {
   try {
     await navigator.clipboard.writeText(text);
     return true;

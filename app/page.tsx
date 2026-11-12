@@ -49,8 +49,8 @@ export default function Home() {
           >
             <Metrics />
           </Section>
-          <CaseStudies />
           <BuiltProjects />
+          <CaseStudies />
           <Experience />
           <Skills />
         </PageTransition>

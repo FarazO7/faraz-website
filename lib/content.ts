@@ -225,8 +225,8 @@ export const credibility: {
 
 export const navLinks = [
   { label: "Impact", href: "#impact" },
-  { label: "Work", href: "#work" },
   { label: "Built", href: "#built" },
+  { label: "Work", href: "#work" },
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
@@ -447,6 +447,12 @@ export type Project = {
   highlights?: string[];
   /** A real screenshot of the live demo, under /public. */
   screenshot?: { src: string; alt: string };
+  /** Smaller text links after the demo and repo buttons. */
+  links?: { label: string; href: string }[];
+  /** MCP connector URL, shown with a copy button (pasted, not clicked). */
+  mcpEndpoint?: string;
+  /** Shared demo-workspace login, shown with copy buttons. */
+  login?: { email: string; password: string };
 };
 
 export const projects: Project[] = [
@@ -469,6 +475,33 @@ export const projects: Project[] = [
       "Built an agentic LLM pipeline that classifies, clusters and scores scattered user feedback into ranked, evidence-linked recommendations on what to build next.",
       "Added explainable scoring, a human-in-the-loop review step and an evaluation harness that measures theme recall, precision and hallucination rate against a labelled set.",
     ],
+  },
+  {
+    name: "ProofFlow",
+    // REVIEW(Faraz): tagline and description drafted from the repo README.
+    tagline: "MCP · Milestone acceptance",
+    description:
+      "An MCP server built with Next.js that takes a milestone from delivered to accepted: the customer's own Claude reads contracts and writes acceptance packs through its tools, and ProofFlow keeps the record down to the date payment falls due.",
+    repo: "https://github.com/FarazO7/model-context-protocol-mcp-with-next-js",
+    demo: "https://model-context-protocol-mcp-with-nex-eight-blush.vercel.app",
+    links: [
+      {
+        label: "Client view (no login)",
+        href: "https://model-context-protocol-mcp-with-nex-eight-blush.vercel.app/r/9VljNCFJGJ0y2QrpwSjKopa3_1kkCMq9ZWab8WtUYDw",
+      },
+    ],
+    mcpEndpoint:
+      "https://model-context-protocol-mcp-with-nex-eight-blush.vercel.app/api/w/rx1a9DUgp-Ha_T78YMFK2yQ42rWn7k9l7uYAyJSUeI4/mcp",
+    login: { email: "demo@brightfield.example", password: "Brightfield-9297b137" },
+  },
+  {
+    name: "Vocab Coach",
+    // REVIEW(Faraz): tagline and description drafted from the repo README.
+    tagline: "Voice agent · Vocabulary",
+    description:
+      "A voice-agent vocabulary coach for IELTS, PTE and DET speaking: it introduces words in conversation, asks for them again with a ladder of hints, and brings them back on a spaced-repetition schedule.",
+    repo: "https://github.com/FarazO7/vocab-coach",
+    demo: "https://vocab-coach-smoky.vercel.app/",
   },
   {
     name: "engagR",
