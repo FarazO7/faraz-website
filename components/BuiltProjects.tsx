@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties, type MouseEvent, type PointerEvent } from "react";
-import { ArrowUpRight, Plus } from "lucide-react";
+import { ArrowUpRight, Check, Copy, Plus } from "lucide-react";
 import Section from "./Section";
+import { copyText } from "./ContactRow";
 import { GitHubMark } from "./icons";
 import { projects, type Project } from "@/lib/content";
 import { linkProps } from "@/lib/links";
@@ -141,9 +142,73 @@ function ProjectCard({
                 <span className="sr-only">(opens in a new tab)</span>
               </a>
             </div>
+            {(project.mcpEndpoint || project.login) && (
+              <dl className="mt-5 space-y-1 text-sm text-muted">
+                {project.mcpEndpoint && (
+                  <div className="sm:flex sm:items-center sm:gap-2">
+                    <dt className="shrink-0">MCP endpoint:</dt>
+                    {/* One line, cut in the middle so "/mcp" stays; the button copies the whole URL. */}
+                    <dd className="flex min-w-0 items-center">
+                      <code className="flex min-w-0 font-mono text-xs text-ink">
+                        <span className="truncate">{project.mcpEndpoint.slice(0, -12)}</span>
+                        <span className="shrink-0">{project.mcpEndpoint.slice(-12)}</span>
+                      </code>
+                      <CopyButton text={project.mcpEndpoint} label="MCP endpoint" />
+                    </dd>
+                  </div>
+                )}
+                {project.login && (
+                  // Inline flow: it breaks only between the label, the email and the password.
+                  <div>
+                    <dt className="mr-2 inline whitespace-nowrap">Test login:</dt>
+                    <dd className="inline">
+                      <span className="whitespace-nowrap">
+                        <code className="font-mono text-xs text-ink">{project.login.email}</code>
+                        <CopyButton text={project.login.email} label="test email" />
+                      </span>{" "}
+                      <span aria-hidden>/</span>{" "}
+                      <span className="whitespace-nowrap">
+                        <code className="font-mono text-xs text-ink">{project.login.password}</code>
+                        <CopyButton text={project.login.password} label="test password" />
+                      </span>
+                    </dd>
+                  </div>
+                )}
+              </dl>
+            )}
           </div>
         </div>
       </div>
     </article>
+  );
+}
+
+// Icon button that copies a value; the icon turns to a tick for 2 seconds.
+function CopyButton({ text, label }: { text: string; label: string }) {
+  const [copied, setCopied] = useState(false);
+  const timer = useRef(0);
+  useEffect(() => () => window.clearTimeout(timer.current), []);
+
+  async function copy() {
+    if (!(await copyText(text))) return;
+    setCopied(true);
+    window.clearTimeout(timer.current);
+    timer.current = window.setTimeout(() => setCopied(false), 2000);
+  }
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={copy}
+        aria-label={`Copy ${label}`}
+        className="inline-grid size-8 shrink-0 place-items-center rounded-full align-middle text-ink transition-colors hover:bg-ink/5"
+      >
+        {copied ? <Check className="size-3.5" aria-hidden /> : <Copy className="size-3.5" aria-hidden />}
+      </button>
+      <span className="sr-only" aria-live="polite">
+        {copied ? "Copied" : ""}
+      </span>
+    </>
   );
 }
