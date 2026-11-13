@@ -141,17 +141,6 @@ function ProjectCard({
                 View repo
                 <span className="sr-only">(opens in a new tab)</span>
               </a>
-              {project.links?.map((link) => (
-                <a
-                  key={link.href}
-                  {...linkProps(link.href)}
-                  className="inline-flex items-center gap-1 px-1 text-sm font-medium underline decoration-ink/25 underline-offset-4 hover:decoration-ink"
-                >
-                  {link.label}
-                  <ArrowUpRight className="size-3.5" aria-hidden />
-                  <span className="sr-only">(opens in a new tab)</span>
-                </a>
-              ))}
             </div>
             {(project.mcpEndpoint || project.login) && (
               <dl className="mt-5 space-y-1 text-sm text-muted">

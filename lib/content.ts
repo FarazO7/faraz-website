@@ -447,8 +447,6 @@ export type Project = {
   highlights?: string[];
   /** A real screenshot of the live demo, under /public. */
   screenshot?: { src: string; alt: string };
-  /** Smaller text links after the demo and repo buttons. */
-  links?: { label: string; href: string }[];
   /** MCP connector URL, shown with a copy button (pasted, not clicked). */
   mcpEndpoint?: string;
   /** Shared demo-workspace login, shown with copy buttons. */
@@ -484,12 +482,6 @@ export const projects: Project[] = [
       "An MCP server built with Next.js that takes a milestone from delivered to accepted: the customer's own Claude reads contracts and writes acceptance packs through its tools, and ProofFlow keeps the record down to the date payment falls due.",
     repo: "https://github.com/FarazO7/model-context-protocol-mcp-with-next-js",
     demo: "https://model-context-protocol-mcp-with-nex-eight-blush.vercel.app",
-    links: [
-      {
-        label: "Client view (no login)",
-        href: "https://model-context-protocol-mcp-with-nex-eight-blush.vercel.app/r/9VljNCFJGJ0y2QrpwSjKopa3_1kkCMq9ZWab8WtUYDw",
-      },
-    ],
     mcpEndpoint:
       "https://model-context-protocol-mcp-with-nex-eight-blush.vercel.app/api/w/rx1a9DUgp-Ha_T78YMFK2yQ42rWn7k9l7uYAyJSUeI4/mcp",
     login: { email: "demo@brightfield.example", password: "Brightfield-9297b137" },

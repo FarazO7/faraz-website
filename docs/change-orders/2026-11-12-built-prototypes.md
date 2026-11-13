@@ -49,3 +49,7 @@ Implemented as approved on `built-prototypes-2026-11`, uncommitted. Lint, `tsc`,
 
 - **Links:** live demos, both repos and the MCP endpoint respond (the endpoint answers an MCP `initialize` as ProofFlow). **The client-view link returns 404** on the ProofFlow app itself, probably a review link reset with the demo data. It needs a fresh URL from Faraz.
 - **Open height:** 243px at 1440 and 486px at 375 for every card (ProofFlow's content).
+
+## 5. Follow-up (13 November 2026)
+
+At Faraz's request, the "Client view (no login)" link is removed (it returned 404). Nothing else used the `links` field, so it and its rendering are removed too. ProofFlow keeps Live demo, View repo, the MCP endpoint and the test login.
